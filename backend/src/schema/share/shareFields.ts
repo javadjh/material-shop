@@ -8,7 +8,6 @@ export const email: PropOptions<any> = {
   type: String,
   lowercase: true,
   unique: true,
-  required: true,
   validate: [validateEmail],
   match: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
 };

@@ -7,9 +7,6 @@ class PagingConfig extends PagingDto {
 }
 
 export class GlobalUtility {
-  static generateCitizenCode() {
-    return `${new Date().getTime()}`;
-  }
   static applyMixins(derivedCtor: any, baseCtors: any[]) {
     baseCtors.forEach((baseCtor) => {
       Object.getOwnPropertyNames(baseCtor.prototype).forEach((name) => {

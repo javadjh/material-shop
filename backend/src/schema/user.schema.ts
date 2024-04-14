@@ -1,18 +1,9 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document, SchemaTypes } from 'mongoose';
+import { Document } from 'mongoose';
 import { BaseModel } from './share/BaseModel';
-import {
-  produceClassSchema,
-  produceTypeSchema,
-  sellerStatusSchema,
-  sellerTypeSchema,
-  userTypeSchema,
-} from './share/enums';
 import { email } from './share/shareFields';
 import { City } from './city.schema';
 import { Province } from './province.schema';
-import { File } from './file.schema';
-import { userTypesEnum } from 'src/shareDTO/enums';
 
 export type UserDocument = User & Document;
 export class BaseUserModel extends BaseModel {
@@ -22,8 +13,6 @@ export class BaseUserModel extends BaseModel {
 }
 @Schema({ timestamps: true })
 export class User extends BaseUserModel {
-
-
   //step 1
   @Prop(email)
   email?: string;
@@ -41,7 +30,6 @@ export class User extends BaseUserModel {
   @Prop()
   melliCode?: string;
 
-
   @Prop({ type: City })
   city?: City;
 
@@ -55,20 +43,19 @@ export class User extends BaseUserModel {
   phone?: string;
 
   @Prop()
-  tel?: string;
-
-  @Prop()
   postalCode?: string;
 
-  @Prop()
-  shabaCode?: string;
+  @Prop({ type: String })
+  companyName?: string;
 
-  
   @Prop({ type: Boolean, default: true })
   isActive: boolean;
 
+  @Prop({ type: Boolean, default: false })
+  isAdmin?: boolean;
 
-  
+  @Prop({ type: Boolean, default: false })
+  isCompleted?: boolean;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

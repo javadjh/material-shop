@@ -7,7 +7,7 @@ export class Auth {
   constructor(private jwt: JwtService, private config: ConfigService) {}
   async generateToken(payload: any) {
     return await this.jwt.signAsync(payload, {
-      secret: this.config.get('TOKEN_SECRET_KEY'),
+      secret: 'ssdcfvsdcsdfvdf',
     });
   }
 }

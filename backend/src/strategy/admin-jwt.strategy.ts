@@ -4,10 +4,10 @@ import { Injectable, BadRequestException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { User, UserDocument } from 'src/schema/user.schema';
 import { Model } from 'mongoose';
-import { RECORD_NOT_FOUND_ERROR_MESSAGE } from 'src/config/messages';
+import { ACCESS_ERROR_MESSAGE } from 'src/config/messages';
 
 @Injectable()
-export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
+export class AdmminJwtStrategy extends PassportStrategy(Strategy, 'admin-jwt') {
   constructor(
     @InjectModel(User.name) private readonly model: Model<UserDocument>,
   ) {
@@ -24,8 +24,8 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
       .select('-password')
       .lean();
     console.log(user);
-    if (!user?._id)
-      throw new BadRequestException(RECORD_NOT_FOUND_ERROR_MESSAGE);
+    if (!user?._id || !user.isAdmin)
+      throw new BadRequestException(ACCESS_ERROR_MESSAGE);
 
     return user;
   }

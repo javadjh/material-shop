@@ -20,6 +20,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { multerConfig } from 'src/config/fileConfig';
 import { InsertFileCommand } from './handlers/commands/InsertFile.command';
 import { LoginJwtGuard } from 'src/guards/login-jwt.guard';
+import { AdminJwtGuard } from 'src/guards/admin-jwt.guard';
 
 @Controller('file')
 @ApiTags('file')
@@ -32,7 +33,7 @@ export class FileController {
   @Post('')
   @UseInterceptors(FileInterceptor('file', multerConfig))
   @ApiConsumes('multipart/form-data')
-  @UseGuards(LoginJwtGuard)
+  @UseGuards(AdminJwtGuard)
   @ApiBearerAuth('JWT-auth')
   @ApiOkResponse({
     description: 'insert file api',
