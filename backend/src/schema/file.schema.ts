@@ -7,7 +7,7 @@ class BaseFileModel extends BaseModel {
   url?: string;
 }
 
-@Schema()
+@Schema({ timestamps: true })
 export class File extends BaseFileModel {
   @Prop({ type: String })
   originalname: string;

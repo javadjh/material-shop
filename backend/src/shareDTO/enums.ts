@@ -5,3 +5,14 @@ export enum SellerDepartmentEnum {
   stoneCeramic = 'stone-ceramic',
   electricalWaterFacilities = 'electrical-water-facilities',
 }
+
+export enum genderEnum {
+  women = 'women',
+  men = 'men',
+  both = 'both',
+}
+export enum JonInfoDepartmentEnum {
+  programmer = 'programmer',
+  marketer = 'marketer',
+  boss = 'boss',
+}

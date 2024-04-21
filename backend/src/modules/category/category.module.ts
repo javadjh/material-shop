@@ -18,5 +18,6 @@ import { AdmminJwtStrategy } from 'src/strategy/admin-jwt.strategy';
     AdmminJwtStrategy,
     CategoryShareHandler,
   ],
+  exports: [CategoryShareHandler],
 })
 export class CategoryModule {}

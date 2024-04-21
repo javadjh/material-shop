@@ -69,6 +69,7 @@ export const YOU_CANT_DO_IT_ERROR_MESSAGE: string =
   'شما امکان انجام این عملیات را ندارید';
 
 export const RECORD_IS_DUPLICATE_ERROR_MESSAGE: string = 'تکراری میباشد';
+export const PRODUCT_COUNT_ERROR_MESSAGE: string = 'تعداد مجاز نمیباشد';
 export const ACCESS_ERROR_MESSAGE: string = 'دسترسی ندارید';
 export const NOT_SUB_MARKETER_ERROR_MESSAGE: string =
   'شما کارمند بازاریاب نیستید';

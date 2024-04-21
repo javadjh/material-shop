@@ -40,6 +40,6 @@ export class LoginHandler implements IQueryHandler<LoginQuery> {
     let token: string = await this.auth.generateToken({ sub: userObject?._id });
 
     let dto: SendTokenResponseDto = { data: token };
-    return Response.send(dto);
+    return Response.send(dto.data);
   }
 }

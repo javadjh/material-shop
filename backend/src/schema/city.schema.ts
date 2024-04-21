@@ -4,7 +4,7 @@ import { BaseModel } from './share/BaseModel';
 
 export type CityDocument = City & Document;
 
-@Schema()
+@Schema({ timestamps: true })
 export class City extends BaseModel {
   @Prop({ required: true })
   name: string;

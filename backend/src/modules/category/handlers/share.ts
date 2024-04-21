@@ -6,6 +6,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Category, CategoryDocument } from 'src/schema/category.schema';
 import { Types } from 'mongoose';
+import { RecordNotFoundException } from 'src/filters/record-not-found.filter';
 
 @Injectable()
 export class CategoryShareHandler {
@@ -31,5 +32,14 @@ export class CategoryShareHandler {
       previousParents.push(previousCategory._id);
     } while (!isMainParentFound);
     return previousParents;
+  }
+
+  async returnCategoryObject(id: string): Promise<Category> {
+    id.isObjectId();
+
+    const category = await this.categoryModel.findById(id);
+    if (!category?._id) throw new RecordNotFoundException();
+
+    return category;
   }
 }

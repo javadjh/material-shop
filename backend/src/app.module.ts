@@ -8,6 +8,11 @@ import { FileModule } from './modules/file/file.module';
 import { UserModule } from './modules/user/user.module';
 import { CategoryModule } from './modules/category/category.module';
 import { SellerModule } from './modules/seller/seller.module';
+import { JobInfoModule } from './modules/job-info/job-info.module';
+import { JobModule } from './modules/job/job.module';
+import { BrandModule } from './modules/brand/brand.module';
+import { ReportModule } from './modules/report/report.module';
+import { ProductModule } from './modules/product/product.module';
 
 @Module({
   imports: [
@@ -25,6 +30,11 @@ import { SellerModule } from './modules/seller/seller.module';
     UserModule,
     FileModule,
     SellerModule,
+    JobInfoModule,
+    JobModule,
+    BrandModule,
+    ReportModule,
+    ProductModule,
   ],
 })
 export class AppModule {}
