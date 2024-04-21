@@ -1,0 +1,13 @@
+impo * {
+  margin: 0;
+  padding: 0;
+}
+@font-face {
+  font-family: "vazir";
+  src: local("vazir"), url("../public/vazir.ttf") format("truetype");
+}
+
+* {
+  font-family: "vazir";
+  margin: 0px;
+}
