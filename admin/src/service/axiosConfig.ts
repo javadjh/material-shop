@@ -2,8 +2,11 @@ import { message } from "antd";
 import axios from "axios";
 import { BASE_URL } from "./APIRoutes";
 
-axios.defaults.headers.post["Content-Type"] = "application/json";
+// axios.defaults.headers.post["Content-Type"] = "application/json";
 axios.defaults.baseURL = BASE_URL;
+axios.defaults.headers.common["Authorization"] = `Bearer ${localStorage.getItem(
+  "token"
+)}`;
 
 axios.interceptors.response.use(null, (error) => {
   if (error) {

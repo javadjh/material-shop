@@ -5,7 +5,10 @@ import { Response } from 'src/config/response';
 import { Job, JobDocument } from 'src/schema/job.schema';
 import { GlobalUtility } from 'src/utility/GlobalUtility';
 import { PagingDto } from 'src/shareDTO/Paging.dto';
-import { GetReportsResponseDto } from '../../dto/response/GetReportsResponse.dto';
+import {
+  GetReportsResponseData,
+  GetReportsResponseDto,
+} from '../../dto/response/GetReportsResponse.dto';
 import { Report, ReportDocument } from 'src/schema/report.schema';
 
 export class GetReportsQuery {
@@ -38,7 +41,17 @@ export class GetReportsHandler implements IQueryHandler<GetReportsQuery> {
       .limit(eachPerPage)
       .lean();
 
-    let response: GetReportsResponseDto = { data: reports };
-    return Response.send(response.data);
+    const total = await this.report
+      .find({
+        $or: [
+          { fullName: regex },
+          { phoneNumber: regex },
+          { description: regex },
+        ],
+      })
+      .count();
+
+    let response: GetReportsResponseData = { reports, total };
+    return Response.send(response);
   }
 }

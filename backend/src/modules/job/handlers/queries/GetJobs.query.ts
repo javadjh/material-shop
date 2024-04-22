@@ -5,7 +5,10 @@ import { Response } from 'src/config/response';
 import { Job, JobDocument } from 'src/schema/job.schema';
 import { GlobalUtility } from 'src/utility/GlobalUtility';
 import { PagingDto } from 'src/shareDTO/Paging.dto';
-import { GetJobsResponseDto } from '../../dto/response/GetJobsResponse.dto';
+import {
+  GetJobsResponseData,
+  GetJobsResponseDto,
+} from '../../dto/response/GetJobsResponse.dto';
 
 export class GetJobsQuery {
   constructor(public readonly filter: PagingDto) {}
@@ -20,24 +23,26 @@ export class GetJobsHandler implements IQueryHandler<GetJobsQuery> {
     const { skip, eachPerPage, regex } = GlobalUtility.pagingWrapper(
       query.filter,
     );
+
+    let filter: any = {
+      $or: [
+        { department: regex },
+        { fullName: regex },
+        { mellicode: regex },
+        { fatherName: regex },
+        { address: regex },
+        { firstNumber: regex },
+        { secondNumber: regex },
+        { degree: regex },
+        { universityName: regex },
+        { jobHistory: regex },
+        { LastCompanyName: regex },
+        { LastCompanyTel: regex },
+        { description: regex },
+      ],
+    };
     const jobs = await this.job
-      .find({
-        $or: [
-          { department: regex },
-          { fullName: regex },
-          { mellicode: regex },
-          { fatherName: regex },
-          { address: regex },
-          { firstNumber: regex },
-          { secondNumber: regex },
-          { degree: regex },
-          { universityName: regex },
-          { jobHistory: regex },
-          { LastCompanyName: regex },
-          { LastCompanyTel: regex },
-          { description: regex },
-        ],
-      })
+      .find(filter)
       .select(
         ` department
           fullName
@@ -61,7 +66,9 @@ export class GetJobsHandler implements IQueryHandler<GetJobsQuery> {
       .limit(eachPerPage)
       .lean();
 
-    let response: GetJobsResponseDto = { data: jobs };
-    return Response.send(response.data);
+    const total: number = await this.job.find(filter).count();
+
+    let response: GetJobsResponseData = { jobs, total };
+    return Response.send(response);
   }
 }

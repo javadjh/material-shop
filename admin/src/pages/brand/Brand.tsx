@@ -1,18 +1,54 @@
 import { useEffect, useState } from "react";
 import { brandsService } from "../../service/brand.service";
 import { IBrand } from "../../types/brand.type";
+import BrandsComponent from "./Brands.c";
+import { Button, Col, Row, Typography } from "antd";
+import { SpaceStyled } from "../../global-style/global.s";
+import UpsertBrandModal from "./UpsertBrand.m";
 
 const Brand = () => {
   const [brands, setBrands] = useState<Array<IBrand>>([]);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [brandData, setBrandData] = useState<IBrand>({});
   const getBrands = async () => {
     const {
       data: { data: response },
     } = await brandsService();
-    setBrands(response.data);
+    setBrands(response);
   };
   useEffect(() => {
     getBrands();
   }, []);
-  return <p>Brand</p>;
+  const onOpenInsertBrand = () => {
+    setBrandData({});
+    setIsOpen(true);
+  };
+  return (
+    <>
+      <UpsertBrandModal
+        refreshData={getBrands}
+        data={brandData}
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+      />
+      <SpaceStyled horizontal={5}>
+        <Row align={"middle"} justify={"space-between"}>
+          <Col>
+            <Typography.Text>برند ها</Typography.Text>
+          </Col>
+          <Col>
+            <Button onClick={onOpenInsertBrand} type="primary">
+              افزودن برند جدید
+            </Button>
+          </Col>
+        </Row>
+      </SpaceStyled>
+      <BrandsComponent
+        setIsOpen={setIsOpen}
+        setBrandData={setBrandData}
+        brands={brands}
+      />
+    </>
+  );
 };
 export default Brand;

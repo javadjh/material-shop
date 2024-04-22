@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { ResponseDto } from 'src/config/response';
-export class GetReportsResponseData {
+export class GetReportsResponseList {
   @ApiProperty()
   phoneNumber: string;
 
@@ -10,8 +10,15 @@ export class GetReportsResponseData {
   @ApiProperty()
   description: string;
 }
+export class GetReportsResponseData {
+  @ApiProperty()
+  total: number;
+
+  @ApiProperty({ type: GetReportsResponseList, isArray: true })
+  reports: Array<GetReportsResponseList | any>;
+}
 
 export class GetReportsResponseDto extends ResponseDto {
-  @ApiProperty({ type: GetReportsResponseData, isArray: true })
-  data?: Array<GetReportsResponseData | any>;
+  @ApiProperty({ type: GetReportsResponseData })
+  data?: GetReportsResponseData;
 }

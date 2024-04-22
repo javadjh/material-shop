@@ -20,7 +20,7 @@ const AdminLayout: FC<{ children: any }> = ({ children }) => {
     navigate(item.key);
   };
   return (
-    <Layout style={{ height: "100vh" }}>
+    <Layout style={{ minHeight: "100vh" }}>
       <Sider trigger={null} collapsible collapsed={collapsed}>
         <div className="demo-logo-vertical" />
         <LogoContainer>LOGO place</LogoContainer>
@@ -54,6 +54,18 @@ const AdminLayout: FC<{ children: any }> = ({ children }) => {
               key: "job",
               icon: <UploadOutlined />,
               label: "فرصت های شغلی",
+              children: [
+                {
+                  key: "jobinfo",
+                  icon: <UserOutlined />,
+                  label: "ایجاد فرصت شغلی",
+                },
+                {
+                  key: "jobs",
+                  icon: <UserOutlined />,
+                  label: "درخواست ها",
+                },
+              ],
             },
             {
               key: "brand",

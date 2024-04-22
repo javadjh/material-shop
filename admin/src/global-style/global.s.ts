@@ -34,3 +34,6 @@ export const PaddingStyled = styled.div`
   padding-right: ${(props: any) => props.right || props.horizontal || 0}px;
   padding-left: ${(props: any) => props.left || props.horizontal || 0}px;
 `;
+export const Pointer = styled.span`
+  cursor: pointer;
+`;

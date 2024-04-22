@@ -20,6 +20,8 @@ import { GetJobInfoDepartmentsQuery } from './handlers/queries/GetJobInfoDepartm
 import { DeleteJobInfoCommand } from './handlers/commands/DeleteJonInfo.command';
 import { GetJobInfoResponseDto } from './dto/response/GetJobInfoResponse.dto';
 import { GetJobInfoQuery } from './handlers/queries/GetJonInfo.query';
+import { GetJobInfosResponseDto } from './dto/response/GetJobInfosResponse.dto';
+import { GetJobInfosQuery } from './handlers/queries/GetJobInfos.query';
 
 @Controller('job-info')
 @ApiTags('job-info')
@@ -52,6 +54,17 @@ export class JobInfoController {
     @Param('department') department: string,
   ) {
     return this.commandBus.execute(new UpdateJobInfoCommand(dto, department));
+  }
+
+  @Get('')
+  @UseGuards(AdminJwtGuard)
+  @ApiBearerAuth('JWT-auth')
+  @ApiOkResponse({
+    description: 'this route will return job infos',
+    type: GetJobInfosResponseDto,
+  })
+  jobInfos() {
+    return this.queryBus.execute(new GetJobInfosQuery());
   }
 
   @Delete(':department')
