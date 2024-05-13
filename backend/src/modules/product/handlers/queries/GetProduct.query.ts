@@ -42,12 +42,20 @@ export class GetProductHandler implements IQueryHandler<GetProductQuery> {
          remainingCount `,
       )
       .populate('brand', 'title')
-      .populate('sellers', 'title')
+      .populate('sellers', 'title city')
       .populate('category', 'title')
       .lean();
 
     product.brandName = `${product.brand?.title}`;
     product.categoryName = `${product.category?.title}`;
+    product.categoryId = `${product.category?._id}`;
+    let cities: string = '';
+    product?.sellers.forEach((element) => {
+      console.log(element);
+
+      cities = ' ' + element?.city?.name;
+    });
+    product.cities = cities;
     delete product.brand;
     delete product.category;
 

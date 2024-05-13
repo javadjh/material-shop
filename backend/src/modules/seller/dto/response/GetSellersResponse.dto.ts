@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { ResponseDto } from 'src/config/response';
-export class GetSellersResponseData {
+export class GetSellersResponseList {
   @ApiProperty()
   firstNumber: string;
 
@@ -30,6 +30,13 @@ export class GetSellersResponseData {
 
   @ApiProperty()
   sellerDepartment: string;
+}
+export class GetSellersResponseData {
+  @ApiProperty()
+  total?: number;
+
+  @ApiProperty({ type: GetSellersResponseList, isArray: true })
+  sellers?: Array<GetSellersResponseList | any>;
 }
 export class GetSellersResponseDto extends ResponseDto {
   @ApiProperty({ type: GetSellersResponseData, isArray: true })

@@ -27,7 +27,7 @@ export const SpaceStyled: any = styled.div`
   margin-right: ${(props: any) => props.right || props.horizontal || 0}px;
   margin-left: ${(props: any) => props.left || props.horizontal || 0}px;
 `;
-export const PaddingStyled = styled.div`
+export const PaddingStyled: any = styled.div`
   padding-top: ${(props: any) => props.top || props.vertical || 0}px;
   padding-bottom: ${(props: any) => props.bottom || props.vertical || 0}px;
 

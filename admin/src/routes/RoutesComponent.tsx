@@ -7,6 +7,11 @@ import Brand from "../pages/brand/Brand";
 import Report from "../pages/reports/Report";
 import Jobs from "../pages/jobs/Jobs";
 import JobInfo from "../pages/job-info/JobInfo";
+import Seller from "../pages/seller/Seller";
+import Product from "../pages/product/Product";
+import UpsertProduct from "../pages/product/upsert/UpsertProduct";
+import Category from "../pages/category/Category";
+import CategoryContextProvider from "../pages/category/category.context";
 
 const RoutesComponent = () => {
   return (
@@ -21,6 +26,17 @@ const RoutesComponent = () => {
           <Route path="report" element={<Report />} />
           <Route path="jobs" element={<Jobs />} />
           <Route path="jobinfo" element={<JobInfo />} />
+          <Route path="seller" element={<Seller />} />
+          <Route path="product" element={<Product />} />
+          <Route path="upsert-product" element={<UpsertProduct />} />
+          <Route
+            path="category"
+            element={
+              <CategoryContextProvider>
+                <Category />
+              </CategoryContextProvider>
+            }
+          />
         </Routes>
       </AdminLayout>
     </BrowserRouter>

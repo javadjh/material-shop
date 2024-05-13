@@ -25,6 +25,12 @@ export class GetProductsData {
 
   @ApiProperty({ type: Number })
   total: number;
+
+  @ApiProperty({ type: Number })
+  maxPrice: number;
+
+  @ApiProperty({ type: Number })
+  minPrice: number;
 }
 export class GetProductsDto extends ResponseDto {
   @ApiProperty({ type: GetProductsData })

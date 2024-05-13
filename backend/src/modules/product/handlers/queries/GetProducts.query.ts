@@ -73,6 +73,14 @@ export class GetProductsHandler implements IQueryHandler<GetProductsQuery> {
       .sort({ createdAt: -1 })
       .lean();
 
+    let maxPrice: number = (
+      await this.product.find().limit(1).sort({ price: -1 })
+    )[0].price;
+
+    let minPrice: number = (
+      await this.product.find().limit(1).sort({ price: 1 })
+    )[0].price;
+
     let total: number = await this.product.find(filterObject).count();
 
     products.forEach((ele) => {
@@ -80,7 +88,12 @@ export class GetProductsHandler implements IQueryHandler<GetProductsQuery> {
       delete ele.brand;
     });
 
-    let response: GetProductsData = { list: products, total };
+    let response: GetProductsData = {
+      list: products,
+      total,
+      maxPrice,
+      minPrice,
+    };
 
     return Response.send(response);
   }

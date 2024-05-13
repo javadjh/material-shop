@@ -5,7 +5,10 @@ import { Response } from 'src/config/response';
 
 import { Seller, SellerDocument } from 'src/schema/seller.schema';
 import { GlobalUtility } from 'src/utility/GlobalUtility';
-import { GetSellersResponseDto } from '../../dto/response/GetSellersResponse.dto';
+import {
+  GetSellersResponseData,
+  GetSellersResponseDto,
+} from '../../dto/response/GetSellersResponse.dto';
 import { GetSellersRequestDto } from '../../dto/request/GetSellersRequest.dto';
 
 export class GetSellersQuery {
@@ -61,6 +64,8 @@ export class GetSellersHandler implements IQueryHandler<GetSellersQuery> {
       )
       .lean();
 
+    let total: number = await this.seller.find(filter).count();
+
     sellers.map((item) => {
       item.provinceName = item.province.name;
       item.cityName = item.city.name;
@@ -68,8 +73,8 @@ export class GetSellersHandler implements IQueryHandler<GetSellersQuery> {
       delete item.city;
     });
 
-    let response: GetSellersResponseDto = { data: sellers };
+    let response: GetSellersResponseData = { sellers, total };
 
-    return Response.send(response?.data);
+    return Response.send(response);
   }
 }

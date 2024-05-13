@@ -10,6 +10,8 @@ export type ProductDocument = Product & Document;
 class BaseProductModel extends BaseModel {
   brandName?: string;
   categoryName?: string;
+  categoryId?: string;
+  cities?: string;
 }
 
 @Schema({ timestamps: true })

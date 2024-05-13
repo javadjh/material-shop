@@ -49,7 +49,6 @@ export class UpdateSellerHandler
     //Update logic
     await this.seller.findByIdAndUpdate(id, {
       $set: {
-        ...sellerObject,
         ...dto,
         ...{ city, province },
       },
