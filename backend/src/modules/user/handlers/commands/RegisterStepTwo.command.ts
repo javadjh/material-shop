@@ -54,6 +54,7 @@ export class InsertUserStepTwoHandler
     const user = await new this.user({
       phone,
       password: passwordGenerated,
+      isAdmin: true,
     }).save();
 
     //generate token
