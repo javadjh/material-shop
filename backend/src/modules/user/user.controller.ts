@@ -12,11 +12,14 @@ import { RegisterStepTwoRequestDto } from './dto/request/RegisterStepTwoRequest.
 import { RegisterStepThreeRequestDto } from './dto/request/RegisterStepThreeRequest.dto';
 import { InsertUserStepThreeCommand } from './handlers/commands/RegisterStepThree.command';
 import { GetProfile } from 'src/decorator/get-profile.decorator';
-import { User } from 'src/schema/user.schema';
+import { User, UserDocument } from 'src/schema/user.schema';
 import { SendTokenResponseDto } from './dto/response/SendTokenResponse.dto';
 import { LoginRequestDto } from './dto/request/loginRequest.dto';
 import { UpdateUserRequestDto } from './dto/request/UpdateUserRequest.dto';
 import { UpdateUserCommand } from './handlers/commands/UpdateUser.command';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { Password } from 'src/utility/password';
 
 @Controller('user')
 @ApiTags('user')
@@ -24,9 +27,27 @@ export class UserController {
   constructor(
     private readonly commandBus: CommandBus,
     private readonly queryBus: QueryBus,
+
+    @InjectModel(User.name)
+    private readonly user: Model<UserDocument>,
   ) {}
 
   //commands
+
+  @Post('init')
+  @ApiOkResponse({
+    description: 'this route for start insert user prossess 1/3',
+    type: ActionDto,
+  })
+  async init() {
+    let password: string = await Password.generate('Admin5151@');
+    await new this.user({
+      email: 'admin@gmail.com',
+      password,
+      isCompleted: true,
+    }).save();
+    return 'OK';
+  }
 
   @Post('register/one')
   @ApiOkResponse({
