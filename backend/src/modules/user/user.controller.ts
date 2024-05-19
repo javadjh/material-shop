@@ -43,7 +43,7 @@ export class UserController {
     let password: string = await Password.generate('Admin5151@');
     await new this.user({
       email: 'admin@email.com',
-      phone: '09165000126',
+      phone: '09165000000',
       password,
       isCompleted: true,
     }).save();
