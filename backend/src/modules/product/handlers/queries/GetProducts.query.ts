@@ -73,13 +73,16 @@ export class GetProductsHandler implements IQueryHandler<GetProductsQuery> {
       .sort({ createdAt: -1 })
       .lean();
 
-    let maxPrice: number = (
-      await this.product.find().limit(1).sort({ price: -1 })
-    )[0].price;
+    let maxPrice: number = 0;
+    let minPrice: number = 0;
 
-    let minPrice: number = (
-      await this.product.find().limit(1).sort({ price: 1 })
-    )[0].price;
+    if (products?.length > 0) {
+      maxPrice = (await this.product.find().limit(1).sort({ price: -1 }))[0]
+        .price;
+
+      minPrice = (await this.product.find().limit(1).sort({ price: 1 }))[0]
+        .price;
+    }
 
     let total: number = await this.product.find(filterObject).count();
 
