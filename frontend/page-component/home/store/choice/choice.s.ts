@@ -17,6 +17,7 @@ export const CategoryItemContainer = styled.div`
   border-radius: 20px;
   display: flex;
   flex-direction: column;
+  height: 100px;
   cursor: pointer;
   align-items: flex-start;
   padding: 25px;

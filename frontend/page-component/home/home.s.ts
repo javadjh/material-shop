@@ -28,23 +28,7 @@ export const HomeMenuContainer = styled.div`
   top: 20%;
   left: 35px;
 `;
-export const HomeCategoryItemContainer = styled.div`
-  border-radius: 20px;
-  border: 2px solid #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px;
-  cursor: pointer;
 
-  p {
-    &:hover {
-      z-index: 100;
-      color: ${ORANGE_COLOR};
-    }
-  }
-`;
 export const HomeCategoryContainer = styled.div`
   position: absolute;
   bottom: 20px;

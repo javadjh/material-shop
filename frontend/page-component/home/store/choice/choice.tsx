@@ -27,18 +27,18 @@ const ChoicePage: NextPage<{ categories: Array<ICategory> }> = ({
                   <img
                     src="/banner.png"
                     width={"100%"}
-                    height={120}
+                    height={160}
                     style={{ borderRadius: 20 }}
                   />
                 </PaddingStyled>
               </Grid>
             </Grid>
-            <Grid spacing={3} container>
-              {categories?.map((item) => (
+            <Grid spacing={5} rowSpacing={2} container>
+              {[...categories, ...categories, ...categories]?.map((item) => (
                 <Grid lg={4}>
                   <CategoryItemComponent
                     iconName="information"
-                    title="محصولات برق و الکترونیک"
+                    title={item.title}
                     id={item?._id}
                   />
                 </Grid>

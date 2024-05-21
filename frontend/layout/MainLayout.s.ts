@@ -12,7 +12,7 @@ export const HeaderLayoutStyled = styled.div`
   left: 3%;
 `;
 export const SearchHeaderStyled: any = styled(Input)`
-  background-color: transparent;
+  background-color: transparent !important;
   border: 2px solid ${ORANGE_COLOR};
 
   border-radius: 40px !important;
