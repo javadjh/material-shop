@@ -6,8 +6,8 @@ export const StoreItemContainer = styled.div`
   display: flex;
 
   flex-direction: column;
-  justify-content: space-between;
-
+  justify-content: center;
+  height: 110px;
   align-items: center;
   border-radius: 15px;
   cursor: pointer;

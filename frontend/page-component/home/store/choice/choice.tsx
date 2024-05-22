@@ -34,7 +34,7 @@ const ChoicePage: NextPage<{ categories: Array<ICategory> }> = ({
               </Grid>
             </Grid>
             <Grid spacing={5} rowSpacing={2} container>
-              {[...categories, ...categories, ...categories]?.map((item) => (
+              {categories?.map((item) => (
                 <Grid lg={4}>
                   <CategoryItemComponent
                     iconName="information"

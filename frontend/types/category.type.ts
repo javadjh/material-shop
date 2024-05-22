@@ -1,5 +1,5 @@
 export interface ICategory {
-  title?: string;
+  title: string;
   isMain?: boolean;
   categoryName?: string;
   parentId?: string;
