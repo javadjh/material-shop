@@ -5,6 +5,9 @@ export class BaseCategoryDto {
   title: string;
 
   @ApiProperty()
+  icon?: string;
+
+  @ApiProperty()
   isMain: boolean;
 
   @ApiProperty()

@@ -14,7 +14,7 @@ export class BaseUserModel extends BaseModel {
 @Schema({ timestamps: true })
 export class User extends BaseUserModel {
   //step 1
-  @Prop(email)
+  @Prop({ type: String })
   email?: string;
 
   @Prop({ type: String, required: true })

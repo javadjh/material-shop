@@ -3,8 +3,10 @@ export interface ICategory {
   isMain?: boolean;
   parentId?: string;
   _id?: string;
+  icon?: string;
 }
 export interface IInsertCategory {
   title: string;
+  icon: string;
   parentId?: string;
 }

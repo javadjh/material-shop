@@ -34,8 +34,9 @@ export class UpdateCategoryHandler
     if (!category?._id)
       throw new BadRequestException(RECORD_NOT_FOUND_ERROR_MESSAGE);
 
-    //update title variable
+    //update title and icon variable
     category.title = dto.title;
+    category.icon = dto.icon;
 
     //save document
     await category.save();

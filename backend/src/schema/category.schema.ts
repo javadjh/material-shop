@@ -12,6 +12,9 @@ export class Category extends BaseCategory {
   @Prop()
   title?: string;
 
+  @Prop()
+  icon?: string;
+
   @Prop({ type: Boolean, default: false })
   isMain?: boolean;
 

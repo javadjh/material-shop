@@ -8,8 +8,12 @@ export const getCategoriesService = (parentId?: string) => {
   return axiosConfig.get(categoryAPI, { params: { parentId } });
 };
 
-export const upsertCategoriesService = (id: string, title?: string) => {
-  return axiosConfig.put(`${categoryAPI}${id}`, { title });
+export const upsertCategoriesService = (
+  id: string,
+  title?: string,
+  icon?: any
+) => {
+  return axiosConfig.put(`${categoryAPI}${id}`, { title, icon });
 };
 
 export const insertCategoriesService = (data: IInsertCategory) => {

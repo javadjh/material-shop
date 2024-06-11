@@ -8,6 +8,11 @@ export class InsertCategoryRequestDto {
   title: string;
 
   @ApiProperty()
+  @IsString()
+  @IsOptional()
+  icon: string;
+
+  @ApiProperty()
   @IsOptional()
   @IsObjectId()
   parentId?: string;

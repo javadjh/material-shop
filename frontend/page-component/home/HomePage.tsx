@@ -14,6 +14,7 @@ import { MEDIUM_FONT } from "../../config/font";
 import Link from "next/link";
 import styled from "styled-components";
 import { useState } from "react";
+import SocialMediaComponent from "../../global-component/SocialMedia.c";
 
 const HomePage = () => {
   const [hover, setHoever] = useState<string>();
@@ -23,7 +24,7 @@ const HomePage = () => {
       props.blockId === hover ? "4px solid" + ORANGE_COLOR : "2px solid #fff"};
     display: flex;
     flex-direction: column;
-    height: 200px;
+    height: 220px;
     width: 190px;
     align-items: center;
     justify-content: space-between;
@@ -127,12 +128,7 @@ const HomePage = () => {
           </Grid>
         </Grid>
       </HomeCategoryContainer>
-      <SocialMediaBlock>
-        <img src="./icons/instagram.png" width={20} />
-        <img src="./icons/twitter.png" width={20} />
-        <img src="./icons/wa.png" width={20} />
-        <img src="./icons/linkedin.png" width={20} />
-      </SocialMediaBlock>
+      <SocialMediaComponent />
     </HomePageBackgroundStyled>
   );
 };
