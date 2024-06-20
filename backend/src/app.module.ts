@@ -13,6 +13,7 @@ import { JobModule } from './modules/job/job.module';
 import { BrandModule } from './modules/brand/brand.module';
 import { ReportModule } from './modules/report/report.module';
 import { ProductModule } from './modules/product/product.module';
+import { AppSettingModule } from './modules/app-setting/app-setting.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { ProductModule } from './modules/product/product.module';
     }),
     LocationModule,
     CategoryModule,
+    AppSettingModule,
     UserModule,
     FileModule,
     SellerModule,

@@ -12,6 +12,8 @@ const RegisterUserStepTwo: FC<{
   setPassword: any;
   setCode: any;
 }> = ({ loginStepTwo, setCode, setPassword }) => {
+  const [isBTNHovered, setIsBTNHovered] = useState(false);
+
   return (
     <PaddingStyled vertical={20} horizontal={30}>
       <SpaceStyled vertical={15}>
@@ -42,7 +44,23 @@ const RegisterUserStepTwo: FC<{
               </Typography>
             </Grid>
             <Grid>
-              <LoginButton onClick={loginStepTwo}>ثبت اولیه</LoginButton>
+              <LoginButton
+                onMouseEnter={() => {
+                  setIsBTNHovered(true);
+                }}
+                onMouseLeave={() => {
+                  setIsBTNHovered(false);
+                }}
+                style={{
+                  border: isBTNHovered
+                    ? `1.5px solid ${ORANGE_COLOR} `
+                    : undefined,
+                  color: isBTNHovered ? ORANGE_COLOR : WHITE_COLOR,
+                }}
+                onClick={loginStepTwo}
+              >
+                <SpaceStyled top={-2}>ثبت اولیه</SpaceStyled>
+              </LoginButton>
             </Grid>
           </Grid>
         </SpaceStyled>

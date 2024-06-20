@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Post, Put, UseGuards } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { ActionDto } from 'src/shareDTO/action.dto';
@@ -8,7 +8,6 @@ import { GetAppSettingResponseDto } from './dto/response/GetAppSettingResponse.d
 import { GetAppSettingQuery } from './handlers/queries/GetAppSetting.query';
 import { JwtGuard } from 'src/guards/jwt.guard';
 
-
 @Controller('app-setting')
 @ApiTags('app-setting')
 export class AppSettingController {
@@ -17,7 +16,7 @@ export class AppSettingController {
     private readonly queryBus: QueryBus,
   ) {}
 
-  @Post('')
+  @Put('')
   @UseGuards(JwtGuard)
   @ApiOkResponse({
     description: 'this route can update the app setting Properties',
@@ -28,7 +27,6 @@ export class AppSettingController {
   }
 
   @Get('')
-  @UseGuards(JwtGuard)
   @ApiOkResponse({
     description: 'this route return the app setting configuration',
     type: GetAppSettingResponseDto,

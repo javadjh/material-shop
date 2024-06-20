@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { ORANGE_COLOR, WHITE_COLOR } from "../config/colors";
 
 export const MainLayoutContainer = styled.div`
-  height: 100vh;
+  min-height: 100vh;
   background-image: url("/main-bg.jpg");
 `;
 export const HeaderLayoutStyled = styled.div`
@@ -13,8 +13,8 @@ export const HeaderLayoutStyled = styled.div`
 `;
 export const SearchHeaderStyled: any = styled(Input)`
   background-color: transparent !important;
-  border: 2px solid ${ORANGE_COLOR};
-
+  border: 3px solid ${ORANGE_COLOR};
+  width: 400px;
   border-radius: 40px !important;
   color: ${WHITE_COLOR};
 `;

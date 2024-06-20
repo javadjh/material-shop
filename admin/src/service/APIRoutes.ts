@@ -8,5 +8,6 @@ export const productAPI = "/product/";
 export const jobAPI = "/job/";
 export const categoryAPI = "/category/";
 export const locationAPI = "/location/";
+export const appSettingAPI = "/app-setting/";
 export const reportAPI = "/report/";
 export const uploadAPI = "/file";

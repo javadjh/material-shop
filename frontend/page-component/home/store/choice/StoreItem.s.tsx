@@ -19,8 +19,8 @@ const StoreItemComponent: FC<{
     display: flex;
 
     flex-direction: column;
-    justify-content: center;
-    height: 110px;
+    justify-content: space-around;
+    height: 18vh;
     align-items: center;
     border-radius: 15px;
     cursor: pointer;
@@ -31,7 +31,7 @@ const StoreItemComponent: FC<{
         onMouseLeave={() => setMenuId("")}
         onMouseEnter={() => setMenuId(title)}
       >
-        <IconComponent icon={iconName} width={40} />
+        <IconComponent icon={iconName} width={50} />
         <SpaceStyled top={10}>
           <Typography
             fontSize={SMALL_FONT}

@@ -18,9 +18,11 @@ const HomeMenuComponent = () => {
               <Grid container spacing={1} alignItems={"center"}>
                 {hover == "login-register" && (
                   <Grid>
-                    <Typography textColor={ORANGE_COLOR}>
-                      ورود \ عضویت
-                    </Typography>
+                    <SpaceStyled left={15}>
+                      <Typography textColor={ORANGE_COLOR}>
+                        ورود \ عضویت
+                      </Typography>
+                    </SpaceStyled>
                   </Grid>
                 )}
                 <Grid>
@@ -41,7 +43,11 @@ const HomeMenuComponent = () => {
               <Grid alignItems={"center"} container spacing={1}>
                 {hover == "app" && (
                   <Grid>
-                    <Typography textColor={ORANGE_COLOR}>دانلود اپ</Typography>
+                    <SpaceStyled left={15}>
+                      <Typography textColor={ORANGE_COLOR}>
+                        دانلود اپ
+                      </Typography>
+                    </SpaceStyled>
                   </Grid>
                 )}
 
@@ -63,7 +69,9 @@ const HomeMenuComponent = () => {
               <Grid alignItems={"center"} container spacing={1}>
                 {hover == "footer" && (
                   <Grid>
-                    <Typography textColor={ORANGE_COLOR}>پاورقی</Typography>
+                    <SpaceStyled left={15}>
+                      <Typography textColor={ORANGE_COLOR}>پاورقی</Typography>
+                    </SpaceStyled>
                   </Grid>
                 )}
                 <Grid>

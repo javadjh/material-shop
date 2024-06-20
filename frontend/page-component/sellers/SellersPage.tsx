@@ -29,13 +29,13 @@ const SellersPage = () => {
     <MainLayout>
       <Grid container spacing={5}>
         <Grid lg={2.5}>
-          <PaddingStyled top={20}>
+          <PaddingStyled top={30}>
             <LogoComponent width={"100%"} />
             <LocationSelectComponent onSelected={(name) => setCity(name)} />
           </PaddingStyled>
         </Grid>
         <Grid lg={9.5}>
-          <PaddingStyled top={80}>
+          <PaddingStyled top={100}>
             <TopSellerHeaderomponent
               onSelected={(e) => setSellerDepartment(e)}
             />

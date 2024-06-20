@@ -6,8 +6,49 @@ export type AppSettingDocument = AppSetting & Document;
 
 @Schema({ timestamps: true })
 export class AppSetting extends BaseModel {
-  @Prop({ required: true })
-  contract: string;
+  //social media
+  @Prop()
+  instagram?: string;
+
+  @Prop()
+  twitter?: string;
+
+  @Prop()
+  whatsapp?: string;
+
+  @Prop()
+  pinterest?: string;
+
+  @Prop()
+  linkedin?: string;
+
+  @Prop()
+  telegram?: string;
+
+  @Prop()
+  youtube?: string;
+
+  //app links
+  @Prop()
+  bazazr?: string;
+
+  @Prop()
+  myket?: string;
+
+  @Prop()
+  link?: string;
+
+  @Prop()
+  sibche?: string;
+
+  @Prop()
+  sibapp?: string;
+
+  @Prop()
+  webapp?: string;
+
+  @Prop()
+  banner?: string;
 }
 
 export const AppSettingSchema = SchemaFactory.createForClass(AppSetting);

@@ -29,7 +29,7 @@ const HomeLayoutMenuComponent: FC<{
   const router = useRouter();
   const [hover, setHover] = useState<any>("unknow");
   const MainLayoutItemMenuContainer = styled.div`
-    border: 1px solid #fff;
+    border: 2px solid #fff;
     border-radius: 15px;
     padding: 40px 20px;
   `;
@@ -37,7 +37,7 @@ const HomeLayoutMenuComponent: FC<{
   return (
     <HomePageBackgroundStyled>
       <LogoContainer>
-        <img src={"./logo.png"} width={350} />
+        <img src={"./logo.png"} width={240} />
       </LogoContainer>
       <HomeMenuContainer>
         <HomeMenuComponent />
@@ -67,15 +67,20 @@ const HomeLayoutMenuComponent: FC<{
                   style={{
                     border:
                       item.link == hover
-                        ? "1px solid" + ORANGE_COLOR
-                        : "1px solid #fff",
+                        ? "2px solid" + ORANGE_COLOR
+                        : "2px solid #fff",
+
                     borderRadius: 10,
                     cursor: "pointer",
                   }}
                 >
                   <CenterStyled>
                     <PaddingStyled vertical={10}>
-                      <Typography textColor={WHITE_COLOR}>
+                      <Typography
+                        textColor={
+                          item.link == hover ? ORANGE_COLOR : WHITE_COLOR
+                        }
+                      >
                         {item.title}
                       </Typography>
                     </PaddingStyled>

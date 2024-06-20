@@ -6,8 +6,16 @@ const nextConfig = {
     styledComponents: true,
   },
   images: {
-    domains: ["localhost", "194.48.198.76"],
+    domains: ["194.48.198.76", "194.48.198.76"],
   },
+  plugins: [
+    [
+      "babel-plugin-styled-components",
+      {
+        ssr: false,
+      },
+    ],
+  ],
 };
 
 module.exports = nextConfig;

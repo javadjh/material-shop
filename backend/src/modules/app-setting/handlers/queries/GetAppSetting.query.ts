@@ -15,9 +15,8 @@ export class GetAppSettingHandler implements IQueryHandler<GetAppSettingQuery> {
     private readonly seed: Seed,
   ) {}
   async execute(query: GetAppSettingQuery): Promise<any> {
-    let appSetting: AppSetting | any = await this.appSettingModel
-      .findOne()
-      .select('updatedAt contract');
+    let appSetting: AppSetting | any = await this.appSettingModel.findOne();
+
     if (!appSetting?._id)
       appSetting = await new this.appSettingModel(this.seed.appSetting).save();
 

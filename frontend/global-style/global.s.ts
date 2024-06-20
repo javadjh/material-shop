@@ -128,3 +128,6 @@ export const SimpleOrangeBorderBlock: any = styled.div`
 
   border-radius: 10px;
 `;
+export const Abs = styled.div`
+  position: absolute;
+`;

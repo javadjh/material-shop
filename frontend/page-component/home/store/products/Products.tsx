@@ -61,7 +61,12 @@ const Products: FC<{
                     placeholder="دسته بندی"
                   >
                     {mainCategories?.map((item) => (
-                      <Option id={item._id} key={item._id} value={item._id}>
+                      <Option
+                        style={{ backgroundColor: "transparent !important" }}
+                        id={item._id}
+                        key={item._id}
+                        value={item._id}
+                      >
                         {item.title}
                       </Option>
                     ))}
@@ -75,7 +80,7 @@ const Products: FC<{
           </SpaceStyled>
         </Grid>
         <Grid lg={7.5}>
-          <PaddingStyled top={80}>
+          <PaddingStyled top={100}>
             <Grid
               container
               columnSpacing={3}
@@ -96,38 +101,7 @@ const Products: FC<{
                         image={item.image}
                         width={"100%"}
                       />
-                      <WhiteBorderStyled>
-                        <Grid container>
-                          <Grid
-                            lg={6}
-                            style={{ borderLeft: "1px solid white" }}
-                          >
-                            <PaddingStyled vertical={3}>
-                              <CenterStyled>
-                                <WhiteText fontSize={SMALL_FONT}>
-                                  خرید جزئی
-                                </WhiteText>
-                              </CenterStyled>
-                            </PaddingStyled>
-                          </Grid>
-                          <Grid
-                            lg={6}
-                            style={{ borderRight: "1px solid white" }}
-                          >
-                            <PaddingStyled vertical={3}>
-                              <CenterStyled>
-                                <WhiteText
-                                  text={8}
-                                  hasHover={true}
-                                  fontSize={SMALL_FONT}
-                                >
-                                  خرید عمده
-                                </WhiteText>
-                              </CenterStyled>
-                            </PaddingStyled>
-                          </Grid>
-                        </Grid>
-                      </WhiteBorderStyled>
+
                       <SpaceStyled top={10} bottom={10}>
                         <WhiteText>{item?.title}</WhiteText>
                         <WhiteText>{item?.brandName}</WhiteText>

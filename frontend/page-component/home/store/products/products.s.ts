@@ -12,7 +12,7 @@ export const ProductsSideContainerStyled = styled.div`
   border: 2px solid #fff;
   padding: 10px;
   border-radius: 20px;
-  height: calc(95vh - 80px);
+  height: calc(95vh);
   overflow-y: auto;
   -ms-overflow-style: none;
   scrollbar-width: none;

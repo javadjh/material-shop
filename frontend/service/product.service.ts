@@ -3,7 +3,7 @@ import { IProduct } from "../types/product.type";
 import { productAPI } from "./APIRoutes";
 import axiosConfig from "./axiosConfig";
 
-export const productsService = (params: IFilter) => {
+export const productsService = (params: IFilter | any) => {
   return axiosConfig.get(productAPI, { params });
 };
 

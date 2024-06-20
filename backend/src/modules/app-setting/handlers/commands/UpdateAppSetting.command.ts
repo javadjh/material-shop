@@ -19,11 +19,55 @@ export class UpdateAppSettingHandler
     private readonly seed: Seed,
   ) {}
   async execute(command: UpdateAppSettingCommand): Promise<any> {
-    const { contract } = command.dto;
+    const {
+      instagram,
+      twitter,
+      whatsapp,
+      pinterest,
+      linkedin,
+      telegram,
+      youtube,
+      bazazr,
+      myket,
+      link,
+      sibche,
+      sibapp,
+      webapp,
+      banner,
+    } = command.dto;
     let appSetting: any = await this.appSettingModel.findOne();
-    if (!appSetting?._id) appSetting = new this.appSettingModel({ contract });
+    if (!appSetting?._id)
+      appSetting = new this.appSettingModel({
+        instagram,
+        twitter,
+        whatsapp,
+        pinterest,
+        linkedin,
+        telegram,
+        youtube,
+        bazazr,
+        myket,
+        link,
+        sibche,
+        sibapp,
+        webapp,
+        banner,
+      });
 
-    appSetting.contract = contract;
+    appSetting.instagram = instagram;
+    appSetting.twitter = twitter;
+    appSetting.whatsapp = whatsapp;
+    appSetting.pinterest = pinterest;
+    appSetting.linkedin = linkedin;
+    appSetting.telegram = telegram;
+    appSetting.youtube = youtube;
+    appSetting.bazazr = bazazr;
+    appSetting.myket = myket;
+    appSetting.link = link;
+    appSetting.sibche = sibche;
+    appSetting.sibapp = sibapp;
+    appSetting.webapp = webapp;
+    appSetting.banner = banner;
 
     await appSetting.save();
 

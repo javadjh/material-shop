@@ -24,7 +24,7 @@ const HomePage = () => {
       props.blockId === hover ? "4px solid" + ORANGE_COLOR : "2px solid #fff"};
     display: flex;
     flex-direction: column;
-    height: 220px;
+    height: 240px;
     width: 190px;
     align-items: center;
     justify-content: space-between;
@@ -34,7 +34,7 @@ const HomePage = () => {
   return (
     <HomePageBackgroundStyled>
       <LogoContainer>
-        <img src={"./logo.png"} width={350} />
+        <img src={"./logo.png"} width={240} />
       </LogoContainer>
       <HomeMenuContainer>
         <HomeMenuComponent />
@@ -53,16 +53,17 @@ const HomePage = () => {
                 onMouseLeave={() => setHoever("")}
                 onMouseEnter={() => setHoever("store")}
               >
-                <img src="./icons/store.png" width={60} />
+                <img src="./icons/store.png" width={80} />
                 <SpaceStyled top={30}>
                   <CenterStyled>
-                    <Typography
-                      fontWeight="bold"
-                      textColor={"store" === hover ? ORANGE_COLOR : "#fff"}
-                      fontSize={MEDIUM_FONT}
-                    >
-                      فروشگاه
-                    </Typography>
+                    <SpaceStyled bottom={20}>
+                      <Typography
+                        fontWeight="bold"
+                        textColor={"store" === hover ? ORANGE_COLOR : "#fff"}
+                      >
+                        فروشگاه
+                      </Typography>
+                    </SpaceStyled>
                     <Typography
                       textColor={"store" === hover ? ORANGE_COLOR : "#fff"}
                       fontSize={MEDIUM_FONT}
@@ -75,56 +76,62 @@ const HomePage = () => {
             </Link>
           </Grid>
           <Grid>
-            <HomeCategoryItemContainer
-              blockId="group"
-              onMouseLeave={() => setHoever("")}
-              onMouseEnter={() => setHoever("group")}
-            >
-              <img src="./icons/user-home.png" width={60} />
-              <SpaceStyled top={30}>
-                <CenterStyled>
-                  <Typography
-                    fontWeight="bold"
-                    textColor={"group" === hover ? ORANGE_COLOR : "#fff"}
-                    fontSize={MEDIUM_FONT}
-                  >
-                    گروه
-                  </Typography>
-                  <Typography
-                    textColor={"group" === hover ? ORANGE_COLOR : "#fff"}
-                    fontSize={MEDIUM_FONT}
-                  >
-                    خدمات ساختمانی
-                  </Typography>
-                </CenterStyled>
-              </SpaceStyled>
-            </HomeCategoryItemContainer>
+            <Link href={"comming"}>
+              <HomeCategoryItemContainer
+                blockId="group"
+                onMouseLeave={() => setHoever("")}
+                onMouseEnter={() => setHoever("group")}
+              >
+                <img src="./icons/user-home.png" width={80} />
+                <SpaceStyled top={30}>
+                  <CenterStyled>
+                    <SpaceStyled bottom={20}>
+                      <Typography
+                        fontWeight="bold"
+                        textColor={"group" === hover ? ORANGE_COLOR : "#fff"}
+                      >
+                        گروه
+                      </Typography>
+                    </SpaceStyled>
+                    <Typography
+                      textColor={"group" === hover ? ORANGE_COLOR : "#fff"}
+                      fontSize={MEDIUM_FONT}
+                    >
+                      خدمات ساختمانی
+                    </Typography>
+                  </CenterStyled>
+                </SpaceStyled>
+              </HomeCategoryItemContainer>
+            </Link>
           </Grid>
           <Grid>
-            <HomeCategoryItemContainer
-              blockId="groups"
-              onMouseLeave={() => setHoever("")}
-              onMouseEnter={() => setHoever("groups")}
-            >
-              <img src="./icons/information.png" width={60} />
-              <SpaceStyled top={30}>
-                <CenterStyled>
-                  <Typography
-                    fontWeight="bold"
-                    textColor={"groups" === hover ? ORANGE_COLOR : "#fff"}
-                    fontSize={MEDIUM_FONT}
-                  >
-                    گروه
-                  </Typography>
-                  <Typography
-                    textColor={"groups" === hover ? ORANGE_COLOR : "#fff"}
-                    fontSize={MEDIUM_FONT}
-                  >
-                    اطلاعات ساختمانی
-                  </Typography>
-                </CenterStyled>
-              </SpaceStyled>
-            </HomeCategoryItemContainer>
+            <Link href={"comming"}>
+              <HomeCategoryItemContainer
+                blockId="groups"
+                onMouseLeave={() => setHoever("")}
+                onMouseEnter={() => setHoever("groups")}
+              >
+                <img src="./icons/information.png" width={80} />
+                <SpaceStyled top={30}>
+                  <CenterStyled>
+                    <SpaceStyled bottom={20}>
+                      <Typography
+                        fontWeight="bold"
+                        textColor={"groups" === hover ? ORANGE_COLOR : "#fff"}
+                      >
+                        گروه
+                      </Typography>
+                    </SpaceStyled>
+                    <Typography
+                      textColor={"groups" === hover ? ORANGE_COLOR : "#fff"}
+                      fontSize={MEDIUM_FONT}
+                    >
+                      اطلاعات ساختمانی
+                    </Typography>
+                  </CenterStyled>
+                </SpaceStyled>
+              </HomeCategoryItemContainer>
+            </Link>
           </Grid>
         </Grid>
       </HomeCategoryContainer>

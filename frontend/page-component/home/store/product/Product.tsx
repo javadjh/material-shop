@@ -44,12 +44,14 @@ import {
   SelectCarStyle,
 } from "./product.s";
 import CountPickerComponent from "./CountPicker.c";
+import SuggestionComponent from "./Suggestion.c";
 
 const ProductPage: FC<{
   mainCategories: Array<ICategory>;
   categories: Array<ICategory>;
   product: IProduct;
-}> = ({ categories, mainCategories, product }) => {
+  suggestion: Array<IProduct>;
+}> = ({ mainCategories, product, suggestion }) => {
   const router = useRouter();
 
   const [carType, setCarType] = useState<string>();
@@ -81,7 +83,7 @@ const ProductPage: FC<{
           </SpaceStyled>
         </Grid>
         <Grid lg={9.5}>
-          <PaddingStyled top={80}>
+          <PaddingStyled top={100}>
             <Grid spacing={2} container>
               <Grid lg={3}>
                 <ImageServerComponent
@@ -324,6 +326,7 @@ const ProductPage: FC<{
               </Grid>
             </DarkGrayBlockStyled>
           </SpaceStyled>
+          <SuggestionComponent products={suggestion} />
         </Grid>
       </Grid>
     </MainLayout>

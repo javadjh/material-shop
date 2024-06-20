@@ -26,13 +26,13 @@ export const SocialMediaBlock = styled.div`
 export const HomeMenuContainer = styled.div`
   position: absolute;
   top: 20%;
-  left: 35px;
+  left: 50px;
 `;
 
 export const HomeCategoryContainer = styled.div`
   position: absolute;
-  bottom: 20px;
-  left: 35px;
+  bottom: 50px;
+  left: 50px;
 `;
 export const WhiteAndYellowText: any = styled(Typography)`
   color: ${WHITE_COLOR};

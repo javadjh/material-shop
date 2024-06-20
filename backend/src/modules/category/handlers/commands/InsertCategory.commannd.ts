@@ -34,6 +34,14 @@ export class InsertCategoryHandler
     const { dto } = command;
     let isMain: boolean = true;
     let parent: Category = {};
+
+    //check is category gte 15
+    const categoryCount: number = await this.categoryModel
+      .find({ isActive: true })
+      .count();
+    if (categoryCount >= 15)
+      throw new BadRequestException(INSERT_ERROR_MESSAGE);
+
     //if employee send parent id we should validate that
     if (dto.parentId) {
       dto?.parentId?.isObjectId();

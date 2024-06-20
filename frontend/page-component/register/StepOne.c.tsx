@@ -1,16 +1,22 @@
 import { Grid, Input, Typography } from "@mui/joy";
-import { PaddingStyled, SpaceStyled } from "../../global-style/global.s";
+import {
+  CenterVerticalStyled,
+  PaddingStyled,
+  SpaceStyled,
+} from "../../global-style/global.s";
 
 import { ORANGE_COLOR, WHITE_COLOR } from "../../config/colors";
 import styled from "styled-components";
 import { FC, useState } from "react";
 import { SMALL_FONT } from "../../config/font";
 import { registerOneService } from "../../service/user.service";
+import Link from "next/link";
 
 const RegisterUserStepOne: FC<{
   setPhone: any;
   loginStepOne: any;
 }> = ({ loginStepOne, setPhone }) => {
+  const [isBTNHovered, setIsBTNHovered] = useState(false);
   return (
     <PaddingStyled vertical={20} horizontal={30}>
       <SpaceStyled vertical={15}>
@@ -31,9 +37,11 @@ const RegisterUserStepOne: FC<{
           </Grid>
 
           <Grid>
-            <Typography fontSize={SMALL_FONT} textColor={ORANGE_COLOR}>
-              شرایط و قوانین
-            </Typography>
+            <Link href={"/rules"}>
+              <Typography fontSize={SMALL_FONT} textColor={ORANGE_COLOR}>
+                شرایط و قوانین
+              </Typography>
+            </Link>
           </Grid>
 
           <Grid>
@@ -50,7 +58,23 @@ const RegisterUserStepOne: FC<{
               </Typography>
             </Grid>
             <Grid>
-              <LoginButton onClick={loginStepOne}>ورود</LoginButton>
+              <LoginButton
+                onMouseEnter={() => {
+                  setIsBTNHovered(true);
+                }}
+                onMouseLeave={() => {
+                  setIsBTNHovered(false);
+                }}
+                style={{
+                  border: isBTNHovered
+                    ? `1.5px solid ${ORANGE_COLOR} `
+                    : undefined,
+                  color: isBTNHovered ? ORANGE_COLOR : WHITE_COLOR,
+                }}
+                onClick={loginStepOne}
+              >
+                <SpaceStyled top={-2}>ورود</SpaceStyled>
+              </LoginButton>
             </Grid>
           </Grid>
         </SpaceStyled>
@@ -62,12 +86,14 @@ export default RegisterUserStepOne;
 
 const LoginButton = styled.span`
   background-color: transparent;
-  width: 100px;
+  width: 120px;
   display: flex;
   border-radius: 10px;
-  height: 30px;
+  font-weight: bold;
+  height: 40px;
   justify-content: center;
-  border: 1px solid white;
+  border: 1.5px solid white;
   align-items: center;
   text-align: center;
+  cursor: pointer;
 `;

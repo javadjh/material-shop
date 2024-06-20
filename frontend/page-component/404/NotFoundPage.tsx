@@ -13,7 +13,7 @@ const NotFoundPage = () => {
   return (
     <MainLayout>
       <LogoContainer>
-        <img src={"/logo.png"} width={350} />
+        <img src={"/logo.png"} width={240} />
       </LogoContainer>
       <NotFoundPageContainer>
         <SocialMediaComponent />

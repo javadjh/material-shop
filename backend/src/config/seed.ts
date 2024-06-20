@@ -1,8 +1,7 @@
-import { Injectable } from "@nestjs/common";
-import { AppSetting } from "src/schema/app-setting.schema";
-import { City } from "src/schema/city.schema";
-import { Province } from "src/schema/province.schema";
-
+import { Injectable } from '@nestjs/common';
+import { AppSetting } from 'src/schema/app-setting.schema';
+import { City } from 'src/schema/city.schema';
+import { Province } from 'src/schema/province.schema';
 
 @Injectable()
 export class Seed {
@@ -6727,8 +6726,7 @@ export class Seed {
     return cities;
   }
 
-  province(): Array<Province
-  > {
+  province(): Array<Province> {
     let provinces: Array<Province> = [
       {
         id: 1,
@@ -6891,9 +6889,6 @@ export class Seed {
   }
 
   appSetting(): AppSetting {
-    return {
-      contract: 'این یک متن تست جهت ثبت اولیه قرارداد عمومی میباشد',
-    };
+    return {};
   }
-  
 }
