@@ -6,6 +6,11 @@ export const CategoryEditTextStyled = styled(Typography.Text)`
   font-size: 10px;
   cursor: pointer;
 `;
+export const RedTextStyled = styled(Typography.Text)`
+  color: red;
+  font-size: 10px;
+  cursor: pointer;
+`;
 export const AddCategoryTextStyled = styled.div`
   color: green;
   z-index: 100;

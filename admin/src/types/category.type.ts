@@ -8,5 +8,6 @@ export interface ICategory {
 export interface IInsertCategory {
   title: string;
   icon: string;
+  index: number;
   parentId?: string;
 }

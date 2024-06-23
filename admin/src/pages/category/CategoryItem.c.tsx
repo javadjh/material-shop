@@ -1,23 +1,37 @@
-import { Col, Row, Space, Typography } from "antd";
+import { Col, Popconfirm, Row, Space, Typography } from "antd";
 import { FC, useEffect, useState } from "react";
 import { ICategory } from "../../types/category.type";
 import { Pointer, SpaceStyled } from "../../global-style/global.s";
-import { CategoryEditTextStyled } from "./category.style";
+import { CategoryEditTextStyled, RedTextStyled } from "./category.style";
 import { useCategoryContext } from "./category.context";
-import { getCategoriesService } from "../../service/category.service";
+import {
+  deleteCategoriesService,
+  getCategoriesService,
+} from "../../service/category.service";
 import CategoriesComponent from "./Categories.c";
 
 const CategoryItemComponent: FC<{ category: ICategory; justView: boolean }> = ({
   category,
   justView,
 }) => {
-  const { setCategory, setIsOpen, setParent, reload, setSelected, selected } =
-    useCategoryContext();
+  const {
+    setCategory,
+    setIsOpen,
+    setParent,
+    reload,
+    setReload,
+    setSelected,
+    selected,
+  } = useCategoryContext();
   const [hasChild, setHasChild] = useState<boolean>(false);
   const [categories, setCategories] = useState<Array<ICategory>>([]);
   const onEditCategoryListener = () => {
     setCategory(category);
     setIsOpen(true);
+  };
+  const onDeleteCategoryListener = async () => {
+    await deleteCategoriesService(category?._id + "");
+    setReload({ parent: "", date: Date.now() });
   };
   const enteryToParentListener = () => {
     if (justView) setSelected(category);
@@ -56,9 +70,21 @@ const CategoryItemComponent: FC<{ category: ICategory; justView: boolean }> = ({
         <SpaceStyled right={10}>
           <SpaceStyled right={justView && 30}>
             {!justView && (
-              <CategoryEditTextStyled onClick={onEditCategoryListener}>
-                ویرایش
-              </CategoryEditTextStyled>
+              <>
+                <CategoryEditTextStyled onClick={onEditCategoryListener}>
+                  ویرایش
+                </CategoryEditTextStyled>
+
+                <Popconfirm
+                  title="حذف دسته بندی"
+                  description="آیا از حذف دسته اطمینان دارید؟"
+                  onConfirm={onDeleteCategoryListener}
+                  okText="آره"
+                  cancelText="نه"
+                >
+                  <RedTextStyled> حذف</RedTextStyled>
+                </Popconfirm>
+              </>
             )}
           </SpaceStyled>
         </SpaceStyled>

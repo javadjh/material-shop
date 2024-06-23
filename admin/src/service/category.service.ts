@@ -11,11 +11,16 @@ export const getCategoriesService = (parentId?: string) => {
 export const upsertCategoriesService = (
   id: string,
   title?: string,
-  icon?: any
+  icon?: any,
+  index?: number
 ) => {
-  return axiosConfig.put(`${categoryAPI}${id}`, { title, icon });
+  return axiosConfig.put(`${categoryAPI}${id}`, { title, icon, index });
 };
 
 export const insertCategoriesService = (data: IInsertCategory) => {
   return axiosConfig.post(`${categoryAPI}`, data);
+};
+
+export const deleteCategoriesService = (id: string) => {
+  return axiosConfig.delete(`${categoryAPI}${id}`);
 };

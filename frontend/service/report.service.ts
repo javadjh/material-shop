@@ -1,8 +1,7 @@
-import { IBrand } from "../types/brand.type";
-import { IFilter } from "../types/filter.type";
-import { brandsAPI, reportAPI } from "./APIRoutes";
+import { IReport } from "../types/report.type";
+import { reportAPI } from "./APIRoutes";
 import axiosConfig from "./axiosConfig";
 
-export const reportsService = (paging: IFilter) => {
-  return axiosConfig.get(reportAPI, { params: paging });
+export const insertReport = (report: IReport) => {
+  return axiosConfig.post(reportAPI, report);
 };

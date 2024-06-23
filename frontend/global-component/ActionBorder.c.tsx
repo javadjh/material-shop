@@ -9,18 +9,22 @@ import {
 import { ORANGE_COLOR, WHITE_COLOR } from "../config/colors";
 import { Typography } from "@mui/joy";
 
-const ActionBorderComponent: FC<any> = ({ children }) => {
-  const [isHover, setIsHover] = useState<boolean>(false);
+const ActionBorderComponent: FC<any> = ({
+  border = "1",
+  children,
+  isSelected = false,
+}) => {
+  const [isHover, setIsHover] = useState<boolean>(isSelected);
   return (
     <SpaceStyled bottom={10}>
       <Pointer>
         <WhiteBorderStyled
-          onMouseEnter={() => setIsHover(true)}
-          onMouseLeave={() => setIsHover(false)}
+          onMouseEnter={() => setIsHover(isSelected || true)}
+          onMouseLeave={() => setIsHover(isSelected || false)}
           style={{
             border: isHover
-              ? `1px solid ${ORANGE_COLOR}`
-              : `1px solid ${WHITE_COLOR}`,
+              ? `${border}px solid ${ORANGE_COLOR}`
+              : `${border}px solid ${WHITE_COLOR}`,
             borderRadius: 10,
           }}
         >

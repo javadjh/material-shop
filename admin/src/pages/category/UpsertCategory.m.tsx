@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from "react";
 import { ICategory, IInsertCategory } from "../../types/category.type";
-import { Form, Input, Modal, Typography } from "antd";
+import { Button, Col, Form, Input, Modal, Row, Typography } from "antd";
 import {
   insertCategoriesService,
   upsertCategoriesService,
@@ -24,13 +24,14 @@ const UpsertCategoryModal: FC<{
       const { data } = await upsertCategoriesService(
         category?._id,
         formData.title,
-        icon
+        icon,
+        Number(formData.index)
       );
       state = data.state;
     } else {
       const { data } = await insertCategoriesService({
         ...formData,
-        ...{ parentId: parent?._id, icon },
+        ...{ parentId: parent?._id, icon, index: Number(formData.index) },
       });
       state = data.state;
     }
@@ -78,9 +79,19 @@ const UpsertCategoryModal: FC<{
         )}
       </UploadFileComponent>
       <Form form={form} onFinish={upsertCategory} layout="vertical">
-        <Form.Item label="عنوان" name={"title"}>
-          <Input placeholder="عنوان دسته را وارد کنید..." />
-        </Form.Item>
+        <Row>
+          <Col span={4}>
+            <Form.Item label="ردیف" name={"index"}>
+              <Input type="number" placeholder="ردیف دسته را وارد کنید..." />
+            </Form.Item>
+          </Col>
+          <Col offset={1} span={19}>
+            <Form.Item label="عنوان" name={"title"}>
+              <Input placeholder="عنوان دسته را وارد کنید..." />
+            </Form.Item>
+          </Col>
+        </Row>
+        <Button htmlType="submit">ثبت</Button>
       </Form>
     </Modal>
   );

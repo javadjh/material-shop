@@ -44,3 +44,30 @@ ul {
 ul li :hover {
   background-color: red !important;
 }
+::-webkit-input-placeholder {
+  /* WebKit, Blink, Edge */
+  color: #fd9500;
+}
+:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #fd9500;
+  opacity: 1;
+}
+::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #fd9500;
+  opacity: 1;
+}
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #fd9500;
+}
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: #fd9500;
+}
+
+::placeholder {
+  /* Most modern browsers support this now. */
+  color: #fd9500;
+}
