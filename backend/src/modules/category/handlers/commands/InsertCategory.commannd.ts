@@ -37,7 +37,7 @@ export class InsertCategoryHandler
 
     //check is category gte 15
     const categoryCount: number = await this.categoryModel
-      .find({ isActive: true })
+      .find({ isActive: true, isMain: true })
       .count();
     if (categoryCount >= 15)
       throw new BadRequestException(INSERT_ERROR_MESSAGE);
@@ -57,6 +57,7 @@ export class InsertCategoryHandler
       title: dto?.title,
       isMain,
       parentId: parent?._id,
+      index: dto?.index,
     };
     //init previousParents for children categoery (to save on db)
     if (!isMain) {

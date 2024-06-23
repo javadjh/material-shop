@@ -37,6 +37,7 @@ export class UpdateCategoryHandler
     //update title and icon variable
     category.title = dto.title;
     category.icon = dto.icon;
+    category.index = dto.index;
 
     //save document
     await category.save();

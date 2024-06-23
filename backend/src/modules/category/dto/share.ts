@@ -5,6 +5,9 @@ export class BaseCategoryDto {
   title: string;
 
   @ApiProperty()
+  index: number;
+
+  @ApiProperty()
   icon?: string;
 
   @ApiProperty()

@@ -36,8 +36,8 @@ export class GetCategoriesHandler implements IQueryHandler<GetCategoriesQuery> {
     //find categories
     const categories: Array<Category> = await this.categoryModel
       .find(filter)
-      .sort({ createdAt: -1 })
-      .select('title isMain parentId icon');
+      .sort({ index: 1 })
+      .select('title isMain parentId icon index');
 
     //send category list
     let res: GetCategoriesResponseData = { list: categories };

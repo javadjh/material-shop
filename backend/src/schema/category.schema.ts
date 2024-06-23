@@ -12,6 +12,9 @@ export class Category extends BaseCategory {
   @Prop()
   title?: string;
 
+  @Prop({ type: Number })
+  index?: number;
+
   @Prop()
   icon?: string;
 

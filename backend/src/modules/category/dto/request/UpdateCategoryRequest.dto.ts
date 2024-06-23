@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsOptional, IsString } from 'class-validator';
+import { IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class UpdateCategoryRequestDto {
   @ApiProperty()
@@ -10,4 +10,8 @@ export class UpdateCategoryRequestDto {
   @IsString()
   @IsOptional()
   icon?: string;
+
+  @ApiProperty()
+  @IsNumber()
+  index: number;
 }
