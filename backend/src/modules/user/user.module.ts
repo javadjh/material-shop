@@ -8,10 +8,11 @@ import { Seed } from 'src/config/seed';
 import { UserController } from './user.controller';
 import { Auth } from 'src/config/Auth';
 import { LocationModule } from '../location/location.module';
+import { Sms } from 'src/config/Sms';
 
 @Module({
   controllers: [UserController],
   imports: [CqrsModule, ...schema, JwtModule.register({}), LocationModule],
-  providers: [...handlers, JwtStrategy, Seed, Auth],
+  providers: [...handlers, JwtStrategy, Seed, Auth, Sms],
 })
 export class UserModule {}

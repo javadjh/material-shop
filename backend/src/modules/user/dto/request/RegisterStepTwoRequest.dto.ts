@@ -10,9 +10,4 @@ export class RegisterStepTwoRequestDto {
   @IsNumber()
   @ApiProperty()
   code: number;
-
-  @IsString()
-  @ApiProperty()
-  @Length(6, 32)
-  password: string;
 }

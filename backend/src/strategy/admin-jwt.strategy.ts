@@ -19,10 +19,7 @@ export class AdmminJwtStrategy extends PassportStrategy(Strategy, 'admin-jwt') {
   async validate(payload: any) {
     console.log(payload);
 
-    let user = await this.model
-      .findById(payload.sub)
-      .select('-password')
-      .lean();
+    let user = await this.model.findById(payload.sub).lean();
     console.log(user);
     if (!user?._id || !user.isAdmin)
       throw new BadRequestException(ACCESS_ERROR_MESSAGE);

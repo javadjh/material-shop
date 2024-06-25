@@ -17,9 +17,6 @@ export class User extends BaseUserModel {
   @Prop({ type: String })
   email?: string;
 
-  @Prop({ type: String, required: true })
-  password: string;
-
   //step 2
   @Prop()
   firstName?: string;

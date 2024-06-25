@@ -6,9 +6,4 @@ export class LoginRequestDto {
   @IsEmail()
   @ApiProperty()
   email?: string;
-
-  @IsString()
-  @ApiProperty()
-  @Length(6, 32)
-  password?: string;
 }

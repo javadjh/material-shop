@@ -19,7 +19,6 @@ import { UpdateUserRequestDto } from './dto/request/UpdateUserRequest.dto';
 import { UpdateUserCommand } from './handlers/commands/UpdateUser.command';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Password } from 'src/utility/password';
 
 @Controller('user')
 @ApiTags('user')
@@ -40,11 +39,9 @@ export class UserController {
     type: ActionDto,
   })
   async init() {
-    let password: string = await Password.generate('Admin5151@');
     await new this.user({
       email: 'admin@mg.com',
       phone: '09160000000',
-      password,
       isCompleted: true,
       isAdmin: true,
     }).save();

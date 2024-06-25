@@ -11,6 +11,7 @@ import { Inject } from '@nestjs/common';
 import { GlobalUtility } from 'src/utility/GlobalUtility';
 import { ConfigService } from '@nestjs/config';
 import { RecordRepeatedException } from 'src/filters/record-repeated.filter';
+import { Sms } from 'src/config/Sms';
 
 export class InsertUserStepOneCommand {
   constructor(public readonly dto: RegisterStepOneRequestDto) {}
@@ -31,8 +32,8 @@ export class InsertUserStepOneHandler
     const { phone } = command.dto;
 
     //check is phone number repeated
-    const userFound: number = await this.user.find({ phone }).count();
-    if (userFound >= 1) throw new RecordRepeatedException();
+    // const userFound: number = await this.user.find({ phone }).count();
+    // if (userFound >= 1) throw new RecordRepeatedException();
 
     //generate code
     const code = GlobalUtility.randomIntFromInterval(1000, 9999);
@@ -43,6 +44,8 @@ export class InsertUserStepOneHandler
     const key: string = `${phone}`;
     await this.cacheManager.set(key, code, 1000000);
     console.log({ key, code });
+
+    Sms.sendSms(phone, `${code}`);
 
     return Response.sent();
   }

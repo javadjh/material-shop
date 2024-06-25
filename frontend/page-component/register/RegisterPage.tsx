@@ -32,7 +32,6 @@ const RegisterPage = () => {
   const [isStepThree, setIsStepThree] = useState<boolean>(false);
   const [phone, setPhone] = useState<string>("");
   const [code, setCode] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
   const router = useRouter();
 
   const loginStepOne = async () => {
@@ -45,10 +44,9 @@ const RegisterPage = () => {
   };
 
   const loginStepTwo = async () => {
-    if (phone.length == 11 && password?.length > 6 && code.length == 4) {
+    if (phone.length == 11 && code.length == 4) {
       const data = await registerTwoService({
         code: Number(code),
-        password,
         phone,
       });
       let token = data?.data?.data?.data;
@@ -92,7 +90,6 @@ const RegisterPage = () => {
             <RegisterUserStepTwo
               loginStepTwo={loginStepTwo}
               setCode={setCode}
-              setPassword={setPassword}
               setPhone={setPhone}
             />
           )}

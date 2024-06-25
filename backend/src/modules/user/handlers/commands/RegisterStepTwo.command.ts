@@ -14,7 +14,6 @@ import { RecordRepeatedException } from 'src/filters/record-repeated.filter';
 import { RegisterStepTwoRequestDto } from '../../dto/request/RegisterStepTwoRequest.dto';
 import { RecordNotFoundException } from 'src/filters/record-not-found.filter';
 import { Auth } from 'src/config/Auth';
-import { Password } from 'src/utility/password';
 import { SendTokenResponseDto } from '../../dto/response/SendTokenResponse.dto';
 
 export class InsertUserStepTwoCommand {
@@ -33,11 +32,10 @@ export class InsertUserStepTwoHandler
     @Inject(CACHE_MANAGER) private readonly cacheManager: Cache,
   ) {}
   async execute(command: InsertUserStepTwoCommand): Promise<any> {
-    const { phone, code, password } = command.dto;
+    const { phone, code } = command.dto;
 
     //check is phone number has any valid code
     const userPhone: string | any = await this.cacheManager.get(`${phone}`);
-    console.log({ userPhone, code });
 
     if (!userPhone || userPhone != code) throw new RecordNotFoundException();
 
@@ -45,17 +43,14 @@ export class InsertUserStepTwoHandler
       phone,
     });
 
-    if (userFound?._id) throw new RecordRepeatedException();
-
-    //generate password
-    let passwordGenerated = await Password.generate(password);
-
-    //create user
-    const user = await new this.user({
-      phone,
-      password: passwordGenerated,
-      isAdmin: true,
-    }).save();
+    let user: User;
+    if (!userFound?._id) {
+      //create user
+      user = await new this.user({
+        phone,
+        isAdmin: false,
+      }).save();
+    }
 
     //generate token
     let token: string = await this.auth.generateToken({ sub: user?._id });

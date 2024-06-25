@@ -19,10 +19,7 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
   async validate(payload: any) {
     console.log(payload);
 
-    let user = await this.model
-      .findById(payload.sub)
-      .select('-password')
-      .lean();
+    let user = await this.model.findById(payload.sub).lean();
     console.log(user);
     if (!user?._id)
       throw new BadRequestException(RECORD_NOT_FOUND_ERROR_MESSAGE);

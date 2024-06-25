@@ -10,10 +10,6 @@ export const registerOneService = (phone: string) => {
   return axiosConfig.post(registerOneAPI, { phone });
 };
 
-export const registerTwoService = (data: {
-  phone: string;
-  password: string;
-  code: number;
-}) => {
+export const registerTwoService = (data: { phone: string; code: number }) => {
   return axiosConfig.post(registerTwoAPI, data);
 };
