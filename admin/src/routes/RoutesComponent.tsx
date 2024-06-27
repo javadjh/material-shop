@@ -13,6 +13,7 @@ import UpsertProduct from "../pages/product/upsert/UpsertProduct";
 import Category from "../pages/category/Category";
 import CategoryContextProvider from "../pages/category/category.context";
 import AppSetting from "../pages/appsetting/AppSetting";
+import Team from "../pages/team/Team";
 
 const RoutesComponent = () => {
   return (
@@ -31,6 +32,7 @@ const RoutesComponent = () => {
           <Route path="product" element={<Product />} />
           <Route path="upsert-product" element={<UpsertProduct />} />
           <Route path="appsetting" element={<AppSetting />} />
+          <Route path="team" element={<Team />} />
           <Route
             path="category"
             element={

@@ -6,6 +6,7 @@ export const registerTwoAPI = "/user/register/two";
 export const brandsAPI = "/brand/";
 export const jobInfoAPI = "/job-info/";
 export const sellerAPI = "/seller/";
+export const teamAPI = "/team/";
 export const productAPI = "/product/";
 export const jobAPI = "/job/";
 export const categoryAPI = "/category/";

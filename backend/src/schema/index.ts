@@ -11,6 +11,7 @@ import { Job, JobSchema } from './job.schema';
 import { Brand, BrandSchema } from './barnd.schema';
 import { Report, ReportSchema } from './report.schema';
 import { Product, ProductSchema } from './product.schema';
+import { Team, TeamSchema } from './team.schema';
 
 export default [
   MongooseModule.forFeature([{ name: File.name, schema: FileSchema }]),
@@ -24,6 +25,7 @@ export default [
   MongooseModule.forFeature([{ name: Brand.name, schema: BrandSchema }]),
   MongooseModule.forFeature([{ name: Report.name, schema: ReportSchema }]),
   MongooseModule.forFeature([{ name: Product.name, schema: ProductSchema }]),
+  MongooseModule.forFeature([{ name: Team.name, schema: TeamSchema }]),
 
   MongooseModule.forFeature([
     { name: AppSetting.name, schema: AppSettingSchema },
