@@ -57,8 +57,6 @@ export class JobInfoController {
   }
 
   @Get('')
-  @UseGuards(AdminJwtGuard)
-  @ApiBearerAuth('JWT-auth')
   @ApiOkResponse({
     description: 'this route will return job infos',
     type: GetJobInfosResponseDto,

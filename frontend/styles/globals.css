@@ -46,30 +46,30 @@ ul li :hover {
 }
 ::-webkit-input-placeholder {
   /* WebKit, Blink, Edge */
-  color: #fd9500;
+  color: #000;
 }
 :-moz-placeholder {
   /* Mozilla Firefox 4 to 18 */
-  color: #fd9500;
+  color: #000;
   opacity: 1;
 }
 ::-moz-placeholder {
   /* Mozilla Firefox 19+ */
-  color: #fd9500;
+  color: #000;
   opacity: 1;
 }
 :-ms-input-placeholder {
   /* Internet Explorer 10-11 */
-  color: #fd9500;
+  color: #000;
 }
 ::-ms-input-placeholder {
   /* Microsoft Edge */
-  color: #fd9500;
+  color: #000;
 }
 
 ::placeholder {
   /* Most modern browsers support this now. */
-  color: #fd9500;
+  color: #000;
 }
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,

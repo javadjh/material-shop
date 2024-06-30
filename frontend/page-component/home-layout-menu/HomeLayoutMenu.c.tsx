@@ -22,6 +22,7 @@ import styled from "styled-components";
 import IconComponent from "../../global-component/Icon.c";
 import { useRouter } from "next/router";
 import SocialMediaComponent from "../../global-component/SocialMedia.c";
+import Link from "next/link";
 
 const HomeLayoutMenuComponent: FC<{
   list: Array<{ title: string; link?: string }>;
@@ -37,7 +38,9 @@ const HomeLayoutMenuComponent: FC<{
   return (
     <HomePageBackgroundStyled>
       <LogoContainer>
-        <img src={"./logo.png"} width={240} />
+        <Link href={"/"}>
+          <img src={"./logo.png"} width={240} />
+        </Link>
       </LogoContainer>
       <HomeMenuContainer>
         <HomeMenuComponent />
@@ -60,32 +63,34 @@ const HomeLayoutMenuComponent: FC<{
             {list?.map((item) => (
               <Grid
                 lg={4}
-                onMouseEnter={() => setHover(item.link)}
+                onMouseEnter={() => setHover(item.title)}
                 onMouseLeave={() => setHover(null)}
               >
-                <div
-                  style={{
-                    border:
-                      item.link == hover
-                        ? "2px solid" + ORANGE_COLOR
-                        : "2px solid #fff",
+                <Link href={item?.link || ""}>
+                  <div
+                    style={{
+                      border:
+                        item.title == hover
+                          ? "2px solid" + ORANGE_COLOR
+                          : "2px solid #fff",
 
-                    borderRadius: 10,
-                    cursor: "pointer",
-                  }}
-                >
-                  <CenterStyled>
-                    <PaddingStyled vertical={10}>
-                      <Typography
-                        textColor={
-                          item.link == hover ? ORANGE_COLOR : WHITE_COLOR
-                        }
-                      >
-                        {item.title}
-                      </Typography>
-                    </PaddingStyled>
-                  </CenterStyled>
-                </div>
+                      borderRadius: 10,
+                      cursor: "pointer",
+                    }}
+                  >
+                    <CenterStyled>
+                      <PaddingStyled vertical={10}>
+                        <Typography
+                          textColor={
+                            item.title == hover ? ORANGE_COLOR : WHITE_COLOR
+                          }
+                        >
+                          {item.title}
+                        </Typography>
+                      </PaddingStyled>
+                    </CenterStyled>
+                  </div>
+                </Link>
               </Grid>
             ))}
           </Grid>

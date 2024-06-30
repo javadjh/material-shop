@@ -4,12 +4,12 @@ const Footer = () => {
   return (
     <HomeLayoutMenuComponent
       list={[
-        { title: "همکاری با ما", link: "menu1" },
-        { title: "فرصت های شغلی", link: "menu2" },
-        { title: "درباره ما", link: "menu3" },
-        { title: "قوانین و مقررات", link: "menu6" },
-        { title: "سوالات متداول", link: "menu4" },
-        { title: "تماس با ما", link: "menu5" },
+        { title: "همکاری با ما", link: "comming" },
+        { title: "فرصت های شغلی", link: "job" },
+        { title: "درباره ما", link: "about-us" },
+        { title: "قوانین و مقررات", link: "rules" },
+        { title: "سوالات متداول", link: "comming" },
+        { title: "تماس با ما", link: "contact-us" },
       ]}
     />
   );
