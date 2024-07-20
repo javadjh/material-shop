@@ -9,10 +9,17 @@ import { UserController } from './user.controller';
 import { Auth } from 'src/config/Auth';
 import { LocationModule } from '../location/location.module';
 import { Sms } from 'src/config/Sms';
+import { HttpModule } from '@nestjs/axios';
 
 @Module({
   controllers: [UserController],
-  imports: [CqrsModule, ...schema, JwtModule.register({}), LocationModule],
+  imports: [
+    CqrsModule,
+    ...schema,
+    JwtModule.register({}),
+    LocationModule,
+    HttpModule,
+  ],
   providers: [...handlers, JwtStrategy, Seed, Auth, Sms],
 })
 export class UserModule {}

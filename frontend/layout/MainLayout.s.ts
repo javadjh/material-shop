@@ -6,6 +6,12 @@ export const MainLayoutContainer = styled.div`
   min-height: 100vh;
   background-image: url("/main-bg.jpg");
 `;
+
+export const MobileLayoutContainer = styled.div`
+  min-height: 100vh;
+  width: 100%;
+  background-image: url("/mobile-bg.jpg");
+`;
 export const HeaderLayoutStyled = styled.div`
   position: absolute;
   top: 20px;
@@ -13,10 +19,15 @@ export const HeaderLayoutStyled = styled.div`
 `;
 export const SearchHeaderStyled: any = styled(Input)`
   background-color: transparent !important;
-  border: 3px solid ${ORANGE_COLOR};
+  border: 3px solid ${ORANGE_COLOR} !important;
   width: 400px;
   border-radius: 40px !important;
   color: ${WHITE_COLOR};
+  ::placeholder {
+    color: white !important;
+    opacity: 1 !important;
+    font-weight: bold;
+  }
 `;
 export const MakeBoxContainer: any = styled.div`
   padding-left: 30px;

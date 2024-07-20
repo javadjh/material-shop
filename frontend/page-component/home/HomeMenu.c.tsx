@@ -3,6 +3,7 @@ import { LeftStyled, Pointer, SpaceStyled } from "../../global-style/global.s";
 import { Grid, Typography } from "@mui/joy";
 import { ORANGE_COLOR } from "../../config/colors";
 import Link from "next/link";
+import { ReactSVG } from "react-svg";
 
 const HomeMenuComponent = () => {
   const [hover, setHover] = useState<string | undefined | null>();
@@ -52,7 +53,19 @@ const HomeMenuComponent = () => {
                 )}
 
                 <Grid>
-                  <img src="./icons/menu.png" width={35} />
+                  <ReactSVG
+                    src="/icons/foter-svg.svg"
+                    width={15}
+                    height={15}
+                    beforeInjection={(svg: any) => {
+                      svg.setAttribute(
+                        "style",
+                        `fill: ${
+                          "app" === hover ? ORANGE_COLOR : "#fff"
+                        } ; width:35px`
+                      );
+                    }}
+                  />
                 </Grid>
               </Grid>
             </SpaceStyled>

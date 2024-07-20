@@ -7,11 +7,14 @@ import { Response } from 'src/config/response';
 import { User, UserDocument } from 'src/schema/user.schema';
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
 import { Cache } from 'cache-manager';
-import { Inject } from '@nestjs/common';
+import { BadRequestException, Inject } from '@nestjs/common';
 import { GlobalUtility } from 'src/utility/GlobalUtility';
 import { ConfigService } from '@nestjs/config';
 import { RecordRepeatedException } from 'src/filters/record-repeated.filter';
 import { Sms } from 'src/config/Sms';
+import { HttpService } from '@nestjs/axios';
+import { firstValueFrom } from 'rxjs';
+import axios from 'axios';
 
 export class InsertUserStepOneCommand {
   constructor(public readonly dto: RegisterStepOneRequestDto) {}
@@ -25,6 +28,8 @@ export class InsertUserStepOneHandler
     private readonly user: Model<UserDocument>,
 
     private config: ConfigService,
+
+    private httpService: HttpService,
 
     @Inject(CACHE_MANAGER) private readonly cacheManager: Cache,
   ) {}
@@ -42,10 +47,24 @@ export class InsertUserStepOneHandler
 
     //save into redis memory
     const key: string = `${phone}`;
-    await this.cacheManager.set(key, code, 1000000);
+    if (await this.cacheManager.get(key)) {
+      throw new BadRequestException();
+    }
+    await this.cacheManager.set(key, code, 300000);
     console.log({ key, code });
 
-    Sms.sendSms(phone, `${code}`);
+    // Sms.sendSms(phone, `${code}`);
+
+    const { status } = await axios.post('http://ippanel.com/api/select', {
+      op: 'pattern',
+      user: 'u9122855499',
+      pass: 'Med@0480301840',
+      fromNum: '+983000505',
+      toNum: phone,
+      patternCode: '0pcrgww91fjomv6',
+      inputData: [{ code }],
+    });
+    console.log(status);
 
     return Response.sent();
   }

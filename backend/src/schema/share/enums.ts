@@ -7,3 +7,10 @@ export const sellerDepartmentSchema = [
   'stone-ceramic',
   'electrical-water-facilities',
 ];
+export const activityEmploymentSchema = [
+  'producer',
+  'provider',
+  'creator',
+  'businessman',
+  'other',
+];

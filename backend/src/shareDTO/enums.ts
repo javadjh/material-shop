@@ -16,3 +16,11 @@ export enum JonInfoDepartmentEnum {
   marketer = 'marketer',
   boss = 'boss',
 }
+
+export enum activityEmploymentEnum {
+  producer = 'producer',
+  provider = 'provider',
+  creator = 'creator',
+  Businessman = 'Businessman',
+  other = 'other',
+}

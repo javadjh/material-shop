@@ -78,6 +78,11 @@ const AdminLayout: FC<{ children: any }> = ({ children }) => {
               label: "گزارش ها",
             },
             {
+              key: "team",
+              icon: <UploadOutlined />,
+              label: "تیم",
+            },
+            {
               key: "appsetting",
               icon: <UploadOutlined />,
               label: "تنظیمات برنامه",

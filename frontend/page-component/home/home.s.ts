@@ -4,7 +4,7 @@ import { ORANGE_COLOR, WHITE_COLOR } from "../../config/colors";
 
 export const HomePageBackgroundStyled = styled.div`
   height: 100vh;
-  background-image: url("./background.jpg");
+  background-image: url("/background.jpg");
   width: 100%;
   background-position: center;
   background-size: cover;
@@ -12,11 +12,12 @@ export const HomePageBackgroundStyled = styled.div`
 export const LogoContainer = styled.div`
   position: absolute;
   top: 25px;
-  right: 25px;
+  right: 35px;
 `;
 export const SocialMediaBlock = styled.div`
   position: absolute;
   right: 35px;
+  display: flex;
   bottom: 10px;
   img {
     margin-left: 10px;

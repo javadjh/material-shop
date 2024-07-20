@@ -12,5 +12,6 @@ export const jobAPI = "/job/";
 export const categoryAPI = "/category/";
 export const locationAPI = "/location/";
 export const reportAPI = "/report/";
+export const employmentAPI = "/employment/";
 export const uploadAPI = "/file";
 export const appSettingAPI = "/app-setting";

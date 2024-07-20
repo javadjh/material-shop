@@ -13,6 +13,9 @@ const ActionBorderComponent: FC<any> = ({
   border = "1",
   children,
   isSelected = false,
+  padding,
+  fontSize,
+  isFill = false,
 }) => {
   const [isHover, setIsHover] = useState<boolean>(isSelected);
   return (
@@ -26,11 +29,17 @@ const ActionBorderComponent: FC<any> = ({
               ? `${border}px solid ${ORANGE_COLOR}`
               : `${border}px solid ${WHITE_COLOR}`,
             borderRadius: 10,
+            padding,
+            backgroundColor: isHover && isFill ? ORANGE_COLOR : undefined,
+            color: isHover && isFill ? "white !important" : "white",
           }}
         >
           <CenterStyled>
             <PaddingStyled vertical={10}>
-              <Typography textColor={isHover ? ORANGE_COLOR : WHITE_COLOR}>
+              <Typography
+                fontSize={fontSize}
+                textColor={isHover && !isFill ? ORANGE_COLOR : WHITE_COLOR}
+              >
                 {children}
               </Typography>
             </PaddingStyled>

@@ -1,6 +1,10 @@
 import { Grid } from "@mui/joy";
 import LogoComponent from "../../../../global-component/Logo.c";
-import { PaddingStyled, SpaceStyled } from "../../../../global-style/global.s";
+import {
+  CenterStyled,
+  PaddingStyled,
+  SpaceStyled,
+} from "../../../../global-style/global.s";
 import MainLayout from "../../../../layout/MainLayout";
 import StoreItemComponent from "./StoreItem.s";
 import CategoryItemComponent from "./CategoryItem.c";
@@ -27,44 +31,51 @@ const ChoicePage: NextPage<{ categories: Array<ICategory> }> = ({
   return (
     <MainLayout>
       <Grid container spacing={3}>
-        <Grid lg={9.5}>
+        <Grid lg={9.8}>
           <PaddingStyled top={20}>
             <Grid container>
               <Grid lg={4}>
-                <LogoComponent />
+                <SpaceStyled top={10}>
+                  <LogoComponent width={190} />
+                  <CenterStyled>
+                    <img src="/google-font.png" width={"65%"} />
+                  </CenterStyled>
+                </SpaceStyled>
               </Grid>
               <Grid lg={8}>
-                <PaddingStyled top={70} right={30} bottom={20}>
+                <PaddingStyled top={70} right={10} bottom={20}>
                   <ImageServerComponent
                     image={media?.banner}
+                    border={10}
                     width={"100%"}
-                    border={20}
-                    height={170}
+                    aspect={325 / 76}
                   />
                 </PaddingStyled>
               </Grid>
             </Grid>
-            <Grid spacing={5} rowSpacing={2} container>
-              {categories?.map((item) => (
-                <Grid lg={4}>
-                  <Link
-                    href={{
-                      pathname: "/store/category",
-                      query: { id: item?._id },
-                    }}
-                  >
-                    <CategoryItemComponent
-                      iconName={item.icon}
-                      title={item.title}
-                      id={item?._id}
-                    />
-                  </Link>
-                </Grid>
-              ))}
-            </Grid>
+            <SpaceStyled top={-20}>
+              <Grid spacing={2.5} rowSpacing={2.5} container>
+                {categories?.map((item) => (
+                  <Grid lg={4}>
+                    <Link
+                      href={{
+                        pathname: "/store/category",
+                        query: { id: item?._id },
+                      }}
+                    >
+                      <CategoryItemComponent
+                        iconName={item.icon}
+                        title={item.title}
+                        id={item?._id}
+                      />
+                    </Link>
+                  </Grid>
+                ))}
+              </Grid>
+            </SpaceStyled>
           </PaddingStyled>
         </Grid>
-        <Grid lg={2.5}>
+        <Grid lg={2.2}>
           <PaddingStyled top={90}>
             <Grid container spacing={2}>
               <Grid lg={6}>

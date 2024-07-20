@@ -30,31 +30,48 @@ import IconComponent from "../../global-component/Icon.c";
 const RegisterPage = () => {
   const [isStepTwo, setIsStepTwo] = useState<boolean>(false);
   const [isStepThree, setIsStepThree] = useState<boolean>(false);
+  const [isCodeWrong, setIsCodeWrong] = useState<boolean>(false);
+  const [isRepeatRequest, setIsRepeatRequest] = useState<boolean>(false);
   const [phone, setPhone] = useState<string>("");
   const [code, setCode] = useState<string>("");
   const router = useRouter();
 
+  const onEditPhone = async () => {
+    setPhone("");
+    setIsStepTwo(false);
+  };
+
   const loginStepOne = async () => {
-    if (phone.length == 11) {
-      const {
-        data: { state },
-      } = await registerOneService(phone);
-      setIsStepTwo(state);
+    try {
+      if (phone.length == 11) {
+        const {
+          data: { state },
+        } = await registerOneService(phone);
+        setIsStepTwo(state);
+      }
+    } catch (error) {
+      setIsRepeatRequest(true);
     }
   };
 
   const loginStepTwo = async () => {
     if (phone.length == 11 && code.length == 4) {
-      const data = await registerTwoService({
-        code: Number(code),
-        phone,
-      });
-      let token = data?.data?.data?.data;
-      if (token) {
-        // setIsStepTwo(false);
-        // setIsStepThree(true);
-        setCookie("token", token);
-        router.replace("/store/choice");
+      try {
+        const data = await registerTwoService({
+          code: Number(code),
+          phone,
+        });
+        let token = data?.data?.data?.data;
+        if (token) {
+          // setIsStepTwo(false);
+          // setIsStepThree(true);
+          setCookie("token", token);
+          setCookie("phone", phone);
+
+          router.replace("/store/choice");
+        }
+      } catch (error) {
+        setIsCodeWrong(true);
       }
     }
   };
@@ -84,13 +101,18 @@ const RegisterPage = () => {
             <RegisterUserStepOne
               loginStepOne={loginStepOne}
               setPhone={setPhone}
+              isRepeatRequest={isRepeatRequest}
             />
           )}
           {isStepTwo && (
             <RegisterUserStepTwo
               loginStepTwo={loginStepTwo}
               setCode={setCode}
+              loginStepOne={loginStepOne}
               setPhone={setPhone}
+              phone={phone}
+              onEditPhone={onEditPhone}
+              isCodeWrong={isCodeWrong}
             />
           )}
         </WhiteBorderStyled>

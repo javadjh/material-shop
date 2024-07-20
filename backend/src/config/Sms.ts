@@ -1,9 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import * as request from 'request';
 
 @Injectable()
 export class Sms {
-  static sendSms(phone: string, code: string) {
+  static async sendSms(phone: string, code: string) {
     request.post(
       {
         url: 'http://ippanel.com/api/select',
@@ -23,7 +23,7 @@ export class Sms {
           //YOU‌ CAN‌ CHECK‌ THE‌ RESPONSE‌ AND SEE‌ ERROR‌ OR‌ SUCCESS‌ MESSAGE
           console.log(response.body);
         } else {
-          console.log('whatever you want');
+          throw new BadRequestException();
         }
       },
     );

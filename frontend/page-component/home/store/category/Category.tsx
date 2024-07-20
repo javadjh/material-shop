@@ -14,6 +14,7 @@ import CategoryItemComponent from "../choice/CategoryItem.c";
 import Link from "next/link";
 import { getAppSettingService } from "../../../../service/appsetting.service";
 import ImageServerComponent from "../../../../global-component/ImageServer.c";
+import SubCategoryItemComponent from "./SubCategoryItem.c";
 
 const CategoryPage: FC<{
   mainCategories: Array<ICategory>;
@@ -34,13 +35,16 @@ const CategoryPage: FC<{
         <Grid lg={2.5}>
           <SpaceStyled horizontal={20}>
             <ProductsSideContainerStyled>
-              <SpaceStyled top={20}>
+              <SpaceStyled top={10}>
                 <CenterStyled>
-                  <LogoComponent width={"90%"} />
+                  <LogoComponent width={110} />
+                  <CenterStyled>
+                    <img src="/google-font.png" width={"100%"} />
+                  </CenterStyled>
                   <br />
                   {mainCategories?.map((item) => (
                     <div style={{ width: "100%" }}>
-                      <ActionBorderComponent>
+                      <ActionBorderComponent border={"2"} isFill={true}>
                         {item.title}
                       </ActionBorderComponent>
                     </div>
@@ -51,16 +55,16 @@ const CategoryPage: FC<{
           </SpaceStyled>
         </Grid>
         <Grid lg={9.5}>
-          <PaddingStyled top={80} right={30} bottom={20}>
+          <PaddingStyled top={80} bottom={20}>
             <ImageServerComponent
               image={media?.banner}
               width={"100%"}
               border={20}
-              height={150}
+              height={"20vh"}
             />
           </PaddingStyled>
           <div style={{ width: "100%" }}>
-            <Grid spacing={5} rowSpacing={2} container>
+            <Grid spacing={5} container alignContent={"space-between"}>
               {categories?.map((item) => (
                 <Grid lg={4}>
                   <Link
@@ -69,7 +73,7 @@ const CategoryPage: FC<{
                       query: { id: item?._id },
                     }}
                   >
-                    <CategoryItemComponent
+                    <SubCategoryItemComponent
                       iconName={item.icon}
                       title={item.title}
                       id={item?._id}

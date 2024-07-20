@@ -18,12 +18,15 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { insertReport } from "../../service/report.service";
 import { useState } from "react";
+import { useWindowSize } from "../../global-component/ScreenBridge.c";
+import { getCookie } from "cookies-next";
 
 const ContactUs = () => {
   const [isSubmited, setIsSubmited] = useState(false);
+  const size = useWindowSize();
   const formik = useFormik({
     initialValues: {
-      phoneNumber: "",
+      phoneNumber: getCookie("phone"),
       fullName: "",
       description: "",
     },
@@ -49,10 +52,13 @@ const ContactUs = () => {
       <PaddingStyled top={20}>
         <Grid container spacing={3}>
           <Grid lg={3}>
-            <LogoComponent width={90} />
+            <LogoComponent width={size.height > 660 ? 250 : 90} />
             <SpaceStyled vertical={10}>
               <CenterStyled>
-                <img src="./google-font.png" width={200} />
+                <img
+                  src="./google-font.png"
+                  width={size.height > 660 ? 300 : 200}
+                />
               </CenterStyled>
             </SpaceStyled>
             <FormContainer>

@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { SocialMediaBlock } from "../page-component/home/home.s";
 import Link from "next/link";
 import { getAppSettingService } from "../service/appsetting.service";
+import { ReactSVG } from "react-svg";
+import { SpaceStyled } from "../global-style/global.s";
 
 const SocialMediaComponent = () => {
   const [media, setMedia] = useState<any>({});
@@ -17,25 +19,102 @@ const SocialMediaComponent = () => {
     <>
       <SocialMediaBlock>
         <Link href={media?.instagram || "/"}>
-          <img src="/icons/instagram.png" width={20} />
+          <SpaceStyled horizontal={5}>
+            <div style={{ width: 25, height: 25 }}>
+              <ReactSVG
+                src="/icons/instagram.svg"
+                style={{ color: "red" }}
+                beforeInjection={(svg) => {
+                  svg.classList.add("so-svg-class");
+                }}
+              />
+            </div>
+          </SpaceStyled>
         </Link>
+
         <Link href={media?.twitter || "/"}>
-          <img src="/icons/twitter.png" width={20} />
+          <SpaceStyled horizontal={5}>
+            <div style={{ width: 25, height: 25 }}>
+              <ReactSVG
+                src="/icons/twitter.svg"
+                style={{ color: "red" }}
+                beforeInjection={(svg) => {
+                  svg.classList.add("so-svg-class");
+                }}
+              />
+            </div>
+          </SpaceStyled>
         </Link>
+
         <Link href={media?.whatsapp || "/"}>
-          <img src="/icons/whatsapp.png" width={20} />
+          <SpaceStyled horizontal={5}>
+            <div style={{ width: 25, height: 25 }}>
+              <ReactSVG
+                src="/icons/whatsapp.svg"
+                style={{ color: "red" }}
+                beforeInjection={(svg) => {
+                  svg.classList.add("so-svg-class");
+                }}
+              />
+            </div>
+          </SpaceStyled>
         </Link>
+
         <Link href={media?.pinteres || "/"}>
-          <img src="/icons/pinteres.png" width={20} />
+          <SpaceStyled horizontal={5}>
+            <div style={{ width: 25, height: 25 }}>
+              <ReactSVG
+                src="/icons/pinteres.svg"
+                style={{ color: "red" }}
+                beforeInjection={(svg) => {
+                  svg.classList.add("so-svg-class");
+                }}
+              />
+            </div>
+          </SpaceStyled>
         </Link>
+
         <Link href={media?.linkedin || "/"}>
-          <img src="/icons/linkedin.png" width={20} />
+          <SpaceStyled horizontal={5}>
+            <div style={{ width: 25, height: 25 }}>
+              <ReactSVG
+                src="/icons/linkedin.svg"
+                style={{ color: "red" }}
+                beforeInjection={(svg) => {
+                  svg.classList.add("so-svg-class");
+                }}
+              />
+            </div>
+          </SpaceStyled>
         </Link>
+
         <Link href={media?.telegram || "/"}>
-          <img src="/icons/telegram.png" width={20} />
+          <SpaceStyled horizontal={5}>
+            <div style={{ width: 25, height: 25 }}>
+              <ReactSVG
+                src="/icons/telegram.svg"
+                style={{ color: "red" }}
+                beforeInjection={(svg) => {
+                  svg.classList.add("so-svg-class");
+                }}
+              />
+            </div>
+          </SpaceStyled>
         </Link>
+
         <Link href={media?.youtube || "/"}>
-          <img src="/icons/youtube.png" height={20} />
+          <SpaceStyled horizontal={5}>
+            <div style={{ width: 25, height: 25 }}>
+              <ReactSVG
+                src="/icons/youtube.svg"
+                style={{ color: "red" }}
+                beforeInjection={(svg) => {
+                  svg.classList.add("so-svg-class");
+                  // svg.setAttribute("style", `fill : ${}`);
+                }}
+              />
+            </div>
+          </SpaceStyled>
         </Link>
       </SocialMediaBlock>
     </>

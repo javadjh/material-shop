@@ -12,30 +12,51 @@ import ActionBorderComponent from "../../global-component/ActionBorder.c";
 import { LIGHT_GRAY_COLOR, ORANGE_COLOR } from "../../config/colors";
 import { useState } from "react";
 import styled from "styled-components";
+import SocialMediaComponent from "../../global-component/SocialMedia.c";
+import { useWindowSize } from "../../global-component/ScreenBridge.c";
 
 const RulesPage = () => {
   const [department, setDepartment] = useState<string>("");
+  const size = useWindowSize();
   return (
     <MainLayout>
+      <SocialMediaComponent />
       <PaddingStyled vertical={20} horizontal={10}>
         <Grid container>
           <Grid lg={2}>
             <SpaceStyled bottom={10}>
               <LogoComponent width={200} />
             </SpaceStyled>
-            <ActionBorderComponent onClick={() => setDepartment("general")}>
+            <ActionBorderComponent
+              padding={size.height > 660 ? 15 : 5}
+              onClick={() => setDepartment("general")}
+            >
               قوانین کلی سایت
             </ActionBorderComponent>
-            <ActionBorderComponent onClick={() => setDepartment("privacy")}>
+            <ActionBorderComponent
+              padding={size.height > 660 ? 15 : 5}
+              onClick={() => setDepartment("privacy")}
+            >
               قوانین حریم خصوصی
             </ActionBorderComponent>
-            <ActionBorderComponent onClick={() => setDepartment("store")}>
+            <ActionBorderComponent
+              padding={size.height > 660 ? 15 : 5}
+              onClick={() => setDepartment("store")}
+            >
               قوانین فروشگاه
             </ActionBorderComponent>
-            <ActionBorderComponent onClick={() => setDepartment("service")}>
+            <ActionBorderComponent
+              padding={size.height > 660 ? 15 : 5}
+              fontSize={13}
+              onClick={() => setDepartment("service")}
+            >
               قوانین بخش خدمات ساختمانی
             </ActionBorderComponent>
-            <ActionBorderComponent onClick={() => setDepartment("information")}>
+            <ActionBorderComponent
+              padding={size.height > 660 ? 15 : 5}
+              fontSize={13}
+              onClick={() => setDepartment("information")}
+            >
               قوانین بخش اطلاعات ساختمانی
             </ActionBorderComponent>
           </Grid>

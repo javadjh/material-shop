@@ -14,7 +14,7 @@ const Comming = () => {
       <div
         style={{
           position: "absolute",
-          left: 100,
+          left: "23%",
           top: "50%",
           transform: "translate(-0%, -50%)",
         }}

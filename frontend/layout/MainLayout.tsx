@@ -6,19 +6,22 @@ import {
   SearchHeaderStyled,
 } from "./MainLayout.s";
 import { Grid, Typography } from "@mui/joy";
-import { CenterStyled, SpaceStyled } from "../global-style/global.s";
+import { CenterStyled, Pointer, SpaceStyled } from "../global-style/global.s";
 import { ORANGE_COLOR } from "../config/colors";
 import IconComponent from "../global-component/Icon.c";
 import Link from "next/link";
+import { getCookie, setCookie } from "cookies-next";
+import { useRouter } from "next/router";
 
 const MainLayout: FC<{ children: any }> = ({ children }) => {
+  const router = useRouter();
   return (
     <>
       <MainLayoutContainer>
         <HeaderLayoutStyled>
           <Grid
             container
-            spacing={3}
+            spacing={2}
             justifyContent={"center"}
             alignItems={"center"}
           >
@@ -27,39 +30,69 @@ const MainLayout: FC<{ children: any }> = ({ children }) => {
             </Grid>
             <Grid>
               <CenterStyled>
-                <img src="/favlogo.png" width={37} />
+                <Link href={"/footer"}>
+                  <img src="/favlogo.png" width={34} />
+                </Link>
               </CenterStyled>
             </Grid>
             <Grid>
               <CenterStyled>
-                <IconComponent icon={"basket"} width={37} />
+                <IconComponent icon={"basket"} width={30} />
               </CenterStyled>
             </Grid>
             <Grid>
               <CenterStyled>
-                <img src="/favlogo.png" width={37} />
+                <Link href={"/footer"}>
+                  <img src="/favlogo.png" width={34} />
+                </Link>
               </CenterStyled>
             </Grid>
             <Grid>
               <CenterStyled>
-                <img src="/icons/menu.png" width={37} />
+                <Link href={"/app"}>
+                  <img src="/icons/menu.png" width={30} />
+                </Link>
               </CenterStyled>
             </Grid>
             <Grid>
-              <Link href={"/register"}>
-                <CenterStyled>
-                  <SpaceStyled left={5}>
+              {getCookie("phone") ? (
+                <Grid container spacing={2}>
+                  <Grid>
+                    <SpaceStyled top={-2}>
+                      <Pointer>
+                        <Typography
+                          onClick={() => {
+                            setCookie("token", undefined);
+                            setCookie("phone", undefined);
+                            router.replace("/");
+                          }}
+                          textColor={ORANGE_COLOR}
+                        >
+                          خروج
+                        </Typography>
+                      </Pointer>
+                    </SpaceStyled>
+                  </Grid>
+                  <Grid>
+                    <Typography textColor={ORANGE_COLOR}>
+                      {getCookie("phone")}
+                    </Typography>
+                  </Grid>
+                </Grid>
+              ) : (
+                <Link href={"/register"}>
+                  <CenterStyled>
                     <Typography textColor={ORANGE_COLOR}>
                       ورود / عضویت
                     </Typography>
-                  </SpaceStyled>
-                </CenterStyled>
-              </Link>
+                  </CenterStyled>
+                </Link>
+              )}
             </Grid>
             <Grid>
               <CenterStyled>
                 <Link href={"/register"}>
-                  <img src="/icons/user-icon.png" width={35} />
+                  <img src="/icons/user-icon.png" width={30} />
                 </Link>
               </CenterStyled>
             </Grid>

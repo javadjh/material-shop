@@ -8,7 +8,7 @@ import {
 
 import { ORANGE_COLOR, WHITE_COLOR } from "../../config/colors";
 import styled from "styled-components";
-import { FC, useRef, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import { SMALL_FONT } from "../../config/font";
 import { registerOneService } from "../../service/user.service";
 import Link from "next/link";
@@ -16,7 +16,8 @@ import Link from "next/link";
 const RegisterUserStepOne: FC<{
   setPhone: any;
   loginStepOne: any;
-}> = ({ loginStepOne, setPhone }) => {
+  isRepeatRequest: boolean;
+}> = ({ loginStepOne, setPhone, isRepeatRequest }) => {
   let [isValid, setIsValid] = useState<boolean>(false);
   const inputRef1: any = useRef<HTMLInputElement>(null);
   const inputRef2: any = useRef<HTMLInputElement>(null);
@@ -32,7 +33,73 @@ const RegisterUserStepOne: FC<{
   const btn: any = useRef<any>(null);
   const [isBTNHovered, setIsBTNHovered] = useState(false);
 
-  const onChnageInput = (targetRef: any, preRef: any, e: any) => {
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     var input2: any = document.getElementById("input2");
+  //     input2?.addEventListener("keydown", function (event: any) {
+  //       const { key } = event;
+  //       if (key === "Backspace") {
+  //         inputRef3?.current?.focus();
+  //       }
+  //     });
+  //     var input3: any = document.getElementById("input3");
+  //     input3?.addEventListener("keydown", function (event: any) {
+  //       const { key } = event;
+  //       if (key === "Backspace") {
+  //         inputRef4?.current?.focus();
+  //       }
+  //     });
+  //     var input4: any = document.getElementById("input4");
+  //     input4?.addEventListener("keydown", function (event: any) {
+  //       const { key } = event;
+  //       if (key === "Backspace") {
+  //         inputRef5?.current?.focus();
+  //       }
+  //     });
+  //     var input5: any = document.getElementById("input5");
+  //     input5?.addEventListener("keydown", function (event: any) {
+  //       const { key } = event;
+  //       if (key === "Backspace") {
+  //         inputRef6?.current?.focus();
+  //       }
+  //     });
+  //     var input6: any = document.getElementById("input6");
+  //     input6?.addEventListener("keydown", function (event: any) {
+  //       const { key } = event;
+  //       if (key === "Backspace") {
+  //         inputRef7?.current?.focus();
+  //       }
+  //     });
+  //     var input7: any = document.getElementById("input7");
+  //     input7?.addEventListener("keydown", function (event: any) {
+  //       const { key } = event;
+  //       if (key === "Backspace") {
+  //         inputRef8?.current?.focus();
+  //       }
+  //     });
+  //     var input8: any = document.getElementById("input8");
+  //     input8?.addEventListener("keydown", function (event: any) {
+  //       const { key } = event;
+  //       if (key === "Backspace") {
+  //         inputRef9?.current?.focus();
+  //       }
+  //     });
+  //     var input9: any = document.getElementById("input9");
+  //     input9?.addEventListener("keydown", function (event: any) {
+  //       const { key } = event;
+  //       if (key === "Backspace") {
+  //         inputRef10?.current?.focus();
+  //       }
+  //     });
+  //   }, 1000);
+  // }, []);
+
+  const onChnageInput = (targetRef: any, preRef: any, e: any, ref: any) => {
+    let val: any = e.target.value;
+    if (val?.length > 1) {
+      ref.current.value = val?.substr(0, 1);
+    }
+
     if (e?.target.value?.length == 1) {
       targetRef?.current?.focus();
     }
@@ -77,6 +144,7 @@ const RegisterUserStepOne: FC<{
       setIsValid(false);
     }
   };
+
   return (
     <PaddingStyled vertical={20} horizontal={30}>
       <SpaceStyled vertical={15}>
@@ -92,58 +160,85 @@ const RegisterUserStepOne: FC<{
         <div dir="ltr">
           <InputNumber
             ref={inputRef1}
+            disabled
+            value={"0"}
+            max={1}
             type="number"
-            onChange={(e) => onChnageInput(inputRef2, undefined, e)}
+            onChange={(e) => onChnageInput(inputRef2, undefined, e, inputRef1)}
           />
           <InputNumber
             ref={inputRef2}
-            onChange={(e) => onChnageInput(inputRef3, inputRef1, e)}
+            value={"9"}
+            onChange={(e) => onChnageInput(inputRef3, inputRef1, e, inputRef2)}
             type="number"
           />
           <InputNumber
             ref={inputRef3}
-            onChange={(e) => onChnageInput(inputRef4, inputRef2, e)}
             type="number"
+            className="input-class"
+            id={`input1`}
+            onChange={(e: any) =>
+              onChnageInput(inputRef4, inputRef2, e, inputRef3)
+            }
           />
           <InputNumber
             ref={inputRef4}
-            onChange={(e) => onChnageInput(inputRef5, inputRef3, e)}
+            className="input-class"
+            onChange={(e) => onChnageInput(inputRef5, inputRef3, e, inputRef4)}
             type="number"
+            id={`input2`}
           />
           <InputNumber
             ref={inputRef5}
-            onChange={(e) => onChnageInput(inputRef6, inputRef4, e)}
+            onChange={(e) => onChnageInput(inputRef6, inputRef4, e, inputRef5)}
             type="number"
+            className="input-class"
+            id={`input3`}
           />
           <InputNumber
             ref={inputRef6}
-            onChange={(e) => onChnageInput(inputRef7, inputRef5, e)}
+            onChange={(e) => onChnageInput(inputRef7, inputRef5, e, inputRef6)}
             type="number"
+            id={`input4`}
           />
           <InputNumber
+            className="input-class"
             ref={inputRef7}
-            onChange={(e) => onChnageInput(inputRef8, inputRef6, e)}
+            onChange={(e) => onChnageInput(inputRef8, inputRef6, e, inputRef7)}
             type="number"
+            id={`input5`}
           />
           <InputNumber
             ref={inputRef8}
-            onChange={(e) => onChnageInput(inputRef9, inputRef7, e)}
+            className="input-class"
+            onChange={(e) => onChnageInput(inputRef9, inputRef7, e, inputRef8)}
             type="number"
+            id={`input6`}
           />
           <InputNumber
             ref={inputRef9}
-            onChange={(e) => onChnageInput(inputRef10, inputRef8, e)}
+            className="input-class"
+            onChange={(e) => onChnageInput(inputRef10, inputRef8, e, inputRef9)}
             type="number"
+            id={`input7`}
           />
           <InputNumber
             ref={inputRef10}
-            onChange={(e) => onChnageInput(inputRef11, inputRef9, e)}
+            className="input-class"
+            onChange={(e) =>
+              onChnageInput(inputRef11, inputRef9, e, inputRef10)
+            }
             type="number"
+            id={`input8`}
           />
           <InputNumber
             ref={inputRef11}
-            onChange={(e) => onChnageInput(undefined, inputRef10, e)}
+            className="input-class"
+            onChange={(e) =>
+              onChnageInput(undefined, inputRef10, e, inputRef11)
+            }
             type="number"
+            id={`input9`}
           />
         </div>
       </CenterStyled>
@@ -172,9 +267,9 @@ const RegisterUserStepOne: FC<{
         <SpaceStyled top={20}>
           <Grid container justifyContent={"space-between"}>
             <Grid>
-              {!isValid && (
+              {isRepeatRequest && (
                 <Typography fontSize={SMALL_FONT} textColor={WHITE_COLOR}>
-                  لطفا اطلاعات خواسته شده را به دقت وارد کنید
+                  بیش از حد تلاش کردید ، دقایقی دیگر امتحان کنید
                 </Typography>
               )}
             </Grid>
@@ -195,7 +290,7 @@ const RegisterUserStepOne: FC<{
                 ref={btn}
                 onClick={loginStepOne}
               >
-                <SpaceStyled top={-2}>ورود</SpaceStyled>
+                <SpaceStyled top={-2}>ارسال کد</SpaceStyled>
               </LoginButton>
             </Grid>
           </Grid>
@@ -225,6 +320,7 @@ const InputNumber = styled.input`
   border: none !important;
   aspect-ratio: 1/1;
   width: 40px;
+  font-weight: bold;
   color: black;
   text-align: center;
   font-size: 15px;

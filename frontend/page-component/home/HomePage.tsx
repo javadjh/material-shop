@@ -15,6 +15,8 @@ import Link from "next/link";
 import styled from "styled-components";
 import { useState } from "react";
 import SocialMediaComponent from "../../global-component/SocialMedia.c";
+import IconComponent from "../../global-component/Icon.c";
+import { ReactSVG } from "react-svg";
 
 const HomePage = () => {
   const [hover, setHoever] = useState<string>();
@@ -53,7 +55,16 @@ const HomePage = () => {
                 onMouseLeave={() => setHoever("")}
                 onMouseEnter={() => setHoever("store")}
               >
-                <img src="./icons/store.png" width={80} />
+                <ReactSVG
+                  src="/icons/shop-svg.svg"
+                  style={{ fill: "red !important" }}
+                  beforeInjection={(svg: any) => {
+                    svg.setAttribute(
+                      "style",
+                      `fill: ${"store" === hover ? ORANGE_COLOR : "#fff"}`
+                    );
+                  }}
+                />
                 <SpaceStyled top={30}>
                   <CenterStyled>
                     <SpaceStyled bottom={20}>
@@ -65,8 +76,8 @@ const HomePage = () => {
                       </Typography>
                     </SpaceStyled>
                     <Typography
+                      fontWeight="bold"
                       textColor={"store" === hover ? ORANGE_COLOR : "#fff"}
-                      fontSize={MEDIUM_FONT}
                     >
                       محصولات ساختمانی
                     </Typography>
@@ -83,6 +94,16 @@ const HomePage = () => {
                 onMouseEnter={() => setHoever("group")}
               >
                 <img src="./icons/user-home.png" width={80} />
+                <ReactSVG
+                  src="/icons/group-svg.svg"
+                  style={{ fill: "red !important" }}
+                  beforeInjection={(svg: any) => {
+                    svg.setAttribute(
+                      "style",
+                      `fill: ${"store" === hover ? ORANGE_COLOR : "#fff"}`
+                    );
+                  }}
+                />
                 <SpaceStyled top={30}>
                   <CenterStyled>
                     <SpaceStyled bottom={20}>
@@ -94,8 +115,8 @@ const HomePage = () => {
                       </Typography>
                     </SpaceStyled>
                     <Typography
+                      fontWeight="bold"
                       textColor={"group" === hover ? ORANGE_COLOR : "#fff"}
-                      fontSize={MEDIUM_FONT}
                     >
                       خدمات ساختمانی
                     </Typography>
@@ -123,8 +144,8 @@ const HomePage = () => {
                       </Typography>
                     </SpaceStyled>
                     <Typography
+                      fontWeight="bold"
                       textColor={"groups" === hover ? ORANGE_COLOR : "#fff"}
-                      fontSize={MEDIUM_FONT}
                     >
                       اطلاعات ساختمانی
                     </Typography>
