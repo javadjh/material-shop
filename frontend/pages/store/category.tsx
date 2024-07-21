@@ -6,9 +6,14 @@ import { getCategoriesService } from "../../service/category.service";
 const Category: FC<{
   mainCategories: Array<ICategory>;
   categories: Array<ICategory>;
-}> = ({ mainCategories, categories }) => {
+  id?: string;
+}> = ({ mainCategories, categories, id }) => {
   return (
-    <CategoryPage mainCategories={mainCategories} categories={categories} />
+    <CategoryPage
+      mainCategories={mainCategories}
+      categories={categories}
+      id={id}
+    />
   );
 };
 export default Category;
@@ -27,6 +32,7 @@ export async function getServerSideProps(prop: any) {
   let props: any = {
     mainCategories: mainCategoriesResponse.list,
     categories: categoriesResponse.list,
+    id: parentCategoryId,
   };
 
   return {

@@ -16,6 +16,7 @@ const ActionBorderComponent: FC<any> = ({
   padding,
   fontSize,
   isFill = false,
+  fontColor,
 }) => {
   const [isHover, setIsHover] = useState<boolean>(isSelected);
   return (
@@ -38,7 +39,9 @@ const ActionBorderComponent: FC<any> = ({
             <PaddingStyled vertical={10}>
               <Typography
                 fontSize={fontSize}
-                textColor={isHover && !isFill ? ORANGE_COLOR : WHITE_COLOR}
+                textColor={
+                  fontColor || (isHover && !isFill) ? ORANGE_COLOR : WHITE_COLOR
+                }
               >
                 {children}
               </Typography>

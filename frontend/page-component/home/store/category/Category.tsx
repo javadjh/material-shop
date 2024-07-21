@@ -19,8 +19,10 @@ import SubCategoryItemComponent from "./SubCategoryItem.c";
 const CategoryPage: FC<{
   mainCategories: Array<ICategory>;
   categories: Array<ICategory>;
-}> = ({ mainCategories, categories }) => {
+  id?: string;
+}> = ({ mainCategories, categories, id }) => {
   const [media, setMedia] = useState<any>({});
+
   useEffect(() => {
     getData();
   }, []);
@@ -39,15 +41,25 @@ const CategoryPage: FC<{
                 <CenterStyled>
                   <LogoComponent width={110} />
                   <CenterStyled>
-                    <img src="/google-font.png" width={"100%"} />
+                    <img src="/google-font.png" width={"80%"} />
                   </CenterStyled>
                   <br />
                   {mainCategories?.map((item) => (
-                    <div style={{ width: "100%" }}>
-                      <ActionBorderComponent border={"2"} isFill={true}>
+                    <Link
+                      href={{
+                        pathname: "/store/category",
+                        query: { id: item?._id },
+                      }}
+                      style={{ width: "100%" }}
+                    >
+                      <ActionBorderComponent
+                        border={"2"}
+                        isSelected={item?._id == id}
+                        isFill={true}
+                      >
                         {item.title}
                       </ActionBorderComponent>
-                    </div>
+                    </Link>
                   ))}
                 </CenterStyled>
               </SpaceStyled>

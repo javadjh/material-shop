@@ -88,6 +88,8 @@ input[type="number"] {
 }
 .so-svg-class {
   fill: white !important;
+  width: 23px !important;
+  height: 23px !important;
 }
 .so-svg-class:hover {
   fill: #fd9500 !important;

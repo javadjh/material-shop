@@ -1,7 +1,11 @@
 import { Grid, Typography } from "@mui/joy";
 import MainLayout from "../../layout/MainLayout";
 import TopSellerHeaderomponent from "./TopSellerHeader.c";
-import { PaddingStyled, SpaceStyled } from "../../global-style/global.s";
+import {
+  CenterStyled,
+  PaddingStyled,
+  SpaceStyled,
+} from "../../global-style/global.s";
 import LogoComponent from "../../global-component/Logo.c";
 import LocationSelectComponent from "./LocationSelect.c";
 import { useEffect, useState } from "react";
@@ -10,12 +14,14 @@ import styled from "styled-components";
 import { ORANGE_COLOR } from "../../config/colors";
 import IconComponent from "../../global-component/Icon.c";
 import { ISeller } from "../../types/seller.type";
+import { ReactSVG } from "react-svg";
+import { useWindowSize } from "../../global-component/ScreenBridge.c";
 
 const SellersPage = () => {
   const [city, setCity] = useState<string>();
   const [sellerDepartment, setSellerDepartment] = useState<string>();
   const [sellers, setSellers] = useState<Array<ISeller>>();
-
+  const size = useWindowSize();
   useEffect(() => {
     getData();
   }, [city, sellerDepartment]);
@@ -30,7 +36,12 @@ const SellersPage = () => {
       <Grid container spacing={5}>
         <Grid lg={2.5}>
           <PaddingStyled top={30}>
-            <LogoComponent width={"100%"} />
+            <LogoComponent width={size?.height < 660 ? "50%" : "60%"} />
+            <SpaceStyled bottom={20}>
+              <CenterStyled>
+                <img src="/google-font.png" width={"65%"} />
+              </CenterStyled>
+            </SpaceStyled>
             <LocationSelectComponent onSelected={(name) => setCity(name)} />
           </PaddingStyled>
         </Grid>
@@ -43,35 +54,88 @@ const SellersPage = () => {
               {sellers?.map((item) => (
                 <Grid lg={6}>
                   <TopWhiteCardStyled>
-                    <Grid container justifyContent={"space-between"}>
-                      <Grid>
-                        <Typography>{item?.title}</Typography>
+                    <PaddingStyled vertical={5}>
+                      <Grid container justifyContent={"space-between"}>
+                        <Grid>
+                          <Typography fontWeight={"bold"}>
+                            {item?.title}
+                          </Typography>
+                        </Grid>
+                        <Grid>
+                          <SpaceStyled>
+                            <Typography fontWeight={"bold"}>
+                              {item?.firstNumber}
+                            </Typography>
+                            <Typography fontWeight={"bold"}>
+                              {item?.secondNumber}
+                            </Typography>
+                          </SpaceStyled>
+                        </Grid>
                       </Grid>
-                      <Grid>
-                        <SpaceStyled>
-                          <Typography>{item?.firstNumber}</Typography>
-                          <Typography>{item?.secondNumber}</Typography>
-                        </SpaceStyled>
-                      </Grid>
-                    </Grid>
+                    </PaddingStyled>
                   </TopWhiteCardStyled>
                   <BottomWhiteCardStyled>
                     <Grid container justifyContent={"space-between"}>
                       <Grid>
-                        <Typography>{item?.address}</Typography>
+                        <Typography fontWeight={"bold"}>
+                          {item?.address}
+                        </Typography>
                       </Grid>
                       <Grid container spacing={2}>
                         <Grid>
-                          <IconComponent icon="store" width={17} />
+                          <div style={{ width: 20, height: 20 }}>
+                            <ReactSVG
+                              src="/icons/telegram.svg"
+                              beforeInjection={(svg) => {
+                                svg.setAttribute(
+                                  "style",
+                                  `width: 20px ; height: 20px; fill : white !important`
+                                );
+                              }}
+                            />
+                          </div>
                         </Grid>
                         <Grid>
-                          <IconComponent icon="store" width={17} />
+                          <div style={{ width: 20, height: 20 }}>
+                            <ReactSVG
+                              src="/icons/whatsapp.svg"
+                              style={{ color: "red" }}
+                              beforeInjection={(svg) => {
+                                svg.setAttribute(
+                                  "style",
+                                  `width: 20px ; height: 20px; fill : white !important`
+                                );
+                              }}
+                            />
+                          </div>
                         </Grid>
                         <Grid>
-                          <IconComponent icon="store" width={17} />
+                          <div style={{ width: 20, height: 20 }}>
+                            <ReactSVG
+                              src="/icons/instagram.svg"
+                              style={{ color: "red" }}
+                              beforeInjection={(svg) => {
+                                svg.setAttribute(
+                                  "style",
+                                  `width: 20px ; height: 20px; fill : white !important`
+                                );
+                              }}
+                            />
+                          </div>
                         </Grid>
                         <Grid>
-                          <IconComponent icon="store" width={17} />
+                          <div style={{ width: 20, height: 20 }}>
+                            <ReactSVG
+                              src="/icons/whatsapp.svg"
+                              style={{ color: "red" }}
+                              beforeInjection={(svg) => {
+                                svg.setAttribute(
+                                  "style",
+                                  `width: 20px ; height: 20px; fill : white !important`
+                                );
+                              }}
+                            />
+                          </div>
                         </Grid>
                       </Grid>
                     </Grid>

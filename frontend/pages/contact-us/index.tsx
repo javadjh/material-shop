@@ -11,7 +11,7 @@ import {
 import styled from "styled-components";
 import ActionBorderComponent from "../../global-component/ActionBorder.c";
 import SimpleInputComponent from "../../global-component/input/SimpleInput.c";
-import { WHITE_COLOR } from "../../config/colors";
+import { ORANGE_COLOR, WHITE_COLOR } from "../../config/colors";
 import SocialMediaComponent from "../../global-component/SocialMedia.c";
 import Joi from "joi";
 import { useFormik } from "formik";
@@ -52,7 +52,7 @@ const ContactUs = () => {
       <PaddingStyled top={20}>
         <Grid container spacing={3}>
           <Grid lg={3}>
-            <LogoComponent width={size.height > 660 ? 250 : 90} />
+            <LogoComponent width={size.height > 660 ? 180 : 130} />
             <SpaceStyled vertical={10}>
               <CenterStyled>
                 <img
@@ -81,7 +81,7 @@ const ContactUs = () => {
                       </CenterVerticalStyled>
                     </PaddingStyled>
                   ) : (
-                    <>
+                    <SpaceStyled top={40}>
                       <SimpleInputComponent
                         name="fullName"
                         placeholder="نام و نام خانوادگی"
@@ -93,6 +93,7 @@ const ContactUs = () => {
                       ) : null}
                       <SimpleInputComponent
                         name="phoneNumber"
+                        disabled={getCookie("phone")}
                         placeholder="شماره تماس"
                         onChange={formik.handleChange}
                         value={formik.values.phoneNumber}
@@ -113,7 +114,7 @@ const ContactUs = () => {
                       formik.errors.description ? (
                         <div>{formik.errors.description + ""}</div>
                       ) : null}
-                    </>
+                    </SpaceStyled>
                   )}
                   <LeftStyled>
                     <div
@@ -123,7 +124,10 @@ const ContactUs = () => {
                       }}
                       style={{ width: 100 }}
                     >
-                      <ActionBorderComponent border={"2"}>
+                      <ActionBorderComponent
+                        fontColor={ORANGE_COLOR}
+                        border={"2"}
+                      >
                         ثبت
                       </ActionBorderComponent>
                     </div>
@@ -135,7 +139,12 @@ const ContactUs = () => {
           <Grid lg={9}>
             <PaddingStyled top={60}>
               <CenterStyled>
-                <img src="/map.png" width={"100%"} />
+                <img
+                  src="/map.png"
+                  style={{ objectFit: "contain" }}
+                  width={"100%"}
+                  height={size.height - 220}
+                />
               </CenterStyled>
 
               <PaddingStyled top={20}>

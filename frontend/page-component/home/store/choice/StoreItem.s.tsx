@@ -5,12 +5,14 @@ import { ORANGE_COLOR, WHITE_COLOR } from "../../../../config/colors";
 import { CenterStyled, SpaceStyled } from "../../../../global-style/global.s";
 import { SMALL_FONT } from "../../../../config/font";
 import styled from "styled-components";
+import Link from "next/link";
 
 const StoreItemComponent: FC<{
   iconName?: string;
   title?: string;
   key?: string;
-}> = ({ iconName, key, title }) => {
+  link?: string;
+}> = ({ iconName, key, title, link }) => {
   const [menuId, setMenuId] = useState<string>();
   const StoreItemContainer = styled.div`
     outline: ${() =>
@@ -27,7 +29,7 @@ const StoreItemComponent: FC<{
   `;
   return (
     <CenterStyled>
-      <div>
+      <Link href={link || "#"}>
         <StoreItemContainer
           onMouseLeave={() => setMenuId("")}
           onMouseEnter={() => setMenuId(title)}
@@ -42,7 +44,7 @@ const StoreItemComponent: FC<{
             </Typography>
           </SpaceStyled>
         </StoreItemContainer>
-      </div>
+      </Link>
     </CenterStyled>
   );
 };

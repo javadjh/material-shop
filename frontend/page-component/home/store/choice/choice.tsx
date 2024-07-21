@@ -80,6 +80,7 @@ const ChoicePage: NextPage<{ categories: Array<ICategory> }> = ({
             <Grid container spacing={2}>
               <Grid lg={6}>
                 <StoreItemComponent
+                  link="/employment"
                   iconName="store"
                   title={"همکاری با ما"}
                   key={"job"}
@@ -102,6 +103,7 @@ const ChoicePage: NextPage<{ categories: Array<ICategory> }> = ({
               <Grid lg={6}>
                 <StoreItemComponent
                   iconName="store"
+                  link="/sellers"
                   title={"تامین کنندگان"}
                   key={"job"}
                 />
@@ -116,6 +118,7 @@ const ChoicePage: NextPage<{ categories: Array<ICategory> }> = ({
               <Grid lg={6}>
                 <StoreItemComponent
                   iconName="store"
+                  link="/sellers"
                   title={"فروشندگان استان ها"}
                   key={"job"}
                 />
@@ -123,6 +126,7 @@ const ChoicePage: NextPage<{ categories: Array<ICategory> }> = ({
               <Grid lg={6}>
                 <StoreItemComponent
                   iconName="store"
+                  link="/sellers"
                   title={"تامین مصالح پروژه ها"}
                   key={"job"}
                 />

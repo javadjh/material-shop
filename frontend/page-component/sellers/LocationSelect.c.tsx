@@ -15,6 +15,7 @@ import { Grid, Option, Select, Typography } from "@mui/joy";
 import { WhiteText } from "../../global-component/Typography/WhiteText.t";
 import { ORANGE_COLOR, WHITE_COLOR } from "../../config/colors";
 import styled from "styled-components";
+import { useWindowSize } from "../../global-component/ScreenBridge.c";
 
 const LocationSelectComponent: FC<{
   onSelected: (cityName: string) => void;
@@ -23,6 +24,8 @@ const LocationSelectComponent: FC<{
   const [cities, setCities] = useState<Array<ICity>>();
   const [city, setCity] = useState<number>();
   const [province, setProvince] = useState<number>();
+  const size = useWindowSize();
+
   useEffect(() => {
     getProvinces();
   }, []);
@@ -58,7 +61,13 @@ const LocationSelectComponent: FC<{
         ))}
       </SelectStyled>
       <SpaceStyled top={10}>
-        <SimpleOrangeBorderBlock style={{ height: 350, overflow: "auto" }}>
+        <SimpleOrangeBorderBlock
+          style={{
+            height: "60vh",
+            overflow: "auto",
+            borderWidth: 3,
+          }}
+        >
           <SpaceStyled vertical={5} horizontal={5}>
             <Grid container>
               {cities?.map((item) => (
@@ -71,7 +80,12 @@ const LocationSelectComponent: FC<{
                 >
                   <Pointer>
                     <PaddingStyled vertical={4} horizontal={3}>
-                      <SimpleOrangeBorderBlock>
+                      <SimpleOrangeBorderBlock
+                        style={{
+                          backgroundColor:
+                            item?.id == city ? WHITE_COLOR : undefined,
+                        }}
+                      >
                         <PaddingStyled vertical={3} horizontal={8}>
                           <Typography
                             textColor={

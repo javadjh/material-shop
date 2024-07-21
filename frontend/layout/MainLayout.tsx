@@ -12,6 +12,7 @@ import IconComponent from "../global-component/Icon.c";
 import Link from "next/link";
 import { getCookie, setCookie } from "cookies-next";
 import { useRouter } from "next/router";
+import { ReactSVG } from "react-svg";
 
 const MainLayout: FC<{ children: any }> = ({ children }) => {
   const router = useRouter();
@@ -50,44 +51,57 @@ const MainLayout: FC<{ children: any }> = ({ children }) => {
             <Grid>
               <CenterStyled>
                 <Link href={"/app"}>
-                  <img src="/icons/menu.png" width={30} />
+                  <SpaceStyled top={5}>
+                    <ReactSVG
+                      src="/icons/menu.svg"
+                      beforeInjection={(svg) => {
+                        svg.classList.add("so-svg-class");
+                        svg.setAttribute(
+                          "style",
+                          ` width:30px !important ; height:30px !important`
+                        );
+                      }}
+                    />
+                  </SpaceStyled>
                 </Link>
               </CenterStyled>
             </Grid>
             <Grid>
-              {getCookie("phone") ? (
-                <Grid container spacing={2}>
-                  <Grid>
-                    <SpaceStyled top={-2}>
-                      <Pointer>
-                        <Typography
-                          onClick={() => {
-                            setCookie("token", undefined);
-                            setCookie("phone", undefined);
-                            router.replace("/");
-                          }}
-                          textColor={ORANGE_COLOR}
-                        >
-                          خروج
-                        </Typography>
-                      </Pointer>
-                    </SpaceStyled>
+              <SpaceStyled top={-5}>
+                {getCookie("phone") ? (
+                  <Grid container spacing={2}>
+                    <Grid>
+                      <SpaceStyled top={0}>
+                        <Pointer>
+                          <Typography
+                            onClick={() => {
+                              setCookie("token", undefined);
+                              setCookie("phone", undefined);
+                              router.replace("/");
+                            }}
+                            textColor={ORANGE_COLOR}
+                          >
+                            خروج
+                          </Typography>
+                        </Pointer>
+                      </SpaceStyled>
+                    </Grid>
+                    <Grid>
+                      <Typography textColor={ORANGE_COLOR}>
+                        {getCookie("phone")}
+                      </Typography>
+                    </Grid>
                   </Grid>
-                  <Grid>
-                    <Typography textColor={ORANGE_COLOR}>
-                      {getCookie("phone")}
-                    </Typography>
-                  </Grid>
-                </Grid>
-              ) : (
-                <Link href={"/register"}>
-                  <CenterStyled>
-                    <Typography textColor={ORANGE_COLOR}>
-                      ورود / عضویت
-                    </Typography>
-                  </CenterStyled>
-                </Link>
-              )}
+                ) : (
+                  <Link href={"/register"}>
+                    <CenterStyled>
+                      <Typography textColor={ORANGE_COLOR}>
+                        ورود / عضویت
+                      </Typography>
+                    </CenterStyled>
+                  </Link>
+                )}
+              </SpaceStyled>
             </Grid>
             <Grid>
               <CenterStyled>

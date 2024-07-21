@@ -61,11 +61,13 @@ const HomePage = () => {
                   beforeInjection={(svg: any) => {
                     svg.setAttribute(
                       "style",
-                      `fill: ${"store" === hover ? ORANGE_COLOR : "#fff"}`
+                      `fill: ${
+                        "store" === hover ? ORANGE_COLOR : "#fff"
+                      }; width:80px`
                     );
                   }}
                 />
-                <SpaceStyled top={30}>
+                <SpaceStyled top={20}>
                   <CenterStyled>
                     <SpaceStyled bottom={20}>
                       <Typography
@@ -93,14 +95,15 @@ const HomePage = () => {
                 onMouseLeave={() => setHoever("")}
                 onMouseEnter={() => setHoever("group")}
               >
-                <img src="./icons/user-home.png" width={80} />
                 <ReactSVG
                   src="/icons/group-svg.svg"
                   style={{ fill: "red !important" }}
                   beforeInjection={(svg: any) => {
                     svg.setAttribute(
                       "style",
-                      `fill: ${"store" === hover ? ORANGE_COLOR : "#fff"}`
+                      `fill: ${
+                        "store" === hover ? ORANGE_COLOR : "#fff"
+                      } width:90px ; height:90px`
                     );
                   }}
                 />
@@ -132,7 +135,19 @@ const HomePage = () => {
                 onMouseLeave={() => setHoever("")}
                 onMouseEnter={() => setHoever("groups")}
               >
-                <img src="./icons/information.png" width={80} />
+                {/* <img src="./icons/information.png" width={80} /> */}
+                <ReactSVG
+                  src="/icons/group-svg.svg"
+                  style={{ fill: "red !important" }}
+                  beforeInjection={(svg: any) => {
+                    svg.setAttribute(
+                      "style",
+                      `fill: ${
+                        "store" === hover ? ORANGE_COLOR : "#fff"
+                      } width:90px ; height:90px`
+                    );
+                  }}
+                />
                 <SpaceStyled top={30}>
                   <CenterStyled>
                     <SpaceStyled bottom={20}>

@@ -21,6 +21,7 @@ const ImageServerComponent: FC<{
         width,
         borderRadius: border,
         aspectRatio: aspect,
+        objectFit: "cover",
       }}
       src={`${BACKEND_URL}public/${image}`}
     />

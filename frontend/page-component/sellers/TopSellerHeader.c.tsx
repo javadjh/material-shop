@@ -1,13 +1,13 @@
-import { Grid } from "@mui/joy";
+import { Grid, Typography } from "@mui/joy";
 import {
   SimpleOrangeBorderBlock,
   SpaceStyled,
 } from "../../global-style/global.s";
-import { WhiteText } from "../../global-component/Typography/WhiteText.t";
 import IconComponent from "../../global-component/Icon.c";
 import styled from "styled-components";
-import { ORANGE_COLOR } from "../../config/colors";
+import { ORANGE_COLOR, WHITE_COLOR } from "../../config/colors";
 import { FC, useState } from "react";
+import { SMALL_FONT } from "../../config/font";
 
 const TopSellerHeaderomponent: FC<{
   onSelected: (type: string) => void;
@@ -29,7 +29,11 @@ const TopSellerHeaderomponent: FC<{
         <Grid lg={12} container justifyContent={"space-between"}>
           <Grid>
             <SpaceStyled top={5}>
-              <WhiteText>مصالح فروشان</WhiteText>
+              <Typography
+                textColor={type == "material" ? ORANGE_COLOR : WHITE_COLOR}
+              >
+                مصالح فروشان
+              </Typography>
             </SpaceStyled>
           </Grid>
           <Grid>
@@ -49,7 +53,11 @@ const TopSellerHeaderomponent: FC<{
         <Grid lg={12} container justifyContent={"space-between"}>
           <Grid>
             <SpaceStyled top={5}>
-              <WhiteText>ابزار فروشان</WhiteText>
+              <Typography
+                textColor={type == "tool" ? ORANGE_COLOR : WHITE_COLOR}
+              >
+                ابزار فروشان
+              </Typography>
             </SpaceStyled>
           </Grid>
           <Grid>
@@ -69,7 +77,11 @@ const TopSellerHeaderomponent: FC<{
         <Grid lg={12} container justifyContent={"space-between"}>
           <Grid>
             <SpaceStyled top={5}>
-              <WhiteText>آهن و چوب</WhiteText>
+              <Typography
+                textColor={type == "iron-wood" ? ORANGE_COLOR : WHITE_COLOR}
+              >
+                آهن و چوب
+              </Typography>
             </SpaceStyled>
           </Grid>
           <Grid>
@@ -89,7 +101,11 @@ const TopSellerHeaderomponent: FC<{
         <Grid lg={12} container justifyContent={"space-between"}>
           <Grid>
             <SpaceStyled top={5}>
-              <WhiteText>سنگ و سرامیک</WhiteText>
+              <Typography
+                textColor={type == "stone-ceramic" ? ORANGE_COLOR : WHITE_COLOR}
+              >
+                سنگ و سرامیک
+              </Typography>
             </SpaceStyled>
           </Grid>
           <Grid>
@@ -109,7 +125,16 @@ const TopSellerHeaderomponent: FC<{
         <Grid lg={12} container justifyContent={"space-between"}>
           <Grid>
             <SpaceStyled top={5}>
-              <WhiteText>تاسیسات برقی و آبی</WhiteText>
+              <Typography
+                textColor={
+                  type == "electrical-water-facilities"
+                    ? ORANGE_COLOR
+                    : WHITE_COLOR
+                }
+                fontSize={SMALL_FONT}
+              >
+                تاسیسات برقی و آبی
+              </Typography>
             </SpaceStyled>
           </Grid>
           <Grid>
@@ -124,11 +149,10 @@ const TopSellerHeaderomponent: FC<{
 };
 export default TopSellerHeaderomponent;
 const BorderGrid: any = styled(Grid)`
-  border: 2px solid ${ORANGE_COLOR};
+  border: 2px solid ${(prop: any) => (prop?.selected ? ORANGE_COLOR : null)};
   display: flex;
   padding: 10px;
   margin: 10px;
   cursor: pointer;
   border-radius: 10px;
-  background-color: ${(prop: any) => (prop?.selected ? ORANGE_COLOR : null)};
 `;

@@ -103,14 +103,17 @@ const SocialMediaComponent = () => {
         </Link>
 
         <Link href={media?.youtube || "/"}>
-          <SpaceStyled horizontal={5}>
+          <SpaceStyled horizontal={5} top={-2}>
             <div style={{ width: 25, height: 25 }}>
               <ReactSVG
                 src="/icons/youtube.svg"
                 style={{ color: "red" }}
                 beforeInjection={(svg) => {
                   svg.classList.add("so-svg-class");
-                  // svg.setAttribute("style", `fill : ${}`);
+                  svg.setAttribute(
+                    "style",
+                    `width : 28px !important ; height: 28px !important`
+                  );
                 }}
               />
             </div>
