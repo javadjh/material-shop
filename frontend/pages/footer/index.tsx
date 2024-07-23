@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <HomeLayoutMenuComponent
       list={[
-        { title: "همکاری با ما", link: "comming" },
+        { title: "همکاری با ما", link: "employment" },
         { title: "فرصت های شغلی", link: "job" },
         { title: "درباره ما", link: "about-us" },
         { title: "قوانین و مقررات", link: "rules" },

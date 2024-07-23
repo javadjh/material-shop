@@ -15,7 +15,6 @@ import Link from "next/link";
 import styled from "styled-components";
 import { useState } from "react";
 import SocialMediaComponent from "../../global-component/SocialMedia.c";
-import IconComponent from "../../global-component/Icon.c";
 import { ReactSVG } from "react-svg";
 
 const HomePage = () => {
@@ -30,7 +29,7 @@ const HomePage = () => {
     width: 190px;
     align-items: center;
     justify-content: space-between;
-    padding: 30px;
+    padding: 20px;
     cursor: pointer;
   `;
   return (
