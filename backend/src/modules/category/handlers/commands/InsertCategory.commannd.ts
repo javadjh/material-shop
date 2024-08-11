@@ -35,15 +35,8 @@ export class InsertCategoryHandler
     let isMain: boolean = true;
     let parent: Category = {};
 
-    //check is category gte 15
-    const categoryCount: number = await this.categoryModel
-      .find({ isActive: true, isMain: true })
-      .count();
-    if (categoryCount >= 15)
-      throw new BadRequestException(INSERT_ERROR_MESSAGE);
-
-    //if employee send parent id we should validate that
     if (dto.parentId) {
+      //if employee send parent id we should validate that
       dto?.parentId?.isObjectId();
       parent = await this.categoryModel.findById(dto.parentId);
       if (!parent?._id)
@@ -51,6 +44,22 @@ export class InsertCategoryHandler
           PARENT_OF_CATEGORY_NOT_FOUND_ERROR_MESSAGE,
         );
       isMain = false;
+
+      //check count condition
+      const paretnCategoriesCount: number = await this.categoryModel
+        .find({ parentId: dto.parentId, isActive: true })
+        .count();
+
+      if (paretnCategoriesCount >= 9) {
+        throw new BadRequestException(INSERT_ERROR_MESSAGE);
+      }
+    } else {
+      //check is category gte 15
+      const categoryCount: number = await this.categoryModel
+        .find({ isActive: true, isMain: true })
+        .count();
+      if (categoryCount >= 15)
+        throw new BadRequestException(INSERT_ERROR_MESSAGE);
     }
 
     let data: Category = {
