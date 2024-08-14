@@ -95,18 +95,18 @@ const HomePage = () => {
                 onMouseEnter={() => setHoever("group")}
               >
                 <ReactSVG
-                  src="/icons/group-svg.svg"
+                  src="/icons/group.svg"
                   style={{ fill: "red !important" }}
                   beforeInjection={(svg: any) => {
                     svg.setAttribute(
                       "style",
                       `fill: ${
-                        "store" === hover ? ORANGE_COLOR : "#fff"
-                      } width:90px ; height:90px`
+                        "group" === hover ? ORANGE_COLOR : "#fff"
+                      }; width:80px`
                     );
                   }}
                 />
-                <SpaceStyled top={30}>
+                <SpaceStyled top={-1000}>
                   <CenterStyled>
                     <SpaceStyled bottom={20}>
                       <Typography
@@ -136,18 +136,18 @@ const HomePage = () => {
               >
                 {/* <img src="./icons/information.png" width={80} /> */}
                 <ReactSVG
-                  src="/icons/group-svg.svg"
+                  src="/icons/building.svg"
                   style={{ fill: "red !important" }}
                   beforeInjection={(svg: any) => {
                     svg.setAttribute(
                       "style",
                       `fill: ${
-                        "store" === hover ? ORANGE_COLOR : "#fff"
-                      } width:90px ; height:90px`
+                        "groups" === hover ? ORANGE_COLOR : "#fff"
+                      }; width:80px; `
                     );
                   }}
                 />
-                <SpaceStyled top={30}>
+                <SpaceStyled top={-100}>
                   <CenterStyled>
                     <SpaceStyled bottom={20}>
                       <Typography

@@ -29,11 +29,23 @@ const RegisterUserStepOne: FC<{
 
     if (phoneNumber?.length == 9) {
       setPhone(`09${phoneNumber}`);
-      setTimeout(() => {
-        loginStepOne();
-      }, 900);
     }
   }, [phoneNumber]);
+
+  useEffect(() => {
+    const listener = (event: any) => {
+      if (event.code === "Enter" || event.code === "NumpadEnter") {
+        event.preventDefault();
+        if (phoneNumber?.length == 9) {
+          loginStepOne();
+        }
+      }
+    };
+    document.addEventListener("keydown", listener);
+    return () => {
+      document.removeEventListener("keydown", listener);
+    };
+  }, []);
 
   return (
     <PaddingStyled vertical={20} horizontal={30}>
@@ -71,7 +83,11 @@ const RegisterUserStepOne: FC<{
                 }}
                 renderInput={(props) => (
                   <div>
-                    <InputNumber {...props} />
+                    <InputNumber
+                      {...props}
+                      className="input-class"
+                      type="number"
+                    />
                   </div>
                 )}
               />

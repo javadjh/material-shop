@@ -6,6 +6,7 @@ import { CenterStyled, SpaceStyled } from "../../../../global-style/global.s";
 import { SMALL_FONT } from "../../../../config/font";
 import styled from "styled-components";
 import Link from "next/link";
+import { ReactSVG } from "react-svg";
 
 const StoreItemComponent: FC<{
   iconName?: string;
@@ -15,8 +16,6 @@ const StoreItemComponent: FC<{
 }> = ({ iconName, key, title, link }) => {
   const [menuId, setMenuId] = useState<string>();
   const StoreItemContainer = styled.div`
-    outline: ${() =>
-      menuId === title ? "2px solid" + ORANGE_COLOR : "2px solid #fff"};
     padding: 20px 0px;
     display: flex;
     aspect-ratio: 3/4;
@@ -31,17 +30,18 @@ const StoreItemComponent: FC<{
     <CenterStyled>
       <Link href={link || "#"}>
         <StoreItemContainer
-          onMouseLeave={() => setMenuId("")}
-          onMouseEnter={() => setMenuId(title)}
+          className="outline-hover"
+          // onMouseLeave={() => setMenuId("")}
+          // onMouseEnter={() => setMenuId(title)}
         >
-          <IconComponent icon={iconName} width={50} />
+          <ReactSVG
+            src={`/icons/${iconName}.svg`}
+            beforeInjection={(svg: any) => {
+              svg.setAttribute("style", ` width:50px; height: 50px`);
+            }}
+          />
           <SpaceStyled top={10}>
-            <Typography
-              fontSize={"10px"}
-              textColor={menuId === title ? ORANGE_COLOR : WHITE_COLOR}
-            >
-              {title}
-            </Typography>
+            <Typography fontSize={"9px"}>{title}</Typography>
           </SpaceStyled>
         </StoreItemContainer>
       </Link>

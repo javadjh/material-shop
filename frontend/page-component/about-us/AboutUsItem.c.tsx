@@ -13,6 +13,7 @@ import {
   ORANGE_COLOR,
   WHITE_COLOR,
 } from "../../config/colors";
+import { useWindowSize } from "../../global-component/ScreenBridge.c";
 
 const AboutUsItemComponent: FC<{
   title: string;
@@ -20,11 +21,12 @@ const AboutUsItemComponent: FC<{
   setSelect: any;
 }> = ({ title, select = false, setSelect }) => {
   const [isHover, setIsHover] = useState<boolean>(select == title);
+  const size = useWindowSize();
   useEffect(() => {
     setIsHover(select == title);
   }, [select]);
   return (
-    <SpaceStyled vertical={10}>
+    <SpaceStyled vertical={size.height > 650 ? 20 : 10}>
       <Pointer onClick={() => setSelect(title)}>
         <WhiteBorderStyled
           onMouseEnter={() => setIsHover(select == title || true)}

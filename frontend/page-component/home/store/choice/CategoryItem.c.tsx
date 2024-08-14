@@ -13,11 +13,8 @@ const CategoryItemComponent: FC<{
   title: string;
   iconName?: string;
   id?: string;
-}> = ({ title, iconName, id }) => {
-  let [categoryId, setCategoryId] = useState<string>("");
+}> = ({ title, iconName }) => {
   const CategoryItemContainer = styled.div`
-    background-color: ${() =>
-      categoryId === title ? ORANGE_COLOR : "rgba(158, 158, 158, 1)"};
     border-radius: 10px;
     display: flex;
     flex-direction: row;
@@ -31,10 +28,7 @@ const CategoryItemComponent: FC<{
     height: 70px;
   `;
   return (
-    <CategoryItemContainer
-      onMouseEnter={() => setCategoryId(title)}
-      onMouseLeave={() => setCategoryId("")}
-    >
+    <CategoryItemContainer className="orange-hover">
       <CenterVerticalStyled>
         <Typography fontSize={LARGE_FONT} textColor={WHITE_COLOR}>
           <strong>{title}</strong>

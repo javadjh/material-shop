@@ -116,3 +116,33 @@ input[type="number"] {
   border: 1px solid red;
   box-shadow: 0 0 10px #e59422;
 }
+.orange-hover {
+  background-color: rgba(158, 158, 158, 1);
+}
+.orange-hover svg {
+  background-color: rgba(158, 158, 158, 1);
+}
+.orange-hover:hover {
+  background-color: #fd9500;
+}
+.orange-hover:hover svg {
+  fill: #fd9500 !important;
+}
+.outline-hover {
+  outline: 2px solid #fff;
+}
+.outline-hover:hover {
+  outline: 2px solid #fd9500;
+}
+.outline-hover:hover svg {
+  fill: #fd9500;
+}
+.outline-hover svg {
+  fill: #fff;
+}
+.outline-hover:hover p {
+  color: #fd9500;
+}
+.outline-hover p {
+  color: #fff;
+}

@@ -5,7 +5,7 @@ import MainLayout from "../../layout/MainLayout";
 import LogoComponent from "../../global-component/Logo.c";
 import { CenterStyled, SpaceStyled } from "../../global-style/global.s";
 import { LIGHT_GRAY_COLOR, WHITE_COLOR } from "../../config/colors";
-import { LARGE_FONT, X_LARGE_FONT } from "../../config/font";
+import { LARGE_FONT, MEDIUM_FONT, X_LARGE_FONT } from "../../config/font";
 import { useFormik } from "formik";
 import { useState } from "react";
 import * as Yup from "yup";
@@ -14,10 +14,11 @@ import LocationPickerComponent from "./LocationPicker.c";
 import ActionBorderComponent from "../../global-component/ActionBorder.c";
 import { insertEmployment } from "../../service/employee.service";
 import { getCookie } from "cookies-next";
+import { useRouter } from "next/router";
 
 const EmployementPage = () => {
   const [isSubmited, setIsSubmited] = useState(false);
-
+  const router = useRouter();
   const formik = useFormik({
     initialValues: {
       fullName: "",
@@ -29,7 +30,7 @@ const EmployementPage = () => {
     onSubmit: async (e: any) => {
       console.log(e);
 
-      await insertEmployment(e);
+      await insertEmployment({ ...e, ...{ phoneNumber: "0" + e.phoneNumber } });
       formik?.resetForm();
       setIsSubmited(true);
     },
@@ -39,9 +40,9 @@ const EmployementPage = () => {
         .min(5, "نام و نام خانوادگی را به درستی وارد کنید")
         .max(50, "نام و نام خانوادگی را به درستی وارد کنید")
         .required("اجباری میباشد"),
-      phoneNumber: Yup.string().required("اجباری میباشد"),
+      phoneNumber: Yup.string().required("اجباری میباشد").length(10),
       activity: Yup.string().required("اجباری میباشد"),
-      description: Yup.string().required("اجباری میباشد"),
+      description: Yup.string(),
       cityId: Yup.number().required("اجباری میباشد"),
     }),
   });
@@ -74,10 +75,10 @@ const EmployementPage = () => {
                       placeholder="نام و نام خانوادگی"
                       onChange={formik.handleChange}
                       value={formik.values.fullName}
+                      isError={
+                        formik.touched.fullName && formik.errors.fullName
+                      }
                     />
-                    {formik.touched.fullName && formik.errors.fullName ? (
-                      <div>{formik.errors.fullName + ""}</div>
-                    ) : null}
                   </Grid>
 
                   <Grid lg={4}>
@@ -85,17 +86,25 @@ const EmployementPage = () => {
                       name="phoneNumber"
                       placeholder="شماره تماس"
                       onChange={formik.handleChange}
+                      type="number"
                       value={formik.values.phoneNumber}
+                      isError={
+                        formik.touched.phoneNumber && formik.errors.phoneNumber
+                      }
                     />
-                    {formik.touched.phoneNumber && formik.errors.phoneNumber ? (
-                      <div>{formik.errors.phoneNumber + ""}</div>
-                    ) : null}
                   </Grid>
                   <Grid lg={4}>
                     <SpaceStyled top={20}>
                       <Select
-                        style={{ padding: 14 }}
-                        name="phoneNumber"
+                        style={{
+                          padding: 14,
+                          border:
+                            formik?.errors?.phoneNumber &&
+                            formik.touched.phoneNumber
+                              ? "1.5px solid red"
+                              : "1.5px solid orange ",
+                        }}
+                        name="activity"
                         placeholder="نوع فعالیت"
                         onChange={(e, value) => {
                           formik.setFieldValue("activity", value);
@@ -123,6 +132,7 @@ const EmployementPage = () => {
                 <Grid container>
                   <Grid lg={8}>
                     <LocationPickerComponent
+                      isError={formik.touched.cityId && formik?.errors?.cityId}
                       onCitySelected={(city) => {
                         formik.setFieldValue("cityId", city);
                       }}
@@ -149,19 +159,24 @@ const EmployementPage = () => {
                       rows={4}
                       name="description"
                       placeholder="توضیحات"
+                      wrap={"hard"}
                       onChange={formik.handleChange}
                       value={formik.values.description}
+                      isError={
+                        formik.touched.description && formik.errors.description
+                      }
                     />
-                    {formik.touched.description && formik.errors.description ? (
-                      <div>{formik.errors.description + ""}</div>
-                    ) : null}
                   </SpaceStyled>
                 )}
               </Grid>
               <Grid lg={4}>
                 <SpaceStyled
                   onClick={() => {
-                    formik?.submitForm();
+                    if (isSubmited) {
+                      router.replace("/");
+                    } else {
+                      formik?.submitForm();
+                    }
                   }}
                   right={30}
                   top={85}
@@ -179,23 +194,32 @@ const EmployementPage = () => {
   );
 };
 export default EmployementPage;
-const InputComponent = styled.input`
+const InputComponent: any = styled.input`
   background-color: white;
   border: none !important;
   border-radius: 8px;
   width: 100%;
+  border: ${(props: any) =>
+    props.isError
+      ? "1.5px solid red !important"
+      : "1px solid orange !important"};
   padding: 15px;
   margin: 20px 0px;
-  font-size: ${LARGE_FONT};
+  font-size: ${MEDIUM_FONT};
   color: black;
 `;
-const TextAreaComponent = styled.textarea`
+const TextAreaComponent: any = styled.textarea`
   background-color: white;
   border: none !important;
   border-radius: 8px;
   width: 100%;
+  resize: none;
   padding: 15px;
-  font-size: ${LARGE_FONT};
+  border: ${(props: any) =>
+    props.isError
+      ? "1.5px solid red !important"
+      : "1px solid orange !important"};
+  font-size: ${MEDIUM_FONT};
   margin: 20px 0px;
   color: black;
 `;

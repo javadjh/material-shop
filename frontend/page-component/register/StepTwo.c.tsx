@@ -8,10 +8,11 @@ import {
 import { ORANGE_COLOR, WHITE_COLOR } from "../../config/colors";
 import styled from "styled-components";
 import { FC, useEffect, useRef, useState } from "react";
-import { EditNotifications } from "@mui/icons-material";
+import { EditNotifications, EditOutlined } from "@mui/icons-material";
 import { useTimer } from "react-timer-hook";
 import { SMALL_FONT } from "../../config/font";
 import OTPInput from "react-otp-input";
+import CreateIcon from "@mui/icons-material/Create";
 
 const RegisterUserStepTwo: FC<{
   setPhone: any;
@@ -32,7 +33,7 @@ const RegisterUserStepTwo: FC<{
   const [codeNumber, setCodeNumber] = useState<string>("");
   const [isBTNHovered, setIsBTNHovered] = useState(false);
 
-  let expiryTimestamp = new Date(Date.now() + 300 * 1000);
+  let expiryTimestamp = new Date(Date.now() + 120 * 1000);
   const { seconds, minutes, restart } = useTimer({
     expiryTimestamp,
   });
@@ -40,11 +41,23 @@ const RegisterUserStepTwo: FC<{
   useEffect(() => {
     if (codeNumber?.length == 4) {
       setCode(codeNumber);
-      setTimeout(() => {
-        loginStepTwo();
-      }, 500);
     }
   }, [codeNumber]);
+
+  useEffect(() => {
+    const listener = (event: any) => {
+      if (event.code === "Enter" || event.code === "NumpadEnter") {
+        event.preventDefault();
+        if (codeNumber?.length == 4) {
+          loginStepTwo();
+        }
+      }
+    };
+    document.addEventListener("keydown", listener);
+    return () => {
+      document.removeEventListener("keydown", listener);
+    };
+  }, []);
 
   const onResendCode = async () => {
     loginStepOne();
@@ -61,7 +74,7 @@ const RegisterUserStepTwo: FC<{
             </Grid>
             <Grid>
               <Pointer onClick={onEditPhone}>
-                <EditNotifications style={{ color: "white", fontSize: 20 }} />
+                <EditOutlined style={{ color: "white", fontSize: 20 }} />
               </Pointer>
             </Grid>
           </Grid>
@@ -93,7 +106,7 @@ const RegisterUserStepTwo: FC<{
             }}
             renderInput={(props) => (
               <div>
-                <InputNumber {...props} />
+                <InputNumber {...props} className="input-class" />
               </div>
             )}
           />

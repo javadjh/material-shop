@@ -81,28 +81,28 @@ const ChoicePage: NextPage<{ categories: Array<ICategory> }> = ({
               <Grid lg={6}>
                 <StoreItemComponent
                   link="/employment"
-                  iconName="store"
+                  iconName="employment"
                   title={"همکاری با ما"}
                   key={"job"}
                 />
               </Grid>
               <Grid lg={6}>
                 <StoreItemComponent
-                  iconName="store"
+                  iconName="request"
                   title={"درخواست استعلام"}
                   key={"job"}
                 />
               </Grid>
               <Grid lg={6}>
                 <StoreItemComponent
-                  iconName="store"
+                  iconName="usable"
                   title={"مصالح پر کاربرد"}
                   key={"job"}
                 />
               </Grid>
               <Grid lg={6}>
                 <StoreItemComponent
-                  iconName="store"
+                  iconName="provider"
                   link="/sellers"
                   title={"تامین کنندگان"}
                   key={"job"}
@@ -110,14 +110,14 @@ const ChoicePage: NextPage<{ categories: Array<ICategory> }> = ({
               </Grid>
               <Grid lg={6}>
                 <StoreItemComponent
-                  iconName="store"
+                  iconName="taator"
                   title={"تهاتر"}
                   key={"job"}
                 />
               </Grid>
               <Grid lg={6}>
                 <StoreItemComponent
-                  iconName="store"
+                  iconName="provincee-seller"
                   link="/sellers"
                   title={"فروشندگان استان ها"}
                   key={"job"}
@@ -125,7 +125,7 @@ const ChoicePage: NextPage<{ categories: Array<ICategory> }> = ({
               </Grid>
               <Grid lg={6}>
                 <StoreItemComponent
-                  iconName="store"
+                  iconName="material-provider"
                   link="/sellers"
                   title={"تامین مصالح پروژه ها"}
                   key={"job"}
@@ -133,7 +133,7 @@ const ChoicePage: NextPage<{ categories: Array<ICategory> }> = ({
               </Grid>
               <Grid lg={6}>
                 <StoreItemComponent
-                  iconName="store"
+                  iconName="support"
                   title={"پشتیبانی آنلاین"}
                   key={"job"}
                 />

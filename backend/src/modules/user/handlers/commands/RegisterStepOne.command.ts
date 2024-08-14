@@ -50,7 +50,7 @@ export class InsertUserStepOneHandler
     if (await this.cacheManager.get(key)) {
       throw new BadRequestException();
     }
-    await this.cacheManager.set(key, code, 300000);
+    await this.cacheManager.set(key, code, 120000);
     console.log({ key, code });
 
     // Sms.sendSms(phone, `${code}`);

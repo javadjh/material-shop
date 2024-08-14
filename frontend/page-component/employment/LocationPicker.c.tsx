@@ -11,7 +11,8 @@ import { SpaceStyled } from "../../global-style/global.s";
 
 const LocationPickerComponent: FC<{
   onCitySelected: (cityId?: number) => void;
-}> = ({ onCitySelected }) => {
+  isError?: any;
+}> = ({ onCitySelected, isError }) => {
   const [provinces, setProvinces] = useState<Array<IProvince>>([]);
   const [province, setProvince] = useState<number>();
   const [cities, setCities] = useState<Array<ICity>>([]);
@@ -39,7 +40,11 @@ const LocationPickerComponent: FC<{
       <Grid lg={6}>
         <SpaceStyled left={8}>
           <Select
-            style={{ width: "100%", padding: 15 }}
+            style={{
+              width: "100%",
+              padding: 15,
+              border: isError ? "1.5px solid red" : "1.5px solid orange ",
+            }}
             placeholder="استان مورد نظر را انتخاب کنید"
             onChange={(e, value) => setProvince(Number(value))}
           >
@@ -54,7 +59,11 @@ const LocationPickerComponent: FC<{
       <Grid lg={6}>
         <SpaceStyled left={13} right={-5}>
           <Select
-            style={{ width: "100%", padding: 15 }}
+            style={{
+              width: "100%",
+              padding: 15,
+              border: isError ? "1.5px solid red" : "1.5px solid orange ",
+            }}
             placeholder="شهر مورد نظر را انتخاب کنید"
             onChange={(e, value) => onCitySelected(Number(value))}
           >

@@ -17,10 +17,12 @@ import { teamsService } from "../../service/team.service";
 import ImageServerComponent from "../../global-component/ImageServer.c";
 import { SMALL_FONT } from "../../config/font";
 import Link from "next/link";
+import { useWindowSize } from "../../global-component/ScreenBridge.c";
 
 const AboutUsPage = () => {
   const [select, setSelect] = useState<string>("");
   const [teams, setTeams] = useState<Array<ITeam>>([]);
+  const size = useWindowSize();
   useEffect(() => {
     getTeams();
   }, []);
@@ -36,7 +38,7 @@ const AboutUsPage = () => {
       <Grid container>
         <Grid lg={2}>
           <PaddingStyled top={20}>
-            <LogoComponent width={150} />
+            <LogoComponent width={size.height > 650 ? 200 : 120} />
             <SpaceStyled bottom={10} top={10}>
               <CenterStyled>
                 <img src="./google-font.png" width={200} />
