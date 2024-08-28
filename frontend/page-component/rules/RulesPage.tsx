@@ -16,7 +16,7 @@ import SocialMediaComponent from "../../global-component/SocialMedia.c";
 import { useWindowSize } from "../../global-component/ScreenBridge.c";
 
 const RulesPage = () => {
-  const [department, setDepartment] = useState<string>("");
+  const [department, setDepartment] = useState<string>("general");
   const size = useWindowSize();
   return (
     <MainLayout>
@@ -27,38 +27,50 @@ const RulesPage = () => {
             <SpaceStyled bottom={10}>
               <LogoComponent width={200} />
             </SpaceStyled>
-            <ActionBorderComponent
-              padding={size.height > 660 ? 15 : 5}
-              onClick={() => setDepartment("general")}
-            >
-              قوانین کلی سایت
-            </ActionBorderComponent>
-            <ActionBorderComponent
-              padding={size.height > 660 ? 15 : 5}
-              onClick={() => setDepartment("privacy")}
-            >
-              قوانین حریم خصوصی
-            </ActionBorderComponent>
-            <ActionBorderComponent
-              padding={size.height > 660 ? 15 : 5}
-              onClick={() => setDepartment("store")}
-            >
-              قوانین فروشگاه
-            </ActionBorderComponent>
-            <ActionBorderComponent
-              padding={size.height > 660 ? 15 : 5}
-              fontSize={13}
-              onClick={() => setDepartment("service")}
-            >
-              قوانین بخش خدمات ساختمانی
-            </ActionBorderComponent>
-            <ActionBorderComponent
-              padding={size.height > 660 ? 15 : 5}
-              fontSize={13}
-              onClick={() => setDepartment("information")}
-            >
-              قوانین بخش اطلاعات ساختمانی
-            </ActionBorderComponent>
+            <div onClick={() => setDepartment("general")}>
+              <ActionBorderComponent
+                isSelected={department == "general"}
+                padding={size.height > 660 ? 15 : 5}
+              >
+                قوانین کلی سایت
+              </ActionBorderComponent>
+            </div>
+            <div onClick={() => setDepartment("privacy")}>
+              <ActionBorderComponent
+                isSelected={department == "privacy"}
+                padding={size.height > 660 ? 15 : 5}
+              >
+                قوانین حریم خصوصی
+              </ActionBorderComponent>
+            </div>
+
+            <div onClick={() => setDepartment("store")}>
+              <ActionBorderComponent
+                isSelected={department == "store"}
+                padding={size.height > 660 ? 15 : 5}
+              >
+                قوانین بخش فروشگاه
+              </ActionBorderComponent>
+            </div>
+
+            <div onClick={() => setDepartment("service")}>
+              <ActionBorderComponent
+                isSelected={department == "service"}
+                padding={size.height > 660 ? 15 : 5}
+                fontSize={13}
+              >
+                قوانین بخش خدمات ساختمانی
+              </ActionBorderComponent>
+            </div>
+            <div onClick={() => setDepartment("information")}>
+              <ActionBorderComponent
+                isSelected={department == "information"}
+                padding={size.height > 660 ? 15 : 5}
+                fontSize={13}
+              >
+                قوانین بخش اطلاعات ساختمانی
+              </ActionBorderComponent>
+            </div>
           </Grid>
           <Grid lg={10}>
             <RuleTextContainer></RuleTextContainer>

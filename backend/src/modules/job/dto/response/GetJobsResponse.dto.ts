@@ -41,10 +41,10 @@ export class GetJobsResponseList {
   jobHistory: string;
 
   @ApiProperty()
-  LastCompanyName: string;
+  lastCompanyName: string;
 
   @ApiProperty()
-  LastCompanyTel: string;
+  lastCompanyTel: string;
 
   @ApiProperty()
   resume: string;

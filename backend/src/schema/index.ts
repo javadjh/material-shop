@@ -13,6 +13,7 @@ import { Report, ReportSchema } from './report.schema';
 import { Product, ProductSchema } from './product.schema';
 import { Team, TeamSchema } from './team.schema';
 import { Employment, EmploymentSchema } from './employment.schema';
+import { Chat, ChatSchema } from './chat.schema';
 
 export default [
   MongooseModule.forFeature([{ name: File.name, schema: FileSchema }]),
@@ -27,6 +28,7 @@ export default [
   MongooseModule.forFeature([{ name: Report.name, schema: ReportSchema }]),
   MongooseModule.forFeature([{ name: Product.name, schema: ProductSchema }]),
   MongooseModule.forFeature([{ name: Team.name, schema: TeamSchema }]),
+  MongooseModule.forFeature([{ name: Chat.name, schema: ChatSchema }]),
   MongooseModule.forFeature([
     { name: Employment.name, schema: EmploymentSchema },
   ]),

@@ -112,12 +112,12 @@ const JobsComponent: FC<{
             </Col>
             <Col span={8}>
               <Typography.Text>
-                آخرین شرکت : {record.LastCompanyName}
+                آخرین شرکت : {record.lastCompanyName}
               </Typography.Text>
             </Col>
             <Col span={8}>
               <Typography.Text>
-                شماره شرکت قبلی : {record.LastCompanyTel}
+                شماره شرکت قبلی : {record.lastCompanyTel}
               </Typography.Text>
             </Col>
             <Col span={8}>

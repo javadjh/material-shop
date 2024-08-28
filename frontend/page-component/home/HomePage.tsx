@@ -16,16 +16,18 @@ import styled from "styled-components";
 import { useState } from "react";
 import SocialMediaComponent from "../../global-component/SocialMedia.c";
 import { ReactSVG } from "react-svg";
+import { useWindowSize } from "../../global-component/ScreenBridge.c";
 
 const HomePage = () => {
   const [hover, setHoever] = useState<string>();
+  const size = useWindowSize();
   const HomeCategoryItemContainer: any = styled.span`
     border-radius: 20px;
     outline: ${(props: any) =>
       props.blockId === hover ? "4px solid" + ORANGE_COLOR : "2px solid #fff"};
     display: flex;
     flex-direction: column;
-    height: 240px;
+    height: ${size?.height > 650 ? "240px" : "230px"};
     width: 190px;
     align-items: center;
     justify-content: space-between;
@@ -43,7 +45,10 @@ const HomePage = () => {
       <HomeCategoryContainer>
         <SpaceStyled bottom={40}>
           <CenterStyled>
-            <img src="./google-font.png" width={500} />
+            <img
+              src="./google-font.png"
+              width={size?.height > 650 ? 500 : 300}
+            />
           </CenterStyled>
         </SpaceStyled>
         <Grid container spacing={2.5}>

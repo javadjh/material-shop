@@ -6,3 +6,7 @@ import axiosConfig from "./axiosConfig";
 export const jobsService = (filter: IFilter) => {
   return axiosConfig.get(jobAPI, { params: filter });
 };
+
+export const insertService = (data: any) => {
+  return axiosConfig.post(jobAPI, data);
+};

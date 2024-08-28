@@ -19,6 +19,7 @@ export class InsertJobRequestDto {
 
   @ApiProperty()
   @IsString()
+  @IsOptional()
   @Length(1, 100)
   fatherName: string;
 
@@ -29,14 +30,17 @@ export class InsertJobRequestDto {
   @ApiProperty()
   @IsString()
   @Length(1, 100)
+  @IsOptional()
   bithday: string;
 
   @ApiProperty()
   @IsBoolean()
+  @IsOptional()
   isMarried: string;
 
   @ApiProperty()
   @IsString()
+  @IsOptional()
   @Length(1, 500)
   address: string;
 
@@ -53,36 +57,42 @@ export class InsertJobRequestDto {
 
   @ApiProperty()
   @IsString()
+  @IsOptional()
   @Length(1, 100)
   degree: string;
 
   @ApiProperty()
   @IsString()
   @Length(1, 100)
+  @IsOptional()
   universityName: string;
 
   @ApiProperty()
   @IsString()
+  @IsOptional()
   @Length(1, 100)
   jobHistory: string;
 
   @ApiProperty()
   @IsString()
+  @IsOptional()
   @Length(1, 100)
-  LastCompanyName: string;
+  lastCompanyName: string;
 
   @ApiProperty()
   @IsString()
   @Length(11)
   @IsOptional()
-  LastCompanyTel: string;
+  lastCompanyTel: string;
 
   @ApiProperty()
   @IsString()
+  @IsOptional()
   resume: string;
 
   @ApiProperty()
   @IsString()
+  @IsOptional()
   @Length(1, 1000)
   description: string;
 }

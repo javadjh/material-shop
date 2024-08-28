@@ -7,9 +7,10 @@ import { Province } from './province.schema';
 
 export type UserDocument = User & Document;
 export class BaseUserModel extends BaseModel {
-  fullName: string;
-  cityName: string;
-  provinceName: string;
+  fullName?: string;
+  cityName?: string;
+  provinceName?: string;
+  lastChat?: string;
 }
 @Schema({ timestamps: true })
 export class User extends BaseUserModel {
@@ -53,6 +54,9 @@ export class User extends BaseUserModel {
 
   @Prop({ type: Boolean, default: false })
   isCompleted?: boolean;
+
+  @Prop({ type: Date })
+  lastChatDate?: any;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

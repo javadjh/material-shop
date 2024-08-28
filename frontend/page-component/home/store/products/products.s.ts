@@ -12,6 +12,28 @@ export const ProductsSideContainerStyled = styled.div`
   border: 2px solid #fff;
   padding: 10px;
   border-radius: 20px;
+  height: calc(85vh);
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  margin-top: 10px;
+`;
+export const WideSideContainerStyled = styled.div`
+  background-color: transparent;
+  border: 2px solid #fff;
+  padding: 10px;
+  border-radius: 20px;
+  height: calc(100vh - 20px);
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  margin-top: 10px;
+`;
+export const ProductsWideSideContainerStyled = styled.div`
+  background-color: transparent;
+  border: 2px solid #fff;
+  padding: 10px;
+  border-radius: 20px;
   height: calc(95vh);
   overflow-y: auto;
   -ms-overflow-style: none;

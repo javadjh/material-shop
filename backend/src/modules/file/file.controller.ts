@@ -33,8 +33,8 @@ export class FileController {
   @Post('')
   @UseInterceptors(FileInterceptor('file', multerConfig))
   @ApiConsumes('multipart/form-data')
-  @UseGuards(AdminJwtGuard)
-  @ApiBearerAuth('JWT-auth')
+  // @UseGuards(AdminJwtGuard)
+  // @ApiBearerAuth('JWT-auth')
   @ApiOkResponse({
     description: 'insert file api',
     type: InsertFileResponseDto,

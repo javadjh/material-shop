@@ -40,14 +40,16 @@ a {
   background: transparent; /* make scrollbar transparent */
 }
 ul {
-  background-color: #ffffffe3 !important;
+  background-color: #ffffff !important;
+  border-radius: 10px !important;
+  border: 2px solid white !important;
+}
+ul li:hover {
+  background-color: #fd9500 !important;
   border-radius: 10px !important;
   border: 2px solid white !important;
 }
 
-ul li :hover {
-  background-color: red !important;
-}
 ::-webkit-input-placeholder {
   /* WebKit, Blink, Edge */
   color: #000;
@@ -94,26 +96,20 @@ input[type="number"] {
 .so-svg-class:hover {
   fill: #fd9500 !important;
 }
-.input-class {
-  border: 1px solid red !important;
-  border-color: red !important;
-  outline: red !important;
-}
-.input-class :focus {
-  border: 1px solid red !important;
-  border-color: red !important;
-  border-width: 1px !important;
-  outline: red !important;
-}
-.input-class :active {
-  border: 1px solid red !important;
-  border-color: red !important;
-  border-width: 1px !important;
-  outline: red !important;
-}
-.input-class:focus {
+
+input:focus {
   outline: none !important;
-  border: 1px solid red;
+  box-shadow: 0 0 10px #e59422;
+}
+
+textarea :focus {
+  border-width: 1px !important;
+}
+textarea :active {
+  border-width: 1px !important;
+}
+textarea:focus {
+  outline: none !important;
   box-shadow: 0 0 10px #e59422;
 }
 .orange-hover {
@@ -145,4 +141,29 @@ input[type="number"] {
 }
 .outline-hover p {
   color: #fff;
+}
+.fill-outline-hover {
+  outline: 2px solid #fff;
+}
+.fill-outline-hover:hover {
+  outline: 2px solid #fd9500;
+  background-color: #fd9500;
+}
+.fill-outline-hover:hover svg {
+  fill: white;
+}
+.fill-outline-hover svg {
+  fill: #fff;
+}
+.fill-outline-hover:hover p {
+  color: white;
+}
+.fill-outline-hover p {
+  color: #fff;
+}
+textarea {
+  resize: none !important;
+}
+.sdcsdc:active {
+  border: 1px solid white !important;
 }

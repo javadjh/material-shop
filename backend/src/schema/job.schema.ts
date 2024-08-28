@@ -47,10 +47,10 @@ export class Job extends BaseJobModel {
   jobHistory?: string;
 
   @Prop({ type: String })
-  LastCompanyName?: string;
+  lastCompanyName?: string;
 
   @Prop({ type: String })
-  LastCompanyTel?: string;
+  lastCompanyTel?: string;
 
   @Prop({ type: String })
   resume?: string;

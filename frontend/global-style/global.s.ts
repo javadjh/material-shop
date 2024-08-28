@@ -60,6 +60,7 @@ export const WhiteBorderStyled = styled.div`
   border-radius: 5px;
   width: 100%;
 `;
+
 export const OrangeHR = styled.div`
   border-bottom: 2px solid ${ORANGE_COLOR};
   width: 100%;

@@ -16,11 +16,10 @@ const SimpleInputComponent: FC<any> = (props) => {
   );
 };
 export default SimpleInputComponent;
-const InputStyled = styled(Input)`
+const InputStyled = styled.input`
   width: 100%;
   background-color: transparent !important;
-  border-radius: 10px;
-  font-size: ${SMALL_FONT};
+  border-radius: 5px;
   color: ${ORANGE_COLOR} !important;
   ::placeholder {
     color: ${ORANGE_COLOR} !important;
@@ -28,16 +27,18 @@ const InputStyled = styled(Input)`
     font-weight: bold;
   }
   margin: 10px 0px;
-  border: 2px solid white;
   padding: 10px;
+  border: ${(props: any) =>
+    props.isError
+      ? "1.5px solid red !important"
+      : "1px solid orange !important"};
 `;
-const TextAreaStyled = styled(Textarea)`
+const TextAreaStyled = styled.textarea`
   width: 100%;
   background-color: transparent !important;
-  border-radius: 10px;
+  border-radius: 5px;
   color: ${ORANGE_COLOR} !important;
   margin: 10px 0px;
-  font-size: ${SMALL_FONT};
 
   border: 2px solid white;
   ::placeholder {
@@ -46,4 +47,8 @@ const TextAreaStyled = styled(Textarea)`
     font-weight: bold;
   }
   padding: 10px;
+  border: ${(props: any) =>
+    props.isError
+      ? "1.5px solid red !important"
+      : "1px solid orange !important"};
 `;

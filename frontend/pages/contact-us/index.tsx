@@ -31,15 +31,16 @@ const ContactUs = () => {
       description: "",
     },
     onSubmit: async (e: any) => {
-      await insertReport(e);
+      await insertReport({
+        ...e,
+        ...{ phoneNumber: String("0" + e.phoneNumber) },
+      });
       formik?.resetForm();
       setIsSubmited(true);
     },
 
     validationSchema: Yup.object({
-      phoneNumber: Yup.string()
-        .length(11, "شماره را به درستی وارد کنید")
-        .required("اجباری میباشد"),
+      phoneNumber: Yup.number().required("اجباری میباشد"),
       fullName: Yup.string()
         .min(5, "نام و نام خانوادگی را به درستی وارد کنید")
         .max(50, "نام و نام خانوادگی را به درستی وارد کنید")
@@ -52,12 +53,12 @@ const ContactUs = () => {
       <PaddingStyled top={20}>
         <Grid container spacing={3}>
           <Grid lg={3}>
-            <LogoComponent width={size.height > 660 ? 180 : 130} />
+            <LogoComponent width={size.height > 660 ? 180 : 90} />
             <SpaceStyled vertical={10}>
               <CenterStyled>
                 <img
                   src="./google-font.png"
-                  width={size.height > 660 ? 300 : 200}
+                  width={size.height > 660 ? 300 : 100}
                 />
               </CenterStyled>
             </SpaceStyled>
@@ -84,43 +85,50 @@ const ContactUs = () => {
                     <SpaceStyled top={40}>
                       <SimpleInputComponent
                         name="fullName"
+                        isError={
+                          formik.touched.fullName && formik.errors.fullName
+                        }
                         placeholder="نام و نام خانوادگی"
                         onChange={formik.handleChange}
                         value={formik.values.fullName}
                       />
-                      {formik.touched.fullName && formik.errors.fullName ? (
-                        <div>{formik.errors.fullName + ""}</div>
-                      ) : null}
+
                       <SimpleInputComponent
                         name="phoneNumber"
                         disabled={getCookie("phone")}
                         placeholder="شماره تماس"
+                        type="number"
                         onChange={formik.handleChange}
                         value={formik.values.phoneNumber}
+                        isError={
+                          formik.touched.phoneNumber &&
+                          formik.errors.phoneNumber
+                        }
                       />
-                      {formik.touched.phoneNumber &&
-                      formik.errors.phoneNumber ? (
-                        <div>{formik.errors.phoneNumber + ""}</div>
-                      ) : null}
+
                       <SimpleInputComponent
                         rows="4"
                         isArea={true}
                         placeholder="شرح"
                         name="description"
                         onChange={formik.handleChange}
+                        isError={
+                          formik.touched.description &&
+                          formik.errors.description
+                        }
                         value={formik.values.description}
                       />
-                      {formik.touched.description &&
-                      formik.errors.description ? (
-                        <div>{formik.errors.description + ""}</div>
-                      ) : null}
                     </SpaceStyled>
                   )}
                   <LeftStyled>
                     <div
                       onClick={() => {
-                        setIsSubmited(false);
-                        formik?.submitForm();
+                        if (isSubmited) {
+                          setIsSubmited(false);
+                          formik?.resetForm();
+                        } else {
+                          formik?.submitForm();
+                        }
                       }}
                       style={{ width: 100 }}
                     >
@@ -141,7 +149,7 @@ const ContactUs = () => {
               <CenterStyled>
                 <img
                   src="/map.png"
-                  style={{ objectFit: "contain" }}
+                  style={{ objectFit: "fill" }}
                   width={"100%"}
                   height={size.height - 220}
                 />

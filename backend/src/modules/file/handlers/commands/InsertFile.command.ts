@@ -29,7 +29,7 @@ export class InsertFileHandler implements ICommandHandler<InsertFileCommand> {
     //check if file not video , remove and throw ex
     if (
       !GlobalUtility.checkIsVideoType(fileSent.mimetype) &&
-      fileSent.size > 10000000
+      fileSent.size > 1000000000
     ) {
       fs.unlinkSync(fileSent.path);
       throw new BadRequestException(FILE_SIZE_ERROR_MESSAGE);

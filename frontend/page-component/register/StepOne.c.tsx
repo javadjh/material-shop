@@ -32,21 +32,11 @@ const RegisterUserStepOne: FC<{
     }
   }, [phoneNumber]);
 
-  useEffect(() => {
-    const listener = (event: any) => {
-      if (event.code === "Enter" || event.code === "NumpadEnter") {
-        event.preventDefault();
-        if (phoneNumber?.length == 9) {
-          loginStepOne();
-        }
-      }
-    };
-    document.addEventListener("keydown", listener);
-    return () => {
-      document.removeEventListener("keydown", listener);
-    };
-  }, []);
-
+  const onKeyPressHandler = () => {
+    if (phoneNumber?.length == 9) {
+      loginStepOne();
+    }
+  };
   return (
     <PaddingStyled vertical={20} horizontal={30}>
       <SpaceStyled vertical={15}>
@@ -84,6 +74,7 @@ const RegisterUserStepOne: FC<{
                 renderInput={(props) => (
                   <div>
                     <InputNumber
+                      onKeyPress={onKeyPressHandler}
                       {...props}
                       className="input-class"
                       type="number"

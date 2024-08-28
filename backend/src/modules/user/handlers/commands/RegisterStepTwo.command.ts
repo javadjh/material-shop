@@ -43,7 +43,7 @@ export class InsertUserStepTwoHandler
       phone,
     });
 
-    let user: User;
+    let user: User = userFound;
     if (!userFound?._id) {
       //create user
       user = await new this.user({
@@ -51,6 +51,8 @@ export class InsertUserStepTwoHandler
         isAdmin: false,
       }).save();
     }
+
+    console.log(user);
 
     //generate token
     let token: string = await this.auth.generateToken({ sub: user?._id });

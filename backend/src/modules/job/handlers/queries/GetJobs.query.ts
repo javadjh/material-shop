@@ -36,8 +36,8 @@ export class GetJobsHandler implements IQueryHandler<GetJobsQuery> {
         { degree: regex },
         { universityName: regex },
         { jobHistory: regex },
-        { LastCompanyName: regex },
-        { LastCompanyTel: regex },
+        { lastCompanyName: regex },
+        { lastCompanyTel: regex },
         { description: regex },
       ],
     };
@@ -57,8 +57,8 @@ export class GetJobsHandler implements IQueryHandler<GetJobsQuery> {
           degree
           universityName
           jobHistory
-          LastCompanyName
-          LastCompanyTel
+          lastCompanyName
+          lastCompanyTel
           resume
           description`,
       )

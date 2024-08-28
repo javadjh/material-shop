@@ -7,6 +7,7 @@ import {
   MainCategorySelectStyled,
   ProductContainerStyled,
   SimpleInput,
+  ProductsWideSideContainerStyled,
 } from "./products.s";
 import LogoComponent from "../../../../global-component/Logo.c";
 import {
@@ -28,6 +29,7 @@ import { ISeller } from "../../../../types/seller.type";
 import { SMALL_FONT, X_SMALL_FONT } from "../../../../config/font";
 import { WHITE_COLOR } from "../../../../config/colors";
 import Link from "next/link";
+import { useWindowSize } from "../../../../global-component/ScreenBridge.c";
 
 const Products: FC<{
   products: any;
@@ -37,6 +39,7 @@ const Products: FC<{
   sellers: Array<ISeller>;
 }> = ({ mainCategories, products, categories, brands, sellers }) => {
   const router = useRouter();
+  const size = useWindowSize();
   const [brandValue, setBrandsValue] = useState<string>();
   const [sellerValue, setSellersValue] = useState<string>();
 
@@ -51,11 +54,11 @@ const Products: FC<{
       <Grid container>
         <Grid lg={2.5}>
           <SpaceStyled horizontal={20}>
-            <ProductsSideContainerStyled>
+            <ProductsWideSideContainerStyled>
               <Typography></Typography>
-              <SpaceStyled top={20}>
+              <SpaceStyled top={10}>
                 <CenterStyled>
-                  <LogoComponent width={"90%"} />
+                  <LogoComponent width={size?.height > 650 ? 200 : 120} />
                   <MainCategorySelectStyled
                     onChange={onChangeMainCategoryListener}
                     placeholder="دسته بندی"
@@ -76,7 +79,7 @@ const Products: FC<{
                   ))}
                 </CenterStyled>
               </SpaceStyled>
-            </ProductsSideContainerStyled>
+            </ProductsWideSideContainerStyled>
           </SpaceStyled>
         </Grid>
         <Grid lg={7.5}>

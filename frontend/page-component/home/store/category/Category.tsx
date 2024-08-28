@@ -5,7 +5,10 @@ import {
   SpaceStyled,
 } from "../../../../global-style/global.s";
 import MainLayout from "../../../../layout/MainLayout";
-import { ProductsSideContainerStyled } from "../products/products.s";
+import {
+  ProductsSideContainerStyled,
+  WideSideContainerStyled,
+} from "../products/products.s";
 import LogoComponent from "../../../../global-component/Logo.c";
 import { ICategory } from "../../../../types/category.type";
 import { FC, useEffect, useState } from "react";
@@ -36,7 +39,7 @@ const CategoryPage: FC<{
       <Grid container>
         <Grid lg={2.5}>
           <SpaceStyled horizontal={20}>
-            <ProductsSideContainerStyled>
+            <WideSideContainerStyled>
               <SpaceStyled top={10}>
                 <CenterStyled>
                   <LogoComponent width={110} />
@@ -63,38 +66,39 @@ const CategoryPage: FC<{
                   ))}
                 </CenterStyled>
               </SpaceStyled>
-            </ProductsSideContainerStyled>
+            </WideSideContainerStyled>
           </SpaceStyled>
         </Grid>
         <Grid lg={9.5}>
-          <PaddingStyled top={80} bottom={20}>
+          <PaddingStyled top={80} bottom={20} horizontal={30}>
             <ImageServerComponent
               image={media?.banner}
               width={"100%"}
               border={20}
               height={"20vh"}
             />
+
+            <div style={{ width: "100%", marginTop: 30 }}>
+              <Grid spacing={5} container alignContent={"space-between"}>
+                {categories?.map((item) => (
+                  <Grid lg={4}>
+                    <Link
+                      href={{
+                        pathname: "/store/sub-category",
+                        query: { id: item?._id, mainCategory: id },
+                      }}
+                    >
+                      <SubCategoryItemComponent
+                        iconName={item.icon}
+                        title={item.title}
+                        id={item?._id}
+                      />
+                    </Link>
+                  </Grid>
+                ))}
+              </Grid>
+            </div>
           </PaddingStyled>
-          <div style={{ width: "100%" }}>
-            <Grid spacing={5} container alignContent={"space-between"}>
-              {categories?.map((item) => (
-                <Grid lg={4}>
-                  <Link
-                    href={{
-                      pathname: "/store/products",
-                      query: { id: item?._id },
-                    }}
-                  >
-                    <SubCategoryItemComponent
-                      iconName={item.icon}
-                      title={item.title}
-                      id={item?._id}
-                    />
-                  </Link>
-                </Grid>
-              ))}
-            </Grid>
-          </div>
         </Grid>
       </Grid>
     </MainLayout>

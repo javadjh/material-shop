@@ -13,8 +13,8 @@ export interface IJob {
   degree?: string;
   universityName?: string;
   jobHistory?: string;
-  LastCompanyName?: string;
-  LastCompanyTel?: string;
+  lastCompanyName?: string;
+  lastCompanyTel?: string;
   resume?: string;
   description?: string;
 }

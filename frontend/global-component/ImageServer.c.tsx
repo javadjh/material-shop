@@ -9,7 +9,9 @@ const ImageServerComponent: FC<{
   height?: any;
   border?: number;
   aspect?: any;
-}> = ({ image, point, width, height, border, aspect }) => {
+  style?: any;
+  className?: any;
+}> = ({ image, point, width, height, border, aspect, style, className }) => {
   return (
     <img
       alt="image"
@@ -22,8 +24,10 @@ const ImageServerComponent: FC<{
         borderRadius: border,
         aspectRatio: aspect,
         objectFit: "cover",
+        ...style,
       }}
       src={`${BACKEND_URL}public/${image}`}
+      className={className}
     />
   );
 };

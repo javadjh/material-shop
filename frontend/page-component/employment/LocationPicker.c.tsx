@@ -45,7 +45,7 @@ const LocationPickerComponent: FC<{
               padding: 15,
               border: isError ? "1.5px solid red" : "1.5px solid orange ",
             }}
-            placeholder="استان مورد نظر را انتخاب کنید"
+            placeholder="استان محل فعالیت خود را انتخاب کنید"
             onChange={(e, value) => setProvince(Number(value))}
           >
             {provinces?.map((item) => (
@@ -64,7 +64,7 @@ const LocationPickerComponent: FC<{
               padding: 15,
               border: isError ? "1.5px solid red" : "1.5px solid orange ",
             }}
-            placeholder="شهر مورد نظر را انتخاب کنید"
+            placeholder="شهر محل فعالیت خود را انتخاب کنید"
             onChange={(e, value) => onCitySelected(Number(value))}
           >
             {cities?.map((item) => (

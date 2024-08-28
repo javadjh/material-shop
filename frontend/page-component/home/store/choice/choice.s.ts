@@ -15,6 +15,7 @@ export const StoreItemContainer = styled.div`
 export const CategoryItemContainer = styled.div`
   background-color: #999999;
   border-radius: 20px;
+  width: 100%;
   display: flex;
   flex-direction: column;
 

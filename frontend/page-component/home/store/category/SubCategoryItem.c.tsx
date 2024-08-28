@@ -16,14 +16,10 @@ const SubCategoryItemComponent: FC<{
 }> = ({ title, iconName, id }) => {
   let [categoryId, setCategoryId] = useState<string>("");
   const CategoryItemContainer = styled.div`
-    background-color: ${() =>
-      categoryId === title ? ORANGE_COLOR : "tranceparent"};
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    outline: ${() =>
-      categoryId === title ? "2px solid" + ORANGE_COLOR : "2px solid white"};
 
     aspect-ratio: 3 / 1;
     justify-content: space-between;
@@ -34,10 +30,7 @@ const SubCategoryItemComponent: FC<{
     width: 100%;
   `;
   return (
-    <CategoryItemContainer
-      onMouseEnter={() => setCategoryId(title)}
-      onMouseLeave={() => setCategoryId("")}
-    >
+    <CategoryItemContainer className="fill-outline-hover">
       <Typography fontSize={LARGE_FONT} textColor={WHITE_COLOR}>
         <strong>{title}</strong>
       </Typography>

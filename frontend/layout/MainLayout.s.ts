@@ -1,4 +1,4 @@
-import { Input } from "@mui/joy";
+import { Input, Select } from "@mui/joy";
 import styled from "styled-components";
 import { ORANGE_COLOR, WHITE_COLOR } from "../config/colors";
 
@@ -22,7 +22,8 @@ export const SearchHeaderStyled: any = styled(Input)`
   border: 3px solid ${ORANGE_COLOR} !important;
   width: 400px;
   border-radius: 40px !important;
-  color: ${WHITE_COLOR};
+  font-weight: bold;
+  color: ${WHITE_COLOR} !important;
   ::placeholder {
     color: white !important;
     opacity: 1 !important;
@@ -32,4 +33,21 @@ export const SearchHeaderStyled: any = styled(Input)`
 export const MakeBoxContainer: any = styled.div`
   padding-left: 30px;
   padding-right: 30px;
+`;
+export const DepartmentSelect = styled(Select)`
+  background-color: ${ORANGE_COLOR} !important;
+  border: none !important;
+  min-width: 150px !important;
+  border-radius: 40px !important;
+  ::placeholder {
+    color: black;
+  }
+`;
+
+export const OrangeMainLayoutBTN = styled.div`
+  border-radius: 40px;
+  background-color: ${ORANGE_COLOR};
+  cursor: pointer;
+  color: black;
+  padding: 5px 30px;
 `;

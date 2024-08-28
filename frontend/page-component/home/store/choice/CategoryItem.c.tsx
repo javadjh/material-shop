@@ -25,7 +25,7 @@ const CategoryItemComponent: FC<{
     align-items: flex-start;
     padding: 0px 20px;
     width: 100%;
-    height: 70px;
+    height: 10.3vh;
   `;
   return (
     <CategoryItemContainer className="orange-hover">

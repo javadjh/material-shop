@@ -8,7 +8,7 @@ const Footer = () => {
         { title: "فرصت های شغلی", link: "job" },
         { title: "درباره ما", link: "about-us" },
         { title: "قوانین و مقررات", link: "rules" },
-        { title: "سوالات متداول", link: "comming" },
+        { title: "سوالات متداول", link: "faq" },
         { title: "تماس با ما", link: "contact-us" },
       ]}
     />

@@ -1,8 +1,9 @@
-import { Grid, Typography } from "@mui/joy";
+import { Grid, Option, Select, Typography } from "@mui/joy";
 import MainLayout from "../../layout/MainLayout";
 import LogoComponent from "../../global-component/Logo.c";
 import {
   CenterStyled,
+  CenterVerticalStyled,
   LeftStyled,
   OrangeBlockStyled,
   Pointer,
@@ -10,19 +11,23 @@ import {
   WhiteBlockStyled,
 } from "../../global-style/global.s";
 import ActionBorderComponent from "../../global-component/ActionBorder.c";
+
 import { LIGHT_GRAY_COLOR, WHITE_COLOR } from "../../config/colors";
 import { useEffect, useState } from "react";
 import { IJob } from "../../types/job.type";
-import { jobsService } from "../../service/job.service";
+import { insertService, jobsService } from "../../service/job.service";
 import styled from "styled-components";
 import { IJobInfo } from "../../types/jobInfos.type";
 import { jobInfosService } from "../../service/job-info.service";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { UploadFileComponent } from "../../global-component/UploadFile.c";
+import { insertReport } from "../../service/report.service";
 
 const JobPage = () => {
   const [jobInfos, setJobInfos] = useState<Array<IJobInfo>>([]);
-  const [jobInfo, setJobInfo] = useState<IJobInfo>({});
+  const [jobInfo, setJobInfo] = useState<IJobInfo | any>({});
+  const [jobSelected, setJobSelected] = useState<string>();
   const [isSubmited, setIsSubmited] = useState(false);
 
   const formik = useFormik({
@@ -30,25 +35,27 @@ const JobPage = () => {
       department: "",
       fullName: "",
       mellicode: "",
-      fatherName: "",
       age: "",
-      bithday: "",
-      isMarried: "",
-      address: "",
+
       firstNumber: "",
-      secondNumber: "",
-      degree: "",
-      universityName: "",
-      jobHistory: "",
-      LastCompanyName: "",
-      LastCompanyTel: "",
-      resume: "",
-      description: "",
     },
+
     onSubmit: async (e: any) => {
       console.log(e);
 
-      // await insertReport(e);
+      await insertService({
+        ...e,
+        ...{
+          department: jobSelected,
+          firstNumber: e?.firstNumber ? "0" + e.firstNumber : undefined,
+          secondNumber: e?.secondNumber ? "0" + e?.secondNumber : undefined,
+          lastCompanyTel: e?.lastCompanyTel
+            ? "0" + e?.lastCompanyTel
+            : undefined,
+          mellicode: e?.mellicode?.toString(),
+          age: e?.age?.toString(),
+        },
+      });
       formik?.resetForm();
       setIsSubmited(true);
     },
@@ -58,22 +65,12 @@ const JobPage = () => {
         .min(5, "نام و نام خانوادگی را به درستی وارد کنید")
         .max(50, "نام و نام خانوادگی را به درستی وارد کنید")
         .required("اجباری میباشد"),
-      department: Yup.string().required("اجباری میباشد"),
+
       mellicode: Yup.string().required("اجباری میباشد"),
-      fatherName: Yup.string().required("اجباری میباشد"),
+
       age: Yup.string().required("اجباری میباشد"),
-      bithday: Yup.string().required("اجباری میباشد"),
-      isMarried: Yup.string().required("اجباری میباشد"),
-      address: Yup.string().required("اجباری میباشد"),
+
       firstNumber: Yup.string().required("اجباری میباشد"),
-      secondNumber: Yup.string().required("اجباری میباشد"),
-      degree: Yup.string().required("اجباری میباشد"),
-      universityName: Yup.string().required("اجباری میباشد"),
-      jobHistory: Yup.string().required("اجباری میباشد"),
-      LastCompanyName: Yup.string().required("اجباری میباشد"),
-      LastCompanyTel: Yup.string().required("اجباری میباشد"),
-      resume: Yup.string().required("اجباری میباشد"),
-      description: Yup.string().required("اجباری میباشد"),
     }),
   });
   useEffect(() => {
@@ -105,10 +102,18 @@ const JobPage = () => {
               </OrangeBlockStyled>
               <SpaceStyled top={10}>
                 <Grid container spacing={1}>
-                  {jobInfos?.map((jobInfo) => (
-                    <Grid lg={6} onClick={() => setJobInfo(jobInfo)}>
-                      <ActionBorderComponent>
-                        {jobInfo?.department}
+                  {jobInfos?.map((item: any) => (
+                    <Grid
+                      lg={6}
+                      onClick={() => {
+                        setJobInfo(item);
+                        setJobSelected(item?._id);
+                      }}
+                    >
+                      <ActionBorderComponent
+                        isSelected={jobSelected == item?._id}
+                      >
+                        {item?.department}
                       </ActionBorderComponent>
                     </Grid>
                   ))}
@@ -119,7 +124,7 @@ const JobPage = () => {
         </Grid>
         <Grid lg={10}>
           <SpaceStyled top={80} right={40}>
-            {jobInfo?.department && (
+            {jobInfo?.department ? (
               <>
                 <div>
                   <Grid container spacing={10}>
@@ -144,70 +149,86 @@ const JobPage = () => {
                                 <BlockTitle>جنسیت</BlockTitle>
                               </Grid>
                               <Grid lg={6}>
-                                <ValueTitle>{jobInfo?.gender}</ValueTitle>
+                                <ValueTitle>
+                                  {jobInfo?.gender || "-"}
+                                </ValueTitle>
                               </Grid>
 
                               <Grid lg={6}>
                                 <BlockTitle>محل خدمت</BlockTitle>
                               </Grid>
                               <Grid lg={6}>
-                                <ValueTitle>{jobInfo?.city}</ValueTitle>
+                                <ValueTitle>{jobInfo?.city || "-"}</ValueTitle>
                               </Grid>
 
                               <Grid lg={6}>
                                 <BlockTitle>موقعیت مکانی</BlockTitle>
                               </Grid>
                               <Grid lg={6}>
-                                <ValueTitle>{jobInfo?.location}</ValueTitle>
+                                <ValueTitle>
+                                  {jobInfo?.location || "-"}
+                                </ValueTitle>
                               </Grid>
 
                               <Grid lg={6}>
                                 <BlockTitle>محدوده سنی داوطلب</BlockTitle>
                               </Grid>
                               <Grid lg={6}>
-                                <ValueTitle>{jobInfo?.ageRange}</ValueTitle>
+                                <ValueTitle>
+                                  {jobInfo?.ageRange || "-"}
+                                </ValueTitle>
                               </Grid>
 
                               <Grid lg={6}>
                                 <BlockTitle>حداقل مدرک تحصیلی</BlockTitle>
                               </Grid>
                               <Grid lg={6}>
-                                <ValueTitle>{jobInfo?.minDegree}</ValueTitle>
+                                <ValueTitle>
+                                  {jobInfo?.minDegree || "-"}
+                                </ValueTitle>
                               </Grid>
 
                               <Grid lg={6}>
                                 <BlockTitle>سابقه کار</BlockTitle>
                               </Grid>
                               <Grid lg={6}>
-                                <ValueTitle>{jobInfo?.jobHistory}</ValueTitle>
+                                <ValueTitle>
+                                  {jobInfo?.jobHistory || "-"}
+                                </ValueTitle>
                               </Grid>
 
                               <Grid lg={6}>
                                 <BlockTitle>ساعت کاری</BlockTitle>
                               </Grid>
                               <Grid lg={6}>
-                                <ValueTitle>{jobInfo?.clock}</ValueTitle>
+                                <ValueTitle>{jobInfo?.clock || "-"}</ValueTitle>
                               </Grid>
 
                               <Grid lg={6}>
                                 <BlockTitle>حقوق</BlockTitle>
                               </Grid>
                               <Grid lg={6}>
-                                <ValueTitle>{jobInfo?.salary}</ValueTitle>
+                                <ValueTitle>
+                                  {jobInfo?.salary || "-"}
+                                </ValueTitle>
                               </Grid>
 
                               <Grid lg={6}>
                                 <BlockTitle>ماموریت</BlockTitle>
                               </Grid>
                               <Grid lg={6}>
-                                <ValueTitle>{jobInfo?.mission}</ValueTitle>
+                                <ValueTitle>
+                                  {jobInfo?.mission || "-"}
+                                </ValueTitle>
                               </Grid>
 
                               <Grid lg={6}>
                                 <BlockTitle>توضیحات متفرقه</BlockTitle>
                               </Grid>
                               <Grid lg={6}>
-                                <ValueTitle>{jobInfo?.description}</ValueTitle>
+                                <ValueTitle>
+                                  {jobInfo?.description || "-"}
+                                </ValueTitle>
                               </Grid>
                             </Grid>
                           </SpaceStyled>
@@ -243,6 +264,7 @@ const JobPage = () => {
                                     formik.errors.mellicode
                                   }
                                   name="mellicode"
+                                  type="number"
                                   placeholder="کد ملی"
                                   onChange={formik.handleChange}
                                   value={formik.values.mellicode}
@@ -267,6 +289,7 @@ const JobPage = () => {
                                     formik.touched.age && formik.errors.age
                                   }
                                   placeholder="سن"
+                                  type="number"
                                   onChange={formik.handleChange}
                                   value={formik.values.age}
                                 />
@@ -285,17 +308,33 @@ const JobPage = () => {
                               </Grid>
 
                               <Grid lg={6}>
-                                <InputComponent
-                                  name="isMarried"
+                                <SelectComponent
+                                  style={{
+                                    padding: 14,
+                                    border:
+                                      formik?.errors?.phoneNumber &&
+                                      formik.touched.phoneNumber
+                                        ? "1.5px solid red"
+                                        : "1.5px solid orange ",
+                                  }}
+                                  name="activity"
                                   placeholder="وضعیت تاهل"
-                                  isError={
-                                    formik.touched.isMarried &&
-                                    formik.errors.isMarried
-                                  }
-                                  onChange={formik.handleChange}
-                                  value={formik.values.isMarried}
-                                />
+                                  onChange={(e: any, value: any) => {
+                                    formik.setFieldValue(
+                                      "isMarried",
+                                      Boolean(value)
+                                    );
+                                  }}
+                                >
+                                  <Option value={"true"} key={"true"}>
+                                    <Typography>متاهل</Typography>
+                                  </Option>
+                                  <Option value={"false"} key={"false"}>
+                                    مجرد
+                                  </Option>
+                                </SelectComponent>
                               </Grid>
+
                               <Grid lg={6}>
                                 <InputComponent
                                   name="address"
@@ -312,6 +351,7 @@ const JobPage = () => {
                                 <InputComponent
                                   name="firstNumber"
                                   placeholder="شماره تماس اول"
+                                  type="number"
                                   isError={
                                     formik.touched.firstNumber &&
                                     formik.errors.firstNumber
@@ -324,6 +364,7 @@ const JobPage = () => {
                                 <InputComponent
                                   name="secondNumber"
                                   placeholder="شماره تماس دوم"
+                                  type="number"
                                   onChange={formik.handleChange}
                                   value={formik.values.secondNumber}
                                   isError={
@@ -370,52 +411,54 @@ const JobPage = () => {
                               </Grid>
                               <Grid lg={6}>
                                 <InputComponent
-                                  name="LastCompanyName"
-                                  placeholder="آخرین شرکت کار کرد"
+                                  name="lastCompanyName"
+                                  placeholder="آخرین محل خدمت"
                                   onChange={formik.handleChange}
-                                  value={formik.values.LastCompanyName}
+                                  value={formik.values.lastCompanyName}
                                   isError={
-                                    formik.touched.LastCompanyName &&
-                                    formik.errors.LastCompanyName
+                                    formik.touched.lastCompanyName &&
+                                    formik.errors.lastCompanyName
                                   }
                                 />
                               </Grid>
                               <Grid lg={6}>
                                 <InputComponent
-                                  name="LastCompanyTel"
-                                  placeholder="شماره آخرین شرکت"
+                                  name="lastCompanyTel"
+                                  placeholder="شماره تماس آخرین محل خدمت"
+                                  type="number"
                                   onChange={formik.handleChange}
-                                  value={formik.values.LastCompanyTel}
+                                  value={formik.values.lastCompanyTel}
                                   isError={
-                                    formik.touched.LastCompanyTel &&
-                                    formik.errors.LastCompanyTel
+                                    formik.touched.lastCompanyTel &&
+                                    formik.errors.lastCompanyTel
                                   }
                                 />
                               </Grid>
                               <Grid lg={12}>
-                                <InputComponent
-                                  name="resume"
-                                  placeholder="رزومه کاری"
-                                  onChange={formik.handleChange}
-                                  value={formik.values.resume}
-                                  isError={
-                                    formik.touched.resume &&
-                                    formik.errors.resume
-                                  }
-                                />
+                                <UploadFileComponent
+                                  fileHandler={(e: any) => {
+                                    console.log(e.filename);
+
+                                    formik.setFieldValue("resume", e.filename);
+                                  }}
+                                >
+                                  <ValueTitle>بارگزاری رزومه</ValueTitle>
+                                </UploadFileComponent>
                               </Grid>
                               <Grid lg={12}>
-                                <TextareaComponent
-                                  name="description"
-                                  rows={"3"}
-                                  placeholder="توضیحات"
-                                  isError={
-                                    formik.touched.description &&
-                                    formik.errors.description
-                                  }
-                                  onChange={formik.handleChange}
-                                  value={formik.values.description}
-                                />
+                                <SpaceStyled top={-20}>
+                                  <TextareaComponent
+                                    name="description"
+                                    rows={"3"}
+                                    placeholder="توضیحات تکمیلی"
+                                    isError={
+                                      formik.touched.description &&
+                                      formik.errors.description
+                                    }
+                                    onChange={formik.handleChange}
+                                    value={formik.values.description}
+                                  />
+                                </SpaceStyled>
                               </Grid>
                             </Grid>
                             <SpaceStyled top={10}>
@@ -423,12 +466,20 @@ const JobPage = () => {
                                 <Pointer>
                                   <div
                                     onClick={() => {
+                                      console.log(formik?.errors);
+                                      console.log("sdddddddddd");
+
                                       setIsSubmited(false);
                                       formik?.submitForm();
                                     }}
                                     style={{ width: 100 }}
                                   >
-                                    <BlockTitle>ثبت اطلاعات</BlockTitle>
+                                    <ActionBorderComponent
+                                      isSelected={true}
+                                      isFill={true}
+                                    >
+                                      ثبت اطلاعات
+                                    </ActionBorderComponent>
                                   </div>
                                 </Pointer>
                               </LeftStyled>
@@ -440,6 +491,15 @@ const JobPage = () => {
                   </Grid>
                 </div>
               </>
+            ) : (
+              <SpaceStyled top={300}>
+                <CenterStyled>
+                  <Typography textColor={WHITE_COLOR}>
+                    کاربر گرامی در صورت تمایل به همکاری با شرکت سازه کمک یکی از
+                    شغل های سمت راست را انتخاب بفرمایید
+                  </Typography>
+                </CenterStyled>
+              </SpaceStyled>
             )}
           </SpaceStyled>
         </Grid>
@@ -463,7 +523,7 @@ const ValueTitle = styled.div`
   background-color: ${LIGHT_GRAY_COLOR};
   border-radius: 5px;
   text-align: center;
-  color: white;
+  color: dark;
   padding: 15px;
 `;
 const InputComponent: any = styled.input`
@@ -471,12 +531,10 @@ const InputComponent: any = styled.input`
   border: none !important;
   border-radius: 8px;
   border: ${(props: any) =>
-    props.isError
-      ? "1.5px solid red !important"
-      : "1px solid orange !important"};
+    props.isError ? "1.5px solid red !important" : "none !important"};
   width: 100%;
   padding: 15px;
-  color: white;
+  color: #000000;
 `;
 const TextareaComponent: any = styled.textarea`
   background-color: ${LIGHT_GRAY_COLOR};
@@ -484,9 +542,17 @@ const TextareaComponent: any = styled.textarea`
   border-radius: 8px;
   width: 100%;
   padding: 8px;
-  color: white;
+  color: #000000;
   border: ${(props: any) =>
-    props.isError
-      ? "1.5px solid red !important"
-      : "1px solid orange !important"};
+    props.isError ? "1.5px solid red !important" : "none !important"};
+`;
+const SelectComponent: any = styled(Select)`
+  background-color: ${LIGHT_GRAY_COLOR} !important;
+  border: none !important;
+  border-radius: 8px;
+  width: 100%;
+  padding: 8px;
+  color: #000000 !important;
+  border: ${(props: any) =>
+    props.isError ? "1.5px solid red !important" : "none !important"};
 `;

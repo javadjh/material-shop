@@ -15,11 +15,13 @@ import Link from "next/link";
 import ImageServerComponent from "../../../../global-component/ImageServer.c";
 import { useEffect, useState } from "react";
 import { getAppSettingService } from "../../../../service/appsetting.service";
+import { useWindowSize } from "../../../../global-component/ScreenBridge.c";
 
 const ChoicePage: NextPage<{ categories: Array<ICategory> }> = ({
   categories,
 }) => {
   const [media, setMedia] = useState<any>({});
+  const size = useWindowSize();
   useEffect(() => {
     getData();
   }, []);
@@ -36,7 +38,7 @@ const ChoicePage: NextPage<{ categories: Array<ICategory> }> = ({
             <Grid container>
               <Grid lg={4}>
                 <SpaceStyled top={10}>
-                  <LogoComponent width={190} />
+                  <LogoComponent width={size?.height > 650 ? 190 : 150} />
                   <CenterStyled>
                     <img src="/google-font.png" width={"65%"} />
                   </CenterStyled>
@@ -48,7 +50,7 @@ const ChoicePage: NextPage<{ categories: Array<ICategory> }> = ({
                     image={media?.banner}
                     border={10}
                     width={"100%"}
-                    aspect={325 / 76}
+                    height={"19vh"}
                   />
                 </PaddingStyled>
               </Grid>
@@ -120,6 +122,7 @@ const ChoicePage: NextPage<{ categories: Array<ICategory> }> = ({
                   iconName="provincee-seller"
                   link="/sellers"
                   title={"فروشندگان استان ها"}
+                  font={"9px"}
                   key={"job"}
                 />
               </Grid>
@@ -128,6 +131,7 @@ const ChoicePage: NextPage<{ categories: Array<ICategory> }> = ({
                   iconName="material-provider"
                   link="/sellers"
                   title={"تامین مصالح پروژه ها"}
+                  font={"9px"}
                   key={"job"}
                 />
               </Grid>

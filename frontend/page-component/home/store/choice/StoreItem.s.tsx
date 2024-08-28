@@ -13,7 +13,8 @@ const StoreItemComponent: FC<{
   title?: string;
   key?: string;
   link?: string;
-}> = ({ iconName, key, title, link }) => {
+  font?: string;
+}> = ({ iconName, key, title, link, font }) => {
   const [menuId, setMenuId] = useState<string>();
   const StoreItemContainer = styled.div`
     padding: 20px 0px;
@@ -41,7 +42,9 @@ const StoreItemComponent: FC<{
             }}
           />
           <SpaceStyled top={10}>
-            <Typography fontSize={"9px"}>{title}</Typography>
+            <Typography fontWeight={"1000"} fontSize={font || "11px"}>
+              {title}
+            </Typography>
           </SpaceStyled>
         </StoreItemContainer>
       </Link>
