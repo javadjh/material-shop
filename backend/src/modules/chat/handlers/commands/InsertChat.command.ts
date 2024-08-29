@@ -25,6 +25,9 @@ export class InsertChatHandler implements ICommandHandler<InsertChatCommand> {
 
     //is admin validatio
     if (dto?.isAdmin && !user?.isAdmin) throw new AccessDeniedException();
+    if (dto?.isAdmin) {
+      user = await this.userModel.findById(dto.userId);
+    }
 
     let newChat = await new this.chatModel({
       ...dto,
