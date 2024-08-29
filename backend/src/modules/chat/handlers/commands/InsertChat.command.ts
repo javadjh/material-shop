@@ -29,6 +29,8 @@ export class InsertChatHandler implements ICommandHandler<InsertChatCommand> {
       user = await this.userModel.findById(dto.userId);
     }
 
+    console.log(user);
+
     let newChat = await new this.chatModel({
       ...dto,
       ...{
