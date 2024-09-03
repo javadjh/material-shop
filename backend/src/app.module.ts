@@ -22,7 +22,7 @@ import { ChatModule } from './modules/chat/chat.module';
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
 
-    MongooseModule.forRoot('mongodb://127.0.0.1:27017/material'),
+    MongooseModule.forRoot('mongodb://127.0.0.1:27017/materiall'),
 
     CacheModule.register({
       host: '127.0.0.1',
