@@ -7,6 +7,7 @@ import { IFilter } from "../../types/filter.type";
 import { ISeller } from "../../types/seller.type";
 import { EyeOutlined } from "@ant-design/icons";
 import { Pointer } from "../../global-style/global.s";
+import CustomPaging from "../../components/CustomPaging";
 
 const SellersComponent: FC<{
   sellers: any;
@@ -14,72 +15,63 @@ const SellersComponent: FC<{
   setPaging: any;
   onClickEditListener: any;
 }> = ({ paging, sellers, setPaging, onClickEditListener }) => {
-  const columns: TableProps<ISeller>["columns"] = [
-    {
-      title: "عنوان",
-      dataIndex: "title",
-      key: "fullName",
-    },
-    {
-      title: "شهر/استان",
-      key: "location",
-      render: (record) => (
-        <Typography.Text>
-          {record.cityName} / {record.provinceName}
-        </Typography.Text>
-      ),
-    },
-    {
-      title: "شماره اول",
-      key: "firstNumber",
-      dataIndex: "firstNumber",
-    },
-    {
-      title: "شماره دوم",
-      key: "secondNumber",
-      dataIndex: "secondNumber",
-    },
-    {
-      title: "توضیحات",
-      dataIndex: "address",
-      key: "address",
-      width: "20%",
-      render: (text) => (
-        <Typography.Paragraph
-          ellipsis={{ tooltip: text, rows: 1 }}
-          style={{ width: 300 }}
-        >
-          {text}
-        </Typography.Paragraph>
-      ),
-    },
-    {
-      title: "عملیات",
-      key: "action",
-      render: (record) => (
-        <Pointer>
-          <EyeOutlined
-            style={{ color: "blue" }}
-            onClick={() => onClickEditListener(record)}
-          />
-        </Pointer>
-      ),
-    },
-  ];
-
   return (
-    <Table
-      columns={columns}
-      dataSource={sellers?.sellers}
-      pagination={pagingConfig(
-        paging?.pageId,
-        paging.eachPerPage,
-        sellers?.total,
-        (page) => {
-          setPaging({ ...paging, ...{ pageId: page } });
-        }
-      )}
-    />
+    <div className="col-xxl-12">
+      <div className="card mb-3">
+        <div className="card-body">
+          <div className="table-responsive">
+            <div className="table-outer">
+              <table className="table table-striped m-0">
+                <thead>
+                  <tr>
+                    <th>شناسه</th>
+                    <th>عنوان</th>
+                    <th>شهر </th>
+                    <th>شماره اول</th>
+                    <th>شماره دوم</th>
+                    <th>آدرس</th>
+                    <th>تاریخ ایجاد</th>
+                    <th>عملیات</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {sellers?.sellers?.map((item: ISeller, index: number) => (
+                    <tr>
+                      <td>{index + 1}</td>
+
+                      <td>{item?.title}</td>
+                      <td>{item?.cityName}</td>
+                      <td>{item?.firstNumber}</td>
+                      <td>{item?.secondNumber}</td>
+                      <td>{item?.address}</td>
+                      <td>{item?.createdAt}</td>
+                      <td>
+                        <Pointer>
+                          <a onClick={() => onClickEditListener(item)}>
+                            ویرایش
+                          </a>
+                        </Pointer>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <CustomPaging
+        pageId={paging?.pageId}
+        eachPerPage={paging?.eachPerPage}
+        total={sellers?.total}
+        onPageChange={(page) => {
+          setPaging({
+            ...paging,
+            pageId: page,
+          });
+        }}
+      />
+    </div>
   );
 };
 export default SellersComponent;

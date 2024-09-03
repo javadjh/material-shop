@@ -5,6 +5,8 @@ export interface IJob {
   mellicode?: string;
   fatherName?: string;
   age?: string;
+  createdAt?: string;
+  isExpand?: boolean;
   bithday?: string;
   isMarried?: string;
   address?: string;

@@ -58,11 +58,20 @@ const UpsertBrandModal: FC<{
               )}
             </UploadFileComponent>
             <Form.Item name={"title"}>
-              <Input placeholder="عنوان برند را وارد کنید" />
+              <input
+                className="form-control"
+                placeholder="عنوان برند را وارد کنید"
+              />
             </Form.Item>
-            <Button htmlType="submit" type="primary">
+            <button
+              className="btn btn-success"
+              onClick={(e) => {
+                e.preventDefault();
+                form.submit();
+              }}
+            >
               ثبت
-            </Button>
+            </button>
           </CenterStyled>
         </SpaceStyled>
       </Form>

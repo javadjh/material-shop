@@ -34,12 +34,20 @@ const Brand = () => {
       <SpaceStyled horizontal={5}>
         <Row align={"middle"} justify={"space-between"}>
           <Col>
-            <Typography.Text>برند ها</Typography.Text>
+            <h4>برند ها</h4>
           </Col>
           <Col>
-            <Button onClick={onOpenInsertBrand} type="primary">
-              افزودن برند جدید
-            </Button>
+            <SpaceStyled top={-10}>
+              <button
+                className="btn btn-success"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onOpenInsertBrand();
+                }}
+              >
+                افزودن برند جدید
+              </button>
+            </SpaceStyled>
           </Col>
         </Row>
       </SpaceStyled>

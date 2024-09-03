@@ -1,5 +1,6 @@
 import { FC, createContext, useContext, useState } from "react";
 import { ICategory } from "../../types/category.type";
+import { getCategoriesService } from "../../service/category.service";
 export interface ICategoryContext {
   isOpen?: any;
   setIsOpen?: any;
@@ -11,6 +12,11 @@ export interface ICategoryContext {
   setReload: any;
   selected: ICategory;
   setSelected: any;
+  categories?: Array<ICategory>;
+  setCategories?: any;
+  map: Array<string>;
+  setMap: any;
+  backPress: any;
 }
 
 const CategoryContext = createContext<ICategoryContext | null>(null);
@@ -22,9 +28,25 @@ const CategoryContextProvider: FC<ICategoryContextProvider> = ({
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [category, setCategory] = useState<ICategory>();
+  const [categories, setCategories] = useState<Array<ICategory>>();
   const [parent, setParent] = useState<ICategory>();
   const [reload, setReload] = useState<{ parentId?: string; date?: Date }>();
   const [selected, setSelected] = useState<ICategory>({});
+  const [map, setMap] = useState<Array<string>>(["دسته اصلی"]);
+
+  const backPress = async () => {
+    console.log("parent?.parentId");
+    console.log(parent?.parentId);
+
+    const {
+      data: { data: response },
+    } = await getCategoriesService(
+      map?.length == 2 ? undefined : parent?.parentId
+    );
+    setCategories(response?.list);
+
+    setMap(map.slice(0, -1));
+  };
 
   let value: ICategoryContext = {
     isOpen,
@@ -37,6 +59,11 @@ const CategoryContextProvider: FC<ICategoryContextProvider> = ({
     setReload,
     selected,
     setSelected,
+    categories,
+    setCategories,
+    map,
+    setMap,
+    backPress,
   };
 
   return (

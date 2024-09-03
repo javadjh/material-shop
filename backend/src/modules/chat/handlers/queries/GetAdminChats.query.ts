@@ -30,7 +30,7 @@ export class GetAdminChatsHandler implements IQueryHandler<GetAdminChatsQuery> {
     let users = await this.userModel
       .find({ isActive: true, isAdmin: false })
       .sort({ lastChatDate: -1 })
-      .select('firstName lastName phoneNumber lastChatDate')
+      .select('firstName lastName phone lastChatDate')
       .limit(eachPerPage)
       .skip(skip)
       .lean();
@@ -41,7 +41,7 @@ export class GetAdminChatsHandler implements IQueryHandler<GetAdminChatsQuery> {
 
     for (let i = 0; i < users.length; i++) {
       const item = users[i];
-
+      item.lastChatDate = item?.lastChatDate?.toJalali();
       item.lastChat =
         (
           await this.chatModel

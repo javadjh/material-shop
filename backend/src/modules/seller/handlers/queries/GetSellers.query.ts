@@ -60,6 +60,7 @@ export class GetSellersHandler implements IQueryHandler<GetSellersQuery> {
          website
          instagram
          telegram
+         createdAt
          sellerDepartment`,
       )
       .lean();
@@ -69,6 +70,7 @@ export class GetSellersHandler implements IQueryHandler<GetSellersQuery> {
     sellers.map((item) => {
       item.provinceName = item.province.name;
       item.cityName = item.city.name;
+      item.createdAt = item?.createdAt?.toJalali();
       delete item.province;
       delete item.city;
     });

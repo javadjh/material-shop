@@ -10,4 +10,23 @@ impo * {
 * {
   font-family: "vazir";
   margin: 0px;
+  /* color: #fff; */
+}
+label {
+  color: white !important;
+}
+.ant-select-selector {
+  background-color: #353c48 !important;
+  border: 1px solid #5e6b80 !important;
+}
+.ant-modal-content {
+  background-color: #353c48 !important;
+}
+.ant-pagination-item {
+  background-color: #303641 !important;
+  color: white !important;
+}
+.ant-pagination-item-active {
+  background-color: #535c6d !important;
+  border: none !important;
 }

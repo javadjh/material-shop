@@ -34,7 +34,8 @@ const TagPickerComponent: FC<ITagPickerComponent> = ({
   }, [value]);
   return (
     <SpaceStyled>
-      <Input
+      <input
+        className="form-control"
         onKeyDown={(e) => {
           if (e?.nativeEvent?.key === "Enter") {
             e.preventDefault();

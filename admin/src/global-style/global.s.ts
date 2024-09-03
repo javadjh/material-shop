@@ -37,3 +37,6 @@ export const PaddingStyled: any = styled.div`
 export const Pointer = styled.span`
   cursor: pointer;
 `;
+export const WhiteP = styled.p`
+  color: white;
+`;

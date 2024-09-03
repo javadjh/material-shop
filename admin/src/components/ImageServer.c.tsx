@@ -5,12 +5,20 @@ import { Image } from "antd";
 const ImageServerComponent: FC<{
   image: string | any;
   point?: boolean;
-  width?: number;
+  width?: any;
   height?: number;
-}> = ({ image, point, width, height }) => {
+  aspectRatio?: any;
+  objectFit?: any;
+}> = ({ image, point, width, height, aspectRatio, objectFit }) => {
   return (
     <Image
-      style={{ cursor: `${point ? "pointer" : ""}`, height, width }}
+      style={{
+        cursor: `${point ? "pointer" : ""}`,
+        height,
+        width,
+        aspectRatio,
+        objectFit,
+      }}
       preview={false}
       src={`${BACKEND_URL}public/${image}`}
     />

@@ -20,6 +20,7 @@ import { useNavigate, useRoutes } from "react-router-dom";
 
 const UpsertProduct = () => {
   const navigator = useNavigate();
+  const [form] = Form.useForm();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [image, setImage] = useState<string>();
   const [options, setOptions] = useState<Array<IOption>>([]);
@@ -90,174 +91,234 @@ const UpsertProduct = () => {
         isOpen={isOpen}
         setIsOpen={setIsOpen}
       />
-      <Form onFinish={onUpsertListener} layout="vertical">
-        <Row>
-          <Col span={8}>
-            <SpaceStyled bottom={10}>
+      <Form form={form} onFinish={onUpsertListener} layout="vertical">
+        <div>
+          <Row align={"middle"} justify={"space-between"}>
+            <Col></Col>
+            <Col>
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  form.submit();
+                }}
+                type="button"
+                className="btn btn-success"
+              >
+                ثبت
+              </button>
+            </Col>
+          </Row>
+          <Row>
+            <Col span={8}>
+              <SpaceStyled top={30}>
+                <Row>
+                  <Col span={11}>
+                    <button
+                      className="btn btn-primary"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setIsOpen(true);
+                      }}
+                    >
+                      {category?.title ? category?.title : "انتخاب دسته بندی"}
+                    </button>
+                  </Col>
+                  <Col span={12} offset={1}>
+                    <Form.Item name={"brandId"}>
+                      <select
+                        className="form-select"
+                        aria-placeholder="انتخاب برند محصول"
+                        style={{ width: "100%" }}
+                      >
+                        {brands?.map((brand) => (
+                          <option value={brand?._id}>{brand.title}</option>
+                        ))}
+                      </select>
+                    </Form.Item>
+                  </Col>
+                </Row>
+              </SpaceStyled>
+              <UploadFileComponent fileHandler={onFileUploaded}>
+                {image ? (
+                  <ImageServerComponent image={image} />
+                ) : (
+                  <img src="/placeholder.jpg" width={"100%"} />
+                )}
+              </UploadFileComponent>
+              <Form.Item name={"sellerIds"}>
+                <Select
+                  mode="multiple"
+                  allowClear
+                  style={{ width: "100%" }}
+                  placeholder="انتخاب فروشندگان"
+                  options={sellers}
+                />
+              </Form.Item>
+              <Form.Item name={"colors"}>
+                <TagPickerComponent placeholder="رنگ بندی را وارد کنید" />
+              </Form.Item>
               <Row>
                 <Col span={11}>
-                  <Button onClick={() => setIsOpen(true)}>
-                    {category?.title ? category?.title : "انتخاب دسته بندی"}
-                  </Button>
+                  <Form.Item name={"postPrice"}>
+                    <input
+                      className="form-control"
+                      type="number"
+                      placeholder="هزینه پست"
+                    />
+                  </Form.Item>
                 </Col>
                 <Col span={12} offset={1}>
-                  <Form.Item name={"brandId"}>
-                    <Select
-                      placeholder="انتخاب برند محصول"
-                      style={{ width: "100%" }}
-                    >
-                      {brands?.map((brand) => (
-                        <Select.Option key={brand?._id}>
-                          {brand.title}
-                        </Select.Option>
-                      ))}
-                    </Select>
+                  <Form.Item name={"unit"}>
+                    <input
+                      className="form-control"
+                      placeholder="واحد اندازه گیری"
+                    />
+                  </Form.Item>
+                </Col>
+                <Col span={11}>
+                  <Form.Item name={"size"}>
+                    <input
+                      className="form-control"
+                      placeholder="سایز را وارد کنید"
+                    />
+                  </Form.Item>
+                </Col>
+                <Col span={12} offset={1}>
+                  <Form.Item name={"control"}>
+                    <input
+                      className="form-control"
+                      type="number"
+                      placeholder="تعداد در جعبه را وارد کنید"
+                    />
+                  </Form.Item>
+                </Col>
+                <Col span={11}>
+                  <Form.Item name={"price"}>
+                    <input
+                      className="form-control"
+                      placeholder="قیمت را وارد کنید"
+                    />
+                  </Form.Item>
+                </Col>
+                <Col span={12} offset={1}>
+                  <Form.Item name={"remainingCount"}>
+                    <input
+                      className="form-control"
+                      type="number"
+                      placeholder="تعداد باقی مانده را وارد کنید"
+                    />
                   </Form.Item>
                 </Col>
               </Row>
-            </SpaceStyled>
-            <UploadFileComponent fileHandler={onFileUploaded}>
-              <ImageServerComponent image={image} />
-            </UploadFileComponent>
-            <Form.Item name={"sellerIds"}>
-              <Select
-                mode="multiple"
-                allowClear
-                style={{ width: "100%" }}
-                placeholder="انتخاب فروشندگان"
-                options={sellers}
-              />
-            </Form.Item>
-            <Form.Item name={"colors"}>
-              <TagPickerComponent placeholder="رنگ بندی را وارد کنید" />
-            </Form.Item>
-            <Row>
-              <Col span={11}>
-                <Form.Item name={"postPrice"}>
-                  <Input type="number" placeholder="هزینه پست" />
-                </Form.Item>
-              </Col>
-              <Col span={12} offset={1}>
-                <Form.Item name={"unit"}>
-                  <Input placeholder="واحد اندازه گیری" />
-                </Form.Item>
-              </Col>
-              <Col span={11}>
-                <Form.Item name={"size"}>
-                  <Input placeholder="سایز را وارد کنید" />
-                </Form.Item>
-              </Col>
-              <Col span={12} offset={1}>
-                <Form.Item name={"packCount"}>
-                  <Input
-                    type="number"
-                    placeholder="تعداد در جعبه را وارد کنید"
-                  />
-                </Form.Item>
-              </Col>
-              <Col span={11}>
-                <Form.Item name={"price"}>
-                  <Input placeholder="قیمت را وارد کنید" />
-                </Form.Item>
-              </Col>
-              <Col span={12} offset={1}>
-                <Form.Item name={"remainingCount"}>
-                  <Input
-                    type="number"
-                    placeholder="تعداد باقی مانده را وارد کنید"
-                  />
-                </Form.Item>
-              </Col>
-            </Row>
-            <Form.Item name={"isHighConsumption"}>
-              <Checkbox>کالای پر مصرف</Checkbox>
-            </Form.Item>
-          </Col>
-          <Col span={15} offset={1}>
-            <Row>
-              <Col span={12}>
-                <SpaceStyled horizontal={5}>
-                  <Form.Item name={"title"} label="عنوان">
-                    <Input placeholder="عنوان محصول را وارد کنید..." />
-                  </Form.Item>
-                </SpaceStyled>
-              </Col>
+              <Form.Item name={"isHighConsumption"}>
+                <Checkbox>کالای پر مصرف</Checkbox>
+              </Form.Item>
+            </Col>
+            <Col span={15} offset={1}>
+              <Row>
+                <Col span={12}>
+                  <SpaceStyled horizontal={5}>
+                    <div className="card-body">
+                      <div className="m-0">
+                        <Form.Item name={"title"} label="عنوان">
+                          <input
+                            type="text"
+                            className="form-control"
+                            name="title"
+                            placeholder="عنوان محصول را وارد کنید"
+                          />
+                        </Form.Item>
+                      </div>
+                    </div>
+                  </SpaceStyled>
+                </Col>
 
-              <Col span={12}>
-                <SpaceStyled horizontal={5}>
-                  <Form.Item name={"code"} label="کد محصول">
-                    <Input
-                      type="number"
-                      placeholder="کد محصول را وارد کنید..."
-                    />
-                  </Form.Item>
-                </SpaceStyled>
-              </Col>
+                <Col span={12}>
+                  <SpaceStyled horizontal={5}>
+                    <Form.Item name={"code"} label="کد محصول">
+                      <input
+                        className="form-control"
+                        type="number"
+                        placeholder="کد محصول را وارد کنید..."
+                      />
+                    </Form.Item>
+                  </SpaceStyled>
+                </Col>
 
-              <Col span={8}>
-                <SpaceStyled horizontal={5}>
-                  <Form.Item
-                    name={"minOrderCountForWholesale"}
-                    label="حداقل سفارش برای خرید عمده"
-                  >
-                    <Input type="number" placeholder="عدد وارد کنید" />
-                  </Form.Item>
-                </SpaceStyled>
-              </Col>
+                <Col span={8}>
+                  <SpaceStyled horizontal={5}>
+                    <Form.Item
+                      name={"minOrderCountForWholesale"}
+                      label="حداقل سفارش برای خرید عمده"
+                    >
+                      <input
+                        className="form-control"
+                        type="number"
+                        placeholder="عدد وارد کنید"
+                      />
+                    </Form.Item>
+                  </SpaceStyled>
+                </Col>
 
-              <Col span={8}>
-                <SpaceStyled horizontal={5}>
-                  <Form.Item
-                    name={"minOrderCountForRetail"}
-                    label="حداقل سفارش برای خرید جزئی"
-                  >
-                    <Input type="number" placeholder="عدد وارد کنید" />
-                  </Form.Item>
-                </SpaceStyled>
-              </Col>
+                <Col span={8}>
+                  <SpaceStyled horizontal={5}>
+                    <Form.Item
+                      name={"minOrderCountForRetail"}
+                      label="حداقل سفارش برای خرید جزئی"
+                    >
+                      <input
+                        className="form-control"
+                        type="number"
+                        placeholder="عدد وارد کنید"
+                      />
+                    </Form.Item>
+                  </SpaceStyled>
+                </Col>
 
-              <Col span={8}>
-                <SpaceStyled horizontal={5}>
-                  <Form.Item
-                    name={"offForWholesalePercent"}
-                    label="درصد تخفیف برای خرید عمده"
-                  >
-                    <Input
-                      type="number"
-                      placeholder="کد محصول را وارد کنید..."
-                    />
-                  </Form.Item>
-                </SpaceStyled>
-              </Col>
+                <Col span={8}>
+                  <SpaceStyled horizontal={5}>
+                    <Form.Item
+                      name={"offForWholesalePercent"}
+                      label="درصد تخفیف برای خرید عمده"
+                    >
+                      <input
+                        className="form-control"
+                        type="number"
+                        placeholder="کد محصول را وارد کنید..."
+                      />
+                    </Form.Item>
+                  </SpaceStyled>
+                </Col>
 
-              <Col span={24}>
-                <SpaceStyled horizontal={5}>
-                  <Form.Item name={"description"} label="توضیحات">
-                    <Input.TextArea
-                      rows={5}
-                      placeholder="توضیحات محصول را وارد کنید..."
-                    />
-                  </Form.Item>
-                </SpaceStyled>
-              </Col>
+                <Col span={24}>
+                  <SpaceStyled horizontal={5}>
+                    <Form.Item name={"description"} label="توضیحات">
+                      <textarea
+                        className="form-control"
+                        rows={5}
+                        placeholder="توضیحات محصول را وارد کنید..."
+                      />
+                    </Form.Item>
+                  </SpaceStyled>
+                </Col>
 
-              <Col span={24}>
-                <Form.Item name={"tags"}>
-                  <TagPickerComponent />
-                </Form.Item>
-              </Col>
-              <Col span={24}>
-                <OptionsComponent options={options} setOptions={setOptions} />
-              </Col>
-              <Col span={24}>
-                <CarsComponent cars={car} setCars={setCar} />
-              </Col>
-            </Row>
-          </Col>
-        </Row>
-        <Button htmlType="submit" type="primary">
-          ثبت
-        </Button>
+                <Col span={24}>
+                  <Form.Item name={"tags"}>
+                    <TagPickerComponent />
+                  </Form.Item>
+                </Col>
+                <Col span={24}>
+                  <OptionsComponent options={options} setOptions={setOptions} />
+                </Col>
+                <Col span={24}>
+                  <SpaceStyled top={40}>
+                    <CarsComponent cars={car} setCars={setCar} />
+                  </SpaceStyled>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+        </div>
       </Form>
     </>
   );

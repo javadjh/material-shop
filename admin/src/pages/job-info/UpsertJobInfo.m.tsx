@@ -44,14 +44,17 @@ const UpsertJobInfoModal: FC<{
       onCancel={() => setIsOpen(false)}
       width={"40%"}
     >
-      <div>
+      <div dir="rtl">
         <Form layout="vertical" onFinish={upsertJobInfoHandler} form={form}>
           <SpaceStyled vertical={20}>
             <Row>
               <Col span={12}>
                 <SpaceStyled horizontal={5}>
                   <Form.Item label="عنوان بخش" name={"department"}>
-                    <Input placeholder="عنوان بخش را وارد کنید " />
+                    <input
+                      className="form-control"
+                      placeholder="عنوان بخش را وارد کنید "
+                    />
                   </Form.Item>
                 </SpaceStyled>
               </Col>
@@ -61,7 +64,8 @@ const UpsertJobInfoModal: FC<{
                     label="تعداد باقی مانده"
                     name={"remainingEmployeeCount"}
                   >
-                    <Input
+                    <input
+                      className="form-control"
                       type="number"
                       placeholder="تعداد باقی مانده بخش را وارد کنید..."
                     />
@@ -82,28 +86,40 @@ const UpsertJobInfoModal: FC<{
               <Col span={12}>
                 <SpaceStyled horizontal={5}>
                   <Form.Item label="شهر" name={"city"}>
-                    <Input placeholder="شهر را وارد کنید..." />
+                    <input
+                      className="form-control"
+                      placeholder="شهر را وارد کنید..."
+                    />
                   </Form.Item>
                 </SpaceStyled>
               </Col>
               <Col span={12}>
                 <SpaceStyled horizontal={5}>
                   <Form.Item label="آدرس" name={"location"}>
-                    <Input placeholder="آدرس را وارد کنید..." />
+                    <input
+                      className="form-control"
+                      placeholder="آدرس را وارد کنید..."
+                    />
                   </Form.Item>
                 </SpaceStyled>
               </Col>
               <Col span={12}>
                 <SpaceStyled horizontal={5}>
                   <Form.Item label="بازه سنی" name={"ageRange"}>
-                    <Input placeholder="بازه سنی را وارد کنید..." />
+                    <input
+                      className="form-control"
+                      placeholder="بازه سنی را وارد کنید..."
+                    />
                   </Form.Item>
                 </SpaceStyled>
               </Col>
               <Col span={12}>
                 <SpaceStyled horizontal={5}>
                   <Form.Item name={"minDegree"} label="حداقل مدرک تحصیلی">
-                    <Input placeholder="حداقل مدرک تحصیلی را وارد کنید..." />
+                    <input
+                      className="form-control"
+                      placeholder="حداقل مدرک تحصیلی را وارد کنید..."
+                    />
                   </Form.Item>
                 </SpaceStyled>
               </Col>
@@ -113,49 +129,73 @@ const UpsertJobInfoModal: FC<{
                     label="مدرک تحصیلی مورد نیاز"
                     name={"requiredDegree"}
                   >
-                    <Input placeholder=" مدرک تحصیلی مورد نیاز را وارد کنید..." />
+                    <input
+                      className="form-control"
+                      placeholder=" مدرک تحصیلی مورد نیاز را وارد کنید..."
+                    />
                   </Form.Item>
                 </SpaceStyled>
               </Col>
               <Col span={12}>
                 <SpaceStyled horizontal={5}>
                   <Form.Item label="سابقه کاری" name={"jobHistory"}>
-                    <Input placeholder=" سابقه کاری را وارد کنید..." />
+                    <input
+                      className="form-control"
+                      placeholder=" سابقه کاری را وارد کنید..."
+                    />
                   </Form.Item>
                 </SpaceStyled>
               </Col>
               <Col span={12}>
                 <SpaceStyled horizontal={5}>
                   <Form.Item label="ساعت کاری" name={"clock"}>
-                    <Input placeholder=" ساعت کاری را وارد کنید..." />
+                    <input
+                      className="form-control"
+                      placeholder=" ساعت کاری را وارد کنید..."
+                    />
                   </Form.Item>
                 </SpaceStyled>
               </Col>
               <Col span={12}>
                 <SpaceStyled horizontal={5}>
                   <Form.Item label="حقوق" name={"salary"}>
-                    <Input placeholder=" حقوق مورد نظر را وارد کنید..." />
+                    <input
+                      className="form-control"
+                      placeholder=" حقوق مورد نظر را وارد کنید..."
+                    />
                   </Form.Item>
                 </SpaceStyled>
               </Col>
               <Col span={12}>
                 <SpaceStyled horizontal={5}>
                   <Form.Item label="وظایف" name={"mission"}>
-                    <Input placeholder=" وظایف را وارد کنید..." />
+                    <input
+                      className="form-control"
+                      placeholder=" وظایف را وارد کنید..."
+                    />
                   </Form.Item>
                 </SpaceStyled>
               </Col>
               <Col span={24}>
                 <SpaceStyled horizontal={5}>
                   <Form.Item label="توضیحات" name={"description"}>
-                    <Input.TextArea placeholder=" توضیحات را وارد کنید..." />
+                    <textarea
+                      className="form-control"
+                      placeholder=" توضیحات را وارد کنید..."
+                    />
                   </Form.Item>
                 </SpaceStyled>
               </Col>
             </Row>
-            <Button htmlType="submit" type="primary">
+            <button
+              className="btn btn-success px-5"
+              onClick={(e) => {
+                e.preventDefault();
+                form.submit();
+              }}
+            >
               ثبت
-            </Button>
+            </button>
           </SpaceStyled>
         </Form>
       </div>

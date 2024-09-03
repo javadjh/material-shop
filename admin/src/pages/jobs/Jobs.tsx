@@ -4,8 +4,11 @@ import { SpaceStyled } from "../../global-style/global.s";
 import { Typography } from "antd";
 import JobsComponent from "./Jobs.c";
 import { jobsService } from "../../service/job.service";
+import ShowJobInfoModal from "./ShowJobInfo.m";
 
 const Jobs = () => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [job, setJob] = useState<IJob>({});
   const [jobs, setJobs] = useState<{
     total: number | any;
     jobs: Array<IJob>;
@@ -13,7 +16,7 @@ const Jobs = () => {
   const [paging, setPaging] = useState<{ pageId: number; eachPerPage: number }>(
     {
       pageId: 1,
-      eachPerPage: 2,
+      eachPerPage: 20,
     }
   );
   useEffect(() => {
@@ -25,12 +28,22 @@ const Jobs = () => {
 
     setJobs(data.data);
   };
+  const openModal = (jobItem: IJob) => {
+    setJob(jobItem);
+    setIsOpen(true);
+  };
   return (
     <>
+      <ShowJobInfoModal job={job} isOpen={isOpen} setIsOpen={setIsOpen} />
       <SpaceStyled horizontal={5}>
-        <Typography.Text>درخواست ها</Typography.Text>
+        <h4>درخواست ها</h4>
       </SpaceStyled>
-      <JobsComponent paging={paging} jobs={jobs} setPaging={setPaging} />
+      <JobsComponent
+        openModal={openModal}
+        paging={paging}
+        jobs={jobs}
+        setPaging={setPaging}
+      />
     </>
   );
 };

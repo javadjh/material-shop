@@ -16,7 +16,7 @@ export const Seller = () => {
   const [paging, setPaging] = useState<{ pageId: number; eachPerPage: number }>(
     {
       pageId: 1,
-      eachPerPage: 2,
+      eachPerPage: 10,
     }
   );
   useEffect(() => {
@@ -25,6 +25,7 @@ export const Seller = () => {
 
   const getSellers = async () => {
     const { data } = await sellersService(paging);
+    console.log(data.data);
 
     setSellers(data.data);
   };
@@ -48,13 +49,15 @@ export const Seller = () => {
         <Row align={"middle"} justify={"space-between"}>
           <Col>
             <SpaceStyled horizontal={5}>
-              <Typography.Text>فروشندگان</Typography.Text>
+              <h4>فروشندگان</h4>
             </SpaceStyled>
           </Col>
           <Col>
-            <Button type="primary" onClick={onOpenModalHandler}>
-              افزودن فروشند جدید
-            </Button>
+            <SpaceStyled top={-10}>
+              <button className="btn btn-success" onClick={onOpenModalHandler}>
+                افزودن فروشند جدید
+              </button>
+            </SpaceStyled>
           </Col>
         </Row>
       </SpaceStyled>

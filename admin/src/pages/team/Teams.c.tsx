@@ -6,7 +6,7 @@ import { pagingConfig } from "../../utility/pagingConfig";
 import { IFilter } from "../../types/filter.type";
 import { ITeam } from "../../types/team.type";
 import { EyeOutlined } from "@ant-design/icons";
-import { Pointer } from "../../global-style/global.s";
+import { Pointer, SpaceStyled } from "../../global-style/global.s";
 import ImageServerComponent from "../../components/ImageServer.c";
 
 const TeamsComponent: FC<{
@@ -14,38 +14,61 @@ const TeamsComponent: FC<{
 
   onClickEditListener: any;
 }> = ({ teams, onClickEditListener }) => {
-  const columns: TableProps<ITeam>["columns"] = [
-    {
-      title: "تصویر نمایه",
-      dataIndex: "image",
-      key: "image",
-      render: (img) => <ImageServerComponent width={80} image={img} />,
-    },
-    {
-      title: "نام و نام خانوادگی",
-      dataIndex: "fullName",
-      key: "fullName",
-    },
-    {
-      title: "سمت",
-      dataIndex: "position",
-      key: "position",
-    },
+  return (
+    <div className="col-xxl-12">
+      <div className="card mb-3">
+        <div className="card-body">
+          <div className="table-responsive">
+            <div className="table-outer">
+              <table className="table table-striped m-0">
+                <thead>
+                  <tr>
+                    <th>شناسه</th>
+                    <th>تصویر نمایه</th>
+                    <th>نام و نام خانوادگی</th>
+                    <th>سمت</th>
+                    <th>عملیات</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {teams?.map((item: ITeam, index: number) => (
+                    <>
+                      <tr>
+                        <td>
+                          <SpaceStyled top={15}>{index + 1}</SpaceStyled>
+                        </td>
 
-    {
-      title: "عملیات",
-      key: "action",
-      render: (record) => (
-        <Pointer>
-          <EyeOutlined
-            style={{ color: "blue" }}
-            onClick={() => onClickEditListener(record)}
-          />
-        </Pointer>
-      ),
-    },
-  ];
-
-  return <Table columns={columns} dataSource={teams} />;
+                        <td>
+                          <SpaceStyled top={5}>
+                            <ImageServerComponent
+                              image={item?.image}
+                              width={40}
+                            />
+                          </SpaceStyled>
+                        </td>
+                        <td>
+                          <SpaceStyled top={15}>{item?.fullName}</SpaceStyled>
+                        </td>
+                        <td>{item?.position}</td>
+                        <td>
+                          <SpaceStyled top={15}>
+                            <Pointer>
+                              <p onClick={() => onClickEditListener(item)}>
+                                ویرایش
+                              </p>
+                            </Pointer>
+                          </SpaceStyled>
+                        </td>
+                      </tr>
+                    </>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 export default TeamsComponent;

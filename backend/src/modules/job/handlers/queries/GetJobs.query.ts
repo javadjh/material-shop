@@ -60,11 +60,16 @@ export class GetJobsHandler implements IQueryHandler<GetJobsQuery> {
           lastCompanyName
           lastCompanyTel
           resume
+          createdAt
           description`,
       )
       .skip(skip)
       .limit(eachPerPage)
       .lean();
+
+    jobs?.map((item) => {
+      item.createdAt = item.createdAt?.toJalali();
+    });
 
     const total: number = await this.job.find(filter).count();
 

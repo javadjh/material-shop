@@ -13,7 +13,7 @@ const Report = () => {
   const [paging, setPaging] = useState<{ pageId: number; eachPerPage: number }>(
     {
       pageId: 1,
-      eachPerPage: 2,
+      eachPerPage: 20,
     }
   );
   useEffect(() => {
@@ -28,7 +28,7 @@ const Report = () => {
   return (
     <>
       <SpaceStyled horizontal={5}>
-        <Typography.Text>گزارشات</Typography.Text>
+        <h4>گزارشات</h4>
       </SpaceStyled>
       <ReportsComponent
         paging={paging}

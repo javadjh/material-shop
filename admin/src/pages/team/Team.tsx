@@ -42,13 +42,15 @@ export const Team = () => {
         <Row align={"middle"} justify={"space-between"}>
           <Col>
             <SpaceStyled horizontal={5}>
-              <Typography.Text>اعضا</Typography.Text>
+              <h4>تیم</h4>
             </SpaceStyled>
           </Col>
           <Col>
-            <Button type="primary" onClick={onOpenModalHandler}>
-              افزودن عضو جدید
-            </Button>
+            <SpaceStyled top={-10}>
+              <button className="btn btn-success" onClick={onOpenModalHandler}>
+                افزودن عضو جدید
+              </button>
+            </SpaceStyled>
           </Col>
         </Row>
       </SpaceStyled>

@@ -67,7 +67,7 @@ export class GetProductsHandler implements IQueryHandler<GetProductsQuery> {
     let products: Array<Product> = await this.product
       .find(filterObject)
       .limit(eachPerPage)
-      .select('price title image brand remainingCount ')
+      .select('price title image brand remainingCount createdAt')
       .skip(skip)
       .populate('brand', 'title')
       .sort({ createdAt: -1 })
@@ -89,6 +89,7 @@ export class GetProductsHandler implements IQueryHandler<GetProductsQuery> {
     products.forEach((ele) => {
       ele.brandName = `${ele.brand?.title}`;
       delete ele.brand;
+      ele.createdAt = ele?.createdAt?.toJalali();
     });
 
     let response: GetProductsData = {

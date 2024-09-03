@@ -3,15 +3,15 @@ import { ICategory } from "../../types/category.type";
 import CategoryItemComponent from "./CategoryItem.c";
 import { Typography } from "antd";
 import { useCategoryContext } from "./category.context";
-import { SpaceStyled } from "../../global-style/global.s";
+import { CenterStyled, SpaceStyled } from "../../global-style/global.s";
 import { AddCategoryTextStyled } from "./category.style";
 
 const CategoriesComponent: FC<{
-  categories: Array<ICategory>;
+  categories?: Array<ICategory>;
   justView: boolean;
-}> = ({ categories, justView }) => {
+}> = ({ justView }) => {
   const { setIsOpen, reload, setCategory } = useCategoryContext();
-
+  const { categories } = useCategoryContext();
   const onInsertCategory = () => {
     setCategory({});
     setIsOpen(true);
@@ -28,9 +28,11 @@ const CategoriesComponent: FC<{
         <CategoryItemComponent justView={justView} category={catregory} />
       ))}
       {!justView && (
-        <AddCategoryTextStyled onClick={onInsertCategory}>
-          افزودن
-        </AddCategoryTextStyled>
+        <CenterStyled>
+          <AddCategoryTextStyled onClick={onInsertCategory}>
+            افزودن
+          </AddCategoryTextStyled>
+        </CenterStyled>
       )}
     </div>
   );

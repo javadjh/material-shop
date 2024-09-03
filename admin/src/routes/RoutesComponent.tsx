@@ -14,14 +14,17 @@ import Category from "../pages/category/Category";
 import CategoryContextProvider from "../pages/category/category.context";
 import AppSetting from "../pages/appsetting/AppSetting";
 import Team from "../pages/team/Team";
+import MainLayout from "../layout/Main.layout";
+import UsersChats from "../pages/chats/UsersChats";
 
 const RoutesComponent = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="login" element={<Login />} />
+        {/* <Route path="dash" element={<MainLayout />} /> */}
       </Routes>
-      <AdminLayout>
+      <MainLayout>
         <Routes>
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="brand" element={<Brand />} />
@@ -33,6 +36,7 @@ const RoutesComponent = () => {
           <Route path="upsert-product" element={<UpsertProduct />} />
           <Route path="appsetting" element={<AppSetting />} />
           <Route path="team" element={<Team />} />
+          <Route path="chat" element={<UsersChats />} />
           <Route
             path="category"
             element={
@@ -42,7 +46,7 @@ const RoutesComponent = () => {
             }
           />
         </Routes>
-      </AdminLayout>
+      </MainLayout>
     </BrowserRouter>
   );
 };

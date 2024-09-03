@@ -2,6 +2,8 @@ export interface IProduct {
   title?: string;
   code?: number;
   image?: string;
+  brandName?: string;
+  createdAt?: string;
   description?: string;
   tags?: [string];
   minOrderCountForRetail?: number;

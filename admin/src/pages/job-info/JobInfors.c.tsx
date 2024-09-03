@@ -3,6 +3,7 @@ import {
   CenterStyled,
   Pointer,
   SpaceStyled,
+  WhiteP,
 } from "../../global-style/global.s";
 import { FC } from "react";
 import { IJobInfo } from "../../types/job-info.type";
@@ -22,29 +23,25 @@ const JobInfosComponent: FC<{
         <Col span={6}>
           <Pointer onClick={() => onEditHandler(jobInfo)}>
             <SpaceStyled vertical={5} horizontal={5}>
-              <Card>
+              <div className="card p-4">
                 <SpaceStyled>
                   <CenterStyled>
-                    <Typography.Paragraph>
-                      بخش : {jobInfo.department}
-                    </Typography.Paragraph>
-                    <Typography.Paragraph>
+                    <WhiteP>بخش : {jobInfo.department}</WhiteP>
+                    <WhiteP>
                       مورد نیاز : {jobInfo.remainingEmployeeCount}
-                    </Typography.Paragraph>
-                    <Typography.Paragraph>
+                    </WhiteP>
+                    <WhiteP>
                       جنسیت :{" "}
                       {jobInfo.gender == "men"
                         ? "آقا"
                         : jobInfo.gender == "both"
                         ? "فرقی ندارد"
                         : "خانم"}
-                    </Typography.Paragraph>
-                    <Typography.Paragraph>
-                      شهر : {jobInfo.city}
-                    </Typography.Paragraph>
+                    </WhiteP>
+                    <WhiteP>شهر : {jobInfo.city}</WhiteP>
                   </CenterStyled>
                 </SpaceStyled>
-              </Card>
+              </div>
             </SpaceStyled>
           </Pointer>
         </Col>

@@ -12,10 +12,8 @@ export const RedTextStyled = styled(Typography.Text)`
   cursor: pointer;
 `;
 export const AddCategoryTextStyled = styled.div`
-  color: green;
+  color: rgb(83, 129, 12);
   z-index: 100;
-  margin-right: 50px;
-  font-size: 12px;
+  font-size: 20px;
   cursor: pointer;
-  margin-top: 10px;
 `;

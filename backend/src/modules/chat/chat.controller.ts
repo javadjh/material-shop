@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  Query,
+  UseGuards,
+} from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { ApiBearerAuth, ApiOkResponse } from '@nestjs/swagger';
 import { JwtGuard } from 'src/guards/jwt.guard';
@@ -12,6 +20,7 @@ import { PagingDto } from 'src/shareDTO/Paging.dto';
 import { AdminJwtGuard } from 'src/guards/admin-jwt.guard';
 import { GetAdminChatsQuery } from './handlers/queries/GetAdminChats.query';
 import { GetUsersUnseenChatQuery } from './handlers/queries/GetUsersUnseenChat.query';
+import { GetAdminUserChatsQuery } from './handlers/queries/GetAdminUserChats.query';
 
 @Controller('chat')
 export class ChatController {
@@ -60,7 +69,18 @@ export class ChatController {
     description: 'this route will return the users chats',
     type: ActionDto,
   })
-  adminUsersChats(@Param() paging: PagingDto) {
+  adminUsersChat(@Param() paging: PagingDto) {
     return this.queryBus.execute(new GetAdminChatsQuery(paging));
+  }
+
+  @Get('admin/user')
+  @UseGuards(AdminJwtGuard)
+  @ApiBearerAuth('JWT-auth')
+  @ApiOkResponse({
+    description: 'this route will return the user chats',
+    type: ActionDto,
+  })
+  adminUserChats(@Param() paging: PagingDto, @Query('userId') userId: string) {
+    return this.queryBus.execute(new GetAdminUserChatsQuery(paging, userId));
   }
 }

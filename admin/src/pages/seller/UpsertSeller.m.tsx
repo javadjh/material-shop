@@ -48,66 +48,82 @@ const UpsertSellerModal: FC<{
       onCancel={() => setIsOpen(false)}
       width={"40%"}
     >
-      <div>
+      <div dir="rtl">
         <Form layout="vertical" onFinish={upsertSellerHandler} form={form}>
           <SpaceStyled vertical={20}>
             <Row>
               <Col span={24}>
                 <SpaceStyled horizontal={5}>
                   <Form.Item label="عنوان" name={"title"}>
-                    <Input placeholder="عنوان را وارد کنید " />
+                    <input
+                      className="form-control"
+                      placeholder="عنوان را وارد کنید "
+                    />
                   </Form.Item>
                 </SpaceStyled>
               </Col>
               <Col span={12}>
                 <SpaceStyled horizontal={5}>
                   <Form.Item label="شماره اول" name={"firstNumber"}>
-                    <Input placeholder="شماره اول را وارد کنید " />
+                    <input
+                      className="form-control"
+                      placeholder="شماره اول را وارد کنید "
+                    />
                   </Form.Item>
                 </SpaceStyled>
               </Col>
               <Col span={12}>
                 <SpaceStyled horizontal={5}>
                   <Form.Item label="شماره دوم" name={"secondNumber"}>
-                    <Input placeholder="شماره دوم را وارد کنید " />
+                    <input
+                      className="form-control"
+                      placeholder="شماره دوم را وارد کنید "
+                    />
                   </Form.Item>
                 </SpaceStyled>
               </Col>
               <Col span={12}>
                 <SpaceStyled horizontal={5}>
                   <Form.Item label="وب سایت" name={"website"}>
-                    <Input placeholder="وب سایت را وارد کنید " />
+                    <input
+                      className="form-control"
+                      placeholder="وب سایت را وارد کنید "
+                    />
                   </Form.Item>
                 </SpaceStyled>
               </Col>
               <Col span={12}>
                 <SpaceStyled horizontal={5}>
                   <Form.Item label="اینستاگرام" name={"instagram"}>
-                    <Input placeholder="اینستاگرام را وارد کنید " />
+                    <input
+                      className="form-control"
+                      placeholder="اینستاگرام را وارد کنید "
+                    />
                   </Form.Item>
                 </SpaceStyled>
               </Col>
               <Col span={12}>
                 <SpaceStyled horizontal={5}>
                   <Form.Item label="تلگرام" name={"telegram"}>
-                    <Input placeholder="تلگرام را وارد کنید " />
+                    <input
+                      className="form-control"
+                      placeholder="تلگرام را وارد کنید "
+                    />
                   </Form.Item>
                 </SpaceStyled>
               </Col>
               <Col span={12}>
                 <SpaceStyled horizontal={5}>
                   <Form.Item label="بخش" name={"sellerDepartment"}>
-                    <Select>
-                      <Select.Option key={"material"}>material</Select.Option>
-                      <Select.Option key={"tool"}>tool</Select.Option>
-                      <Select.Option key={"iron-wood"}>iron-wood</Select.Option>
-                      <Select.Option key={"stone-ceramic"}>
-                        stone-ceramic
-                      </Select.Option>
-                      <Select.Option key={"electrical-water-facilities"}>
+                    <select className="form-select">
+                      <option key={"material"}>material</option>
+                      <option key={"tool"}>tool</option>
+                      <option key={"iron-wood"}>iron-wood</option>
+                      <option key={"stone-ceramic"}>stone-ceramic</option>
+                      <option key={"electrical-water-facilities"}>
                         electrical-water-facilities
-                      </Select.Option>
-                    </Select>
+                      </option>
+                    </select>
                   </Form.Item>
                 </SpaceStyled>
               </Col>
@@ -121,7 +137,10 @@ const UpsertSellerModal: FC<{
               <Col span={24}>
                 <SpaceStyled horizontal={5}>
                   <Form.Item label="آدرس" name={"address"}>
-                    <Input placeholder="آدرس را وارد کنید " />
+                    <input
+                      className="form-control"
+                      placeholder="آدرس را وارد کنید "
+                    />
                   </Form.Item>
                 </SpaceStyled>
               </Col>

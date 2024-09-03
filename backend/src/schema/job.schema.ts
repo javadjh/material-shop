@@ -3,7 +3,9 @@ import { Document } from 'mongoose';
 import { BaseModel } from './share/BaseModel';
 
 export type JobDocument = Job & Document;
-class BaseJobModel extends BaseModel {}
+class BaseJobModel extends BaseModel {
+  departmentName: string;
+}
 
 @Schema({ timestamps: true })
 export class Job extends BaseJobModel {

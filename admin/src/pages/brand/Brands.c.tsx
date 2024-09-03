@@ -5,6 +5,7 @@ import {
   CenterStyled,
   Pointer,
   SpaceStyled,
+  WhiteP,
 } from "../../global-style/global.s";
 import ImageServerComponent from "../../components/ImageServer.c";
 import { BrandItemContainerStyled } from "./brand.styles";
@@ -25,14 +26,18 @@ const BrandsComponent: FC<{
           <Pointer>
             <BrandItemContainerStyled>
               <SpaceStyled horizontal={5} vertical={5}>
-                <Card>
-                  <ImageServerComponent image={brand?.logo} />
+                <div className="card">
+                  <ImageServerComponent
+                    image={brand?.logo}
+                    aspectRatio={1 / 1}
+                    objectFit={"cover"}
+                  />
                   <SpaceStyled top={10}>
                     <CenterStyled>
-                      <Typography.Text>{brand?.title}</Typography.Text>
+                      <WhiteP>{brand?.title}</WhiteP>
                     </CenterStyled>
                   </SpaceStyled>
-                </Card>
+                </div>
               </SpaceStyled>
             </BrandItemContainerStyled>
           </Pointer>

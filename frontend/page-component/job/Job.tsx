@@ -107,11 +107,11 @@ const JobPage = () => {
                       lg={6}
                       onClick={() => {
                         setJobInfo(item);
-                        setJobSelected(item?._id);
+                        setJobSelected(item?.title);
                       }}
                     >
                       <ActionBorderComponent
-                        isSelected={jobSelected == item?._id}
+                        isSelected={jobSelected == item?.title}
                       >
                         {item?.department}
                       </ActionBorderComponent>

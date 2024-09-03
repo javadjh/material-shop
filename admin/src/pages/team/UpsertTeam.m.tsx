@@ -10,7 +10,7 @@ import {
   message,
 } from "antd";
 import { FC, useEffect, useState } from "react";
-import { SpaceStyled } from "../../global-style/global.s";
+import { CenterStyled, SpaceStyled } from "../../global-style/global.s";
 import { ITeam } from "../../types/team.type";
 import {
   insertTeamService,
@@ -60,23 +60,28 @@ const UpsertTeamModal: FC<{
       onCancel={() => setIsOpen(false)}
       width={"40%"}
     >
-      <div>
+      <div dir="rtl">
         <Form layout="vertical" onFinish={upsertTeamHandler} form={form}>
           <SpaceStyled vertical={20}>
-            <UploadFileComponent
-              fileHandler={(file: any) => setImage(file?.filename)}
-            >
-              {image ? (
-                <ImageServerComponent image={image} />
-              ) : (
-                <Typography.Text>آپلود تصویر</Typography.Text>
-              )}
-            </UploadFileComponent>
+            <CenterStyled>
+              <UploadFileComponent
+                fileHandler={(file: any) => setImage(file?.filename)}
+              >
+                {image ? (
+                  <ImageServerComponent image={image} />
+                ) : (
+                  <Typography.Text>آپلود تصویر</Typography.Text>
+                )}
+              </UploadFileComponent>
+            </CenterStyled>
             <Row>
               <Col span={24}>
                 <SpaceStyled horizontal={5}>
                   <Form.Item label="نام و نام خانوادگی" name={"fullName"}>
-                    <Input placeholder="نام و نام خانوادگی را وارد کنید " />
+                    <input
+                      className="form-control"
+                      placeholder="نام و نام خانوادگی را وارد کنید "
+                    />
                   </Form.Item>
                 </SpaceStyled>
               </Col>
@@ -84,7 +89,10 @@ const UpsertTeamModal: FC<{
               <Col span={12}>
                 <SpaceStyled horizontal={5}>
                   <Form.Item label="اینستاگرام" name={"instagram"}>
-                    <Input placeholder="اینستاگرام را وارد کنید " />
+                    <input
+                      className="form-control"
+                      placeholder="اینستاگرام را وارد کنید "
+                    />
                   </Form.Item>
                 </SpaceStyled>
               </Col>
@@ -92,7 +100,10 @@ const UpsertTeamModal: FC<{
               <Col span={12}>
                 <SpaceStyled horizontal={5}>
                   <Form.Item label="تلگرام" name={"telegram"}>
-                    <Input placeholder="تلگرام را وارد کنید " />
+                    <input
+                      className="form-control"
+                      placeholder="تلگرام را وارد کنید "
+                    />
                   </Form.Item>
                 </SpaceStyled>
               </Col>
@@ -100,7 +111,10 @@ const UpsertTeamModal: FC<{
               <Col span={12}>
                 <SpaceStyled horizontal={5}>
                   <Form.Item label="توییتر" name={"twitter"}>
-                    <Input placeholder="توییتر را وارد کنید " />
+                    <input
+                      className="form-control"
+                      placeholder="توییتر را وارد کنید "
+                    />
                   </Form.Item>
                 </SpaceStyled>
               </Col>
@@ -108,7 +122,10 @@ const UpsertTeamModal: FC<{
               <Col span={12}>
                 <SpaceStyled horizontal={5}>
                   <Form.Item label="واتس اپ" name={"whatsapp"}>
-                    <Input placeholder="واتس اپ را وارد کنید " />
+                    <input
+                      className="form-control"
+                      placeholder="واتس اپ را وارد کنید "
+                    />
                   </Form.Item>
                 </SpaceStyled>
               </Col>
@@ -116,7 +133,10 @@ const UpsertTeamModal: FC<{
               <Col span={12}>
                 <SpaceStyled horizontal={5}>
                   <Form.Item label="لیندکدین" name={"linkedin"}>
-                    <Input placeholder="لیندکدین را وارد کنید " />
+                    <input
+                      className="form-control"
+                      placeholder="لیندکدین را وارد کنید "
+                    />
                   </Form.Item>
                 </SpaceStyled>
               </Col>
@@ -124,14 +144,15 @@ const UpsertTeamModal: FC<{
               <Col span={12}>
                 <SpaceStyled horizontal={5}>
                   <Form.Item label="سمت" name={"position"}>
-                    <Input placeholder="سمت را وارد کنید " />
+                    <input
+                      className="form-control"
+                      placeholder="سمت را وارد کنید "
+                    />
                   </Form.Item>
                 </SpaceStyled>
               </Col>
             </Row>
-            <Button htmlType="submit" type="primary">
-              ثبت
-            </Button>
+            <button className="btn btn-success">ثبت</button>
           </SpaceStyled>
         </Form>
       </div>

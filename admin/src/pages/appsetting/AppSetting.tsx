@@ -3,12 +3,19 @@ import {
   getAppSettingService,
   updateAppSettingService,
 } from "../../service/app-setting";
-import { useEffect } from "react";
-import { SpaceStyled } from "../../global-style/global.s";
+import { useEffect, useState } from "react";
+import {
+  CenterStyled,
+  Pointer,
+  SpaceStyled,
+  WhiteP,
+} from "../../global-style/global.s";
 import { UploadFileComponent } from "../../components/UploadFile.c";
+import ImageServerComponent from "../../components/ImageServer.c";
 
 const AppSetting = () => {
   const [form] = Form.useForm();
+  const [banner, setBanner] = useState<string>();
   useEffect(() => {
     getData();
   }, []);
@@ -24,93 +31,115 @@ const AppSetting = () => {
   };
   return (
     <Form form={form} onFinish={onUpdateAppSetting} layout="vertical">
+      <Row justify={"space-between"}>
+        <Col></Col>
+        <Col>
+          <button className="btn btn-success">بروزرسانی</button>
+        </Col>
+      </Row>
+      <CenterStyled>
+        <WhiteP>شبکه های اجتماعی</WhiteP>
+      </CenterStyled>
       <Row>
-        <Divider>شبکه های اجتماعی</Divider>
-        <Col span={11} offset={1}>
+        <Col span={11}>
           <Form.Item name={"instagram"} label="آدرس اینستاگرام ">
-            <Input />
+            <input className="form-control" />
           </Form.Item>
         </Col>
         <Col span={11} offset={1}>
           <Form.Item name="twitter" label="آدرس توییتر ">
-            <Input />
+            <input className="form-control" />
           </Form.Item>
         </Col>
-        <Col span={11} offset={1}>
+        <Col span={11}>
           <Form.Item name="whatsapp" label="آدرس واتس اپ ">
-            <Input />
+            <input className="form-control" />
           </Form.Item>
         </Col>
         <Col span={11} offset={1}>
           <Form.Item name="pinterest" label="آدرس پینترس ">
-            <Input />
+            <input className="form-control" />
           </Form.Item>
         </Col>
-        <Col span={11} offset={1}>
+        <Col span={11}>
           <Form.Item name="linkedin" label="آدرس لینکدین ">
-            <Input />
+            <input className="form-control" />
           </Form.Item>
         </Col>
         <Col span={11} offset={1}>
           <Form.Item name="telegram" label="آدرس تلگرام ">
-            <Input />
+            <input className="form-control" />
           </Form.Item>
         </Col>
-        <Col span={11} offset={1}>
+        <Col span={11}>
           <Form.Item name="youtube" label="آدرس یوتوب ">
-            <Input />
+            <input className="form-control" />
           </Form.Item>
         </Col>
-        <Divider>اپ</Divider>
-        <Col span={11} offset={1}>
+      </Row>
+      <CenterStyled>
+        <WhiteP>اپ</WhiteP>
+      </CenterStyled>
+      <Row>
+        <Col span={11}>
           <Form.Item name="bazazr" label="آدرس اپ کافه بازار ">
-            <Input />
+            <input className="form-control" />
           </Form.Item>
         </Col>
         <Col span={11} offset={1}>
           <Form.Item name="myket" label="آدرس اپ مایکت ">
-            <Input />
+            <input className="form-control" />
           </Form.Item>
         </Col>
-        <Col span={11} offset={1}>
+        <Col span={11}>
           <Form.Item name="link" label="آدرس لینک مستقیم ">
-            <Input />
+            <input className="form-control" />
           </Form.Item>
         </Col>
         <Col span={11} offset={1}>
           <Form.Item name="sibche" label="آدرس سیبچه ">
-            <Input />
+            <input className="form-control" />
           </Form.Item>
         </Col>
-        <Col span={11} offset={1}>
+        <Col span={11}>
           <Form.Item name="sibapp" label="آدرس سیب اپ ">
-            <Input />
+            <input className="form-control" />
           </Form.Item>
         </Col>
         <Col span={11} offset={1}>
           <Form.Item name="webapp" label="آدرس وب اپلیکیشن ">
-            <Input />
+            <input className="form-control" />
           </Form.Item>
         </Col>
-        <Divider>بنر</Divider>
-        <SpaceStyled vertical={20} right={50}>
-          <UploadFileComponent
-            fileHandler={(e: any) => {
-              console.log(e.filename);
-
-              form.setFieldValue("banner", e.filename);
-            }}
-          >
-            آپلود بنر
-          </UploadFileComponent>
-        </SpaceStyled>
       </Row>
+      <CenterStyled>
+        <WhiteP>بنر</WhiteP>
+      </CenterStyled>
+      <UploadFileComponent
+        fileHandler={(e: any) => {
+          console.log(e.filename);
+
+          form.setFieldValue("banner", e.filename);
+          setBanner(e.filename);
+          console.log(form?.getFieldValue("banner"));
+        }}
+      >
+        {banner ? (
+          <CenterStyled>
+            <ImageServerComponent
+              image={form?.getFieldValue("banner")}
+              width={"100%"}
+            />
+          </CenterStyled>
+        ) : (
+          <CenterStyled>
+            <Pointer>
+              <img src="/banner-placeholder.jpg" width={"100%"} />
+            </Pointer>
+          </CenterStyled>
+        )}
+      </UploadFileComponent>
       <Form.Item name="banner" />
-      <SpaceStyled right={60}>
-        <Button type="primary" htmlType="submit">
-          بروزرسانی
-        </Button>
-      </SpaceStyled>
     </Form>
   );
 };

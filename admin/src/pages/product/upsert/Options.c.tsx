@@ -28,18 +28,32 @@ const OptionsComponent: FC<{
         <Row align={"bottom"}>
           <Col span={9}>
             <Form.Item name={"key"} label="عنوان">
-              <Input placeholder="عنوان را وارد کنید" />
+              <input
+                className="form-control"
+                placeholder="عنوان را وارد کنید"
+              />
             </Form.Item>
           </Col>
           <Col span={9} offset={1}>
             <Form.Item name={"value"} label="مقدار">
-              <Input placeholder="مقدار را وارد کنید" />
+              <input
+                className="form-control"
+                placeholder="مقدار را وارد کنید"
+              />
             </Form.Item>
           </Col>
           <Col span={4} offset={1}>
             <CenterStyled>
-              <SpaceStyled bottom={-7}>
-                <Button onClick={() => form.submit()}>افزودن</Button>
+              <SpaceStyled bottom={-10}>
+                <button
+                  className="btn btn-light "
+                  onClick={(e) => {
+                    e.preventDefault();
+                    form.submit();
+                  }}
+                >
+                  افزودن
+                </button>
               </SpaceStyled>
             </CenterStyled>
           </Col>
@@ -48,23 +62,25 @@ const OptionsComponent: FC<{
       <SpaceStyled top={20}>
         {options?.map((option, index) => (
           <PaddingStyled
-            style={{ backgroundColor: index % 2 == 0 && "gray" }}
+            style={{ backgroundColor: index % 2 == 0 && "#4b5466" }}
             vertical={10}
             horizontal={10}
           >
             <Row align={"middle"}>
-              <Col span={9}>{option.key}</Col>
+              <Col span={9}>
+                <span>{option.key}</span>
+              </Col>
               <Col span={9} offset={1}>
                 {option.value}
               </Col>
               <Col span={4} offset={1}>
                 <CenterStyled>
-                  <Typography.Link
+                  <a
                     onClick={() => removeOption(option)}
                     style={{ color: "red" }}
                   >
                     حذف
-                  </Typography.Link>
+                  </a>
                 </CenterStyled>
               </Col>
             </Row>

@@ -30,6 +30,9 @@ export class GetSellersResponseList {
 
   @ApiProperty()
   sellerDepartment: string;
+
+  @ApiProperty()
+  createdAt: string;
 }
 export class GetSellersResponseData {
   @ApiProperty()

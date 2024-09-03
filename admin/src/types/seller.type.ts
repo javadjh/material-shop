@@ -7,6 +7,7 @@ export interface ISeller {
   province?: string;
   provinceName?: string;
   address?: string;
+  createdAt?: string;
   website?: string;
   instagram?: string;
   telegram?: string;
