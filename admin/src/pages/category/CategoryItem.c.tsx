@@ -63,9 +63,9 @@ const CategoryItemComponent: FC<{ category: ICategory; justView: boolean }> = ({
   };
 
   return (
-    <Pointer className="card m-3 p-3 " onClick={enteryToParentListener}>
+    <div className="card m-3 p-3 ">
       <Row justify={"space-between"}>
-        <Col>
+        <Col onClick={enteryToParentListener}>
           <Pointer>
             <span
               style={{
@@ -111,7 +111,7 @@ const CategoryItemComponent: FC<{ category: ICategory; justView: boolean }> = ({
           </SpaceStyled>
         )} */}
       </Row>
-    </Pointer>
+    </div>
   );
 };
 export default CategoryItemComponent;
