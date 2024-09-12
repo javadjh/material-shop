@@ -12,7 +12,11 @@ import { Mail } from "@mui/icons-material";
 import { getCookie } from "cookies-next";
 import { LARGE_FONT, X_LARGE_FONT } from "../../config/font";
 import Link from "next/link";
-const ChatComponent: FC<{ top: number; height: any; widthMessageBox: any }> = ({
+const ChatComponent: FC<{
+  top?: number;
+  height?: any;
+  widthMessageBox?: any;
+}> = ({
   top = 80,
   height = "calc(100vh - 210px)",
   widthMessageBox = "78%",
