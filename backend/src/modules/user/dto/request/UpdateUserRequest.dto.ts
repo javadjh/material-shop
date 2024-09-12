@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import {
+  isEmail,
   IsEmail,
   IsNumber,
   IsNumberString,
@@ -36,12 +37,22 @@ export class UpdateUserRequestDto {
   @IsString()
   @ApiProperty()
   @IsOptional()
-  @Length(10)
   postalCode: string;
+
+  @IsString()
+  @ApiProperty()
+  @IsEmail()
+  @IsOptional()
+  email: string;
 
   @IsString()
   @IsOptional()
   @ApiProperty()
   @Length(2, 100)
   companyName: string;
+
+  @IsString()
+  @IsOptional()
+  @ApiProperty()
+  melliCode: string;
 }

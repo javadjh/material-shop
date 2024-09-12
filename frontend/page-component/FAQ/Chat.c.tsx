@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import { getChats, insertChats } from "../../service/chat.service";
 import styled from "styled-components";
 import { GRAY_COLOR, ORANGE_COLOR, WHITE_COLOR } from "../../config/colors";
@@ -12,7 +12,11 @@ import { Mail } from "@mui/icons-material";
 import { getCookie } from "cookies-next";
 import { LARGE_FONT, X_LARGE_FONT } from "../../config/font";
 import Link from "next/link";
-const ChatComponent = () => {
+const ChatComponent: FC<{ top: number; height: any; widthMessageBox: any }> = ({
+  top = 80,
+  height = "calc(100vh - 210px)",
+  widthMessageBox = "78%",
+}) => {
   const [filter, setFilter] = useState({ pageId: 1, eachperPage: 40 });
   const [message, setMessage] = useState<string>("");
   const [chatsList, setChatsList] = useState<Array<any>>([]);
@@ -44,8 +48,8 @@ const ChatComponent = () => {
     <>
       {getCookie("token") ? (
         <>
-          <SpaceStyled top={80} right={30}>
-            <ScrollContainer ref={messagesRef}>
+          <SpaceStyled top={top} right={30}>
+            <ScrollContainer ref={messagesRef} height={height}>
               {chatsList?.map((item) => (
                 <MessageContainer isAdmin={item?.isAdmin}>
                   <Typography>
@@ -58,7 +62,7 @@ const ChatComponent = () => {
               ))}
             </ScrollContainer>
           </SpaceStyled>
-          <MessageBoxContainer>
+          <MessageBoxContainer widthMessageBox={widthMessageBox}>
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -92,10 +96,10 @@ const ChatComponent = () => {
   );
 };
 export default ChatComponent;
-const MessageBoxContainer = styled.div`
+const MessageBoxContainer: any = styled.div`
   position: fixed;
   bottom: 20px;
-  width: 78%;
+  width: ${(props: any) => props?.widthMessageBox};
   background-color: #1a2f34;
   margin-right: 30px;
   height: 65px;
@@ -129,7 +133,7 @@ const MessageContainer: any = styled.div`
   border-radius: 10px;
   margin-bottom: 20px;
 `;
-const ScrollContainer = styled.div`
-  height: calc(100vh - 210px);
+const ScrollContainer: any = styled.div`
+  height: ${(props: any) => props?.height};
   overflow: auto;
 `;

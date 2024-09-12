@@ -167,3 +167,18 @@ textarea {
 .sdcsdc:active {
   border: 1px solid white !important;
 }
+.joyrtl-1wmuzea-JoySelect-listbox {
+  background-color: red;
+}
+.search-input {
+  background-color: transparent !important;
+  border: 3px solid #fd9500 !important;
+  width: 400px;
+  border-radius: 40px !important;
+  padding: 5px 20px;
+  font-weight: bold;
+  color: white !important;
+}
+.search-input::placeholder {
+  color: white !important;
+}

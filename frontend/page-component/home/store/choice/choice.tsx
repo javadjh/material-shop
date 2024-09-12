@@ -16,6 +16,7 @@ import ImageServerComponent from "../../../../global-component/ImageServer.c";
 import { useEffect, useState } from "react";
 import { getAppSettingService } from "../../../../service/appsetting.service";
 import { useWindowSize } from "../../../../global-component/ScreenBridge.c";
+import { getCookie } from "cookies-next";
 
 const ChoicePage: NextPage<{ categories: Array<ICategory> }> = ({
   categories,
@@ -23,7 +24,7 @@ const ChoicePage: NextPage<{ categories: Array<ICategory> }> = ({
   const [media, setMedia] = useState<any>({});
   const size = useWindowSize();
   useEffect(() => {
-    getData();
+    if (getCookie("toekn")) getData();
   }, []);
   const getData = async () => {
     const res = await getAppSettingService();

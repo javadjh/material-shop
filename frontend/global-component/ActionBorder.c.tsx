@@ -17,6 +17,7 @@ const ActionBorderComponent: FC<any> = ({
   fontSize,
   isFill = false,
   fontColor,
+  isCenter = true,
 }) => {
   const [isHover, setIsHover] = useState<boolean>(isSelected);
   return (
@@ -35,7 +36,22 @@ const ActionBorderComponent: FC<any> = ({
             color: isHover && isFill ? "white !important" : "white",
           }}
         >
-          <CenterStyled>
+          {isCenter ? (
+            <CenterStyled>
+              <PaddingStyled vertical={10}>
+                <Typography
+                  fontSize={fontSize}
+                  textColor={
+                    fontColor || (isHover && !isFill)
+                      ? ORANGE_COLOR
+                      : WHITE_COLOR
+                  }
+                >
+                  {children}
+                </Typography>
+              </PaddingStyled>
+            </CenterStyled>
+          ) : (
             <PaddingStyled vertical={10}>
               <Typography
                 fontSize={fontSize}
@@ -46,7 +62,7 @@ const ActionBorderComponent: FC<any> = ({
                 {children}
               </Typography>
             </PaddingStyled>
-          </CenterStyled>
+          )}
         </WhiteBorderStyled>
       </Pointer>
     </SpaceStyled>

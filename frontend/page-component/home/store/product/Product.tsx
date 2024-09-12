@@ -45,6 +45,7 @@ import {
 } from "./product.s";
 import CountPickerComponent from "./CountPicker.c";
 import SuggestionComponent from "./Suggestion.c";
+import { insertBasket } from "../../../../service/basket.service";
 
 const ProductPage: FC<{
   mainCategories: Array<ICategory>;
@@ -59,6 +60,14 @@ const ProductPage: FC<{
 
   const onChangeMainCategoryListener = (id?: string) => {
     router.push("/store/products", { query: { id } });
+  };
+
+  const addToBasket = async () => {
+    await insertBasket({
+      productId: product?._id,
+      count: basketCount,
+    });
+    router.push("/profile/basket");
   };
   return (
     <MainLayout>
@@ -203,7 +212,27 @@ const ProductPage: FC<{
                     </Grid>
                   </Grid>
                 </SpaceStyled>
-                <SpaceStyled top={10}>
+              </Grid>
+            </Grid>
+            <Grid container>
+              <Grid lg={9} container spacing={2}>
+                <Grid lg={6}>
+                  <SpaceStyled top={8}>
+                    <GrayBlockStyled>
+                      محل ارسال : {product?.cities}
+                    </GrayBlockStyled>
+                  </SpaceStyled>
+                </Grid>
+                <Grid lg={6}>
+                  <SpaceStyled top={8}>
+                    <GrayBlockStyled>
+                      هزینه ارسال : با خریدار هماهنگ خواهد شد
+                    </GrayBlockStyled>
+                  </SpaceStyled>
+                </Grid>
+              </Grid>
+              <Grid lg={3}>
+                <SpaceStyled right={50} top={10}>
                   <SimpleOrangeBorderBlock>
                     <Grid
                       container
@@ -225,21 +254,6 @@ const ProductPage: FC<{
                 </SpaceStyled>
               </Grid>
             </Grid>
-            <Grid container>
-              <Grid lg={9} container spacing={2}>
-                <Grid lg={6}>
-                  <GrayBlockStyled>
-                    محل ارسال : {product?.cities}
-                  </GrayBlockStyled>
-                </Grid>
-                <Grid lg={6}>
-                  <GrayBlockStyled>
-                    هزینه ارسال : با خریدار هماهنگ خواهد شد
-                  </GrayBlockStyled>
-                </Grid>
-              </Grid>
-              <Grid lg={3}></Grid>
-            </Grid>
             <SpaceStyled top={10}>
               <Grid container>
                 <Grid lg={12} container spacing={2}>
@@ -256,6 +270,7 @@ const ProductPage: FC<{
                     <OrangeBlockNonePaddingStyled>
                       <PaddingStyled vertical={1.5}>
                         <SelectCarStyle
+                          placeholder="انتخاب خودرو"
                           onChange={(e: any) => {
                             setCarType(e?.target?.id);
                           }}
@@ -273,9 +288,11 @@ const ProductPage: FC<{
                     </OrangeBlockNonePaddingStyled>
                   </Grid>
                   <Grid lg={2.4}>
-                    <DertyOrangeBlockStyled>
-                      اضافه کردن به لیست خرید
-                    </DertyOrangeBlockStyled>
+                    <Pointer onClick={addToBasket}>
+                      <DertyOrangeBlockStyled>
+                        اضافه کردن به لیست خرید
+                      </DertyOrangeBlockStyled>
+                    </Pointer>
                   </Grid>
                 </Grid>
               </Grid>
@@ -299,7 +316,7 @@ const ProductPage: FC<{
                     </WhiteBlockStyled>
                   </Grid>
                   <Grid lg={2.4}>
-                    <WhiteBlockStyled>{carType}</WhiteBlockStyled>
+                    <WhiteBlockStyled>{carType || "-"}</WhiteBlockStyled>
                   </Grid>
                   <Grid lg={2.4}>
                     <DertyOrangeBlockStyled>

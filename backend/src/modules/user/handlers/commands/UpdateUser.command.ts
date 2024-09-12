@@ -37,7 +37,7 @@ export class UpdateUserHandler implements ICommandHandler<UpdateUserCommand> {
     const { dto, userRequest } = command;
 
     //check is user confirmed if the user confirmed  , user can use this handler
-    if (!userRequest?.isCompleted) throw new AccessDeniedException();
+    // if (!userRequest?.isCompleted) throw new AccessDeniedException();
 
     let city: City = userRequest.city;
     let province: Province = userRequest.province;

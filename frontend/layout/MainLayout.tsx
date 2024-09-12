@@ -5,7 +5,6 @@ import {
   MainLayoutContainer,
   MakeBoxContainer,
   OrangeMainLayoutBTN,
-  SearchHeaderStyled,
 } from "./MainLayout.s";
 import { Badge, Grid, Option, Typography } from "@mui/joy";
 import {
@@ -24,7 +23,7 @@ import { NotificationsActive } from "@mui/icons-material";
 import { unseenUserChatsService } from "../service/chat.service";
 import ActionBorderComponent from "../global-component/ActionBorder.c";
 const MainLayout: FC<{ children: any }> = ({ children }) => {
-  const [usersUnseenCount, setUsersUnseenCount] = useState<Number>(0);
+  const [usersUnseenCount, setUsersUnseenCount] = useState<number>(0);
   const router = useRouter();
   useEffect(() => {
     if (getCookie("token")) getUsersUnseenCount();
@@ -48,7 +47,9 @@ const MainLayout: FC<{ children: any }> = ({ children }) => {
             alignItems={"center"}
           >
             <Grid>
-              <OrangeMainLayoutBTN>به ما بپیوندید</OrangeMainLayoutBTN>
+              <Link href={"/employment"}>
+                <OrangeMainLayoutBTN>به ما بپیوندید</OrangeMainLayoutBTN>
+              </Link>
             </Grid>
             <Grid>
               <DepartmentSelect defaultValue={"products"}>
@@ -58,24 +59,31 @@ const MainLayout: FC<{ children: any }> = ({ children }) => {
               </DepartmentSelect>
             </Grid>
             <Grid>
-              <SearchHeaderStyled placeholder={"Search"} />
+              <input className="search-input" placeholder={"Search"} />
             </Grid>
+            {usersUnseenCount > 0 && (
+              <Grid>
+                <CenterStyled>
+                  <Link href={"/faq"}>
+                    <CenterVerticalStyled>
+                      <Badge
+                        color={"danger"}
+                        badgeContent={`${usersUnseenCount}`}
+                      >
+                        <NotificationsActive
+                          style={{ fontSize: 35, color: WHITE_COLOR }}
+                        />
+                      </Badge>
+                    </CenterVerticalStyled>
+                  </Link>
+                </CenterStyled>
+              </Grid>
+            )}
             <Grid>
               <CenterStyled>
-                <Link href={"/faq"}>
-                  <CenterVerticalStyled>
-                    <Badge badgeContent={`${usersUnseenCount}`}>
-                      <NotificationsActive
-                        style={{ fontSize: 35, color: WHITE_COLOR }}
-                      />
-                    </Badge>
-                  </CenterVerticalStyled>
+                <Link href={"/profile/basket"}>
+                  <IconComponent icon={"basket"} width={30} />
                 </Link>
-              </CenterStyled>
-            </Grid>
-            <Grid>
-              <CenterStyled>
-                <IconComponent icon={"basket"} width={30} />
               </CenterStyled>
             </Grid>
             <Grid>
@@ -142,7 +150,7 @@ const MainLayout: FC<{ children: any }> = ({ children }) => {
             </Grid>
             <Grid>
               <CenterStyled>
-                <Link href={"/register"}>
+                <Link href={getCookie("token") ? "/profile/profile" : "/"}>
                   <img src="/icons/user-icon.png" width={30} />
                 </Link>
               </CenterStyled>

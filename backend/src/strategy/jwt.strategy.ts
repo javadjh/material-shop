@@ -20,6 +20,7 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
     console.log(payload);
 
     let user = await this.model.findById(payload.sub).lean();
+    console.log('useruseruseruseruseruseruser');
     console.log(user);
     if (!user?._id)
       throw new BadRequestException(RECORD_NOT_FOUND_ERROR_MESSAGE);

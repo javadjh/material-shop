@@ -17,19 +17,7 @@ export const HeaderLayoutStyled = styled.div`
   top: 20px;
   left: 3%;
 `;
-export const SearchHeaderStyled: any = styled(Input)`
-  background-color: transparent !important;
-  border: 3px solid ${ORANGE_COLOR} !important;
-  width: 400px;
-  border-radius: 40px !important;
-  font-weight: bold;
-  color: ${WHITE_COLOR} !important;
-  ::placeholder {
-    color: white !important;
-    opacity: 1 !important;
-    font-weight: bold;
-  }
-`;
+
 export const MakeBoxContainer: any = styled.div`
   padding-left: 30px;
   padding-right: 30px;

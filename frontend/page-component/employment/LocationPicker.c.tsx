@@ -12,7 +12,18 @@ import { SpaceStyled } from "../../global-style/global.s";
 const LocationPickerComponent: FC<{
   onCitySelected: (cityId?: number) => void;
   isError?: any;
-}> = ({ onCitySelected, isError }) => {
+  leftSelect?: number;
+  spacing?: number;
+  secondLeftSelect?: number;
+  secondRightSelect?: number;
+}> = ({
+  onCitySelected,
+  isError,
+  leftSelect = 8,
+  spacing = 5,
+  secondLeftSelect = 13,
+  secondRightSelect = -5,
+}) => {
   const [provinces, setProvinces] = useState<Array<IProvince>>([]);
   const [province, setProvince] = useState<number>();
   const [cities, setCities] = useState<Array<ICity>>([]);
@@ -36,9 +47,9 @@ const LocationPickerComponent: FC<{
   };
 
   return (
-    <Grid container spacing={5}>
+    <Grid container spacing={spacing}>
       <Grid lg={6}>
-        <SpaceStyled left={8}>
+        <SpaceStyled left={leftSelect}>
           <Select
             style={{
               width: "100%",
@@ -57,7 +68,7 @@ const LocationPickerComponent: FC<{
         </SpaceStyled>
       </Grid>
       <Grid lg={6}>
-        <SpaceStyled left={13} right={-5}>
+        <SpaceStyled left={secondLeftSelect} right={secondRightSelect}>
           <Select
             style={{
               width: "100%",

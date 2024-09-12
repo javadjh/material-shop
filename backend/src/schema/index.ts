@@ -14,6 +14,9 @@ import { Product, ProductSchema } from './product.schema';
 import { Team, TeamSchema } from './team.schema';
 import { Employment, EmploymentSchema } from './employment.schema';
 import { Chat, ChatSchema } from './chat.schema';
+import { Basket, BasketSchema } from './basket.schema';
+import { Order, OrderSchema } from './order.schema';
+import { Payment, PaymentSchema } from './payment.schema';
 
 export default [
   MongooseModule.forFeature([{ name: File.name, schema: FileSchema }]),
@@ -29,6 +32,9 @@ export default [
   MongooseModule.forFeature([{ name: Product.name, schema: ProductSchema }]),
   MongooseModule.forFeature([{ name: Team.name, schema: TeamSchema }]),
   MongooseModule.forFeature([{ name: Chat.name, schema: ChatSchema }]),
+  MongooseModule.forFeature([{ name: Basket.name, schema: BasketSchema }]),
+  MongooseModule.forFeature([{ name: Order.name, schema: OrderSchema }]),
+  MongooseModule.forFeature([{ name: Payment.name, schema: PaymentSchema }]),
   MongooseModule.forFeature([
     { name: Employment.name, schema: EmploymentSchema },
   ]),

@@ -19,6 +19,7 @@ import { UpdateUserRequestDto } from './dto/request/UpdateUserRequest.dto';
 import { UpdateUserCommand } from './handlers/commands/UpdateUser.command';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { Response } from 'src/config/response';
 
 @Controller('user')
 @ApiTags('user')
@@ -100,5 +101,16 @@ export class UserController {
   })
   login(@Body() loginDto: LoginRequestDto) {
     return this.queryBus.execute(new LoginQuery(loginDto));
+  }
+
+  @Get('profile')
+  @ApiBearerAuth('JWT-auth')
+  @UseGuards(JwtGuard)
+  @ApiOkResponse({
+    description: 'this route user can login and get token',
+    type: User,
+  })
+  profile(@GetProfile() user: User) {
+    return Response.send(user);
   }
 }

@@ -17,6 +17,9 @@ import { AppSettingModule } from './modules/app-setting/app-setting.module';
 import { TeamModule } from './modules/team/team.module';
 import { EmploymentModule } from './modules/employment/employment.module';
 import { ChatModule } from './modules/chat/chat.module';
+import { BasketModule } from './modules/basket/basket.module';
+import { PaymentModule } from './modules/payment/payment.module';
+import { OrderModule } from './modules/order/order.module';
 
 @Module({
   imports: [
@@ -40,8 +43,11 @@ import { ChatModule } from './modules/chat/chat.module';
     BrandModule,
     ReportModule,
     ProductModule,
+    BasketModule,
     TeamModule,
     EmploymentModule,
+    PaymentModule,
+    OrderModule,
     ChatModule,
   ],
 })

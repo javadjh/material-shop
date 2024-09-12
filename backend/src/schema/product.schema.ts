@@ -12,6 +12,7 @@ class BaseProductModel extends BaseModel {
   categoryName?: string;
   categoryId?: string;
   cities?: string;
+  totalPrice?: string;
 }
 
 @Schema({ timestamps: true })
