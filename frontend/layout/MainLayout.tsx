@@ -32,7 +32,6 @@ const MainLayout: FC<{ children: any }> = ({ children }) => {
     const {
       data: { data: res },
     } = await unseenUserChatsService();
-    console.log(res.count);
 
     setUsersUnseenCount(res.count);
   };

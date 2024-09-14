@@ -44,6 +44,7 @@ export class InsertPaymentHandler
 
     //change order tp paymed state
     order.isPayed = true;
+    order.payment = payment?._id;
     await order.save();
 
     return Response.inserted();

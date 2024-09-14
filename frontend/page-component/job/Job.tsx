@@ -150,7 +150,11 @@ const JobPage = () => {
                               </Grid>
                               <Grid lg={6}>
                                 <ValueTitle>
-                                  {jobInfo?.gender || "-"}
+                                  {jobInfo?.gender == "men"
+                                    ? "مرد"
+                                    : jobInfo?.gender == "women"
+                                    ? "زن"
+                                    : "فرقی ندارد" || "-"}
                                 </ValueTitle>
                               </Grid>
 

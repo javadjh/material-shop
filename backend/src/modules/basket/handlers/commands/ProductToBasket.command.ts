@@ -40,14 +40,15 @@ export class ProductToBasketHandler
     console.log(oldBasket);
 
     if (oldBasket?._id) {
-      if (oldBasket.count + dto.count > product.remainingCount)
+      console.log(oldBasket.count + dto.count);
+      console.log(product?.remainingCount);
+
+      if (dto.count > product.remainingCount)
         throw new BadRequestException(PRODUCT_COUNT_ERROR_MESSAGE);
 
       oldBasket.count += dto.count;
       oldBasket.save();
     } else {
-      console.log('dddddddd');
-
       await new this.basketModel({
         product: dto.productId,
         count: dto.count,

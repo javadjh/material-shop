@@ -173,7 +173,7 @@ textarea {
 .search-input {
   background-color: transparent !important;
   border: 3px solid #fd9500 !important;
-  width: 400px;
+  width: 350px;
   border-radius: 40px !important;
   padding: 5px 20px;
   font-weight: bold;
@@ -181,4 +181,12 @@ textarea {
 }
 .search-input::placeholder {
   color: white !important;
+}
+.orange-hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 2px solid #fd9500;
+  margin: 1em 0;
+  padding: 0;
 }

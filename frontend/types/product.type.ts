@@ -1,6 +1,7 @@
 export interface IProduct {
   _id?: string;
   title?: string;
+  sendWay?: string;
   brandName?: string;
   cities?: string;
   code?: number;

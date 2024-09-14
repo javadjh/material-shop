@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import CategoriesComponent from "./Categories.c";
 import CategoryContextProvider, {
   useCategoryContext,
@@ -29,6 +29,7 @@ const Category = () => {
 
     setCategories(response?.list);
   };
+
   return (
     <>
       {map?.map((item) => (

@@ -16,6 +16,8 @@ import AppSetting from "../pages/appsetting/AppSetting";
 import Team from "../pages/team/Team";
 import MainLayout from "../layout/Main.layout";
 import UsersChats from "../pages/chats/UsersChats";
+import Order from "../pages/order/Order";
+import Payment from "../pages/payment/Payment";
 
 const RoutesComponent = () => {
   return (
@@ -37,6 +39,8 @@ const RoutesComponent = () => {
           <Route path="appsetting" element={<AppSetting />} />
           <Route path="team" element={<Team />} />
           <Route path="chat" element={<UsersChats />} />
+          <Route path="order" element={<Order />} />
+          <Route path="payment" element={<Payment />} />
           <Route
             path="category"
             element={

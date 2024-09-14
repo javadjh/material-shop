@@ -27,7 +27,8 @@ export class GetUsersBasketHandler
         {
           path: 'product',
           model: 'Product',
-          select: 'title image price code postPrice brand category unit',
+          select:
+            'title image price code postPrice brand category unit sendWay',
           populate: [
             {
               path: 'brand',

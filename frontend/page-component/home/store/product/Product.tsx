@@ -46,6 +46,7 @@ import {
 import CountPickerComponent from "./CountPicker.c";
 import SuggestionComponent from "./Suggestion.c";
 import { insertBasket } from "../../../../service/basket.service";
+import { sendWayFormatter } from "../../../../config/utility";
 
 const ProductPage: FC<{
   mainCategories: Array<ICategory>;
@@ -56,7 +57,7 @@ const ProductPage: FC<{
   const router = useRouter();
 
   const [carType, setCarType] = useState<string>();
-  const [basketCount, setBasketCount] = useState<number>(0);
+  const [basketCount, setBasketCount] = useState<number>(1);
 
   const onChangeMainCategoryListener = (id?: string) => {
     router.push("/store/products", { query: { id } });
@@ -195,23 +196,25 @@ const ProductPage: FC<{
                     ></Typography>
                   </OrangeBorderBlock>
                 </CenterStyled>
-                <SpaceStyled top={10}>
-                  <Grid
-                    container
-                    justifyContent={"space-between"}
-                    alignItems={"center"}
-                  >
-                    <Grid>
-                      <WhiteText>تعداد خرید</WhiteText>
+                {product?.remainingCount > 0 && (
+                  <SpaceStyled top={10}>
+                    <Grid
+                      container
+                      justifyContent={"space-between"}
+                      alignItems={"center"}
+                    >
+                      <Grid>
+                        <WhiteText>تعداد خرید</WhiteText>
+                      </Grid>
+                      <Grid lg={12} style={{ width: "60%" }}>
+                        <CountPickerComponent
+                          onChange={(val: number) => setBasketCount(val)}
+                          maxValue={product?.remainingCount}
+                        />
+                      </Grid>
                     </Grid>
-                    <Grid lg={12} style={{ width: "60%" }}>
-                      <CountPickerComponent
-                        onChange={(val: number) => setBasketCount(val)}
-                        maxValue={10}
-                      />
-                    </Grid>
-                  </Grid>
-                </SpaceStyled>
+                  </SpaceStyled>
+                )}
               </Grid>
             </Grid>
             <Grid container>
@@ -226,33 +229,37 @@ const ProductPage: FC<{
                 <Grid lg={6}>
                   <SpaceStyled top={8}>
                     <GrayBlockStyled>
-                      هزینه ارسال : با خریدار هماهنگ خواهد شد
+                      هزینه ارسال : {sendWayFormatter(product?.sendWay)}
                     </GrayBlockStyled>
                   </SpaceStyled>
                 </Grid>
               </Grid>
-              <Grid lg={3}>
-                <SpaceStyled right={50} top={10}>
-                  <SimpleOrangeBorderBlock>
-                    <Grid
-                      container
-                      style={{ width: "100%" }}
-                      justifyContent={"space-between"}
-                    >
-                      <Grid>
-                        <SpaceStyled horizontal={10} vertical={5}>
-                          <WhiteText>مبلغ کل </WhiteText>
-                        </SpaceStyled>
+              {product?.remainingCount > 0 && (
+                <Grid lg={3}>
+                  <SpaceStyled right={50} top={10}>
+                    <SimpleOrangeBorderBlock>
+                      <Grid
+                        container
+                        style={{ width: "100%" }}
+                        justifyContent={"space-between"}
+                      >
+                        <Grid>
+                          <SpaceStyled horizontal={10} vertical={5}>
+                            <WhiteText>مبلغ کل </WhiteText>
+                          </SpaceStyled>
+                        </Grid>
+                        <Grid>
+                          <SpaceStyled horizontal={10} vertical={5}>
+                            <WhiteText>
+                              {product?.price * basketCount}
+                            </WhiteText>
+                          </SpaceStyled>
+                        </Grid>
                       </Grid>
-                      <Grid>
-                        <SpaceStyled horizontal={10} vertical={5}>
-                          <WhiteText>{product?.price * basketCount}</WhiteText>
-                        </SpaceStyled>
-                      </Grid>
-                    </Grid>
-                  </SimpleOrangeBorderBlock>
-                </SpaceStyled>
-              </Grid>
+                    </SimpleOrangeBorderBlock>
+                  </SpaceStyled>
+                </Grid>
+              )}
             </Grid>
             <SpaceStyled top={10}>
               <Grid container>

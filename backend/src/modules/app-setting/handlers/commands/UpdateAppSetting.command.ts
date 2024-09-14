@@ -34,6 +34,12 @@ export class UpdateAppSettingHandler
       sibapp,
       webapp,
       banner,
+      firstAddress,
+      secondAddress,
+      thirdAddress,
+      firstTell,
+      secondTell,
+      thirdTell,
     } = command.dto;
     let appSetting: any = await this.appSettingModel.findOne();
     if (!appSetting?._id)
@@ -52,6 +58,12 @@ export class UpdateAppSettingHandler
         sibapp,
         webapp,
         banner,
+        firstAddress,
+        secondAddress,
+        thirdAddress,
+        firstTell,
+        secondTell,
+        thirdTell,
       });
 
     appSetting.instagram = instagram;
@@ -68,6 +80,13 @@ export class UpdateAppSettingHandler
     appSetting.sibapp = sibapp;
     appSetting.webapp = webapp;
     appSetting.banner = banner;
+
+    appSetting.firstAddress = firstAddress;
+    appSetting.secondAddress = secondAddress;
+    appSetting.thirdAddress = thirdAddress;
+    appSetting.firstTell = firstTell;
+    appSetting.secondTell = secondTell;
+    appSetting.thirdTell = thirdTell;
 
     await appSetting.save();
 

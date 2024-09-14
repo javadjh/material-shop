@@ -16,7 +16,7 @@ import SelectCategoryModal from "../../category/SelectCategory.m";
 import { ICategory } from "../../../types/category.type";
 import { insertProductService } from "../../../service/product.service";
 import { IProduct } from "../../../types/product.type";
-import { useNavigate, useRoutes } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const UpsertProduct = () => {
   const navigator = useNavigate();
@@ -145,6 +145,14 @@ const UpsertProduct = () => {
                   <img src="/placeholder.jpg" width={"100%"} />
                 )}
               </UploadFileComponent>
+              <Form.Item name={"sendWay"}>
+                <select className="form-select" aria-placeholder="نحوه ارسال">
+                  <option>انتخاب کنید</option>
+                  <option value={"post"}>ارسال پست</option>
+                  <option value={"freight"}>ارسال باربری</option>
+                  <option value={"free"}>ارسال آزاد</option>
+                </select>
+              </Form.Item>
               <Form.Item name={"sellerIds"}>
                 <Select
                   mode="multiple"
@@ -184,7 +192,7 @@ const UpsertProduct = () => {
                   </Form.Item>
                 </Col>
                 <Col span={12} offset={1}>
-                  <Form.Item name={"control"}>
+                  <Form.Item name={"packCount"}>
                     <input
                       className="form-control"
                       type="number"
@@ -195,6 +203,7 @@ const UpsertProduct = () => {
                 <Col span={11}>
                   <Form.Item name={"price"}>
                     <input
+                      type="number"
                       className="form-control"
                       placeholder="قیمت را وارد کنید"
                     />

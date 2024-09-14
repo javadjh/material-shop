@@ -100,7 +100,8 @@ const ChoicePage: NextPage<{ categories: Array<ICategory> }> = ({
                 <StoreItemComponent
                   iconName="usable"
                   title={"مصالح پر کاربرد"}
-                  key={"job"}
+                  key={"top-materials"}
+                  link="/top-materials"
                 />
               </Grid>
               <Grid lg={6}>

@@ -24,11 +24,18 @@ export class GetOrdersHandler implements IQueryHandler<GetOrdersQuery> {
       .find()
       .skip(skip)
       .limit(eachPerPage)
-      .select('totalPrice orderList isPayed user createdAt')
+      .select('totalPrice orderList isPayed user createdAt order')
       .populate('orderList.product', 'title image')
+      .populate('payment', 'createdAt payedPrice paymentCode ')
       .populate('user', 'userName firstName lastName phone ')
       .sort({ createdAt: -1 })
       .lean();
+
+    orders?.map((item: Order) => {
+      item.createdAt = item?.createdAt?.toJalali();
+      if (item?.payment?._id)
+        item.payment.createdAt = item.payment.createdAt?.toJalali();
+    });
 
     const total: number = await this.order.find().count();
 

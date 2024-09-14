@@ -82,13 +82,15 @@ const BasketPage = () => {
                       <Grid>{priceFormat(baskets?.totalPrice)}</Grid>
                     </Grid>
                   </BasketSummaryContainer>
-                  <SpaceStyled top={10}>
-                    <div onClick={insertOrder}>
-                      <ActionBorderComponent isSelected={true} isFill={true}>
-                        ثبت نهایی سفارش
-                      </ActionBorderComponent>
-                    </div>
-                  </SpaceStyled>
+                  {baskets?.baskets?.length > 0 && (
+                    <SpaceStyled top={10}>
+                      <div onClick={insertOrder}>
+                        <ActionBorderComponent isSelected={true} isFill={true}>
+                          ثبت نهایی سفارش
+                        </ActionBorderComponent>
+                      </div>
+                    </SpaceStyled>
+                  )}
                 </SpaceStyled>
               </Grid>
             </Grid>

@@ -5,6 +5,7 @@ import { optionEmbed } from './share/options-embed.schema';
 import { City } from './city.schema';
 import { Brand } from './barnd.schema';
 import { carEmbed } from './share/car-embed.schema';
+import { sendWaySchema } from './share/enums';
 
 export type ProductDocument = Product & Document;
 class BaseProductModel extends BaseModel {
@@ -93,6 +94,9 @@ export class Product extends BaseProductModel {
 
   @Prop({ type: Number })
   remainingCount?: number;
+
+  @Prop({ type: String, enum: sendWaySchema })
+  sendWay?: string;
 
   @Prop({ type: Boolean, default: true })
   isActive?: boolean;

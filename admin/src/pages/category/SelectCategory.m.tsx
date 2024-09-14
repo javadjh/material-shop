@@ -14,10 +14,12 @@ const SelectCategoryModal: FC<{
     onSelected(category);
   };
   return (
-    <Modal open={isOpen} footer={null}>
-      <CategoryContextProvider>
-        <SelectCategoryComponent onSelectedListener={onSelectedListener} />
-      </CategoryContextProvider>
+    <Modal open={isOpen} style={{ top: 20 }} width={"80%"} footer={null}>
+      <div dir="rtl">
+        <CategoryContextProvider>
+          <SelectCategoryComponent onSelectedListener={onSelectedListener} />
+        </CategoryContextProvider>
+      </div>
     </Modal>
   );
 };

@@ -24,3 +24,9 @@ export enum activityEmploymentEnum {
   Businessman = 'Businessman',
   other = 'other',
 }
+
+export enum sendWayEnum {
+  post = 'post',
+  freight = 'freight',
+  free = 'free',
+}

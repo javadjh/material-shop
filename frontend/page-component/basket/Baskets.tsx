@@ -6,7 +6,7 @@ import { Grid, Typography } from "@mui/joy";
 import ImageServerComponent from "../../global-component/ImageServer.c";
 import { WhiteText } from "../../global-component/Typography/WhiteText.t";
 import { SpaceStyled } from "../../global-style/global.s";
-import { priceFormat } from "../../config/utility";
+import { priceFormat, sendWayFormatter } from "../../config/utility";
 import ActionBorderComponent from "../../global-component/ActionBorder.c";
 
 const Baskets: FC<{ baskets: any; deleteProduct: any }> = ({
@@ -28,27 +28,32 @@ const Baskets: FC<{ baskets: any; deleteProduct: any }> = ({
                   />
                 </Grid>
                 <Grid lg={9}>
-                  <SpaceStyled bottom={10}>
+                  <SpaceStyled bottom={8}>
                     <Typography textColor={WHITE_COLOR}>
                       {item?.product?.title}
                     </Typography>
                   </SpaceStyled>
 
-                  <SpaceStyled bottom={10}>
-                    <Typography textColor={WHITE_COLOR}>
+                  <SpaceStyled bottom={8}>
+                    <WhiteText textColor={WHITE_COLOR}>
                       دسته :{item?.product?.categoryName}
-                    </Typography>
+                    </WhiteText>
                   </SpaceStyled>
 
-                  <SpaceStyled bottom={10}>
-                    <Typography textColor={WHITE_COLOR}>
+                  <SpaceStyled bottom={8}>
+                    <WhiteText textColor={WHITE_COLOR}>
                       برند :{item?.product?.brandName}
-                    </Typography>
+                    </WhiteText>
                   </SpaceStyled>
 
+                  <SpaceStyled bottom={8}>
+                    <WhiteText textColor={WHITE_COLOR}>
+                      کد :{item?.product?.code}
+                    </WhiteText>
+                  </SpaceStyled>
                   <SpaceStyled bottom={10}>
                     <Typography textColor={WHITE_COLOR}>
-                      کد :{item?.product?.code}
+                      نحوه ارسال :{sendWayFormatter(item?.product?.sendWay)}
                     </Typography>
                   </SpaceStyled>
                 </Grid>

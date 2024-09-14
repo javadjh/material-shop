@@ -26,6 +26,9 @@ export class Order extends BaseOrderModel {
   @Prop({ type: Number })
   totalPrice?: number;
 
+  @Prop({ ref: 'Payment', type: Types.ObjectId })
+  payment?: Types.ObjectId | any;
+
   @Prop({
     type: [
       {

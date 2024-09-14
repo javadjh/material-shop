@@ -48,11 +48,8 @@ const CategoryPage: FC<{
                   </CenterStyled>
                   <br />
                   {mainCategories?.map((item) => (
-                    <Link
-                      href={{
-                        pathname: "/store/category",
-                        query: { id: item?._id },
-                      }}
+                    <a
+                      href={"/store/category?id=" + item?._id}
                       style={{ width: "100%" }}
                     >
                       <ActionBorderComponent
@@ -62,7 +59,7 @@ const CategoryPage: FC<{
                       >
                         {item.title}
                       </ActionBorderComponent>
-                    </Link>
+                    </a>
                   ))}
                 </CenterStyled>
               </SpaceStyled>

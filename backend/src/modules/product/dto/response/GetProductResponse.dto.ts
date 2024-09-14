@@ -14,6 +14,9 @@ export class GetProductResponseData {
   image: string;
 
   @ApiProperty()
+  sendWay: string;
+
+  @ApiProperty()
   description: string;
 
   @ApiProperty({ isArray: true })

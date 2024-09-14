@@ -1,5 +1,10 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsArray, IsOptional, IsString } from 'class-validator';
+import {
+  IsArray,
+  IsBooleanString,
+  IsOptional,
+  IsString,
+} from 'class-validator';
 import { PagingDto } from 'src/shareDTO/Paging.dto';
 
 export class GetProductsRequestRequestDto extends PagingDto {
@@ -12,6 +17,11 @@ export class GetProductsRequestRequestDto extends PagingDto {
   @ApiProperty({ required: false })
   @IsOptional()
   brandId: string;
+
+  @IsBooleanString()
+  @ApiProperty({ required: false })
+  @IsOptional()
+  isHighConsumption: boolean;
 
   @IsString()
   @ApiProperty({ required: false })

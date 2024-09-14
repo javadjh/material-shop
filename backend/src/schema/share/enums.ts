@@ -14,3 +14,4 @@ export const activityEmploymentSchema = [
   'businessman',
   'other',
 ];
+export const sendWaySchema = ['post', 'freight', 'free'];

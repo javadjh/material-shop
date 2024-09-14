@@ -5,11 +5,12 @@ import { getCategoriesService } from "../../service/category.service";
 import { SpaceStyled } from "../../global-style/global.s";
 import CategoriesComponent from "./Categories.c";
 import { Button } from "antd";
+import Category from "./Category";
 
 const SelectCategoryComponent: FC<{ onSelectedListener: any }> = ({
   onSelectedListener,
 }) => {
-  const { reload, selected } = useCategoryContext();
+  const { reload, parent } = useCategoryContext();
   const [categories, setCategories] = useState<Array<ICategory>>([]);
   useEffect(() => {
     getMainCategories();
@@ -22,16 +23,23 @@ const SelectCategoryComponent: FC<{ onSelectedListener: any }> = ({
 
     setCategories(response?.list);
   };
+
   return (
     <>
-      <SpaceStyled right={60}>
-        <CategoriesComponent justView={true} categories={categories} />
-      </SpaceStyled>
-      {selected?._id && (
-        <Button onClick={() => onSelectedListener(selected)} type="primary">
-          انتخاب
-        </Button>
+      {parent?._id && (
+        <button
+          className="btn btn-success float-start mx-3 px-5"
+          onClick={(e) => {
+            e.preventDefault();
+            onSelectedListener(parent);
+          }}
+        >
+          دسته بندی {parent?.title}
+        </button>
       )}
+      <SpaceStyled right={60}>
+        <Category />
+      </SpaceStyled>
     </>
   );
 };

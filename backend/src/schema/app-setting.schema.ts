@@ -49,6 +49,24 @@ export class AppSetting extends BaseModel {
 
   @Prop()
   banner?: string;
+
+  @Prop()
+  firstAddress?: string;
+
+  @Prop()
+  secondAddress?: string;
+
+  @Prop()
+  thirdAddress?: string;
+
+  @Prop()
+  firstTell?: string;
+
+  @Prop()
+  secondTell?: string;
+
+  @Prop()
+  thirdTell?: string;
 }
 
 export const AppSettingSchema = SchemaFactory.createForClass(AppSetting);

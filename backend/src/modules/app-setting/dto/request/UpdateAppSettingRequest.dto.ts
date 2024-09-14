@@ -71,4 +71,34 @@ export class UpdateAppSettingRequestDto {
   @IsString()
   @ApiProperty()
   banner: string;
+
+  @IsOptional()
+  @IsString()
+  @ApiProperty()
+  firstAddress?: string;
+
+  @IsOptional()
+  @IsString()
+  @ApiProperty()
+  secondAddress?: string;
+
+  @IsOptional()
+  @IsString()
+  @ApiProperty()
+  thirdAddress?: string;
+
+  @IsOptional()
+  @IsString()
+  @ApiProperty()
+  firstTell?: string;
+
+  @IsOptional()
+  @IsString()
+  @ApiProperty()
+  secondTell?: string;
+
+  @IsOptional()
+  @IsString()
+  @ApiProperty()
+  thirdTell?: string;
 }

@@ -6,7 +6,7 @@ import { WhiteText } from "../../../../global-component/Typography/WhiteText.t";
 import { FC, useState } from "react";
 
 const CountPickerComponent: FC<any> = ({ onChange, maxValue }) => {
-  const [value, setValue] = useState<number>(0);
+  const [value, setValue] = useState<number>(1);
   const onChanageValue = (isAdd: boolean) => {
     console.log("tap");
 

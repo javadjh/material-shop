@@ -29,6 +29,18 @@ const MainLayout: FC<{ children: any }> = ({ children }) => {
                     </a>
                   </li>
                   <li>
+                    <a href="/order">
+                      <i className="bi bi-pie-chart"></i>
+                      <span className="menu-text">سفارشات</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/payment">
+                      <i className="bi bi-pie-chart"></i>
+                      <span className="menu-text">پرداخت</span>
+                    </a>
+                  </li>
+                  <li>
                     <a href="/user">
                       <i className="bi bi-pie-chart"></i>
                       <span className="menu-text">کاربران</span>
@@ -76,6 +88,7 @@ const MainLayout: FC<{ children: any }> = ({ children }) => {
                       <span className="menu-text">تیم</span>
                     </a>
                   </li>
+
                   <li>
                     <a href="/chat">
                       <i className="bi bi-pie-chart"></i>

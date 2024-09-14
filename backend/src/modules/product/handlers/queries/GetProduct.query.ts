@@ -33,6 +33,7 @@ export class GetProductHandler implements IQueryHandler<GetProductQuery> {
          colors
          sellers
          brand
+         sendWay
          postPrice
          unit
          size

@@ -113,6 +113,48 @@ const AppSetting = () => {
         </Col>
       </Row>
       <CenterStyled>
+        <WhiteP>تماس با ما</WhiteP>
+      </CenterStyled>
+
+      <Row>
+        <Col span={11}>
+          <Form.Item name="firstAddress" label="آدرس اول">
+            <input className="form-control" />
+          </Form.Item>
+        </Col>
+
+        <Col span={11} offset={1}>
+          <Form.Item name="firstTell" label="شماره تماس اول ">
+            <input className="form-control" />
+          </Form.Item>
+        </Col>
+
+        <Col span={11}>
+          <Form.Item name="secondAddress" label="آدرس دوم">
+            <input className="form-control" />
+          </Form.Item>
+        </Col>
+
+        <Col span={11} offset={1}>
+          <Form.Item name="secondTell" label="شماره تماس دوم ">
+            <input className="form-control" />
+          </Form.Item>
+        </Col>
+
+        <Col span={11}>
+          <Form.Item name="thirdAddress" label="آدرس سوم ">
+            <input className="form-control" />
+          </Form.Item>
+        </Col>
+
+        <Col span={11} offset={1}>
+          <Form.Item name="thirdTell" label="شماره تماس سوم">
+            <input className="form-control" />
+          </Form.Item>
+        </Col>
+      </Row>
+
+      <CenterStyled>
         <WhiteP>بنر</WhiteP>
       </CenterStyled>
       <UploadFileComponent

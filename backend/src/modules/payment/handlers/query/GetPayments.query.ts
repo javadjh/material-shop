@@ -24,7 +24,20 @@ export class GetPaymentsHandler implements IQueryHandler<GetPaymentsQuery> {
       .skip(skip)
       .limit(eachPerPage)
       .select('createdAt order paymentCode payedPrice')
-      .populate('order ', 'totalPrice orderList ')
+      .populate([
+        {
+          path: 'order',
+          model: 'Order',
+          select: 'orderList totalPrice',
+          populate: [
+            {
+              path: 'orderList.product',
+              model: 'Product',
+              select: 'title image',
+            },
+          ],
+        },
+      ])
       .populate('user', 'userName firstName lastName phone ')
       .sort({ createdAt: -1 })
       .lean();

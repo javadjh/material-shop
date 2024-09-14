@@ -2,6 +2,7 @@ import { Grid, Option, Typography } from "@mui/joy";
 import MainLayout from "../../../../layout/MainLayout";
 import {
   CenterStyled,
+  PaddingStyled,
   Pointer,
   SpaceStyled,
 } from "../../../../global-style/global.s";
@@ -9,6 +10,7 @@ import {
   CategoryItemContainer,
   MainCategorySelectStyled,
   ProductsSideContainerStyled,
+  WideSideContainerStyled,
 } from "../products/products.s";
 import LogoComponent from "../../../../global-component/Logo.c";
 import { useRouter } from "next/router";
@@ -21,6 +23,9 @@ import ImageServerComponent from "../../../../global-component/ImageServer.c";
 import { ORANGE_COLOR, WHITE_COLOR } from "../../../../config/colors";
 import Link from "next/link";
 import { useWindowSize } from "../../../../global-component/ScreenBridge.c";
+import ActionBorderComponent from "../../../../global-component/ActionBorder.c";
+import { Padding } from "@mui/icons-material";
+import SubCategoryItemComponent from "../category/SubCategoryItem.c";
 
 const SubCategoryPage: FC<any> = ({
   mainCategories,
@@ -55,32 +60,31 @@ const SubCategoryPage: FC<any> = ({
       <Grid container>
         <Grid lg={2.5}>
           <SpaceStyled horizontal={20}>
-            <ProductsSideContainerStyled>
-              <Typography></Typography>
-              <SpaceStyled top={20}>
+            <WideSideContainerStyled>
+              <SpaceStyled top={10}>
                 <CenterStyled>
-                  <LogoComponent width={size?.height > 650 ? 200 : 120} />
-                  <MainCategorySelectStyled
-                    onChange={onChangeMainCategoryListener}
-                    placeholder="دسته بندی"
-                  >
-                    {mainCategories?.map((item: any) => (
-                      <Option
-                        style={{ backgroundColor: "transparent !important" }}
-                        id={item._id}
-                        key={item._id}
-                        value={item._id}
+                  <LogoComponent width={110} />
+                  <CenterStyled>
+                    <img src="/google-font.png" width={"80%"} />
+                  </CenterStyled>
+                  <br />
+                  {mainCategories?.map((item: any) => (
+                    <a
+                      href={"/store/category?id=" + item?._id}
+                      style={{ width: "100%" }}
+                    >
+                      <ActionBorderComponent
+                        border={"2"}
+                        isSelected={item?._id == parentCategoryId}
+                        isFill={true}
                       >
                         {item.title}
-                      </Option>
-                    ))}
-                  </MainCategorySelectStyled>
-                  {categories?.map((item: any) => (
-                    <CategoryItemContainer>{item?.title}</CategoryItemContainer>
+                      </ActionBorderComponent>
+                    </a>
                   ))}
                 </CenterStyled>
               </SpaceStyled>
-            </ProductsSideContainerStyled>
+            </WideSideContainerStyled>
           </SpaceStyled>
         </Grid>
 
@@ -91,10 +95,10 @@ const SubCategoryPage: FC<any> = ({
               scrollbar={{ draggable: true }}
               slidesPerView={"auto"}
             >
-              {parentCategories?.map((item: any, index: number) => (
+              {parentCategories?.map((item: any) => (
                 <SwiperSlide
                   style={{
-                    width: activeCategory == item?._id ? 236 : 120,
+                    width: 130,
                   }}
                   onClick={() => setActiveCategory(item?._id)}
                 >
@@ -105,36 +109,32 @@ const SubCategoryPage: FC<any> = ({
                 </SwiperSlide>
               ))}
             </Swiper>
+            <div className="orange-hr"></div>
             <SpaceStyled top={20}>
-              <Grid container justifyContent={"space-between"} rowSpacing={2}>
+              <Grid
+                container
+                justifyContent={"space-between"}
+                rowSpacing={2}
+                columnSpacing={5}
+              >
                 {categoriesData?.map((item) => (
-                  <Grid>
-                    <Pointer className="outline-hover">
-                      <Link
-                        href={{
-                          pathname: "/store/products",
-                          query: { id: item?._id },
-                        }}
-                      >
-                        <SpaceStyled bottom={20}>
-                          <CenterStyled>
-                            <ImageServerComponent
-                              image={item?.icon}
-                              width={237}
-                              height={119}
-                              // style={{ border: `2px solid ${ORANGE_COLOR}` }}
-                              className="outline-hover"
-                              border={10}
-                            />
-                            <SpaceStyled top={8}>
-                              <Typography textColor={WHITE_COLOR}>
-                                {item?.title}
-                              </Typography>
-                            </SpaceStyled>
-                          </CenterStyled>
-                        </SpaceStyled>
-                      </Link>
-                    </Pointer>
+                  <Grid lg={3}>
+                    <PaddingStyled left={10}>
+                      <Pointer className="outline-hover">
+                        <Link
+                          href={{
+                            pathname: "/store/products",
+                            query: { id: item?._id },
+                          }}
+                        >
+                          <SubCategoryItemComponent
+                            iconName={item.icon}
+                            title={item.title}
+                            id={item?._id}
+                          />
+                        </Link>
+                      </Pointer>
+                    </PaddingStyled>
                   </Grid>
                 ))}
               </Grid>

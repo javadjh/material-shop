@@ -30,6 +30,7 @@ import { SMALL_FONT, X_SMALL_FONT } from "../../../../config/font";
 import { WHITE_COLOR } from "../../../../config/colors";
 import Link from "next/link";
 import { useWindowSize } from "../../../../global-component/ScreenBridge.c";
+import ProductItem from "./ProductItem";
 
 const Products: FC<{
   products: any;
@@ -98,42 +99,7 @@ const Products: FC<{
                   }}
                 >
                   <Grid>
-                    <ProductContainerStyled>
-                      <ImageServerComponent
-                        border={8}
-                        image={item.image}
-                        width={"100%"}
-                      />
-
-                      <SpaceStyled top={10} bottom={10}>
-                        <WhiteText>{item?.title}</WhiteText>
-                        <WhiteText>{item?.brandName}</WhiteText>
-                      </SpaceStyled>
-                      <Grid
-                        container
-                        alignItems={"center"}
-                        justifyContent={"space-between"}
-                      >
-                        <Grid lg={4}>
-                          <Typography
-                            textColor={WHITE_COLOR}
-                            fontSize={X_SMALL_FONT}
-                          >
-                            {item?.remainingCount} عدد
-                          </Typography>
-                        </Grid>
-                        <Grid lg={8}>
-                          <LeftStyled>
-                            <Typography
-                              textColor={WHITE_COLOR}
-                              fontSize={SMALL_FONT}
-                            >
-                              {item?.price} تومان
-                            </Typography>
-                          </LeftStyled>
-                        </Grid>
-                      </Grid>
-                    </ProductContainerStyled>
+                    <ProductItem item={item} />
                   </Grid>
                 </Link>
               ))}

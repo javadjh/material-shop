@@ -56,7 +56,7 @@ const ChoiceMobile: FC<{ categories: Array<ICategory> }> = ({ categories }) => {
                   <StoreItemComponent
                     iconName="store"
                     title={"مصالح پر کاربرد"}
-                    key={"job"}
+                    key={"top-materials"}
                   />
                 </PaddingStyled>
               </Grid>

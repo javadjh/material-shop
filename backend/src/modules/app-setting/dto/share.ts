@@ -45,4 +45,22 @@ export class ShareAppSetting {
 
   @ApiProperty()
   updatedAt?: string;
+
+  @ApiProperty()
+  firstAddress?: string;
+
+  @ApiProperty()
+  secondAddress?: string;
+
+  @ApiProperty()
+  thirdAddress?: string;
+
+  @ApiProperty()
+  firstTell?: string;
+
+  @ApiProperty()
+  secondTell?: string;
+
+  @ApiProperty()
+  thirdTell?: string;
 }

@@ -17,12 +17,22 @@ import Joi from "joi";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { insertReport } from "../../service/report.service";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useWindowSize } from "../../global-component/ScreenBridge.c";
 import { getCookie } from "cookies-next";
+import { getAppSettingService } from "../../service/appsetting.service";
 
 const ContactUs = () => {
   const [isSubmited, setIsSubmited] = useState(false);
+  const [appsetting, setAppSetting] = useState<any>({});
+  useEffect(() => {
+    getData();
+  }, []);
+  const getData = async () => {
+    const res = await getAppSettingService();
+    let setting = res?.data?.data?.data;
+    setAppSetting(setting);
+  };
   const size = useWindowSize();
   const formik = useFormik({
     initialValues: {
@@ -155,68 +165,74 @@ const ContactUs = () => {
                 />
               </CenterStyled>
 
-              <PaddingStyled top={20}>
-                <Grid container justifyContent={"space-between"}>
-                  <Grid>
-                    <Typography
-                      style={{ fontWeight: "bold" }}
-                      textColor={WHITE_COLOR}
-                    >
-                      دفتر مرکزی : تهران نیاوران بعد از مژده پلاک 408
-                    </Typography>
+              {appsetting?.firstAddress && (
+                <PaddingStyled top={20}>
+                  <Grid container justifyContent={"space-between"}>
+                    <Grid>
+                      <Typography
+                        style={{ fontWeight: "bold" }}
+                        textColor={WHITE_COLOR}
+                      >
+                        {appsetting?.firstAddress}
+                      </Typography>
+                    </Grid>
+                    <Grid>
+                      <Typography
+                        style={{ fontWeight: "bold" }}
+                        textColor={WHITE_COLOR}
+                      >
+                        {appsetting?.firstTell}
+                      </Typography>
+                    </Grid>
                   </Grid>
-                  <Grid>
-                    <Typography
-                      style={{ fontWeight: "bold" }}
-                      textColor={WHITE_COLOR}
-                    >
-                      22754634-021
-                    </Typography>
-                  </Grid>
-                </Grid>
-              </PaddingStyled>
+                </PaddingStyled>
+              )}
 
-              <PaddingStyled top={10}>
-                <Grid container justifyContent={"space-between"}>
-                  <Grid>
-                    <Typography
-                      style={{ fontWeight: "bold" }}
-                      textColor={WHITE_COLOR}
-                    >
-                      دفتر مرکزی : تهران نیاوران بعد از مژده پلاک 408
-                    </Typography>
+              {appsetting?.secondAddress && (
+                <PaddingStyled top={20}>
+                  <Grid container justifyContent={"space-between"}>
+                    <Grid>
+                      <Typography
+                        style={{ fontWeight: "bold" }}
+                        textColor={WHITE_COLOR}
+                      >
+                        {appsetting?.secondAddress}
+                      </Typography>
+                    </Grid>
+                    <Grid>
+                      <Typography
+                        style={{ fontWeight: "bold" }}
+                        textColor={WHITE_COLOR}
+                      >
+                        {appsetting?.secondTell}
+                      </Typography>
+                    </Grid>
                   </Grid>
-                  <Grid>
-                    <Typography
-                      style={{ fontWeight: "bold" }}
-                      textColor={WHITE_COLOR}
-                    >
-                      22754634-021
-                    </Typography>
-                  </Grid>
-                </Grid>
-              </PaddingStyled>
+                </PaddingStyled>
+              )}
 
-              <PaddingStyled top={10}>
-                <Grid container justifyContent={"space-between"}>
-                  <Grid>
-                    <Typography
-                      style={{ fontWeight: "bold" }}
-                      textColor={WHITE_COLOR}
-                    >
-                      دفتر مرکزی : تهران نیاوران بعد از مژده پلاک 408
-                    </Typography>
+              {appsetting?.thirdAddress && (
+                <PaddingStyled top={20}>
+                  <Grid container justifyContent={"space-between"}>
+                    <Grid>
+                      <Typography
+                        style={{ fontWeight: "bold" }}
+                        textColor={WHITE_COLOR}
+                      >
+                        {appsetting?.thirdAddress}
+                      </Typography>
+                    </Grid>
+                    <Grid>
+                      <Typography
+                        style={{ fontWeight: "bold" }}
+                        textColor={WHITE_COLOR}
+                      >
+                        {appsetting?.thirdTell}
+                      </Typography>
+                    </Grid>
                   </Grid>
-                  <Grid>
-                    <Typography
-                      style={{ fontWeight: "bold" }}
-                      textColor={WHITE_COLOR}
-                    >
-                      22754634-021
-                    </Typography>
-                  </Grid>
-                </Grid>
-              </PaddingStyled>
+                </PaddingStyled>
+              )}
             </PaddingStyled>
           </Grid>
         </Grid>

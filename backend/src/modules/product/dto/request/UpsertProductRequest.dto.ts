@@ -2,11 +2,13 @@ import { ApiProperty } from '@nestjs/swagger';
 import {
   IsArray,
   IsBoolean,
+  IsEnum,
   IsNumber,
   IsOptional,
   IsString,
   Length,
 } from 'class-validator';
+import { sendWayEnum } from 'src/shareDTO/enums';
 export class OptionDto {
   @ApiProperty()
   @IsString()
@@ -32,6 +34,11 @@ export class UpsertProductInfoRequestDto {
   @IsString()
   @Length(2, 200)
   title: string;
+
+  @ApiProperty()
+  @IsString()
+  @IsEnum(sendWayEnum)
+  sendWay: string;
 
   @ApiProperty()
   @IsNumber()
