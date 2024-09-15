@@ -4,6 +4,7 @@ import IconComponent from "../../../../global-component/Icon.c";
 import { Typography } from "@mui/joy";
 import { WhiteText } from "../../../../global-component/Typography/WhiteText.t";
 import { FC, useState } from "react";
+import { CenterStyled } from "../../../../global-style/global.s";
 
 const CountPickerComponent: FC<any> = ({ onChange, maxValue }) => {
   const [value, setValue] = useState<number>(1);
@@ -29,7 +30,9 @@ const CountPickerComponent: FC<any> = ({ onChange, maxValue }) => {
       </div>
       <WhiteText>{value}</WhiteText>
       <div onClick={() => onChanageValue(false)}>
-        <CircleOrange>-</CircleOrange>
+        <CenterStyled>
+          <CircleOrange>-</CircleOrange>
+        </CenterStyled>
       </div>
     </OrangeBorder>
   );
