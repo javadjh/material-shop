@@ -22,7 +22,7 @@ const EmployementPage = () => {
   const formik = useFormik({
     initialValues: {
       fullName: "",
-      phoneNumber: getCookie("phone"),
+      phoneNumber: getCookie("phone")?.substring(1),
       activity: "",
       description: "",
       cityId: undefined,
@@ -85,6 +85,7 @@ const EmployementPage = () => {
                     <InputComponent
                       name="phoneNumber"
                       placeholder="شماره تماس"
+                      disabled={getCookie("phone")}
                       onChange={formik.handleChange}
                       type="number"
                       value={formik.values.phoneNumber}

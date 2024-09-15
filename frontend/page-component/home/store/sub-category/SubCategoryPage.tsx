@@ -98,7 +98,7 @@ const SubCategoryPage: FC<any> = ({
               {parentCategories?.map((item: any) => (
                 <SwiperSlide
                   style={{
-                    width: 130,
+                    width: 110,
                   }}
                   onClick={() => setActiveCategory(item?._id)}
                 >
@@ -114,7 +114,7 @@ const SubCategoryPage: FC<any> = ({
               <Grid
                 container
                 justifyContent={"space-between"}
-                rowSpacing={2}
+                rowSpacing={5}
                 columnSpacing={5}
               >
                 {categoriesData?.map((item) => (
@@ -128,6 +128,7 @@ const SubCategoryPage: FC<any> = ({
                           }}
                         >
                           <SubCategoryItemComponent
+                            whiteMode={true}
                             iconName={item.icon}
                             title={item.title}
                             id={item?._id}

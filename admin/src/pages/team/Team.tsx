@@ -3,7 +3,7 @@ import { ITeam } from "../../types/team.type";
 import { SpaceStyled } from "../../global-style/global.s";
 import { Button, Col, Row, Typography } from "antd";
 import TeamsComponent from "./Teams.c";
-import { teamsService } from "../../service/team.service";
+import { deleteTeamService, teamsService } from "../../service/team.service";
 import UpsertTeamModal from "./UpsertTeam.m";
 
 export const Team = () => {
@@ -30,6 +30,11 @@ export const Team = () => {
     setTeamsData(team);
     setIsOpen(true);
   };
+
+  const onClickDeleteListener = async (id: string) => {
+    await deleteTeamService(id);
+    await getTeams();
+  };
   return (
     <>
       <UpsertTeamModal
@@ -54,7 +59,11 @@ export const Team = () => {
           </Col>
         </Row>
       </SpaceStyled>
-      <TeamsComponent teams={teams} onClickEditListener={onClickEditListener} />
+      <TeamsComponent
+        onClickDeleteListener={onClickDeleteListener}
+        teams={teams}
+        onClickEditListener={onClickEditListener}
+      />
     </>
   );
 };

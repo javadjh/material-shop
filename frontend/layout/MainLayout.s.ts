@@ -13,8 +13,9 @@ export const MobileLayoutContainer = styled.div`
   background-image: url("/mobile-bg.jpg");
 `;
 export const HeaderLayoutStyled = styled.div`
-  position: absolute;
+  position: fixed;
   top: 20px;
+
   left: 3%;
 `;
 
@@ -38,4 +39,13 @@ export const OrangeMainLayoutBTN = styled.div`
   cursor: pointer;
   color: black;
   padding: 5px 30px;
+`;
+export const SearchBox = styled.div`
+  position: absolute;
+  top: 40px;
+  border-radius: 10px;
+  left: 5px;
+  right: 5px;
+  background-color: white;
+  width: 340px;
 `;

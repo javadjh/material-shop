@@ -72,14 +72,17 @@ export class UpsertProductInfoRequestDto {
 
   @ApiProperty({ isArray: true, type: OptionDto })
   @IsArray()
+  @IsOptional()
   options?: Array<OptionDto>;
 
   @ApiProperty({ isArray: true, type: CarDto })
   @IsArray()
+  @IsOptional()
   car?: Array<CarDto>;
 
   @ApiProperty()
   @IsBoolean()
+  @IsOptional()
   isHighConsumption?: boolean;
 
   @ApiProperty()
@@ -92,14 +95,17 @@ export class UpsertProductInfoRequestDto {
 
   @ApiProperty()
   @IsArray()
+  @IsOptional()
   sellerIds?: Array<string>;
 
   @ApiProperty()
   @IsArray()
+  @IsOptional()
   colors: Array<string>;
 
   @ApiProperty()
   @IsNumber()
+  @IsOptional()
   postPrice: number;
 
   @ApiProperty()

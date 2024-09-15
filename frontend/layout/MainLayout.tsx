@@ -5,6 +5,7 @@ import {
   MainLayoutContainer,
   MakeBoxContainer,
   OrangeMainLayoutBTN,
+  SearchBox,
 } from "./MainLayout.s";
 import { Badge, Grid, Option, Typography } from "@mui/joy";
 import {
@@ -22,12 +23,41 @@ import { ReactSVG } from "react-svg";
 import { NotificationsActive } from "@mui/icons-material";
 import { unseenUserChatsService } from "../service/chat.service";
 import ActionBorderComponent from "../global-component/ActionBorder.c";
+import styled from "styled-components";
+import { IProduct } from "../types/product.type";
+import { productsService } from "../service/product.service";
+import ImageServerComponent from "../global-component/ImageServer.c";
+import { priceFormat } from "../config/utility";
+import { MEDIUM_FONT } from "../config/font";
 const MainLayout: FC<{ children: any }> = ({ children }) => {
   const [usersUnseenCount, setUsersUnseenCount] = useState<number>(0);
+  const [products, setProducts] = useState<Array<IProduct>>([]);
+  const [searchValue, setSearchValue] = useState<string>("");
+
   const router = useRouter();
   useEffect(() => {
     if (getCookie("token")) getUsersUnseenCount();
   }, []);
+
+  useEffect(() => {
+    if (searchValue?.length > 0) {
+      getProducts();
+    } else {
+      setProducts([]);
+    }
+  }, [searchValue]);
+
+  const getProducts = async () => {
+    const {
+      data: { data: res },
+    } = await productsService({
+      eachPerPage: 5,
+      searchValue,
+    });
+
+    setProducts(res?.list);
+  };
+
   const getUsersUnseenCount = async () => {
     const {
       data: { data: res },
@@ -58,7 +88,43 @@ const MainLayout: FC<{ children: any }> = ({ children }) => {
               </DepartmentSelect>
             </Grid>
             <Grid>
-              <input className="search-input" placeholder={"Search"} />
+              <div style={{ position: "relative" }}>
+                <input
+                  className="search-input"
+                  onChange={(e) => setSearchValue(e.target?.value)}
+                  placeholder={"Search"}
+                />
+                <SearchBox>
+                  {products?.map((product) => (
+                    <Link href={`/store/product?id=${product?._id}`}>
+                      <Grid container spacing={2}>
+                        <Grid>
+                          <SpaceStyled top={10} right={10}>
+                            <ImageServerComponent
+                              image={product?.image}
+                              width={80}
+                            />
+                          </SpaceStyled>
+                        </Grid>
+                        <Grid alignContent={"center"}>
+                          <Typography fontSize={MEDIUM_FONT}>
+                            {product?.title}
+                          </Typography>
+                          <Typography fontSize={MEDIUM_FONT}>
+                            برند : {product?.brandName}
+                          </Typography>
+                          <Typography fontSize={MEDIUM_FONT}>
+                            قیمت : {priceFormat(product?.price)}
+                          </Typography>
+                        </Grid>
+                      </Grid>
+                      <hr
+                        style={{ opacity: 0.2, margin: 0, marginBottom: 10 }}
+                      />
+                    </Link>
+                  ))}
+                </SearchBox>
+              </div>
             </Grid>
             {usersUnseenCount > 0 && (
               <Grid>

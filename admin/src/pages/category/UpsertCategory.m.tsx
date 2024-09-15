@@ -65,6 +65,7 @@ const UpsertCategoryModal: FC<{
     <Modal open={isOpen} footer={null} onCancel={() => setIsOpen(false)}>
       <div dir="rtl">
         <UploadFileComponent
+          size="128*128"
           fileHandler={(file: any) => {
             console.log(`${BACKEND_URL}public/${icon}`);
 

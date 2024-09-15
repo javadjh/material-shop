@@ -18,6 +18,8 @@ import ImageServerComponent from "../../global-component/ImageServer.c";
 import { SMALL_FONT } from "../../config/font";
 import Link from "next/link";
 import { useWindowSize } from "../../global-component/ScreenBridge.c";
+import { ReactSVG } from "react-svg";
+import TeamsComponent from "./Teams.c";
 
 const AboutUsPage = () => {
   const [select, setSelect] = useState<string>("");
@@ -37,7 +39,7 @@ const AboutUsPage = () => {
       <SocialMediaComponent />
       <Grid container>
         <Grid lg={2}>
-          <PaddingStyled top={20}>
+          <PaddingStyled style={{ position: "fixed" }} top={20}>
             <LogoComponent width={size.height > 650 ? 200 : 120} />
             <SpaceStyled bottom={10} top={10}>
               <CenterStyled>
@@ -65,68 +67,7 @@ const AboutUsPage = () => {
           {select == "سازه کمک چیست" || select == "درباره سازه کمک" ? (
             <AboutUsTextContainer></AboutUsTextContainer>
           ) : (
-            <SpaceStyled top={80} right={60}>
-              <Grid container spacing={5}>
-                {teams?.map((team) => (
-                  <Grid lg={3}>
-                    <TeamContainer>
-                      <CenterStyled>
-                        <ImageServerComponent
-                          image={team?.image}
-                          height={100}
-                          width={100}
-                          border={20}
-                        />
-                        <WhiteContainer>
-                          <CenterStyled>
-                            <Typography fontSize={SMALL_FONT}>
-                              {team?.fullName}
-                            </Typography>
-                          </CenterStyled>
-                        </WhiteContainer>
-                        <WhiteContainer>
-                          <CenterStyled>
-                            <Typography fontSize={SMALL_FONT}>
-                              {team?.position}
-                            </Typography>
-                          </CenterStyled>
-                        </WhiteContainer>
-
-                        <SpaceStyled top={20}>
-                          <Grid container spacing={3}>
-                            <Grid lg={2.2}>
-                              <Link href={team?.twitter || "/"}>
-                                <img src="/icons/twitter.png" />
-                              </Link>
-                            </Grid>
-                            <Grid lg={2.2}>
-                              <Link href={team?.telegram || "/"}>
-                                <img src="/icons/telegram.png" />
-                              </Link>
-                            </Grid>
-                            <Grid lg={2.2}>
-                              <Link href={team?.whatsapp || "/"}>
-                                <img src="/icons/whatsapp.png" />
-                              </Link>
-                            </Grid>
-                            <Grid lg={2.2}>
-                              <Link href={team?.instagram || "/"}>
-                                <img src="/icons/instagram.png" />
-                              </Link>
-                            </Grid>
-                            <Grid lg={2.2}>
-                              <Link href={team?.linkedin || "/"}>
-                                <img src="/icons/linkedin.png" />
-                              </Link>
-                            </Grid>
-                          </Grid>
-                        </SpaceStyled>
-                      </CenterStyled>
-                    </TeamContainer>
-                  </Grid>
-                ))}
-              </Grid>
-            </SpaceStyled>
+            <TeamsComponent teams={teams} />
           )}
         </Grid>
       </Grid>
@@ -141,18 +82,4 @@ const AboutUsTextContainer = styled.div`
   margin-right: 30px;
   width: 100%-30;
   height: 80vh;
-`;
-const WhiteContainer = styled.div`
-  background-color: white;
-  border-radius: 5px;
-  width: 100%;
-  padding: 5px;
-  margin-top: 20px;
-`;
-
-const TeamContainer = styled.div`
-  border: 2px solid white;
-  border-radius: 20px;
-
-  padding: 20px;
 `;

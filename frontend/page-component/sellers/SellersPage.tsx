@@ -50,99 +50,101 @@ const SellersPage = () => {
             <TopSellerHeaderomponent
               onSelected={(e) => setSellerDepartment(e)}
             />
-            <Grid container spacing={3}>
-              {sellers?.map((item) => (
-                <Grid lg={6}>
-                  <TopWhiteCardStyled>
-                    <PaddingStyled vertical={5}>
+            <SpaceStyled top={30}>
+              <Grid container spacing={3}>
+                {sellers?.map((item) => (
+                  <Grid lg={6}>
+                    <TopWhiteCardStyled>
+                      <PaddingStyled vertical={5}>
+                        <Grid container justifyContent={"space-between"}>
+                          <Grid>
+                            <Typography fontWeight={"bold"}>
+                              {item?.title}
+                            </Typography>
+                          </Grid>
+                          <Grid>
+                            <SpaceStyled>
+                              <Typography fontWeight={"bold"}>
+                                {item?.firstNumber}
+                              </Typography>
+                              <Typography fontWeight={"bold"}>
+                                {item?.secondNumber}
+                              </Typography>
+                            </SpaceStyled>
+                          </Grid>
+                        </Grid>
+                      </PaddingStyled>
+                    </TopWhiteCardStyled>
+                    <BottomWhiteCardStyled>
                       <Grid container justifyContent={"space-between"}>
                         <Grid>
                           <Typography fontWeight={"bold"}>
-                            {item?.title}
+                            {item?.address}
                           </Typography>
                         </Grid>
-                        <Grid>
-                          <SpaceStyled>
-                            <Typography fontWeight={"bold"}>
-                              {item?.firstNumber}
-                            </Typography>
-                            <Typography fontWeight={"bold"}>
-                              {item?.secondNumber}
-                            </Typography>
-                          </SpaceStyled>
+                        <Grid container spacing={2}>
+                          <Grid>
+                            <div style={{ width: 20, height: 20 }}>
+                              <ReactSVG
+                                src="/icons/telegram.svg"
+                                beforeInjection={(svg) => {
+                                  svg.setAttribute(
+                                    "style",
+                                    `width: 20px ; height: 20px; fill : white !important`
+                                  );
+                                }}
+                              />
+                            </div>
+                          </Grid>
+                          <Grid>
+                            <div style={{ width: 20, height: 20 }}>
+                              <ReactSVG
+                                src="/icons/whatsapp.svg"
+                                style={{ color: "red" }}
+                                beforeInjection={(svg) => {
+                                  svg.setAttribute(
+                                    "style",
+                                    `width: 20px ; height: 20px; fill : white !important`
+                                  );
+                                }}
+                              />
+                            </div>
+                          </Grid>
+                          <Grid>
+                            <div style={{ width: 20, height: 20 }}>
+                              <ReactSVG
+                                src="/icons/instagram.svg"
+                                style={{ color: "red" }}
+                                beforeInjection={(svg) => {
+                                  svg.setAttribute(
+                                    "style",
+                                    `width: 20px ; height: 20px; fill : white !important`
+                                  );
+                                }}
+                              />
+                            </div>
+                          </Grid>
+                          <Grid>
+                            <div style={{ width: 20, height: 20 }}>
+                              <ReactSVG
+                                src="/icons/whatsapp.svg"
+                                style={{ color: "red" }}
+                                beforeInjection={(svg) => {
+                                  svg.setAttribute(
+                                    "style",
+                                    `width: 20px ; height: 20px; fill : white !important`
+                                  );
+                                }}
+                              />
+                            </div>
+                          </Grid>
                         </Grid>
                       </Grid>
-                    </PaddingStyled>
-                  </TopWhiteCardStyled>
-                  <BottomWhiteCardStyled>
-                    <Grid container justifyContent={"space-between"}>
-                      <Grid>
-                        <Typography fontWeight={"bold"}>
-                          {item?.address}
-                        </Typography>
-                      </Grid>
-                      <Grid container spacing={2}>
-                        <Grid>
-                          <div style={{ width: 20, height: 20 }}>
-                            <ReactSVG
-                              src="/icons/telegram.svg"
-                              beforeInjection={(svg) => {
-                                svg.setAttribute(
-                                  "style",
-                                  `width: 20px ; height: 20px; fill : white !important`
-                                );
-                              }}
-                            />
-                          </div>
-                        </Grid>
-                        <Grid>
-                          <div style={{ width: 20, height: 20 }}>
-                            <ReactSVG
-                              src="/icons/whatsapp.svg"
-                              style={{ color: "red" }}
-                              beforeInjection={(svg) => {
-                                svg.setAttribute(
-                                  "style",
-                                  `width: 20px ; height: 20px; fill : white !important`
-                                );
-                              }}
-                            />
-                          </div>
-                        </Grid>
-                        <Grid>
-                          <div style={{ width: 20, height: 20 }}>
-                            <ReactSVG
-                              src="/icons/instagram.svg"
-                              style={{ color: "red" }}
-                              beforeInjection={(svg) => {
-                                svg.setAttribute(
-                                  "style",
-                                  `width: 20px ; height: 20px; fill : white !important`
-                                );
-                              }}
-                            />
-                          </div>
-                        </Grid>
-                        <Grid>
-                          <div style={{ width: 20, height: 20 }}>
-                            <ReactSVG
-                              src="/icons/whatsapp.svg"
-                              style={{ color: "red" }}
-                              beforeInjection={(svg) => {
-                                svg.setAttribute(
-                                  "style",
-                                  `width: 20px ; height: 20px; fill : white !important`
-                                );
-                              }}
-                            />
-                          </div>
-                        </Grid>
-                      </Grid>
-                    </Grid>
-                  </BottomWhiteCardStyled>
-                </Grid>
-              ))}
-            </Grid>
+                    </BottomWhiteCardStyled>
+                  </Grid>
+                ))}
+              </Grid>
+            </SpaceStyled>
           </PaddingStyled>
         </Grid>
       </Grid>

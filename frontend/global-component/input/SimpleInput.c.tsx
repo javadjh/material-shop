@@ -1,6 +1,6 @@
 import { FC } from "react";
 import styled from "styled-components";
-import { ORANGE_COLOR } from "../../config/colors";
+import { ORANGE_COLOR, WHITE_COLOR } from "../../config/colors";
 import { Input, Textarea } from "@mui/joy";
 import { SMALL_FONT } from "../../config/font";
 
@@ -20,9 +20,9 @@ const InputStyled = styled.input`
   width: 100%;
   background-color: transparent !important;
   border-radius: 5px;
-  color: ${ORANGE_COLOR} !important;
+  color: ${WHITE_COLOR} !important;
   ::placeholder {
-    color: ${ORANGE_COLOR} !important;
+    color: ${WHITE_COLOR} !important;
     opacity: 1 !important;
     font-weight: bold;
   }
@@ -37,12 +37,12 @@ const TextAreaStyled = styled.textarea`
   width: 100%;
   background-color: transparent !important;
   border-radius: 5px;
-  color: ${ORANGE_COLOR} !important;
+  color: ${WHITE_COLOR} !important;
   margin: 10px 0px;
 
   border: 2px solid white;
   ::placeholder {
-    color: ${ORANGE_COLOR} !important;
+    color: ${WHITE_COLOR} !important;
     opacity: 1 !important;
     font-weight: bold;
   }

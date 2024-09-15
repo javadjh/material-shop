@@ -13,3 +13,7 @@ export const insertTeamService = (data: ITeam) => {
 export const updateTeamService = (data: ITeam, id?: string) => {
   return axiosConfig.put(`${teamAPI}${id}`, data);
 };
+
+export const deleteTeamService = (id: string) => {
+  return axiosConfig.delete(`${teamAPI}${id}`);
+};

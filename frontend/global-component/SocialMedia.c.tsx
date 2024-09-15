@@ -16,7 +16,7 @@ const SocialMediaComponent = () => {
     setMedia(links);
   };
   return (
-    <>
+    <div style={{ position: "fixed", bottom: 0, right: 0 }}>
       <SocialMediaBlock>
         <Link href={media?.instagram || "/"}>
           <SpaceStyled horizontal={5}>
@@ -120,7 +120,7 @@ const SocialMediaComponent = () => {
           </SpaceStyled>
         </Link>
       </SocialMediaBlock>
-    </>
+    </div>
   );
 };
 export default SocialMediaComponent;

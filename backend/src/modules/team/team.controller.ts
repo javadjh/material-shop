@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   Post,
@@ -16,6 +17,7 @@ import { InsertTeamCommand } from './handlers/commands/InsertTeam.command';
 import { UpdateTeamCommand } from './handlers/commands/UpdateTeam.command';
 import { GetTeamsResponseDto } from './dto/response/GetTeamsResponse.dto';
 import { GetTeamsQuery } from './handlers/queries/GetTeams.query';
+import { DeleteTeamCommand } from './handlers/commands/DeleteTeam.command';
 
 @ApiTags('team')
 @Controller('team')
@@ -45,6 +47,17 @@ export class TeamController {
   })
   update(@Body() dto: UpsertTeamRequestDto, @Param('id') id: string) {
     return this.commandBus.execute(new UpdateTeamCommand(dto, id));
+  }
+
+  @Delete(':id')
+  @UseGuards(AdminJwtGuard)
+  @ApiBearerAuth('JWT-auth')
+  @ApiOkResponse({
+    description: 'this route wil delete team',
+    type: ActionDto,
+  })
+  delete(@Param('id') id: string) {
+    return this.commandBus.execute(new DeleteTeamCommand(id));
   }
 
   @Get()

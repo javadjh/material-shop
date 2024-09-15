@@ -20,7 +20,6 @@ export class InsertJobRequestDto {
   @ApiProperty()
   @IsString()
   @IsOptional()
-  @Length(1, 100)
   fatherName: string;
 
   @ApiProperty()

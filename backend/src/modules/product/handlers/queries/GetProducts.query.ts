@@ -23,7 +23,6 @@ export class GetProductsHandler implements IQueryHandler<GetProductsQuery> {
     const { regex, skip, eachPerPage } = GlobalUtility.pagingWrapper(filter);
 
     let filterObject: any = {
-      isHighConsumption: filter?.isHighConsumption,
       $or: [
         { title: regex },
         { code: regex },
@@ -31,6 +30,15 @@ export class GetProductsHandler implements IQueryHandler<GetProductsQuery> {
         { tags: regex },
       ],
     };
+    if (
+      filter?.isHighConsumption != null ||
+      filter?.isHighConsumption != undefined
+    ) {
+      filterObject = {
+        ...filterObject,
+        ...{ isHighConsumption: filter?.isHighConsumption },
+      };
+    }
     if (filter?.categoryId)
       filterObject = {
         ...filterObject,

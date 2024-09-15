@@ -13,9 +13,8 @@ const CarsComponent: FC<{
 }> = ({ cars, setCars }) => {
   const [form] = Form.useForm();
   const onAddOption = async (formData: any) => {
-    console.log(formData);
-
     setCars([...cars, ...[formData]]);
+    form?.resetFields();
   };
   const removeOption = async (record: any) => {
     let carsCopy: Array<ICar> = [...cars];

@@ -65,6 +65,7 @@ const UpsertTeamModal: FC<{
           <SpaceStyled vertical={20}>
             <CenterStyled>
               <UploadFileComponent
+                size="256*256"
                 fileHandler={(file: any) => setImage(file?.filename)}
               >
                 {image ? (

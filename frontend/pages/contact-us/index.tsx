@@ -142,10 +142,7 @@ const ContactUs = () => {
                       }}
                       style={{ width: 100 }}
                     >
-                      <ActionBorderComponent
-                        fontColor={ORANGE_COLOR}
-                        border={"2"}
-                      >
+                      <ActionBorderComponent border={"2"} isFill={true}>
                         ثبت
                       </ActionBorderComponent>
                     </div>
@@ -243,7 +240,7 @@ const ContactUs = () => {
 };
 export default ContactUs;
 const FormContainer = styled.div`
-  border: 2px solid white;
+  border: 2px solid ${ORANGE_COLOR};
   border-radius: 15px;
   padding: 10px;
 `;

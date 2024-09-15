@@ -16,7 +16,7 @@ export const LogoContainer = styled.div`
 `;
 export const SocialMediaBlock = styled.div`
   position: absolute;
-  right: 35px;
+  right: 30px;
   display: flex;
   bottom: 10px;
   img {

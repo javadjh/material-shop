@@ -23,6 +23,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { UploadFileComponent } from "../../global-component/UploadFile.c";
 import { insertReport } from "../../service/report.service";
+import Link from "next/link";
 
 const JobPage = () => {
   const [jobInfos, setJobInfos] = useState<Array<IJobInfo>>([]);
@@ -41,12 +42,12 @@ const JobPage = () => {
     },
 
     onSubmit: async (e: any) => {
-      console.log(e);
+      console.log(jobInfo);
 
       await insertService({
         ...e,
         ...{
-          department: jobSelected,
+          department: jobInfo?.department,
           firstNumber: e?.firstNumber ? "0" + e.firstNumber : undefined,
           secondNumber: e?.secondNumber ? "0" + e?.secondNumber : undefined,
           lastCompanyTel: e?.lastCompanyTel
@@ -66,11 +67,15 @@ const JobPage = () => {
         .max(50, "نام و نام خانوادگی را به درستی وارد کنید")
         .required("اجباری میباشد"),
 
-      mellicode: Yup.string().required("اجباری میباشد"),
+      mellicode: Yup.string().min(10).max(10).required("اجباری میباشد"),
+
+      fatherName: Yup.string().optional().min(2),
+
+      bithday: Yup.string().optional().min(7),
 
       age: Yup.string().required("اجباری میباشد"),
 
-      firstNumber: Yup.string().required("اجباری میباشد"),
+      firstNumber: Yup.string().length(10).required("اجباری میباشد"),
     }),
   });
   useEffect(() => {
@@ -103,18 +108,20 @@ const JobPage = () => {
               <SpaceStyled top={10}>
                 <Grid container spacing={1}>
                   {jobInfos?.map((item: any) => (
-                    <Grid
-                      lg={6}
-                      onClick={() => {
-                        setJobInfo(item);
-                        setJobSelected(item?.title);
-                      }}
-                    >
-                      <ActionBorderComponent
-                        isSelected={jobSelected == item?.title}
+                    <Grid lg={6}>
+                      <div
+                        onClick={() => {
+                          setJobInfo(item);
+                          setJobSelected(item?.title);
+                          setIsSubmited(false);
+                        }}
                       >
-                        {item?.department}
-                      </ActionBorderComponent>
+                        <ActionBorderComponent
+                          isSelected={jobSelected == item?.title}
+                        >
+                          {item?.department}
+                        </ActionBorderComponent>
+                      </div>
                     </Grid>
                   ))}
                 </Grid>
@@ -124,7 +131,7 @@ const JobPage = () => {
         </Grid>
         <Grid lg={10}>
           <SpaceStyled top={80} right={40}>
-            {jobInfo?.department ? (
+            {jobInfo?.department && !isSubmited ? (
               <>
                 <div>
                   <Grid container spacing={10}>
@@ -496,14 +503,36 @@ const JobPage = () => {
                 </div>
               </>
             ) : (
-              <SpaceStyled top={300}>
-                <CenterStyled>
-                  <Typography textColor={WHITE_COLOR}>
-                    کاربر گرامی در صورت تمایل به همکاری با شرکت سازه کمک یکی از
-                    شغل های سمت راست را انتخاب بفرمایید
-                  </Typography>
-                </CenterStyled>
-              </SpaceStyled>
+              <>
+                <SpaceStyled top={300}>
+                  <CenterStyled>
+                    {isSubmited ? (
+                      <>
+                        <Typography textColor={WHITE_COLOR}>
+                          درخواست شما با موفقیت ثبت شد . در صورت نیاز با شما
+                          تماس میگیریم
+                        </Typography>
+                        <SpaceStyled top={10}>
+                          <Link href={"/"}>
+                            <ActionBorderComponent
+                              isSelected={true}
+                              isFill={true}
+                              padding={"0px 10px"}
+                            >
+                              بازشگت به صفحه اصلی
+                            </ActionBorderComponent>
+                          </Link>
+                        </SpaceStyled>
+                      </>
+                    ) : (
+                      <Typography textColor={WHITE_COLOR}>
+                        کاربر گرامی در صورت تمایل به همکاری با شرکت سازه کمک یکی
+                        از شغل های سمت راست را انتخاب بفرمایید
+                      </Typography>
+                    )}
+                  </CenterStyled>
+                </SpaceStyled>
+              </>
             )}
           </SpaceStyled>
         </Grid>

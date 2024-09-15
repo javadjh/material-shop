@@ -13,14 +13,15 @@ const SubCategoryItemComponent: FC<{
   title: string;
   iconName?: string;
   id?: string;
-}> = ({ title, iconName, id }) => {
+  whiteMode?: boolean;
+}> = ({ title, iconName, whiteMode }) => {
   let [categoryId, setCategoryId] = useState<string>("");
   const CategoryItemContainer = styled.div`
     border-radius: 10px;
     display: flex;
     flex-direction: column;
+    background-color: ${whiteMode ? WHITE_COLOR : "transeparent"};
     align-items: center;
-
     aspect-ratio: 3 / 1;
     justify-content: space-between;
     align-items: center;
@@ -31,8 +32,8 @@ const SubCategoryItemComponent: FC<{
   `;
   return (
     <CategoryItemContainer className="fill-outline-hover">
-      <Typography fontSize={LARGE_FONT} textColor={WHITE_COLOR}>
-        <strong>{title}</strong>
+      <Typography fontSize={LARGE_FONT}>
+        <strong style={{ color: whiteMode ? "#000" : "white" }}>{title}</strong>
       </Typography>
       <ImageCategoryItemContainer>
         <ImageServerComponent image={iconName} width={50} />

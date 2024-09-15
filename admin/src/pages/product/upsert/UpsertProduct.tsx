@@ -130,6 +130,7 @@ const UpsertProduct = () => {
                         aria-placeholder="انتخاب برند محصول"
                         style={{ width: "100%" }}
                       >
+                        <option>انتخاب برند</option>
                         {brands?.map((brand) => (
                           <option value={brand?._id}>{brand.title}</option>
                         ))}
@@ -138,7 +139,7 @@ const UpsertProduct = () => {
                   </Col>
                 </Row>
               </SpaceStyled>
-              <UploadFileComponent fileHandler={onFileUploaded}>
+              <UploadFileComponent size="512*512" fileHandler={onFileUploaded}>
                 {image ? (
                   <ImageServerComponent image={image} />
                 ) : (

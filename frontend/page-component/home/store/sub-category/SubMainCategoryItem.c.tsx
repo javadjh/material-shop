@@ -29,8 +29,8 @@ const SubMainCategoryItemComponent: FC<{
 export default SubMainCategoryItemComponent;
 
 const MainCategoryContainer: any = styled.div`
-  width: 130px;
-  height: 130px;
+  width: 110px;
+  height: 110px;
   background-color: ${(props: any) =>
     props.isActive ? ORANGE_COLOR : "transeparent"};
   border: 2px solid

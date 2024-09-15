@@ -13,9 +13,8 @@ const OptionsComponent: FC<{
 }> = ({ options, setOptions }) => {
   const [form] = Form.useForm();
   const onAddOption = async (formData: any) => {
-    console.log(formData);
-
     setOptions([...options, ...[formData]]);
+    form?.resetFields();
   };
   const removeOption = async (record: any) => {
     let optionsCopy: Array<IOption> = [...options];

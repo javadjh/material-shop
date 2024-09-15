@@ -2,9 +2,11 @@ import { Progress, UploadProps, message } from "antd";
 import { FC, useState } from "react";
 import axiosConfig from "../service/axiosConfig";
 import { uploadAPI } from "../service/APIRoutes";
+import { CenterStyled, WhiteP } from "../global-style/global.s";
 
 interface IUploadFileComponent {
   children: any;
+  size: string;
   fileHandler: any;
   isPrivate?: any;
   width?: number;
@@ -21,6 +23,7 @@ export const UploadFileComponent: FC<IUploadFileComponent> = ({
   children,
   onUploadPercent,
   isShowPercent = true,
+  size = true,
 }) => {
   const [percent, setPercent] = useState<any>(undefined);
   const sendFile = async (files: any) => {
@@ -52,6 +55,9 @@ export const UploadFileComponent: FC<IUploadFileComponent> = ({
   let inputName = Date.now() + Math.floor(Math.random() * (1000 - 5 + 1) + 5);
   return (
     <>
+      <CenterStyled>
+        <span className="text-white">{size}</span>
+      </CenterStyled>
       {percent && isShowPercent && (
         <Progress
           strokeColor={{

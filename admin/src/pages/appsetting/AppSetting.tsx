@@ -157,7 +157,9 @@ const AppSetting = () => {
       <CenterStyled>
         <WhiteP>بنر</WhiteP>
       </CenterStyled>
+
       <UploadFileComponent
+        size={"1920*90"}
         fileHandler={(e: any) => {
           console.log(e.filename);
 

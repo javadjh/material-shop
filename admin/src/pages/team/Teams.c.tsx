@@ -1,4 +1,4 @@
-import { Avatar, Table, TableProps, Typography } from "antd";
+import { Avatar, Popconfirm, Table, TableProps, Typography } from "antd";
 import { FC, useEffect, useState } from "react";
 import { reportsService } from "../../service/report.service";
 import { IReport } from "../../types/report.type";
@@ -8,12 +8,14 @@ import { ITeam } from "../../types/team.type";
 import { EyeOutlined } from "@ant-design/icons";
 import { Pointer, SpaceStyled } from "../../global-style/global.s";
 import ImageServerComponent from "../../components/ImageServer.c";
+import { RedTextStyled } from "../category/category.style";
 
 const TeamsComponent: FC<{
   teams: any;
 
   onClickEditListener: any;
-}> = ({ teams, onClickEditListener }) => {
+  onClickDeleteListener: any;
+}> = ({ teams, onClickEditListener, onClickDeleteListener }) => {
   return (
     <div className="col-xxl-12">
       <div className="card mb-3">
@@ -51,11 +53,24 @@ const TeamsComponent: FC<{
                         </td>
                         <td>{item?.position}</td>
                         <td>
-                          <SpaceStyled top={15}>
+                          <SpaceStyled top={15} bottom={15}>
                             <Pointer>
-                              <p onClick={() => onClickEditListener(item)}>
-                                ویرایش
-                              </p>
+                              <span onClick={() => onClickEditListener(item)}>
+                                ویرایش{" "}
+                              </span>
+                            </Pointer>
+                            <Pointer>
+                              <Popconfirm
+                                title="حذف فرد"
+                                description="آیا از حذف فرد اطمینان دارید؟"
+                                onConfirm={() =>
+                                  onClickDeleteListener(item?._id)
+                                }
+                                okText="آره"
+                                cancelText="نه"
+                              >
+                                <span className="text-danger">حذف</span>
+                              </Popconfirm>
                             </Pointer>
                           </SpaceStyled>
                         </td>

@@ -1,4 +1,5 @@
 //commands
+import { DeleteTeamHandler } from './commands/DeleteTeam.command';
 import { InsertTeamHandler } from './commands/InsertTeam.command';
 import { UpdateTeamHandler } from './commands/UpdateTeam.command';
 
@@ -9,6 +10,7 @@ export default [
   //commands
   InsertTeamHandler,
   UpdateTeamHandler,
+  DeleteTeamHandler,
 
   //queries
   GetTeamsHandler,

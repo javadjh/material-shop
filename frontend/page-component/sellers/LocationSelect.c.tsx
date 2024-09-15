@@ -112,4 +112,7 @@ const SelectStyled = styled(Select)`
   border: 2px solid ${ORANGE_COLOR};
   background-color: transparent !important;
   color: white;
+  ::placeholder {
+    color: white !important;
+  }
 `;
