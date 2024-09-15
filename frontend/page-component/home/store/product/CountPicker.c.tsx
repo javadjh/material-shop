@@ -29,11 +29,11 @@ const CountPickerComponent: FC<any> = ({ onChange, maxValue }) => {
         <CircleOrange>+</CircleOrange>
       </div>
       <WhiteText>{value}</WhiteText>
-      <div onClick={() => onChanageValue(false)}>
+      <span onClick={() => onChanageValue(false)}>
         <CenterStyled>
           <CircleOrange>-</CircleOrange>
         </CenterStyled>
-      </div>
+      </span>
     </OrangeBorder>
   );
 };
