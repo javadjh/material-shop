@@ -13,8 +13,8 @@ export const MobileLayoutContainer = styled.div`
   background-image: url("/mobile-bg.jpg");
 `;
 export const HeaderLayoutStyled = styled.div`
+  position: absolute;
   top: 20px;
-
   left: 3%;
 `;
 
