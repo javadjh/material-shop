@@ -25,11 +25,11 @@ const CountPickerComponent: FC<any> = ({ onChange, maxValue }) => {
   return (
     <OrangeBorder>
       <div onClick={() => onChanageValue(true)}>
-        <IconComponent icon="store" width={13} height={13} />
+        <CircleOrange>+</CircleOrange>
       </div>
       <WhiteText>{value}</WhiteText>
       <div onClick={() => onChanageValue(false)}>
-        <IconComponent icon="store" width={13} height={13} />
+        <CircleOrange>-</CircleOrange>
       </div>
     </OrangeBorder>
   );
@@ -42,5 +42,15 @@ export const OrangeBorder = styled.div`
   padding: 5px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+`;
+export const CircleOrange = styled.div`
+  border: 2px solid ${ORANGE_COLOR};
+  border-radius: 100px;
+  width: 20px;
+  height: 20px;
+  aspect-ratio: 1/1;
+  padding: 5px;
+  justify-content: center;
   align-items: center;
 `;
