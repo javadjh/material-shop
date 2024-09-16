@@ -11,7 +11,7 @@ import {
   WhiteBlockStyled,
 } from "../../global-style/global.s";
 import ActionBorderComponent from "../../global-component/ActionBorder.c";
-
+import { DatePicker } from "jalaali-react-date-picker";
 import { LIGHT_GRAY_COLOR, WHITE_COLOR } from "../../config/colors";
 import { useEffect, useState } from "react";
 import { IJob } from "../../types/job.type";
@@ -24,6 +24,8 @@ import * as Yup from "yup";
 import { UploadFileComponent } from "../../global-component/UploadFile.c";
 import { insertReport } from "../../service/report.service";
 import Link from "next/link";
+import { getCookie } from "cookies-next";
+import DatePickerComponent from "../../global-component/DatePicker.c";
 
 const JobPage = () => {
   const [jobInfos, setJobInfos] = useState<Array<IJobInfo>>([]);
@@ -38,12 +40,10 @@ const JobPage = () => {
       mellicode: "",
       age: "",
 
-      firstNumber: "",
+      firstNumber: getCookie("phone")?.substring(1),
     },
 
     onSubmit: async (e: any) => {
-      console.log(jobInfo);
-
       await insertService({
         ...e,
         ...{
@@ -53,7 +53,9 @@ const JobPage = () => {
           lastCompanyTel: e?.lastCompanyTel
             ? "0" + e?.lastCompanyTel
             : undefined,
-          mellicode: e?.mellicode?.toString(),
+          mellicode:
+            (e?.mellicode?.toString().length == 9 ? "0" : "") +
+            e?.mellicode?.toString(),
           age: e?.age?.toString(),
         },
       });
@@ -67,7 +69,7 @@ const JobPage = () => {
         .max(50, "نام و نام خانوادگی را به درستی وارد کنید")
         .required("اجباری میباشد"),
 
-      mellicode: Yup.string().min(10).max(10).required("اجباری میباشد"),
+      mellicode: Yup.string().min(9).max(10).required("اجباری میباشد"),
 
       fatherName: Yup.string().optional().min(2),
 
@@ -117,7 +119,9 @@ const JobPage = () => {
                         }}
                       >
                         <ActionBorderComponent
-                          isSelected={jobSelected == item?.title}
+                          border={2}
+                          isFill={jobInfo?._id == item?._id}
+                          isSelected={jobInfo?._id == item?._id}
                         >
                           {item?.department}
                         </ActionBorderComponent>
@@ -129,6 +133,7 @@ const JobPage = () => {
             </SpaceStyled>
           </SpaceStyled>
         </Grid>
+
         <Grid lg={10}>
           <SpaceStyled top={80} right={40}>
             {jobInfo?.department && !isSubmited ? (
@@ -138,7 +143,7 @@ const JobPage = () => {
                     <Grid lg={6}>
                       <SpaceStyled right={80}>
                         <WhiteBlockStyled
-                          style={{ height: "85vh", overflow: "auto" }}
+                          style={{ maxHeight: "85vh", overflow: "auto" }}
                         >
                           <BlockTitle>شرایط لازم برای این شغل</BlockTitle>
                           <SpaceStyled top={10}>
@@ -249,7 +254,7 @@ const JobPage = () => {
                     <Grid lg={6}>
                       <SpaceStyled left={80}>
                         <WhiteBlockStyled
-                          style={{ height: "85vh", overflow: "auto" }}
+                          style={{ maxHeight: "85vh", overflow: "auto" }}
                         >
                           <BlockTitle>
                             برای استخدام در این شغل فرم زیر را پر کنید
@@ -306,16 +311,21 @@ const JobPage = () => {
                                 />
                               </Grid>
                               <Grid lg={6}>
-                                <InputComponent
-                                  name="bithday"
-                                  placeholder="تاریخ تولد"
-                                  isError={
-                                    formik.touched.bithday &&
-                                    formik.errors.bithday
-                                  }
-                                  onChange={formik.handleChange}
-                                  value={formik.values.bithday}
-                                />
+                                <DatePickerComponent
+                                  returnDate={(date: any) => {
+                                    formik.setFieldValue("bithday", date);
+                                  }}
+                                >
+                                  <InputComponent
+                                    name="bithday"
+                                    isError={
+                                      formik.touched.bithday &&
+                                      formik.errors.bithday
+                                    }
+                                    placeholder="تاریخ تولد"
+                                    value={formik.values.bithday}
+                                  />
+                                </DatePickerComponent>
                               </Grid>
 
                               <Grid lg={6}>
@@ -323,12 +333,12 @@ const JobPage = () => {
                                   style={{
                                     padding: 14,
                                     border:
-                                      formik?.errors?.phoneNumber &&
-                                      formik.touched.phoneNumber
+                                      formik?.errors?.isMarried &&
+                                      formik.touched.isMarried
                                         ? "1.5px solid red"
                                         : "1.5px solid orange ",
                                   }}
-                                  name="activity"
+                                  name="isMarried"
                                   placeholder="وضعیت تاهل"
                                   onChange={(e: any, value: any) => {
                                     formik.setFieldValue(
@@ -385,16 +395,43 @@ const JobPage = () => {
                                 />
                               </Grid>
                               <Grid lg={6}>
-                                <InputComponent
+                                <SelectComponent
+                                  style={{
+                                    padding: 14,
+                                    border:
+                                      formik?.errors?.degree &&
+                                      formik.touched.degree
+                                        ? "1.5px solid red"
+                                        : "1.5px solid orange ",
+                                  }}
                                   name="degree"
                                   placeholder="مدرک تحصیلی"
-                                  onChange={formik.handleChange}
-                                  value={formik.values.degree}
-                                  isError={
-                                    formik.touched.degree &&
-                                    formik.errors.degree
-                                  }
-                                />
+                                  onChange={(e: any, value: any) => {
+                                    formik.setFieldValue("degree", value);
+                                  }}
+                                >
+                                  <Option value={"زیر دیپلم"} key={"زیر دیپلم"}>
+                                    زیر دیپلم
+                                  </Option>
+                                  <Option value={"دیپلم"} key={"دیپلم"}>
+                                    دیپلم
+                                  </Option>
+                                  <Option value={"کاردانی"} key={"کاردانی"}>
+                                    کاردانی
+                                  </Option>
+                                  <Option value={"کارشناسی"} key={"کارشناسی"}>
+                                    کارشناسی
+                                  </Option>
+                                  <Option
+                                    value={"کارشناسی ارشد"}
+                                    key={"کارشناسی ارشد"}
+                                  >
+                                    کارشناسی ارشد
+                                  </Option>
+                                  <Option value={"دکترا"} key={"دکترا"}>
+                                    دکترا
+                                  </Option>
+                                </SelectComponent>
                               </Grid>
                               <Grid lg={6}>
                                 <InputComponent
@@ -411,7 +448,7 @@ const JobPage = () => {
                               <Grid lg={6}>
                                 <InputComponent
                                   name="jobHistory"
-                                  placeholder="سابقه کاری"
+                                  placeholder="مدت زمان سابقه کاری"
                                   onChange={formik.handleChange}
                                   value={formik.values.jobHistory}
                                   isError={
@@ -447,13 +484,16 @@ const JobPage = () => {
                               </Grid>
                               <Grid lg={12}>
                                 <UploadFileComponent
+                                  accept="application/pdf, application/msword"
                                   fileHandler={(e: any) => {
                                     console.log(e.filename);
 
                                     formik.setFieldValue("resume", e.filename);
                                   }}
                                 >
-                                  <ValueTitle>بارگزاری رزومه</ValueTitle>
+                                  <ValueTitle>
+                                    بارگزاری رزومه (فقط PDF یا WORD)
+                                  </ValueTitle>
                                 </UploadFileComponent>
                               </Grid>
                               <Grid lg={12}>
@@ -519,7 +559,7 @@ const JobPage = () => {
                               isFill={true}
                               padding={"0px 10px"}
                             >
-                              بازشگت به صفحه اصلی
+                              بازگشت به صفحه اصلی
                             </ActionBorderComponent>
                           </Link>
                         </SpaceStyled>

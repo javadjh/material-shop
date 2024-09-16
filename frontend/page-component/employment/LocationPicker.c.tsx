@@ -69,21 +69,23 @@ const LocationPickerComponent: FC<{
       </Grid>
       <Grid lg={6}>
         <SpaceStyled left={secondLeftSelect} right={secondRightSelect}>
-          <Select
-            style={{
-              width: "100%",
-              padding: 15,
-              border: isError ? "1.5px solid red" : "1.5px solid orange ",
-            }}
-            placeholder="شهر محل فعالیت خود را انتخاب کنید"
-            onChange={(e, value) => onCitySelected(Number(value))}
-          >
-            {cities?.map((item) => (
-              <Option key={item.id} value={item.id}>
-                {item?.name}
-              </Option>
-            ))}
-          </Select>
+          {province && (
+            <Select
+              style={{
+                width: "100%",
+                padding: 15,
+                border: isError ? "1.5px solid red" : "1.5px solid orange ",
+              }}
+              placeholder="شهر محل فعالیت خود را انتخاب کنید"
+              onChange={(e, value) => onCitySelected(Number(value))}
+            >
+              {cities?.map((item) => (
+                <Option key={item.id} value={item.id}>
+                  {item?.name}
+                </Option>
+              ))}
+            </Select>
+          )}
         </SpaceStyled>
       </Grid>
     </Grid>

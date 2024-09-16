@@ -52,6 +52,11 @@ const EmployementPage = () => {
         <Grid lg={2}>
           <SpaceStyled top={20}>
             <LogoComponent />
+            <SpaceStyled bottom={10} top={10}>
+              <CenterStyled>
+                <img src="./google-font.png" width={200} />
+              </CenterStyled>
+            </SpaceStyled>
           </SpaceStyled>
         </Grid>
         <Grid lg={10}>
@@ -63,7 +68,7 @@ const EmployementPage = () => {
                 fontSize={LARGE_FONT}
               >
                 کاربر گرامی در صورتی که در حوزه صنعت ساختمان فعالیت دارید برای
-                ارتباط بیشتر با مجموعه ما فرم زیر را تکمیل نمایید
+                ارتباط بیشتر با مجموعه ما فرم زیر را تکمیل نمایید.
               </Typography>
             </CenterStyled>
             {!isSubmited && (
@@ -143,11 +148,11 @@ const EmployementPage = () => {
               </>
             )}
             {isSubmited && (
-              <SpaceStyled top={50}>
+              <SpaceStyled top={150}>
                 <CenterStyled>
                   <Typography fontWeight={"bold"} textColor={WHITE_COLOR}>
                     با تشکر از شما همکاران ما در اسرع وقت با شما تماس خواهند
-                    گرفت{" "}
+                    گرفت{"."}
                   </Typography>
                 </CenterStyled>
               </SpaceStyled>

@@ -18,6 +18,7 @@ import MainLayout from "../layout/Main.layout";
 import UsersChats from "../pages/chats/UsersChats";
 import Order from "../pages/order/Order";
 import Payment from "../pages/payment/Payment";
+import User from "../pages/user/User";
 
 const RoutesComponent = () => {
   return (
@@ -41,6 +42,7 @@ const RoutesComponent = () => {
           <Route path="chat" element={<UsersChats />} />
           <Route path="order" element={<Order />} />
           <Route path="payment" element={<Payment />} />
+          <Route path="user" element={<User />} />
           <Route
             path="category"
             element={

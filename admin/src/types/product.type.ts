@@ -1,7 +1,9 @@
 export interface IProduct {
+  _id?: string;
   title?: string;
   code?: number;
   image?: string;
+  categoryName?: string;
   brandName?: string;
   createdAt?: string;
   description?: string;
@@ -21,7 +23,10 @@ export interface IProduct {
       count?: number;
     }
   ];
-  isHighConsumption?: true;
+  isHighConsumption?: boolean;
+  brands?: any;
+  sellers?: any;
+  category?: any;
   categoryId?: string;
   brandId?: string;
   sellerIds?: [string];

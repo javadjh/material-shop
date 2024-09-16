@@ -11,22 +11,9 @@ import { FC } from "react";
 
 const TeamsComponent: FC<{ teams: Array<ITeam> }> = ({ teams }) => {
   return (
-    <SpaceStyled top={80} right={60}>
+    <SpaceStyled top={150} right={60}>
       <Grid container spacing={5}>
-        {[
-          ...teams,
-          ...teams,
-          ...teams,
-          ...teams,
-          ...teams,
-          ...teams,
-          ...teams,
-          ...teams,
-          ...teams,
-          ...teams,
-          ...teams,
-          ...teams,
-        ]?.map((team: ITeam) => (
+        {teams?.map((team: ITeam) => (
           <Grid lg={3}>
             <TeamContainer className="outline-hover">
               <CenterStyled>

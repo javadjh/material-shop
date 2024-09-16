@@ -31,12 +31,14 @@ const RulesPage = () => {
               <ActionBorderComponent
                 isSelected={department == "general"}
                 padding={size.height > 660 ? 15 : 5}
+                border={"2"}
               >
                 قوانین کلی سایت
               </ActionBorderComponent>
             </div>
             <div onClick={() => setDepartment("privacy")}>
               <ActionBorderComponent
+                border={"2"}
                 isSelected={department == "privacy"}
                 padding={size.height > 660 ? 15 : 5}
               >
@@ -46,6 +48,7 @@ const RulesPage = () => {
 
             <div onClick={() => setDepartment("store")}>
               <ActionBorderComponent
+                border={"2"}
                 isSelected={department == "store"}
                 padding={size.height > 660 ? 15 : 5}
               >
@@ -55,6 +58,7 @@ const RulesPage = () => {
 
             <div onClick={() => setDepartment("service")}>
               <ActionBorderComponent
+                border={"2"}
                 isSelected={department == "service"}
                 padding={size.height > 660 ? 15 : 5}
                 fontSize={13}
@@ -64,6 +68,7 @@ const RulesPage = () => {
             </div>
             <div onClick={() => setDepartment("information")}>
               <ActionBorderComponent
+                border={"2"}
                 isSelected={department == "information"}
                 padding={size.height > 660 ? 15 : 5}
                 fontSize={13}

@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
 import { IProduct } from "../../types/product.type";
-import { productsService } from "../../service/product.service";
+import {
+  deleteProductService,
+  productsService,
+} from "../../service/product.service";
 import CustomPaging from "../../components/CustomPaging";
+import { Pointer } from "../../global-style/global.s";
+import { Link } from "react-router-dom";
+import { Popconfirm } from "antd";
 
 const ProductsComponent = () => {
   const [products, setProducts] = useState<any>();
@@ -20,6 +26,11 @@ const ProductsComponent = () => {
     setProducts(data.data);
   };
 
+  const onDeleteProductListener = async (id: string | any) => {
+    await deleteProductService(id);
+    await getProducts();
+  };
+
   return (
     <>
       <div className="col-xxl-12">
@@ -36,6 +47,7 @@ const ProductsComponent = () => {
                       <th>باقی مانده</th>
                       <th>برند</th>
                       <th>تاریخ ایجاد</th>
+                      <th>عملیات</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -48,6 +60,23 @@ const ProductsComponent = () => {
                         <td>{item?.remainingCount}</td>
                         <td>{item?.brandName}</td>
                         <td>{item?.createdAt}</td>
+                        <td>
+                          <Link
+                            to={`/upsert-product?id=${item?._id}`}
+                            className="text-primary"
+                          >
+                            ویرایش
+                          </Link>
+                          <Popconfirm
+                            title="حذف محصول"
+                            description="آیا از حذف دسته اطمینان دارید؟"
+                            onConfirm={() => onDeleteProductListener(item?._id)}
+                            okText="آره"
+                            cancelText="نه"
+                          >
+                            <Pointer className="text-danger">{""} حذف</Pointer>
+                          </Popconfirm>
+                        </td>
                       </tr>
                     ))}
                   </tbody>

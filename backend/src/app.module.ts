@@ -20,6 +20,7 @@ import { ChatModule } from './modules/chat/chat.module';
 import { BasketModule } from './modules/basket/basket.module';
 import { PaymentModule } from './modules/payment/payment.module';
 import { OrderModule } from './modules/order/order.module';
+import { SmsModule } from './modules/sms/sms.module';
 
 @Module({
   imports: [
@@ -48,6 +49,7 @@ import { OrderModule } from './modules/order/order.module';
     EmploymentModule,
     PaymentModule,
     OrderModule,
+    SmsModule,
     ChatModule,
   ],
 })

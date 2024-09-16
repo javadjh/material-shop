@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { ApiBearerAuth, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { ActionDto } from 'src/shareDTO/action.dto';
@@ -20,6 +20,9 @@ import { UpdateUserCommand } from './handlers/commands/UpdateUser.command';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Response } from 'src/config/response';
+import { AdminJwtGuard } from 'src/guards/admin-jwt.guard';
+import { PagingDto } from 'src/shareDTO/Paging.dto';
+import { GetUsersQuery } from './handlers/queries/GetUsers.query';
 
 @Controller('user')
 @ApiTags('user')
@@ -112,5 +115,16 @@ export class UserController {
   })
   profile(@GetProfile() user: User) {
     return Response.send(user);
+  }
+
+  @Get('')
+  @ApiBearerAuth('JWT-auth')
+  @UseGuards(AdminJwtGuard)
+  @ApiOkResponse({
+    description: 'this route send users list',
+    type: User,
+  })
+  users(@Param() filter: PagingDto) {
+    return this.queryBus.execute(new GetUsersQuery(filter));
   }
 }

@@ -8,9 +8,9 @@ const SimpleInputComponent: FC<any> = (props) => {
   return (
     <>
       {props.isArea ? (
-        <TextAreaStyled minRows={3} {...props} />
+        <TextAreaStyled className="white-input" minRows={3} {...props} />
       ) : (
-        <InputStyled {...props} />
+        <InputStyled className="white-input" {...props} />
       )}
     </>
   );

@@ -18,6 +18,7 @@
     "cookies-next": "^4.1.1",
     "formik": "^2.4.6",
     "jalaali-react-date-picker": "^1.0.18",
+    "jalali-moment": "^3.3.11",
     "joi": "^17.13.3",
     "joi-formik-adapter": "^1.0.2",
     "next": "14.2.3",

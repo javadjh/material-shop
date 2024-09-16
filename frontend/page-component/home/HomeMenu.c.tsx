@@ -4,13 +4,14 @@ import { Grid, Typography } from "@mui/joy";
 import { ORANGE_COLOR } from "../../config/colors";
 import Link from "next/link";
 import { ReactSVG } from "react-svg";
+import { getCookie } from "cookies-next";
 
 const HomeMenuComponent = () => {
   const [hover, setHover] = useState<string | undefined | null>();
   return (
     <>
       <LeftStyled>
-        <Link href={"register"}>
+        <Link href={getCookie("phone") ? "profile/profile" : "register"}>
           <Pointer
             onMouseEnter={() => setHover("login-register")}
             onMouseLeave={() => setHover(null)}
@@ -21,7 +22,7 @@ const HomeMenuComponent = () => {
                   <Grid>
                     <SpaceStyled left={15}>
                       <Typography textColor={ORANGE_COLOR}>
-                        ورود \ عضویت
+                        {getCookie("phone") || "ورود / عضویت"}
                       </Typography>
                     </SpaceStyled>
                   </Grid>

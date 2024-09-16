@@ -23,16 +23,7 @@ export class InsertUserStepOneCommand {
 export class InsertUserStepOneHandler
   implements ICommandHandler<InsertUserStepOneCommand>
 {
-  constructor(
-    @InjectModel(User.name)
-    private readonly user: Model<UserDocument>,
-
-    private config: ConfigService,
-
-    private httpService: HttpService,
-
-    @Inject(CACHE_MANAGER) private readonly cacheManager: Cache,
-  ) {}
+  constructor(@Inject(CACHE_MANAGER) private readonly cacheManager: Cache) {}
   async execute(command: InsertUserStepOneCommand): Promise<any> {
     const { phone } = command.dto;
 

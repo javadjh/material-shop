@@ -3,6 +3,8 @@ import {
   Controller,
   Delete,
   Get,
+  Header,
+  Headers,
   Param,
   Post,
   Put,
@@ -18,6 +20,7 @@ import { InsertJobCommand } from './handlers/commands/InsertJobInfo.command';
 import { GetJobsResponseDto } from './dto/response/GetJobsResponse.dto';
 import { GetJobsQuery } from './handlers/queries/GetJobs.query';
 import { PagingDto } from 'src/shareDTO/Paging.dto';
+import { JwtGuard } from 'src/guards/jwt.guard';
 
 @Controller('job')
 @ApiTags('job')

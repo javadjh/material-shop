@@ -27,6 +27,7 @@ export class GetProductHandler implements IQueryHandler<GetProductQuery> {
          tags
          minOrderCountForRetail
          minOrderCountForWholesale
+         isHighConsumption
          offForWholesalePercent
          options
          category
@@ -50,6 +51,7 @@ export class GetProductHandler implements IQueryHandler<GetProductQuery> {
     product.brandName = `${product.brand?.title}`;
     product.categoryName = `${product.category?.title}`;
     product.categoryId = `${product.category?._id}`;
+    product.brandId = `${product.brand?._id}`;
     let cities: string = '';
     product?.sellers.forEach((element) => {
       console.log(element);

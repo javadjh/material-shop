@@ -14,12 +14,18 @@ import { sellersService } from "../../../service/seller.service";
 import { ISeller } from "../../../types/seller.type";
 import SelectCategoryModal from "../../category/SelectCategory.m";
 import { ICategory } from "../../../types/category.type";
-import { insertProductService } from "../../../service/product.service";
+import {
+  insertProductService,
+  productService,
+  updateProductService,
+} from "../../../service/product.service";
 import { IProduct } from "../../../types/product.type";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const UpsertProduct = () => {
+  const [searchParams] = useSearchParams();
   const navigator = useNavigate();
+
   const [form] = Form.useForm();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [image, setImage] = useState<string>();
@@ -36,7 +42,26 @@ const UpsertProduct = () => {
   useEffect(() => {
     getBrands();
     getSellers();
+    if (searchParams.get("id")) getSingleProduct();
   }, []);
+
+  const getSingleProduct = async () => {
+    const {
+      data: { data: res },
+    } = await productService(searchParams.get("id") || "");
+    let product: IProduct = res.data;
+
+    form.setFieldsValue(product);
+    form.setFieldValue("brandId", product?.brandId);
+
+    setImage(product.image);
+    setOptions(product.options || []);
+    setSellers(product.sellers || []);
+    setCar(product?.car || []);
+    setCategoryId(product.categoryId);
+    setCategory({ title: product?.categoryName });
+  };
+
   const getBrands = async () => {
     const {
       data: { data: response },
@@ -70,15 +95,31 @@ const UpsertProduct = () => {
     formData.offForWholesalePercent = Number(formData.offForWholesalePercent);
     formData.remainingCount = Number(formData.remainingCount);
     formData.isHighConsumption = Boolean(formData.isHighConsumption);
-    const {
-      data: { state },
-    } = await insertProductService({
-      ...formData,
-      ...{ image, options, car, categoryId },
-    });
-    if (state) {
-      message.success("ثبت شد");
-      navigator(-1);
+    if (searchParams.get("id")) {
+      const {
+        data: { state },
+      } = await updateProductService(
+        {
+          ...formData,
+          ...{ image, options, car, categoryId },
+        },
+        searchParams.get("id") || ""
+      );
+      if (state) {
+        message.success("بروز شد");
+        navigator(-1);
+      }
+    } else {
+      const {
+        data: { state },
+      } = await insertProductService({
+        ...formData,
+        ...{ image, options, car, categoryId },
+      });
+      if (state) {
+        message.success("ثبت شد");
+        navigator(-1);
+      }
     }
   };
   return (
@@ -220,7 +261,7 @@ const UpsertProduct = () => {
                   </Form.Item>
                 </Col>
               </Row>
-              <Form.Item name={"isHighConsumption"}>
+              <Form.Item valuePropName="checked" name={"isHighConsumption"}>
                 <Checkbox>کالای پر مصرف</Checkbox>
               </Form.Item>
             </Col>

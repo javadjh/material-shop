@@ -69,7 +69,7 @@ export class ProductController {
 
   @Get('')
   @ApiOkResponse({
-    description: 'this route delete product',
+    description: 'this route delete products',
     type: GetProductsDto,
   })
   products(@Query() filter: GetProductsRequestRequestDto) {

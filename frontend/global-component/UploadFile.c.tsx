@@ -10,6 +10,7 @@ interface IUploadFileComponent {
   width?: number;
   height?: number;
   isProfile?: boolean;
+  accept?: string;
   isShowPercent?: boolean;
   exs?: Array<string>;
   department?: string;
@@ -21,6 +22,7 @@ export const UploadFileComponent: FC<IUploadFileComponent> = ({
   children,
   onUploadPercent,
   isShowPercent = true,
+  accept,
 }) => {
   const [percent, setPercent] = useState<any>(undefined);
   const sendFile = async (files: any) => {
@@ -65,6 +67,7 @@ export const UploadFileComponent: FC<IUploadFileComponent> = ({
       </div>
 
       <input
+        accept={accept}
         id="input-file"
         style={{ visibility: "hidden" }}
         type="file"

@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import {
   CenterStyled,
   PaddingStyled,
@@ -20,6 +20,9 @@ const ActionBorderComponent: FC<any> = ({
   isCenter = true,
 }) => {
   const [isHover, setIsHover] = useState<boolean>(isSelected);
+  useEffect(() => {
+    setIsHover(isSelected);
+  }, [isSelected]);
   return (
     <SpaceStyled bottom={10}>
       <Pointer>

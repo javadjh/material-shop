@@ -12,6 +12,7 @@ class BaseProductModel extends BaseModel {
   brandName?: string;
   categoryName?: string;
   categoryId?: string;
+  brandId?: string;
   cities?: string;
   totalPrice?: string;
 }

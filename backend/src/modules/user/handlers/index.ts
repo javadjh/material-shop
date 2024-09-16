@@ -6,6 +6,7 @@ import { UpdateUserHandler } from './commands/UpdateUser.command';
 
 //queries
 import { LoginHandler } from './queries/Login.query';
+import { GetUsersHandler } from './queries/GetUsers.query';
 
 export default [
   //commands
@@ -16,4 +17,5 @@ export default [
 
   //queries
   LoginHandler,
+  GetUsersHandler,
 ];

@@ -23,6 +23,7 @@ export class GetProductsHandler implements IQueryHandler<GetProductsQuery> {
     const { regex, skip, eachPerPage } = GlobalUtility.pagingWrapper(filter);
 
     let filterObject: any = {
+      isActive: true,
       $or: [
         { title: regex },
         { code: regex },

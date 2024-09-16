@@ -1,9 +1,11 @@
 export const BASE_URL = `http://45.149.76.235:3001/api/v1`;
 export const BACKEND_URL = "http://45.149.76.235:3001/";
 export const loginAPI = "/user/login";
+export const userAPI = "/user/";
 export const brandsAPI = "/brand/";
 export const jobInfoAPI = "/job-info/";
 export const sellerAPI = "/seller/";
+export const smsAPI = "/sms/";
 export const teamAPI = "/team/";
 export const productAPI = "/product/";
 export const orderAPI = "/order/";

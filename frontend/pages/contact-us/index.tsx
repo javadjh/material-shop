@@ -142,7 +142,11 @@ const ContactUs = () => {
                       }}
                       style={{ width: 100 }}
                     >
-                      <ActionBorderComponent border={"2"} isFill={true}>
+                      <ActionBorderComponent
+                        isFill={true}
+                        border={"3"}
+                        isSelected={true}
+                      >
                         ثبت
                       </ActionBorderComponent>
                     </div>

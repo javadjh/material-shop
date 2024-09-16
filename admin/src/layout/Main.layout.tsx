@@ -7,7 +7,11 @@ const MainLayout: FC<{ children: any }> = ({ children }) => {
       <body>
         <div className="page-wrapper">
           <div className="main-container">
-            <nav id="sidebar" className="sidebar-wrapper">
+            <nav
+              id="sidebar"
+              className="sidebar-wrapper"
+              style={{ overflow: "auto" }}
+            >
               <div className="sidebar-profile">
                 <img
                   src="assets/images/user1.png"

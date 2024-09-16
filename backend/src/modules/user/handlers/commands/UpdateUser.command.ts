@@ -56,6 +56,7 @@ export class UpdateUserHandler implements ICommandHandler<UpdateUserCommand> {
         $set: {
           ...dto,
           ...{ city, province },
+          ...{ isCompleted: true },
         },
       },
     );

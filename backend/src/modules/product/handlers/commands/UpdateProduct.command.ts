@@ -47,7 +47,12 @@ export class UpdateProductHandler
     let sellers = dto.sellerIds;
 
     //check is product code found or not
-    const productCode = await this.product.findOne({ code: dto.code });
+    const productCode = await this.product.findOne({
+      code: dto.code,
+      _id: {
+        $ne: id,
+      },
+    });
     if (productCode?._id) throw new RecordRepeatedException();
 
     const product = await this.product.findByIdAndUpdate(id, {

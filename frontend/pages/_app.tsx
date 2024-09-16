@@ -7,6 +7,8 @@ import { prefixer } from "stylis";
 import "swiper/css";
 import "jalaali-react-date-picker/lib/styles/index.css";
 import "../styles/globals.css";
+import "jalaali-react-date-picker/lib/styles/index.css";
+
 function MyApp({ Component, pageProps }: AppProps) {
   const theme = extendTheme({
     direction: "rtl",

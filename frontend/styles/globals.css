@@ -124,6 +124,19 @@ textarea:focus {
 .orange-hover:hover svg {
   fill: #fd9500 !important;
 }
+.outline-hover-force {
+  outline: 2px solid #fd9500;
+}
+.outline-hover-force {
+  outline: 2px solid #fd9500;
+}
+.outline-hover-force svg {
+  fill: #fd9500;
+}
+.outline-hover-force p {
+  color: #fd9500;
+}
+
 .outline-hover {
   outline: 2px solid #fff;
 }
@@ -180,6 +193,12 @@ textarea {
   color: white !important;
 }
 .search-input::placeholder {
+  color: white !important;
+}
+.white-input {
+  color: white !important;
+}
+.white-input::placeholder {
   color: white !important;
 }
 .orange-hr {

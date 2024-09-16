@@ -82,7 +82,13 @@ const MainLayout: FC<{ children: any }> = ({ children }) => {
             </Grid>
             <Grid>
               <DepartmentSelect defaultValue={"products"}>
-                <Option value={"products"} id="products">
+                <Option
+                  value={"products"}
+                  onClick={(e: any) => {
+                    router.push("/store/choice");
+                  }}
+                  id="products"
+                >
                   بخش محصولات
                 </Option>
               </DepartmentSelect>

@@ -17,6 +17,8 @@ import { Chat, ChatSchema } from './chat.schema';
 import { Basket, BasketSchema } from './basket.schema';
 import { Order, OrderSchema } from './order.schema';
 import { Payment, PaymentSchema } from './payment.schema';
+import { Sms } from 'src/config/Sms';
+import { SmsSchema } from './sms.schema';
 
 export default [
   MongooseModule.forFeature([{ name: File.name, schema: FileSchema }]),
@@ -35,6 +37,7 @@ export default [
   MongooseModule.forFeature([{ name: Basket.name, schema: BasketSchema }]),
   MongooseModule.forFeature([{ name: Order.name, schema: OrderSchema }]),
   MongooseModule.forFeature([{ name: Payment.name, schema: PaymentSchema }]),
+  MongooseModule.forFeature([{ name: Sms.name, schema: SmsSchema }]),
   MongooseModule.forFeature([
     { name: Employment.name, schema: EmploymentSchema },
   ]),
