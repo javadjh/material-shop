@@ -5,7 +5,7 @@ import {
   ORANGE_COLOR,
   WHITE_COLOR,
 } from "../config/colors";
-import { SMALL_FONT } from "../config/font";
+import { MEDIUM_FONT, SMALL_FONT } from "../config/font";
 
 export const CenterStyled = styled.div`
   justify-content: center;
@@ -131,4 +131,42 @@ export const SimpleOrangeBorderBlock: any = styled.div`
 `;
 export const Abs = styled.div`
   position: absolute;
+`;
+export const SelectContainer = styled.div`
+  position: relative;
+`;
+export const SelectButton = styled.div`
+  background-color: transparent;
+  border-radius: 10px;
+  padding: 20px;
+  border: 2px solid white;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 48px;
+  width: 100%;
+  cursor: pointer;
+`;
+export const SelectFloatingContainer = styled.div`
+  position: absolute;
+  background-color: white;
+  width: 95%;
+  right: 5px;
+  left: 5px;
+  top: 48px;
+  padding: 5px;
+  border-radius: 10px;
+`;
+export const SelectItemContainer = styled.div`
+  background-color: ${LIGHT_GRAY_COLOR};
+  color: black;
+  border-radius: 10px;
+  font-size: ${MEDIUM_FONT};
+  cursor: pointer;
+  margin-bottom: 5px;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;

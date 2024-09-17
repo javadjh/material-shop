@@ -7,11 +7,17 @@ import { WHITE_COLOR } from "../../../../config/colors";
 import { SMALL_FONT, X_SMALL_FONT } from "../../../../config/font";
 import { FC } from "react";
 import { IProduct } from "../../../../types/product.type";
+import { priceFormat } from "../../../../config/utility";
 
 const ProductItem: FC<{ item: IProduct }> = ({ item }) => {
   return (
     <ProductContainerStyled>
-      <ImageServerComponent border={8} image={item.image} width={"100%"} />
+      <ImageServerComponent
+        aspect={1 / 1}
+        border={8}
+        image={item.image}
+        width={"100%"}
+      />
 
       <SpaceStyled top={10} bottom={10}>
         <WhiteText>{item?.title}</WhiteText>
@@ -19,15 +25,11 @@ const ProductItem: FC<{ item: IProduct }> = ({ item }) => {
       </SpaceStyled>
       <Grid container alignItems={"center"} justifyContent={"space-between"}>
         <Grid lg={4}>
-          <Typography textColor={WHITE_COLOR} fontSize={X_SMALL_FONT}>
-            {item?.remainingCount} عدد
-          </Typography>
+          <WhiteText>{item?.remainingCount} عدد</WhiteText>
         </Grid>
         <Grid lg={8}>
           <LeftStyled>
-            <Typography textColor={WHITE_COLOR} fontSize={SMALL_FONT}>
-              {item?.price} تومان
-            </Typography>
+            <WhiteText>{priceFormat(item?.price)} تومان</WhiteText>
           </LeftStyled>
         </Grid>
       </Grid>

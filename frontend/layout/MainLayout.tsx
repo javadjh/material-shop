@@ -6,6 +6,10 @@ import {
   MakeBoxContainer,
   OrangeMainLayoutBTN,
   SearchBox,
+  SelectDepartmentButton,
+  SelectDepartmentContainer,
+  SelectFloatingDepartmentContainer,
+  SelectItemDepartmentContainer,
 } from "./MainLayout.s";
 import { Badge, Grid, Option, Typography } from "@mui/joy";
 import {
@@ -30,6 +34,7 @@ import ImageServerComponent from "../global-component/ImageServer.c";
 import { priceFormat } from "../config/utility";
 import { MEDIUM_FONT } from "../config/font";
 const MainLayout: FC<{ children: any }> = ({ children }) => {
+  const [departmentHover, setDepartmentHover] = useState<boolean>(false);
   const [usersUnseenCount, setUsersUnseenCount] = useState<number>(0);
   const [products, setProducts] = useState<Array<IProduct>>([]);
   const [searchValue, setSearchValue] = useState<string>("");
@@ -81,17 +86,30 @@ const MainLayout: FC<{ children: any }> = ({ children }) => {
               </Link>
             </Grid>
             <Grid>
-              <DepartmentSelect defaultValue={"products"}>
-                <Option
-                  value={"products"}
-                  onClick={(e: any) => {
-                    router.push("/store/choice");
-                  }}
-                  id="products"
-                >
-                  بخش محصولات
-                </Option>
-              </DepartmentSelect>
+              <SelectDepartmentContainer
+                onMouseEnter={() => setDepartmentHover(true)}
+                onMouseLeave={() => setDepartmentHover(false)}
+              >
+                <SelectDepartmentButton>
+                  <Grid container justifyContent={"space-between"}>
+                    <Grid>بخش محصولات</Grid>
+                    <Grid></Grid>
+                  </Grid>
+                </SelectDepartmentButton>
+
+                {departmentHover && (
+                  <SelectFloatingDepartmentContainer>
+                    <SelectItemDepartmentContainer
+                      onClick={() => {
+                        router.push("/store/choice");
+                      }}
+                      className="fill-outline-hover"
+                    >
+                      بخش محصولات
+                    </SelectItemDepartmentContainer>
+                  </SelectFloatingDepartmentContainer>
+                )}
+              </SelectDepartmentContainer>
             </Grid>
             <Grid>
               <div style={{ position: "relative" }}>

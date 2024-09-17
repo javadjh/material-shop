@@ -67,8 +67,7 @@ const RegisterPage = () => {
           // setIsStepThree(true);
           setCookie("token", token);
           setCookie("phone", phone);
-
-          router.replace("/store/choice");
+          router.replace("/store/choice?reload=true");
         }
       } catch (error) {
         setIsCodeWrong(true);

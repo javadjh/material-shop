@@ -11,8 +11,10 @@ import { LIGHT_GRAY_COLOR } from "../../config/colors";
 import LocationPickerComponent from "../employment/LocationPicker.c";
 import { getCookie } from "cookies-next";
 import ActionBorderComponent from "../../global-component/ActionBorder.c";
+import { useRouter } from "next/router";
 
 const ProfilePage = () => {
+  const router = useRouter();
   const [user, setUser] = useState<any>();
   const [city, setCity] = useState<number>();
   const [initialValues, setInitialValues] = useState<any>({
@@ -43,7 +45,7 @@ const ProfilePage = () => {
     },
   });
   useEffect(() => {
-    getData();
+    if (getCookie("token")) getData();
   }, []);
 
   useEffect(() => {
@@ -64,11 +66,15 @@ const ProfilePage = () => {
   };
 
   const getData = async () => {
-    const {
-      data: { data: res },
-    } = await profileService();
+    try {
+      const {
+        data: { data: res },
+      } = await profileService();
 
-    setUser(res);
+      setUser(res);
+    } catch {
+      router.reload();
+    }
   };
   return (
     <PaddingStyled top={80}>

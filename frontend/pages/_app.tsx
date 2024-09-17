@@ -8,6 +8,8 @@ import "swiper/css";
 import "jalaali-react-date-picker/lib/styles/index.css";
 import "../styles/globals.css";
 import "jalaali-react-date-picker/lib/styles/index.css";
+import NextNProgress from "nextjs-progressbar";
+import { ORANGE_COLOR } from "../config/colors";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const theme = extendTheme({
@@ -22,6 +24,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <CacheProvider value={cacheRtl}>
       <ThemeProvider theme={theme}>
         <div dir="rtl">
+          <NextNProgress color={ORANGE_COLOR} />
           <Component {...pageProps} />
         </div>
       </ThemeProvider>

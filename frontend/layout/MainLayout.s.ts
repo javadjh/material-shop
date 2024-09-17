@@ -1,6 +1,12 @@
 import { Input, Select } from "@mui/joy";
 import styled from "styled-components";
-import { ORANGE_COLOR, WHITE_COLOR } from "../config/colors";
+import {
+  GRAY_COLOR,
+  LIGHT_GRAY_COLOR,
+  ORANGE_COLOR,
+  WHITE_COLOR,
+} from "../config/colors";
+import { MEDIUM_FONT } from "../config/font";
 
 export const MainLayoutContainer = styled.div`
   min-height: 100vh;
@@ -47,4 +53,40 @@ export const SearchBox = styled.div`
   right: 5px;
   background-color: white;
   width: 340px;
+`;
+export const SelectDepartmentContainer = styled.div`
+  position: relative;
+`;
+export const SelectDepartmentButton = styled.div`
+  background-color: ${ORANGE_COLOR};
+  border-radius: 100px;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 34px;
+  width: 170px;
+  cursor: pointer;
+`;
+export const SelectFloatingDepartmentContainer = styled.div`
+  position: absolute;
+  background-color: white;
+  width: 160px;
+  right: 5px;
+  left: 5px;
+  top: 32px;
+  padding: 5px;
+  border-radius: 10px;
+`;
+export const SelectItemDepartmentContainer = styled.div`
+  background-color: ${LIGHT_GRAY_COLOR};
+  color: black;
+  border-radius: 10px;
+  font-size: ${MEDIUM_FONT};
+  cursor: pointer;
+  margin-bottom: 5px;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;

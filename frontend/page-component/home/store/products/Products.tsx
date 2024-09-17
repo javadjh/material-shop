@@ -8,12 +8,19 @@ import {
   ProductContainerStyled,
   SimpleInput,
   ProductsWideSideContainerStyled,
+  WideSideContainerStyled,
+  FilterContainer,
 } from "./products.s";
 import LogoComponent from "../../../../global-component/Logo.c";
 import {
   CenterStyled,
   LeftStyled,
   PaddingStyled,
+  Pointer,
+  SelectButton,
+  SelectContainer,
+  SelectFloatingContainer,
+  SelectItemContainer,
   SpaceStyled,
   WhiteBorderStyled,
 } from "../../../../global-style/global.s";
@@ -27,10 +34,13 @@ import FilterSelectBoxComponent from "./FilterSelectBox.c";
 import { IBrand } from "../../../../types/brand.type";
 import { ISeller } from "../../../../types/seller.type";
 import { SMALL_FONT, X_SMALL_FONT } from "../../../../config/font";
-import { WHITE_COLOR } from "../../../../config/colors";
+import { BLUE_COLOR, WHITE_COLOR } from "../../../../config/colors";
 import Link from "next/link";
 import { useWindowSize } from "../../../../global-component/ScreenBridge.c";
 import ProductItem from "./ProductItem";
+import ActionBorderComponent from "../../../../global-component/ActionBorder.c";
+import { ReactSVG } from "react-svg";
+import BrandFilterComponent from "./BrandFilter.c";
 
 const Products: FC<{
   products: any;
@@ -41,6 +51,8 @@ const Products: FC<{
 }> = ({ mainCategories, products, categories, brands, sellers }) => {
   const router = useRouter();
   const size = useWindowSize();
+  const [selectHover, setSelectHover] = useState<boolean>(false);
+  const [filterSelect, setFilterSelect] = useState<string | undefined>();
   const [brandValue, setBrandsValue] = useState<string>();
   const [sellerValue, setSellersValue] = useState<string>();
 
@@ -55,36 +67,97 @@ const Products: FC<{
       <Grid container>
         <Grid lg={2.5}>
           <SpaceStyled horizontal={20}>
-            <ProductsWideSideContainerStyled>
-              <Typography></Typography>
+            <WideSideContainerStyled>
               <SpaceStyled top={10}>
                 <CenterStyled>
-                  <LogoComponent width={size?.height > 650 ? 200 : 120} />
-                  <MainCategorySelectStyled
-                    onChange={onChangeMainCategoryListener}
-                    placeholder="دسته بندی"
-                  >
-                    {mainCategories?.map((item) => (
-                      <Option
-                        style={{ backgroundColor: "transparent !important" }}
-                        id={item._id}
-                        key={item._id}
-                        value={item._id}
-                      >
+                  <LogoComponent width={110} />
+                  <CenterStyled>
+                    <img src="/google-font.png" width={"80%"} />
+                  </CenterStyled>
+                  <br />
+                  {mainCategories?.map((item: any) => (
+                    <a
+                      href={"/store/category?id=" + item?._id}
+                      style={{ width: "100%" }}
+                    >
+                      <ActionBorderComponent border={"2"} isFill={true}>
                         {item.title}
-                      </Option>
-                    ))}
-                  </MainCategorySelectStyled>
-                  {categories?.map((item) => (
-                    <CategoryItemContainer>{item?.title}</CategoryItemContainer>
+                      </ActionBorderComponent>
+                    </a>
                   ))}
                 </CenterStyled>
               </SpaceStyled>
-            </ProductsWideSideContainerStyled>
+            </WideSideContainerStyled>
           </SpaceStyled>
         </Grid>
-        <Grid lg={7.5}>
+        <Grid lg={7.6}>
           <PaddingStyled top={100}>
+            <Grid container spacing={1}>
+              <Grid>
+                <ActionBorderComponent
+                  isCenter={false}
+                  border="2"
+                  padding="0px 20px"
+                >
+                  {products?.categoryMap}
+                </ActionBorderComponent>
+              </Grid>
+              <Grid>
+                <SelectContainer
+                  onMouseEnter={() => setSelectHover(true)}
+                  onMouseLeave={() => setSelectHover(false)}
+                >
+                  <SelectButton>
+                    <Grid
+                      container
+                      justifyContent={"space-between"}
+                      spacing={2}
+                    >
+                      <Grid>مرتب سازی</Grid>
+                      <Grid>
+                        <div style={{ width: 25, height: 25 }}>
+                          <ReactSVG
+                            src="/icons/bottomarrow.svg"
+                            style={{ color: "red" }}
+                            beforeInjection={(svg) => {
+                              svg.classList.add("so-svg-class");
+                            }}
+                          />
+                        </div>
+                      </Grid>
+                    </Grid>
+                  </SelectButton>
+
+                  {selectHover && (
+                    <SelectFloatingContainer>
+                      <SelectItemContainer
+                        onClick={() => {
+                          router.push("/store/choice");
+                        }}
+                        className="fill-outline-hover"
+                      >
+                        بخش محصولات
+                      </SelectItemContainer>
+                    </SelectFloatingContainer>
+                  )}
+                </SelectContainer>
+              </Grid>
+              <Grid>
+                <ActionBorderComponent padding="0px 20px" border="2">
+                  {products?.total} محصول
+                </ActionBorderComponent>
+              </Grid>
+              <Grid onClick={() => setFilterSelect("brand")}>
+                <ActionBorderComponent padding="0px 20px" border="2">
+                  برند های موجود محصول
+                </ActionBorderComponent>
+              </Grid>
+              <Grid>
+                <ActionBorderComponent padding="0px 20px" border="2">
+                  فروشندگان محصول
+                </ActionBorderComponent>
+              </Grid>
+            </Grid>
             <Grid
               container
               columnSpacing={3}
@@ -106,9 +179,38 @@ const Products: FC<{
             </Grid>
           </PaddingStyled>
         </Grid>
-        <Grid lg={2}>
+        <Grid lg={1.9}>
           <PaddingStyled top={70} right={20}>
-            <ProductsSideContainerStyled>
+            {filterSelect && (
+              <>
+                <FilterContainer>
+                  <LeftStyled onClick={() => setFilterSelect(undefined)}>
+                    <Pointer>
+                      <img src="/icons/close.png" width={15} />
+                    </Pointer>
+                  </LeftStyled>
+                  {filterSelect == "brand" && (
+                    <CenterStyled>
+                      <BrandFilterComponent brands={brands} />
+                    </CenterStyled>
+                  )}
+                  <CenterStyled>
+                    <Typography textColor={BLUE_COLOR}>
+                      به ما بپیوندید...
+                    </Typography>
+                  </CenterStyled>
+                </FilterContainer>
+              </>
+            )}
+          </PaddingStyled>
+        </Grid>
+      </Grid>
+    </MainLayout>
+  );
+};
+export default Products;
+{
+  /* <ProductsSideContainerStyled>
               <SpaceStyled bottom={10}>
                 <WhiteText>فیلتر ها</WhiteText>
               </SpaceStyled>
@@ -164,11 +266,5 @@ const Products: FC<{
                 setValue={setSellersValue}
                 value={sellerValue}
               />
-            </ProductsSideContainerStyled>
-          </PaddingStyled>
-        </Grid>
-      </Grid>
-    </MainLayout>
-  );
-};
-export default Products;
+            </ProductsSideContainerStyled> */
+}

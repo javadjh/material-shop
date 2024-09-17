@@ -11,19 +11,24 @@ import { priceFormat } from "../../config/utility";
 import ActionBorderComponent from "../../global-component/ActionBorder.c";
 import { insertOrderService } from "../../service/order.service";
 import { useRouter } from "next/router";
+import { getCookie } from "cookies-next";
 
 const BasketPage = () => {
   const router = useRouter();
   const [baskets, setBaskets] = useState<any>();
   useEffect(() => {
-    getData();
+    if (getCookie("token")) getData();
   }, []);
 
   const getData = async () => {
-    const {
-      data: { data: res },
-    } = await getBaskets();
-    setBaskets(res);
+    try {
+      const {
+        data: { data: res },
+      } = await getBaskets();
+      setBaskets(res);
+    } catch {
+      router.reload();
+    }
   };
   const deleteProduct = async (basket: any) => {
     let data = {

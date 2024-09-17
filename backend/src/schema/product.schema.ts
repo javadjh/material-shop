@@ -15,6 +15,7 @@ class BaseProductModel extends BaseModel {
   brandId?: string;
   cities?: string;
   totalPrice?: string;
+  categoryMap?: string;
 }
 
 @Schema({ timestamps: true })

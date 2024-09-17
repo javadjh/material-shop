@@ -5,3 +5,4 @@ export const GRAY_COLOR = "#9a989b";
 export const SECOND_GRAY_COLOR = "#999999";
 export const LIGHT_GRAY_COLOR = "#c3c3c3";
 export const DARK_BLUE_COLOR = "#293e41";
+export const BLUE_COLOR = "rgba(0, 70, 253, 1)";

@@ -25,7 +25,7 @@ export async function getServerSideProps(prop: any) {
 
   const {
     data: { data: productsResponse },
-  } = await productsService({});
+  } = await productsService({ categoryId: parentCategoryId });
 
   const {
     data: { data: mainCategoriesResponse },

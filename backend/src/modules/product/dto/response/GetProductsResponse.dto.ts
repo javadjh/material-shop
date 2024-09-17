@@ -26,6 +26,9 @@ export class GetProductsData {
   @ApiProperty({ type: Number })
   total: number;
 
+  @ApiProperty({ type: String })
+  categoryMap: string;
+
   @ApiProperty({ type: Number })
   maxPrice: number;
 

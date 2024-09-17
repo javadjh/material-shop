@@ -86,3 +86,12 @@ export const SelectBoxContainer = styled.div`
   padding: 10px;
   border-radius: 5px;
 `;
+export const FilterContainer = styled.div`
+  background-color: rgba(153, 153, 153, 1);
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border-radius: 10px;
+  height: calc(100vh - 80px);
+  overflow-y: auto;
+`;

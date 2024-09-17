@@ -8,6 +8,7 @@ import { GlobalUtility } from 'src/utility/GlobalUtility';
 import { BadRequestException } from '@nestjs/common';
 import { GetProductsData } from '../../dto/response/GetProductsResponse.dto';
 import { count } from 'console';
+import { Category } from 'src/schema/category.schema';
 
 export class GetProductsQuery {
   constructor(public readonly filter: GetProductsRequestRequestDto) {}
@@ -77,9 +78,19 @@ export class GetProductsHandler implements IQueryHandler<GetProductsQuery> {
     let products: Array<Product> = await this.product
       .find(filterObject)
       .limit(eachPerPage)
-      .select('price title image brand remainingCount createdAt')
+      .select('price title image brand remainingCount createdAt category')
       .skip(skip)
       .populate('brand', 'title')
+      .populate([
+        {
+          path: 'category',
+          select: 'title',
+          populate: {
+            path: 'previousParents',
+            select: 'title',
+          },
+        },
+      ])
       .sort({ createdAt: -1 })
       .lean();
 
@@ -96,18 +107,30 @@ export class GetProductsHandler implements IQueryHandler<GetProductsQuery> {
 
     let total: number = await this.product.find(filterObject).count();
 
+    let categoryMap: string = `${products[0]?.category?.title} `;
+    products[0]?.category?.previousParents?.map((item: Category) => {
+      categoryMap += `- ${item?.title} `;
+    });
+
     products.forEach((ele) => {
       ele.brandName = `${ele.brand?.title}`;
-      delete ele.brand;
       ele.createdAt = ele?.createdAt?.toJalali();
+
+      ele.categoryMap = categoryMap;
+      console.log(categoryMap);
+
+      delete ele.brand;
+      delete ele.category;
     });
 
     let response: GetProductsData = {
       list: products,
+      categoryMap,
       total,
       maxPrice,
       minPrice,
     };
+    console.log(filterObject);
 
     return Response.send(response);
   }

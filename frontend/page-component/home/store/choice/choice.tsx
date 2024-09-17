@@ -17,14 +17,16 @@ import { useEffect, useState } from "react";
 import { getAppSettingService } from "../../../../service/appsetting.service";
 import { useWindowSize } from "../../../../global-component/ScreenBridge.c";
 import { getCookie } from "cookies-next";
+import { useRouter } from "next/router";
 
 const ChoicePage: NextPage<{ categories: Array<ICategory> }> = ({
   categories,
 }) => {
+  const router = useRouter();
   const [media, setMedia] = useState<any>({});
   const size = useWindowSize();
   useEffect(() => {
-    if (getCookie("toekn")) getData();
+    getData();
   }, []);
   const getData = async () => {
     const res = await getAppSettingService();
