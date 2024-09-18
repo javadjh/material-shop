@@ -8,14 +8,14 @@ const nextConfig = {
   images: {
     domains: ["45.149.76.235", "45.149.76.235"],
   },
-  plugins: [
-    [
-      "babel-plugin-styled-components",
-      {
-        ssr: false,
-      },
-    ],
-  ],
+  // plugins: [
+  //   [
+  //     "babel-plugin-styled-components",
+  //     {
+  //       ssr: false,
+  //     },
+  //   ],
+  // ],
 };
 
 module.exports = nextConfig;
