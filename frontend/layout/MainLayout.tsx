@@ -171,7 +171,13 @@ const MainLayout: FC<{ children: any }> = ({ children }) => {
             <Grid>
               <CenterStyled>
                 <Link href={"/profile/basket"}>
-                  <IconComponent icon={"basket"} width={30} />
+                  <ReactSVG
+                    className="svg-hover"
+                    src="/icons/basket.svg"
+                    beforeInjection={(svg: any) => {
+                      svg.setAttribute("style", ` width:30px`);
+                    }}
+                  />
                 </Link>
               </CenterStyled>
             </Grid>

@@ -101,7 +101,12 @@ input:focus {
   outline: none !important;
   box-shadow: 0 0 10px #e59422;
 }
-
+.svg-hover {
+  fill: white;
+}
+.svg-hover:hover {
+  fill: #e59422;
+}
 textarea :focus {
   border-width: 1px !important;
 }

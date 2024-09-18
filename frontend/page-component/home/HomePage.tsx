@@ -43,11 +43,11 @@ const HomePage = () => {
         <HomeMenuComponent />
       </HomeMenuContainer>
       <HomeCategoryContainer>
-        <SpaceStyled bottom={40}>
+        <SpaceStyled bottom={size?.height > 650 ? 40 : 20}>
           <CenterStyled>
             <img
               src="./google-font.png"
-              width={size?.height > 650 ? 500 : 300}
+              width={size?.height > 650 ? 500 : 250}
             />
           </CenterStyled>
         </SpaceStyled>
@@ -101,7 +101,7 @@ const HomePage = () => {
               >
                 <ReactSVG
                   src="/icons/group.svg"
-                  style={{ fill: "red !important" }}
+                  style={{ fill: "red !important", marginTop: 10 }}
                   beforeInjection={(svg: any) => {
                     svg.setAttribute(
                       "style",
@@ -142,7 +142,7 @@ const HomePage = () => {
                 {/* <img src="./icons/information.png" width={80} /> */}
                 <ReactSVG
                   src="/icons/building.svg"
-                  style={{ fill: "red !important" }}
+                  style={{ fill: "red !important", marginTop: 10 }}
                   beforeInjection={(svg: any) => {
                     svg.setAttribute(
                       "style",
