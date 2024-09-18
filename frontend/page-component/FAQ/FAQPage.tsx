@@ -9,13 +9,19 @@ import ActionBorderComponent from "../../global-component/ActionBorder.c";
 import { LIGHT_GRAY_COLOR } from "../../config/colors";
 import styled from "styled-components";
 import ChatComponent from "./Chat.c";
+import { useRouter } from "next/router";
 
 const FAQPage = () => {
   const [department, setDepartment] = useState<string>("");
   const size = useWindowSize();
+  const router = useRouter();
   useEffect(() => {
-    console.log(department);
-  }, [department]);
+    console.log(router?.query?.isSupport);
+
+    if (router?.query?.isSupport) {
+      setDepartment("chat");
+    }
+  }, [router]);
   return (
     <MainLayout>
       <SocialMediaComponent />

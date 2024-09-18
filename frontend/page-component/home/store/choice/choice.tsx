@@ -144,6 +144,7 @@ const ChoicePage: NextPage<{ categories: Array<ICategory> }> = ({
                   iconName="support"
                   title={"پشتیبانی آنلاین"}
                   key={"job"}
+                  link="/faq?isSupport=true"
                 />
               </Grid>
             </Grid>
