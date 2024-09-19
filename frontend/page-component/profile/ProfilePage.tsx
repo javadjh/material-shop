@@ -176,13 +176,11 @@ const ProfilePage = () => {
                 />
               </Grid>
               <Grid lg={2}>
-                <ActionBorderComponent
-                  isFill={true}
-                  isSelected={true}
-                  onClick={() => formik?.submitForm()}
-                >
-                  ثبت
-                </ActionBorderComponent>
+                <div onClick={() => formik?.submitForm()}>
+                  <ActionBorderComponent isFill={true} isSelected={true}>
+                    ثبت
+                  </ActionBorderComponent>
+                </div>
               </Grid>
             </Grid>
           </SpaceStyled>
