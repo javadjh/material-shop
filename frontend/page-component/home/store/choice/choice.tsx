@@ -96,6 +96,7 @@ const ChoicePage: NextPage<{ categories: Array<ICategory> }> = ({
                   iconName="request"
                   title={"درخواست استعلام"}
                   key={"job"}
+                  link="/inquiry"
                 />
               </Grid>
               <Grid lg={6}>
@@ -118,6 +119,7 @@ const ChoicePage: NextPage<{ categories: Array<ICategory> }> = ({
                 <StoreItemComponent
                   iconName="taator"
                   title={"تهاتر"}
+                  link="/swap"
                   key={"job"}
                 />
               </Grid>

@@ -19,6 +19,8 @@ import { Order, OrderSchema } from './order.schema';
 import { Payment, PaymentSchema } from './payment.schema';
 import { Sms } from 'src/config/Sms';
 import { SmsSchema } from './sms.schema';
+import { Inquiry, InquirySchema } from './inquiry.schema';
+import { Swap, SwapSchema } from './swap.schema';
 
 export default [
   MongooseModule.forFeature([{ name: File.name, schema: FileSchema }]),
@@ -38,6 +40,8 @@ export default [
   MongooseModule.forFeature([{ name: Order.name, schema: OrderSchema }]),
   MongooseModule.forFeature([{ name: Payment.name, schema: PaymentSchema }]),
   MongooseModule.forFeature([{ name: Sms.name, schema: SmsSchema }]),
+  MongooseModule.forFeature([{ name: Inquiry.name, schema: InquirySchema }]),
+  MongooseModule.forFeature([{ name: Swap.name, schema: SwapSchema }]),
   MongooseModule.forFeature([
     { name: Employment.name, schema: EmploymentSchema },
   ]),

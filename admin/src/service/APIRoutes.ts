@@ -15,5 +15,7 @@ export const categoryAPI = "/category/";
 export const locationAPI = "/location/";
 export const appSettingAPI = "/app-setting/";
 export const reportAPI = "/report/";
+export const inquiryAPI = "/inquiry/";
+export const swapAPI = "/swap/";
 export const uploadAPI = "/file";
 export const chatAPI = "/chat/";

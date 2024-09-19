@@ -83,6 +83,16 @@ const AdminLayout: FC<{ children: any }> = ({ children }) => {
               label: "گزارش ها",
             },
             {
+              key: "inquiry",
+              icon: <UploadOutlined />,
+              label: "تهاتر",
+            },
+            {
+              key: "swap",
+              icon: <UploadOutlined />,
+              label: "استعلامات",
+            },
+            {
               key: "team",
               icon: <UploadOutlined />,
               label: "تیم",

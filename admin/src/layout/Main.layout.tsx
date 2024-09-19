@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { PaddingStyled } from "../global-style/global.s";
+import { Link } from "react-router-dom";
 
 const MainLayout: FC<{ children: any }> = ({ children }) => {
   return (
@@ -27,83 +28,95 @@ const MainLayout: FC<{ children: any }> = ({ children }) => {
               <div>
                 <ul className="sidebar-menu">
                   <li>
-                    <a href="/product">
+                    <Link to={"/product"}>
                       <i className="bi bi-pie-chart"></i>
                       <span className="menu-text">محصولات</span>
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="/order">
+                    <Link to={"/order"}>
                       <i className="bi bi-pie-chart"></i>
                       <span className="menu-text">سفارشات</span>
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="/payment">
+                    <Link to={"/payment"}>
                       <i className="bi bi-pie-chart"></i>
                       <span className="menu-text">پرداخت</span>
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="/user">
+                    <Link to={"/user"}>
                       <i className="bi bi-pie-chart"></i>
                       <span className="menu-text">کاربران</span>
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="/category">
+                    <Link to={"/category"}>
                       <i className="bi bi-pie-chart"></i>
                       <span className="menu-text">دسته بندی</span>
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="/seller">
+                    <Link to={"/seller"}>
                       <i className="bi bi-pie-chart"></i>
                       <span className="menu-text">فروشندگان</span>
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="/jobs">
+                    <Link to={"/jobs"}>
                       <i className="bi bi-pie-chart"></i>
                       <span className="menu-text">درخواست های شغلی</span>
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="/jobinfo">
+                    <Link to={"/jobinfo"}>
                       <i className="bi bi-pie-chart"></i>
                       <span className="menu-text">فرصت های شغلی</span>
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="/brand">
+                    <Link to={"/brand"}>
                       <i className="bi bi-pie-chart"></i>
                       <span className="menu-text">برند ها</span>
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="/report">
+                    <Link to={"/report"}>
                       <i className="bi bi-pie-chart"></i>
                       <span className="menu-text">گزارش ها</span>
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="/team">
+                    <Link to={"/inquiry"}>
+                      <i className="bi bi-pie-chart"></i>
+                      <span className="menu-text">تهاتر</span>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to={"/swap"}>
+                      <i className="bi bi-pie-chart"></i>
+                      <span className="menu-text">استعلامات</span>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to={"/team"}>
                       <i className="bi bi-pie-chart"></i>
                       <span className="menu-text">تیم</span>
-                    </a>
+                    </Link>
                   </li>
 
                   <li>
-                    <a href="/chat">
+                    <Link to={"/chat"}>
                       <i className="bi bi-pie-chart"></i>
                       <span className="menu-text">گفتگو</span>
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="/appsetting">
+                    <Link to={"/appsetting"}>
                       <i className="bi bi-pie-chart"></i>
                       <span className="menu-text">تنظیمات برنامه</span>
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>

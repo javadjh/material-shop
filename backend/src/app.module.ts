@@ -21,6 +21,8 @@ import { BasketModule } from './modules/basket/basket.module';
 import { PaymentModule } from './modules/payment/payment.module';
 import { OrderModule } from './modules/order/order.module';
 import { SmsModule } from './modules/sms/sms.module';
+import { InquiryModule } from './modules/inquiry/inquiry.module';
+import { SwapModule } from './modules/swap/inquiry.module';
 
 @Module({
   imports: [
@@ -50,6 +52,8 @@ import { SmsModule } from './modules/sms/sms.module';
     PaymentModule,
     OrderModule,
     SmsModule,
+    InquiryModule,
+    SwapModule,
     ChatModule,
   ],
 })
