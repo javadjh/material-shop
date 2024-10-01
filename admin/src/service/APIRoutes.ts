@@ -11,6 +11,7 @@ export const productAPI = "/product/";
 export const orderAPI = "/order/";
 export const paymentAPI = "/payment/";
 export const jobAPI = "/job/";
+export const provideMaterialAPI = "/provideMaterial/";
 export const categoryAPI = "/category/";
 export const locationAPI = "/location/";
 export const appSettingAPI = "/app-setting/";

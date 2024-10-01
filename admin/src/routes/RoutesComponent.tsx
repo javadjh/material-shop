@@ -21,6 +21,7 @@ import Payment from "../pages/payment/Payment";
 import User from "../pages/user/User";
 import Inquiry from "../pages/inquiry/Inquiry";
 import Swap from "../pages/swap/Swap";
+import ProvideMaterial from "../pages/provideMaterial/ProvideMaterial";
 
 const RoutesComponent = () => {
   return (
@@ -47,6 +48,7 @@ const RoutesComponent = () => {
           <Route path="user" element={<User />} />
           <Route path="inquiry" element={<Inquiry />} />
           <Route path="swap" element={<Swap />} />
+          <Route path="provide-material" element={<ProvideMaterial />} />
           <Route
             path="category"
             element={

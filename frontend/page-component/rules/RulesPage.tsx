@@ -25,7 +25,12 @@ const RulesPage = () => {
         <Grid container>
           <Grid lg={2}>
             <SpaceStyled bottom={10}>
-              <LogoComponent width={200} />
+              <LogoComponent width={130} />
+              <SpaceStyled bottom={10} top={10}>
+                <CenterStyled>
+                  <img src="./google-font.png" width={200} />
+                </CenterStyled>
+              </SpaceStyled>
             </SpaceStyled>
             <div onClick={() => setDepartment("general")}>
               <ActionBorderComponent

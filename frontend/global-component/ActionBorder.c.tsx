@@ -10,7 +10,7 @@ import { ORANGE_COLOR, WHITE_COLOR } from "../config/colors";
 import { Typography } from "@mui/joy";
 
 const ActionBorderComponent: FC<any> = ({
-  border = "1",
+  border = "3",
   children,
   isSelected = false,
   padding,

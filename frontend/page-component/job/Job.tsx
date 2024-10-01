@@ -153,7 +153,7 @@ const JobPage = () => {
                               </Grid>
                               <Grid lg={6}>
                                 <ValueTitle>
-                                  {jobInfo?.remainingEmployeeCount}
+                                  {jobInfo?.remainingEmployeeCount || "-"}
                                 </ValueTitle>
                               </Grid>
 

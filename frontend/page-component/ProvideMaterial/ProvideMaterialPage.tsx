@@ -18,21 +18,24 @@ import { LARGE_FONT, MEDIUM_FONT } from "../../config/font";
 import styled from "styled-components";
 import LocationPickerComponent from "../../page-component/employment/LocationPicker.c";
 import ActionBorderComponent from "../../global-component/ActionBorder.c";
-import { insertSwapService } from "../../service/swap.service";
+import { insertProvideMaterial } from "../../service/provide-material.service";
 
-const SwapPage = () => {
+const ProvideMaterialPage = () => {
   const [isSubmited, setIsSubmited] = useState<boolean>(false);
   const router = useRouter();
   const formik = useFormik({
     initialValues: {
       fullName: "",
       phoneNumber: getCookie("phone")?.substring(1),
-      activity: "",
+      projectName: "",
       description: "",
       cityId: undefined,
     },
+
     onSubmit: async (e: any) => {
-      await insertSwapService({
+      console.log(e);
+
+      await insertProvideMaterial({
         ...e,
         ...{ phoneNumber: "0" + e.phoneNumber },
       });
@@ -46,7 +49,7 @@ const SwapPage = () => {
         .max(50, "نام و نام خانوادگی را به درستی وارد کنید")
         .required("اجباری میباشد"),
       phoneNumber: Yup.string().required("اجباری میباشد").length(10),
-      activity: Yup.string().required("اجباری میباشد"),
+      projectName: Yup.string().required("اجباری میباشد"),
       description: Yup.string().required("اجباری میباشد"),
       cityId: Yup.number().required("اجباری میباشد"),
     }),
@@ -68,23 +71,16 @@ const SwapPage = () => {
                 textColor={WHITE_COLOR}
                 fontSize={LARGE_FONT}
               >
-                کاربر گرامی در صورتی که مایل به همکاری به صورت تهاتر با مجموعه
-                ما هستید فرم زیر را تکمیل نمایید .
+                کاربر گرامی در صورتی که تمایل به تامین مصالح پروژه های خود توسط
+                ما با بهترین قیمت را دارید فرم زیر را تکمیل کنید .
               </Typography>
             </SpaceStyled>
           </Grid>
         </Grid>
       </PaddingStyled>
       <Grid container>
-        <Grid lg={5}>
-          <SpaceStyled top={60}>
-            <RightStyled>
-              <img src="./swap-image.png" height={"100%"} />
-            </RightStyled>
-          </SpaceStyled>
-        </Grid>
-        <Grid lg={5.7}>
-          <SpaceStyled top={50}>
+        <Grid lg={7}>
+          <SpaceStyled top={10}>
             {!isSubmited && (
               <>
                 <Grid container spacing={5}>
@@ -114,39 +110,15 @@ const SwapPage = () => {
                     />
                   </Grid>
                   <Grid lg={4}>
-                    <SpaceStyled top={20}>
-                      <Select
-                        style={{
-                          padding: 14,
-                          border:
-                            formik?.errors?.phoneNumber &&
-                            formik.touched.phoneNumber
-                              ? "1.5px solid red"
-                              : "1.5px solid orange ",
-                        }}
-                        name="activity"
-                        placeholder="نوع فعالیت"
-                        onChange={(e, value) => {
-                          formik.setFieldValue("activity", value);
-                        }}
-                      >
-                        <Option value={"producer"} key={"producer"}>
-                          <Typography>تولید کننده</Typography>
-                        </Option>
-                        <Option value={"provider"} key={"provider"}>
-                          عرضه کننده
-                        </Option>
-                        <Option value={"creator"} key={"creator"}>
-                          سازنده
-                        </Option>
-                        <Option value={"businessman"} key={"businessman"}>
-                          بازرگان
-                        </Option>
-                        <Option value={"other"} key={"other"}>
-                          متفرقه
-                        </Option>
-                      </Select>
-                    </SpaceStyled>
+                    <InputComponent
+                      name="projectName"
+                      placeholder="نام پروژه / سازمان / شرکت"
+                      onChange={formik.handleChange}
+                      value={formik.values.projectName}
+                      isError={
+                        formik.touched.projectName && formik.errors.projectName
+                      }
+                    />
                   </Grid>
                 </Grid>
                 <Grid container>
@@ -166,19 +138,19 @@ const SwapPage = () => {
                 <CenterStyled>
                   <Typography fontWeight={"bold"} textColor={WHITE_COLOR}>
                     با تشکر از شما همکاران ما در اسرع وقت با شما تماس خواهند
-                    گرفت{"."}
+                    گرفت .
                   </Typography>
                 </CenterStyled>
               </SpaceStyled>
             )}
             <Grid container>
-              <Grid lg={12}>
+              <Grid lg={8}>
                 {!isSubmited && (
-                  <SpaceStyled>
+                  <SpaceStyled left={15}>
                     <TextAreaComponent
                       rows={4}
                       name="description"
-                      placeholder="لیست اقلام مورد نیاز"
+                      placeholder="توضیحات بیشتر"
                       wrap={"hard"}
                       onChange={formik.handleChange}
                       value={formik.values.description}
@@ -189,32 +161,36 @@ const SwapPage = () => {
                   </SpaceStyled>
                 )}
               </Grid>
+              <Grid lg={4}>
+                <SpaceStyled
+                  onClick={() => {
+                    console.log(formik.values);
+
+                    if (isSubmited) {
+                      router.replace("/");
+                    } else {
+                      formik?.submitForm();
+                    }
+                  }}
+                  right={30}
+                  top={85}
+                >
+                  <ActionBorderComponent border="2" isSelected={true}>
+                    <SpaceStyled vertical={10}>ثبت</SpaceStyled>
+                  </ActionBorderComponent>
+                </SpaceStyled>
+              </Grid>
             </Grid>
-            <LeftStyled>
-              <SpaceStyled
-                onClick={() => {
-                  if (isSubmited) {
-                    router.replace("/");
-                  } else {
-                    formik?.submitForm();
-                  }
-                }}
-                left={0}
-              >
-                <ActionBorderComponent isSelected={true}>
-                  <SpaceStyled vertical={0} horizontal={70}>
-                    ثبت
-                  </SpaceStyled>
-                </ActionBorderComponent>
-              </SpaceStyled>
-            </LeftStyled>
           </SpaceStyled>
+        </Grid>
+        <Grid lg={5}>
+          <img src="./work-in-prossess.png" width={"100%"} />
         </Grid>
       </Grid>
     </MainLayout>
   );
 };
-export default SwapPage;
+export default ProvideMaterialPage;
 
 const InputComponent: any = styled.input`
   background-color: white;

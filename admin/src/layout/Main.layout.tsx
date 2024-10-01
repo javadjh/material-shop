@@ -100,6 +100,12 @@ const MainLayout: FC<{ children: any }> = ({ children }) => {
                     </Link>
                   </li>
                   <li>
+                    <Link to={"/provide-material"}>
+                      <i className="bi bi-pie-chart"></i>
+                      <span className="menu-text">تامین مصالح</span>
+                    </Link>
+                  </li>
+                  <li>
                     <Link to={"/team"}>
                       <i className="bi bi-pie-chart"></i>
                       <span className="menu-text">تیم</span>

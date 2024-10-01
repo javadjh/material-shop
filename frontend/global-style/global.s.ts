@@ -25,6 +25,15 @@ export const LeftStyled = styled.div`
   justify-items: flex-end;
   align-items: end;
 `;
+export const RightStyled = styled.div`
+  justify-content: right;
+  display: flex;
+  align-content: flex-start;
+  width: 100%;
+  flex-direction: column;
+  justify-items: flex-start;
+  align-items: start;
+`;
 export const MarginStyled = styled.div`
   display: flex;
   justify-content: center;

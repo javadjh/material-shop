@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { ResponseDto } from 'src/config/response';
 
-export class GetSwapResponseList {
+export class GetProvideMaterialResponseList {
   @ApiProperty()
   fullName?: string;
 
@@ -21,15 +21,15 @@ export class GetSwapResponseList {
   description?: string;
 }
 
-export class GetSwapResponseData {
-  @ApiProperty({ isArray: true, type: GetSwapResponseList })
-  list?: Array<GetSwapResponseList | any>;
+export class GetProvideMaterialResponseData {
+  @ApiProperty({ isArray: true, type: GetProvideMaterialResponseList })
+  list?: Array<GetProvideMaterialResponseList | any>;
 
   @ApiProperty({ type: Number })
   total: number;
 }
 
-export class GetSwapResponseDto extends ResponseDto {
-  @ApiProperty({ type: GetSwapResponseData })
-  data?: GetSwapResponseData;
+export class GetProvideMaterialResponseDto extends ResponseDto {
+  @ApiProperty({ type: GetProvideMaterialResponseData })
+  data?: GetProvideMaterialResponseData;
 }

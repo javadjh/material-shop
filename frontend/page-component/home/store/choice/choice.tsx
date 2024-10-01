@@ -135,7 +135,7 @@ const ChoicePage: NextPage<{ categories: Array<ICategory> }> = ({
               <Grid lg={6}>
                 <StoreItemComponent
                   iconName="material-provider"
-                  link="/sellers"
+                  link="/material-provider"
                   title={"تامین مصالح پروژه ها"}
                   font={"9px"}
                   key={"job"}

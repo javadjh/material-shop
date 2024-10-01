@@ -21,6 +21,10 @@ import { Sms } from 'src/config/Sms';
 import { SmsSchema } from './sms.schema';
 import { Inquiry, InquirySchema } from './inquiry.schema';
 import { Swap, SwapSchema } from './swap.schema';
+import {
+  ProvideMaterial,
+  ProvideMaterialSchema,
+} from './provide-material.schema';
 
 export default [
   MongooseModule.forFeature([{ name: File.name, schema: FileSchema }]),
@@ -48,5 +52,9 @@ export default [
 
   MongooseModule.forFeature([
     { name: AppSetting.name, schema: AppSettingSchema },
+  ]),
+
+  MongooseModule.forFeature([
+    { name: ProvideMaterial.name, schema: ProvideMaterialSchema },
   ]),
 ];

@@ -2,7 +2,11 @@ import { useEffect, useState } from "react";
 import { useWindowSize } from "../../global-component/ScreenBridge.c";
 import MainLayout from "../../layout/MainLayout";
 import SocialMediaComponent from "../../global-component/SocialMedia.c";
-import { PaddingStyled, SpaceStyled } from "../../global-style/global.s";
+import {
+  CenterStyled,
+  PaddingStyled,
+  SpaceStyled,
+} from "../../global-style/global.s";
 import { Grid } from "@mui/joy";
 import LogoComponent from "../../global-component/Logo.c";
 import ActionBorderComponent from "../../global-component/ActionBorder.c";
@@ -29,22 +33,34 @@ const FAQPage = () => {
         <Grid container>
           <Grid lg={2}>
             <SpaceStyled bottom={10}>
-              <LogoComponent width={200} />
+              <LogoComponent width={130} />
+              <SpaceStyled bottom={10} top={10}>
+                <CenterStyled>
+                  <img src="./google-font.png" width={200} />
+                </CenterStyled>
+              </SpaceStyled>
             </SpaceStyled>
             <div onClick={() => setDepartment("general")}>
-              <ActionBorderComponent padding={size.height > 660 ? 15 : 5}>
+              <ActionBorderComponent
+                border="3"
+                padding={size.height > 660 ? 15 : 5}
+              >
                 سوالات متداول کلی سایت
               </ActionBorderComponent>
             </div>
 
             <div onClick={() => setDepartment("store")}>
-              <ActionBorderComponent padding={size.height > 660 ? 15 : 5}>
+              <ActionBorderComponent
+                border="3"
+                padding={size.height > 660 ? 15 : 5}
+              >
                 سوالات متداول بخش فروشگاه
               </ActionBorderComponent>
             </div>
 
             <div onClick={() => setDepartment("service")}>
               <ActionBorderComponent
+                border="3"
                 padding={size.height > 660 ? 15 : 5}
                 fontSize={13}
               >
@@ -53,6 +69,7 @@ const FAQPage = () => {
             </div>
             <div onClick={() => setDepartment("information")}>
               <ActionBorderComponent
+                border="3"
                 padding={size.height > 660 ? 15 : 5}
                 fontSize={13}
               >
@@ -61,7 +78,10 @@ const FAQPage = () => {
             </div>
 
             <div onClick={() => setDepartment("chat")}>
-              <ActionBorderComponent padding={size.height > 660 ? 15 : 5}>
+              <ActionBorderComponent
+                border="3"
+                padding={size.height > 660 ? 15 : 5}
+              >
                 گفتگو
               </ActionBorderComponent>
             </div>

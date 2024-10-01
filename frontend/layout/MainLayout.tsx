@@ -183,7 +183,7 @@ const MainLayout: FC<{ children: any }> = ({ children }) => {
             </Grid>
             <Grid>
               <CenterStyled>
-                <Link href={"/footer"}>
+                <Link href={"/footer/main"}>
                   <img src="/favlogo.png" width={34} />
                 </Link>
               </CenterStyled>

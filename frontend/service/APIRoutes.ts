@@ -19,6 +19,7 @@ export const locationAPI = "/location/";
 export const reportAPI = "/report/";
 export const employmentAPI = "/employment/";
 export const basketAPI = "/basket/";
+export const provideMaterialAPI = "/provideMaterial/";
 export const chatsAPI = "/chat/";
 export const uploadAPI = "/file";
 export const appSettingAPI = "/app-setting";

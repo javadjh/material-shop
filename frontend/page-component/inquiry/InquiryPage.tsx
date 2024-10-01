@@ -5,7 +5,13 @@ import { useState } from "react";
 import * as Yup from "yup";
 import MainLayout from "../../layout/MainLayout";
 import { Grid, Option, Select, Typography } from "@mui/joy";
-import { CenterStyled, SpaceStyled } from "../../global-style/global.s";
+import {
+  CenterStyled,
+  LeftStyled,
+  PaddingStyled,
+  RightStyled,
+  SpaceStyled,
+} from "../../global-style/global.s";
 import LogoComponent from "../../global-component/Logo.c";
 import { WHITE_COLOR } from "../../config/colors";
 import { LARGE_FONT, MEDIUM_FONT } from "../../config/font";
@@ -52,29 +58,32 @@ const InquiryPage = () => {
   });
   return (
     <MainLayout>
-      <Grid container>
-        <Grid lg={2}>
-          <SpaceStyled top={20}>
-            <LogoComponent />
-            <SpaceStyled bottom={10} top={10}>
-              <CenterStyled>
-                <img src="./google-font.png" width={200} />
-              </CenterStyled>
-            </SpaceStyled>
-          </SpaceStyled>
-        </Grid>
-        <Grid lg={10}>
-          <SpaceStyled top={140}>
-            <CenterStyled>
+      <PaddingStyled top={10}>
+        <Grid container>
+          <Grid>
+            <RightStyled>
+              <LogoComponent />
+              <img src="./google-font.png" width={200} />
+            </RightStyled>
+          </Grid>
+          <Grid>
+            <SpaceStyled top={200} right={30}>
               <Typography
                 fontWeight={"bold"}
                 textColor={WHITE_COLOR}
                 fontSize={LARGE_FONT}
               >
-                کاربر گرامی در صورتی که در حوزه صنعت ساختمان فعالیت دارید برای
-                ارتباط بیشتر با مجموعه ما فرم زیر را تکمیل نمایید.
+                کاربر گرامی شما میتوانید لیست مصالح مورد نیاز خود را در این قسمت
+                بارگذاری کنید و در کمترین زمان ممکن پیش فاکتور خود را دریافت
+                نمایید .
               </Typography>
-            </CenterStyled>
+            </SpaceStyled>
+          </Grid>
+        </Grid>
+      </PaddingStyled>
+      <Grid container>
+        <Grid lg={7}>
+          <SpaceStyled top={60}>
             {!isSubmited && (
               <>
                 <Grid container spacing={5}>
@@ -209,6 +218,11 @@ const InquiryPage = () => {
               </Grid>
             </Grid>
           </SpaceStyled>
+        </Grid>
+        <Grid lg={5}>
+          <LeftStyled>
+            <img src="./inquries-image.png" height={"100%"} />
+          </LeftStyled>
         </Grid>
       </Grid>
     </MainLayout>

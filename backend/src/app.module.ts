@@ -23,6 +23,7 @@ import { OrderModule } from './modules/order/order.module';
 import { SmsModule } from './modules/sms/sms.module';
 import { InquiryModule } from './modules/inquiry/inquiry.module';
 import { SwapModule } from './modules/swap/inquiry.module';
+import { ProvideMaterialModule } from './modules/provide-material/inquiry.module';
 
 @Module({
   imports: [
@@ -54,6 +55,7 @@ import { SwapModule } from './modules/swap/inquiry.module';
     SmsModule,
     InquiryModule,
     SwapModule,
+    ProvideMaterialModule,
     ChatModule,
   ],
 })
