@@ -60,13 +60,13 @@ const InquiryPage = () => {
     <MainLayout>
       <PaddingStyled top={10}>
         <Grid container>
-          <Grid>
+          <Grid lg={2}>
             <RightStyled>
               <LogoComponent />
               <img src="./google-font.png" width={200} />
             </RightStyled>
           </Grid>
-          <Grid>
+          <Grid lg={10}>
             <SpaceStyled top={200} right={30}>
               <Typography
                 fontWeight={"bold"}
@@ -86,7 +86,7 @@ const InquiryPage = () => {
           <SpaceStyled top={60}>
             {!isSubmited && (
               <>
-                <Grid container spacing={5}>
+                <Grid container spacing={3}>
                   <Grid lg={4}>
                     <InputComponent
                       name="fullName"
@@ -151,6 +151,7 @@ const InquiryPage = () => {
                 <Grid container>
                   <Grid lg={8}>
                     <LocationPickerComponent
+                      spacing={3}
                       isError={formik.touched.cityId && formik?.errors?.cityId}
                       onCitySelected={(city) => {
                         formik.setFieldValue("cityId", city);

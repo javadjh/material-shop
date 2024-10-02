@@ -83,7 +83,7 @@ const ProvideMaterialPage = () => {
           <SpaceStyled top={10}>
             {!isSubmited && (
               <>
-                <Grid container spacing={5}>
+                <Grid container spacing={3}>
                   <Grid lg={4}>
                     <InputComponent
                       name="fullName"
@@ -124,6 +124,7 @@ const ProvideMaterialPage = () => {
                 <Grid container>
                   <Grid lg={8}>
                     <LocationPickerComponent
+                      spacing={3}
                       isError={formik.touched.cityId && formik?.errors?.cityId}
                       onCitySelected={(city) => {
                         formik.setFieldValue("cityId", city);

@@ -29,6 +29,7 @@ const HomePage = () => {
     flex-direction: column;
     height: ${size?.height > 650 ? "240px" : "230px"};
     width: 190px;
+    height: 230px;
     align-items: center;
     justify-content: space-between;
     padding: 20px;
