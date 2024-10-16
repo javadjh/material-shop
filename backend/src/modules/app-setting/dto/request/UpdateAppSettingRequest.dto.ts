@@ -70,7 +70,17 @@ export class UpdateAppSettingRequestDto {
   @IsOptional()
   @IsString()
   @ApiProperty()
+  location: string;
+
+  @IsOptional()
+  @IsString()
+  @ApiProperty()
   banner: string;
+
+  @IsOptional()
+  @IsString()
+  @ApiProperty()
+  bannerLink: string;
 
   @IsOptional()
   @IsString()

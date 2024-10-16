@@ -74,6 +74,7 @@ const SubCategoryPage: FC<any> = ({
                       style={{ width: "100%" }}
                     >
                       <ActionBorderComponent
+                        isBold={true}
                         border={"2"}
                         isSelected={item?._id == parentCategoryId}
                         isFill={true}
@@ -90,15 +91,11 @@ const SubCategoryPage: FC<any> = ({
 
         <Grid lg={9.5}>
           <SpaceStyled top={80}>
-            <Swiper
-              spaceBetween={10}
-              scrollbar={{ draggable: true }}
-              slidesPerView={"auto"}
-            >
+            <Swiper scrollbar={{ draggable: true }} slidesPerView={8.8}>
               {parentCategories?.map((item: any) => (
                 <SwiperSlide
                   style={{
-                    width: 110,
+                    width: 130,
                   }}
                   onClick={() => setActiveCategory(item?._id)}
                 >
@@ -109,7 +106,9 @@ const SubCategoryPage: FC<any> = ({
                 </SwiperSlide>
               ))}
             </Swiper>
-            <div className="orange-hr"></div>
+            <SpaceStyled top={20}>
+              <div className="orange-hr"></div>
+            </SpaceStyled>
             <SpaceStyled top={20}>
               <Grid
                 container

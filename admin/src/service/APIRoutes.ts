@@ -1,5 +1,5 @@
-export const BASE_URL = `http://45.149.76.235:3001/api/v1`;
-export const BACKEND_URL = "http://45.149.76.235:3001/";
+export const BASE_URL = `http://localhost:3001/api/v1`;
+export const BACKEND_URL = "http://localhost:3001/";
 export const loginAPI = "/user/login";
 export const userAPI = "/user/";
 export const brandsAPI = "/brand/";

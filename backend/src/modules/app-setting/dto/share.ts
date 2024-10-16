@@ -29,6 +29,9 @@ export class ShareAppSetting {
   myket: string;
 
   @ApiProperty()
+  location: string;
+
+  @ApiProperty()
   link: string;
 
   @ApiProperty()
@@ -42,6 +45,9 @@ export class ShareAppSetting {
 
   @ApiProperty()
   banner: string;
+
+  @ApiProperty()
+  bannerLink: string;
 
   @ApiProperty()
   updatedAt?: string;

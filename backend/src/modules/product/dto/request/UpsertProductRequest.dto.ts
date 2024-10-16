@@ -81,11 +81,6 @@ export class UpsertProductInfoRequestDto {
   car?: Array<CarDto>;
 
   @ApiProperty()
-  @IsBoolean()
-  @IsOptional()
-  isHighConsumption?: boolean;
-
-  @ApiProperty()
   @IsString()
   categoryId?: string;
 

@@ -19,11 +19,16 @@ export class GetUsersUnseenChatHandler
     private readonly chatModel: Model<ChatDocument>,
   ) {}
   async execute(query: GetUsersUnseenChatQuery): Promise<any> {
+    const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+
     const count: number = await this.chatModel
       .find({
         isUserSeen: false,
         user: query?.user?._id,
         isAdmin: true,
+        createdAt: {
+          $gte: sevenDaysAgo,
+        },
       })
       .count();
 

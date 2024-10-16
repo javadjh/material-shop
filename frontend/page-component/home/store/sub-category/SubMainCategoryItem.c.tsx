@@ -18,7 +18,10 @@ const SubMainCategoryItemComponent: FC<{
       </MainCategoryContainer>
       <SpaceStyled top={10}>
         <CenterStyled>
-          <Typography fontSize={SMALL_FONT} textColor={WHITE_COLOR}>
+          <Typography
+            fontSize={SMALL_FONT}
+            textColor={isActive ? ORANGE_COLOR : WHITE_COLOR}
+          >
             {item?.title}
           </Typography>
         </CenterStyled>

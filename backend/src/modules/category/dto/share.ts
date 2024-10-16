@@ -14,7 +14,13 @@ export class BaseCategoryDto {
   isMain: boolean;
 
   @ApiProperty()
+  isHighConsumption: boolean;
+
+  @ApiProperty()
   parentId: string;
+
+  @ApiProperty()
+  previousParentCount: number;
 }
 
 export class categoryEmbedDto {

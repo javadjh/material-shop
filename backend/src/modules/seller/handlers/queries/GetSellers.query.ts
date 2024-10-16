@@ -39,8 +39,18 @@ export class GetSellersHandler implements IQueryHandler<GetSellersQuery> {
         { telegram: regex },
       ],
     };
-    console.log(sellerDepartment);
-    console.log(query);
+
+    if (query?.filter?.cities) {
+      filter = {
+        ...filter,
+        ...{
+          'city.id': {
+            $in: query?.filter?.cities,
+          },
+        },
+      };
+    }
+    console.log(filter);
 
     if (sellerDepartment) {
       filter = { ...filter, ...{ sellerDepartment } };

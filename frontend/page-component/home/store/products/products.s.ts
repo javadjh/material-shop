@@ -23,7 +23,7 @@ export const WideSideContainerStyled = styled.div`
   border: 2px solid #fff;
   padding: 10px;
   border-radius: 20px;
-  height: calc(100vh - 20px);
+  height: calc(100vh - 15px);
   overflow-y: auto;
   -ms-overflow-style: none;
   scrollbar-width: none;

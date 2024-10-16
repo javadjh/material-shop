@@ -21,6 +21,7 @@ import { useEffect, useState } from "react";
 import { useWindowSize } from "../../global-component/ScreenBridge.c";
 import { getCookie } from "cookies-next";
 import { getAppSettingService } from "../../service/appsetting.service";
+import Link from "next/link";
 
 const ContactUs = () => {
   const [isSubmited, setIsSubmited] = useState(false);
@@ -158,12 +159,14 @@ const ContactUs = () => {
           <Grid lg={9}>
             <PaddingStyled top={60}>
               <CenterStyled>
-                <img
-                  src="/map.png"
-                  style={{ objectFit: "fill" }}
-                  width={"100%"}
-                  height={size.height - 220}
-                />
+                <Link href={appsetting?.location || ""}>
+                  <img
+                    src="/map.png"
+                    style={{ objectFit: "fill" }}
+                    width={"100%"}
+                    height={size.height - 220}
+                  />
+                </Link>
               </CenterStyled>
 
               {appsetting?.firstAddress && (

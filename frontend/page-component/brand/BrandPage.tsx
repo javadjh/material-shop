@@ -21,12 +21,12 @@ const BrandPage: FC<any> = ({ brands }) => {
         <Grid container>
           <Grid>
             <RightStyled>
-              <LogoComponent />
-              <img src="./google-font.png" width={200} />
+              <LogoComponent width={100} />
+              <img src="./google-font.png" width={100} />
             </RightStyled>
           </Grid>
           <Grid>
-            <SpaceStyled top={200} right={30}>
+            <SpaceStyled top={90} right={30}>
               <Typography
                 fontWeight={"bold"}
                 textColor={WHITE_COLOR}
@@ -42,34 +42,40 @@ const BrandPage: FC<any> = ({ brands }) => {
       </PaddingStyled>
       <SpaceStyled top={40} bottom={20}>
         <CenterStyled>
-          <img src="/brand-bg.png" width={"70%"} />
+          <img src="/brand-bg.png" width={"90%"} />
         </CenterStyled>
       </SpaceStyled>
-      <Swiper
-        spaceBetween={10}
-        scrollbar={{ draggable: true }}
-        slidesPerView={"auto"}
-      >
-        {brands?.map((item: any) => (
-          <SwiperSlide
-            style={{
-              width: 250,
-            }}
+      <CenterStyled>
+        <div style={{ width: "89%" }}>
+          <Swiper
+            spaceBetween={21}
+            scrollbar={{ draggable: true }}
+            slidesPerView={"auto"}
           >
-            <ImageServerComponent
-              image={item?.logo}
-              width={230}
-              height={230}
-              border={5}
-            />
-            <SpaceStyled top={10}>
-              <CenterStyled>
-                <WhiteText>{item?.title}</WhiteText>
-              </CenterStyled>
-            </SpaceStyled>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+            {brands?.map((item: any) => (
+              <SwiperSlide
+                style={{
+                  width: 190,
+                }}
+              >
+                <ImageServerComponent
+                  image={item?.logo}
+                  width={190}
+                  height={190}
+                  border={5}
+                />
+                <SpaceStyled top={10}>
+                  <CenterStyled>
+                    <Typography textColor={WHITE_COLOR}>
+                      {item?.title}
+                    </Typography>
+                  </CenterStyled>
+                </SpaceStyled>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+      </CenterStyled>
     </MainLayout>
   );
 };

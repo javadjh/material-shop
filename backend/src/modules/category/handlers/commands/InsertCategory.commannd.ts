@@ -67,6 +67,7 @@ export class InsertCategoryHandler
       isMain,
       parentId: parent?._id,
       index: dto?.index,
+      isHighConsumption: dto?.isHighConsumption,
     };
     //init previousParents for children categoery (to save on db)
     if (!isMain) {

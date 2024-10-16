@@ -5,7 +5,9 @@ import { filtersSchema } from './share/enums';
 
 export type CategoryDocument = Category & Document;
 
-export class BaseCategory extends BaseModel {}
+export class BaseCategory extends BaseModel {
+  previousParentCount?: number;
+}
 
 @Schema({ timestamps: true })
 export class Category extends BaseCategory {
@@ -23,6 +25,9 @@ export class Category extends BaseCategory {
 
   @Prop({ type: Boolean, default: true })
   isActive?: boolean;
+
+  @Prop({ type: Boolean, default: false })
+  isHighConsumption?: boolean;
 
   //related fields
   //for sub categories

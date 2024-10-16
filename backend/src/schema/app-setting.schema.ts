@@ -60,6 +60,9 @@ export class AppSetting extends BaseModel {
   thirdAddress?: string;
 
   @Prop()
+  location?: string;
+
+  @Prop()
   firstTell?: string;
 
   @Prop()
@@ -67,6 +70,9 @@ export class AppSetting extends BaseModel {
 
   @Prop()
   thirdTell?: string;
+
+  @Prop()
+  bannerLink?: string;
 }
 
 export const AppSettingSchema = SchemaFactory.createForClass(AppSetting);

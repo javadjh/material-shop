@@ -12,9 +12,15 @@ export const upsertCategoriesService = (
   id: string,
   title?: string,
   icon?: any,
-  index?: number
+  index?: number,
+  isHighConsumption?: boolean
 ) => {
-  return axiosConfig.put(`${categoryAPI}${id}`, { title, icon, index });
+  return axiosConfig.put(`${categoryAPI}${id}`, {
+    title,
+    icon,
+    index,
+    isHighConsumption,
+  });
 };
 
 export const insertCategoriesService = (data: IInsertCategory) => {

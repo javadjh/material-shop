@@ -34,12 +34,14 @@ export class UpdateAppSettingHandler
       sibapp,
       webapp,
       banner,
+      bannerLink,
       firstAddress,
       secondAddress,
       thirdAddress,
       firstTell,
       secondTell,
       thirdTell,
+      location,
     } = command.dto;
     let appSetting: any = await this.appSettingModel.findOne();
     if (!appSetting?._id)
@@ -55,6 +57,7 @@ export class UpdateAppSettingHandler
         myket,
         link,
         sibche,
+        bannerLink,
         sibapp,
         webapp,
         banner,
@@ -80,6 +83,8 @@ export class UpdateAppSettingHandler
     appSetting.sibapp = sibapp;
     appSetting.webapp = webapp;
     appSetting.banner = banner;
+    appSetting.bannerLink = bannerLink;
+    appSetting.location = location;
 
     appSetting.firstAddress = firstAddress;
     appSetting.secondAddress = secondAddress;

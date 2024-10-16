@@ -138,7 +138,7 @@ const JobPage = () => {
           <SpaceStyled top={80} right={40}>
             {jobInfo?.department && !isSubmited ? (
               <>
-                <div>
+                <SpaceStyled>
                   <Grid container spacing={10}>
                     <Grid lg={6}>
                       <SpaceStyled right={80}>
@@ -146,7 +146,7 @@ const JobPage = () => {
                           style={{ maxHeight: "85vh", overflow: "auto" }}
                         >
                           <BlockTitle>شرایط لازم برای این شغل</BlockTitle>
-                          <SpaceStyled top={10}>
+                          <SpaceStyled top={10} bottom={12}>
                             <Grid container spacing={1}>
                               <Grid lg={6}>
                                 <BlockTitle>تعداد نیروی لازم</BlockTitle>
@@ -166,7 +166,7 @@ const JobPage = () => {
                                     ? "مرد"
                                     : jobInfo?.gender == "women"
                                     ? "زن"
-                                    : "فرقی ندارد" || "-"}
+                                    : "فرقی ندارد"}
                                 </ValueTitle>
                               </Grid>
 
@@ -484,7 +484,7 @@ const JobPage = () => {
                               </Grid>
                               <Grid lg={12}>
                                 <UploadFileComponent
-                                  accept="application/pdf, application/msword"
+                                  accept="application/pdf, application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/msword"
                                   fileHandler={(e: any) => {
                                     console.log(e.filename);
 
@@ -540,7 +540,7 @@ const JobPage = () => {
                       </SpaceStyled>
                     </Grid>
                   </Grid>
-                </div>
+                </SpaceStyled>
               </>
             ) : (
               <>

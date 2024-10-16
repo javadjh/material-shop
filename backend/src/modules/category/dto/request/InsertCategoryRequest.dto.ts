@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNumber, IsOptional, IsString } from 'class-validator';
+import { IsBoolean, IsNumber, IsOptional, IsString } from 'class-validator';
 import { IsObjectId } from 'class-validator-mongo-object-id';
 
 export class InsertCategoryRequestDto {
@@ -20,4 +20,9 @@ export class InsertCategoryRequestDto {
   @IsOptional()
   @IsObjectId()
   parentId?: string;
+
+  @ApiProperty()
+  @IsOptional()
+  @IsBoolean()
+  isHighConsumption?: boolean;
 }

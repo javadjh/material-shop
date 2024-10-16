@@ -6,6 +6,7 @@ import { Category, CategoryDocument } from 'src/schema/category.schema';
 import { Model } from 'mongoose';
 import { BadRequestException } from '@nestjs/common';
 import { RECORD_NOT_FOUND_ERROR_MESSAGE } from 'src/config/messages';
+import { Product, ProductDocument } from 'src/schema/product.schema';
 
 export class UpdateCategoryCommand {
   constructor(
@@ -20,6 +21,9 @@ export class UpdateCategoryHandler
   constructor(
     @InjectModel(Category.name)
     private readonly categoryModel: Model<CategoryDocument>,
+
+    @InjectModel(Product.name)
+    private readonly productModel: Model<ProductDocument>,
   ) {}
   async execute(command: UpdateCategoryCommand): Promise<any> {
     const { categoryId, dto } = command;
@@ -38,9 +42,20 @@ export class UpdateCategoryHandler
     category.title = dto.title;
     category.icon = dto.icon;
     category.index = dto.index;
+    category.isHighConsumption = dto.isHighConsumption;
 
     //save document
     await category.save();
+
+    //update product isHighConsumption
+    await this.productModel.updateMany(
+      {
+        category: category?._id,
+      },
+      {
+        isHighConsumption: dto?.isHighConsumption,
+      },
+    );
 
     //return ok response
     return Response.updated();

@@ -10,6 +10,7 @@ import {
 import ImageServerComponent from "../../../../global-component/ImageServer.c";
 import { Grid } from "@mui/joy";
 import StoreItemComponent from "./StoreItem.s";
+import Link from "next/link";
 
 const ChoiceMobile: FC<{ categories: Array<ICategory> }> = ({ categories }) => {
   const [media, setMedia] = useState<any>({});
@@ -25,12 +26,14 @@ const ChoiceMobile: FC<{ categories: Array<ICategory> }> = ({ categories }) => {
     <MobileLayout isShowTopMenu={true}>
       <PaddingStyled top={20} bottom={80}>
         <CenterStyled>
-          <ImageServerComponent
-            image={media?.banner}
-            width={"90%"}
-            border={20}
-            height={170}
-          />
+          <Link href={media?.bannerLink || ""}>
+            <ImageServerComponent
+              image={media?.banner}
+              width={"90%"}
+              border={20}
+              height={170}
+            />
+          </Link>
           <SpaceStyled top={20} right={10} left={10}>
             <Grid container>
               <Grid xs={4}>

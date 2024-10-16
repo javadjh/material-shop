@@ -32,9 +32,13 @@ export class GetUsersChatsHandler implements IQueryHandler<GetUsersChatsQuery> {
         isUserSeen: true,
       },
     );
+    const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
 
     let filter: any = {
       user: query?.user?._id,
+      createdAt: {
+        $gte: sevenDaysAgo,
+      },
     };
     const chats: Array<Chat> = await this?.chatModel
       .find(filter)

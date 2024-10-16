@@ -31,8 +31,13 @@ export class GetAdminUserChatsHandler
 
     const { skip, eachPerPage } = GlobalUtility.pagingWrapper(query.filter);
     let user = await this.userModel.findById(query?.userId);
+    const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+
     let filter: any = {
       user: user?._id,
+      createdAt: {
+        $gte: sevenDaysAgo,
+      },
     };
     const chats: Array<Chat> = await this?.chatModel
       .find(filter)

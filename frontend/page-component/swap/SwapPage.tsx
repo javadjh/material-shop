@@ -19,10 +19,12 @@ import styled from "styled-components";
 import LocationPickerComponent from "../../page-component/employment/LocationPicker.c";
 import ActionBorderComponent from "../../global-component/ActionBorder.c";
 import { insertSwapService } from "../../service/swap.service";
+import { useWindowSize } from "../../global-component/ScreenBridge.c";
 
 const SwapPage = () => {
   const [isSubmited, setIsSubmited] = useState<boolean>(false);
   const router = useRouter();
+  const size = useWindowSize();
   const formik = useFormik({
     initialValues: {
       fullName: "",
@@ -77,14 +79,14 @@ const SwapPage = () => {
       </PaddingStyled>
       <Grid container>
         <Grid lg={5}>
-          <SpaceStyled top={60}>
+          <SpaceStyled top={10}>
             <RightStyled>
-              <img src="./swap-image.png" height={"100%"} />
+              <img src="./swap-image.png" height={size.height - 320} />
             </RightStyled>
           </SpaceStyled>
         </Grid>
         <Grid lg={5.7}>
-          <SpaceStyled top={50}>
+          <SpaceStyled top={10}>
             {!isSubmited && (
               <>
                 <Grid container spacing={3}>
@@ -113,8 +115,19 @@ const SwapPage = () => {
                       }
                     />
                   </Grid>
+                </Grid>
+                <Grid container>
+                  <Grid lg={8}>
+                    <LocationPickerComponent
+                      spacing={3}
+                      isError={formik.touched.cityId && formik?.errors?.cityId}
+                      onCitySelected={(city) => {
+                        formik.setFieldValue("cityId", city);
+                      }}
+                    />
+                  </Grid>
                   <Grid lg={4}>
-                    <SpaceStyled top={20}>
+                    <SpaceStyled top={0}>
                       <Select
                         style={{
                           padding: 14,
@@ -149,17 +162,6 @@ const SwapPage = () => {
                     </SpaceStyled>
                   </Grid>
                 </Grid>
-                <Grid container>
-                  <Grid lg={8}>
-                    <LocationPickerComponent
-                      spacing={3}
-                      isError={formik.touched.cityId && formik?.errors?.cityId}
-                      onCitySelected={(city) => {
-                        formik.setFieldValue("cityId", city);
-                      }}
-                    />
-                  </Grid>
-                </Grid>
               </>
             )}
             {isSubmited && (
@@ -179,7 +181,7 @@ const SwapPage = () => {
                     <TextAreaComponent
                       rows={4}
                       name="description"
-                      placeholder="لیست اقلام مورد نیاز"
+                      placeholder="توضیحات بیشتر"
                       wrap={"hard"}
                       onChange={formik.handleChange}
                       value={formik.values.description}

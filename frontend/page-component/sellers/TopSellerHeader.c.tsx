@@ -25,6 +25,7 @@ const TopSellerHeaderomponent: FC<{
         lg={1.9}
         container
         justifyContent={"space-between"}
+        className="outline-hover"
       >
         <Grid lg={12} container justifyContent={"space-between"}>
           <Grid>
@@ -38,12 +39,13 @@ const TopSellerHeaderomponent: FC<{
           </Grid>
           <Grid>
             <SpaceStyled top={5}>
-              <IconComponent icon="store" width={20} height={20} />
+              <IconComponent icon="store" width={30} height={30} />
             </SpaceStyled>
           </Grid>
         </Grid>
       </BorderGrid>
       <BorderGrid
+        className="outline-hover"
         selected={type == "tool"}
         onClick={() => onChangeType("tool")}
         lg={1.9}
@@ -62,12 +64,13 @@ const TopSellerHeaderomponent: FC<{
           </Grid>
           <Grid>
             <SpaceStyled top={5}>
-              <IconComponent icon="store" width={20} height={20} />
+              <IconComponent icon="store" width={30} height={30} />
             </SpaceStyled>
           </Grid>
         </Grid>
       </BorderGrid>
       <BorderGrid
+        className="outline-hover"
         selected={type == "iron-wood"}
         onClick={() => onChangeType("iron-wood")}
         lg={1.9}
@@ -86,12 +89,13 @@ const TopSellerHeaderomponent: FC<{
           </Grid>
           <Grid>
             <SpaceStyled top={5}>
-              <IconComponent icon="store" width={20} height={20} />
+              <IconComponent icon="store" width={30} height={30} />
             </SpaceStyled>
           </Grid>
         </Grid>
       </BorderGrid>
       <BorderGrid
+        className="outline-hover"
         selected={type == "stone-ceramic"}
         onClick={() => onChangeType("stone-ceramic")}
         lg={1.9}
@@ -110,12 +114,13 @@ const TopSellerHeaderomponent: FC<{
           </Grid>
           <Grid>
             <SpaceStyled top={5}>
-              <IconComponent icon="store" width={20} height={20} />
+              <IconComponent icon="store" width={30} height={30} />
             </SpaceStyled>
           </Grid>
         </Grid>
       </BorderGrid>
       <BorderGrid
+        className="outline-hover"
         selected={type == "electrical-water-facilities"}
         onClick={() => onChangeType("electrical-water-facilities")}
         lg={1.9}
@@ -139,7 +144,7 @@ const TopSellerHeaderomponent: FC<{
           </Grid>
           <Grid>
             <SpaceStyled top={5}>
-              <IconComponent icon="store" width={20} height={20} />
+              <IconComponent icon="store" width={30} height={30} />
             </SpaceStyled>
           </Grid>
         </Grid>
@@ -149,7 +154,8 @@ const TopSellerHeaderomponent: FC<{
 };
 export default TopSellerHeaderomponent;
 const BorderGrid: any = styled(Grid)`
-  border: 2px solid ${(prop: any) => (prop?.selected ? ORANGE_COLOR : null)};
+  outline: 2px solid
+    ${(prop: any) => (prop?.selected ? ORANGE_COLOR : WHITE_COLOR)};
   display: flex;
   padding: 10px;
   margin: 10px;

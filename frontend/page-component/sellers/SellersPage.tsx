@@ -28,7 +28,11 @@ const SellersPage = () => {
   const getData = async () => {
     const {
       data: { data: res },
-    } = await sellersService({ searchValue: city, sellerDepartment });
+    } = await sellersService({
+      cities: city,
+      sellerDepartment,
+      eachPerPage: 8,
+    });
     setSellers(res.sellers);
   };
   return (

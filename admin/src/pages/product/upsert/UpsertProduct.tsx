@@ -261,9 +261,6 @@ const UpsertProduct = () => {
                   </Form.Item>
                 </Col>
               </Row>
-              <Form.Item valuePropName="checked" name={"isHighConsumption"}>
-                <Checkbox>کالای پر مصرف</Checkbox>
-              </Form.Item>
             </Col>
             <Col span={15} offset={1}>
               <Row>

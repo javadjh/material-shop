@@ -19,20 +19,13 @@ export class InsertInquiryHandler
   constructor(
     @InjectModel(Inquiry.name)
     private readonly inquiry: Model<InquiryDocument>,
-
-    private readonly location: LocationShareHandler,
   ) {}
   async execute(command: InsertInquiryCommand): Promise<any> {
     const { dto } = command;
 
-    let { city, province } = await this.location?.returnlocationFromCityId(
-      dto?.cityId,
-    );
-
     //save inquiry
     const inquiry = await new this.inquiry({
       ...dto,
-      ...{ city, province },
     }).save();
 
     if (!inquiry?._id) throw new InsertException();

@@ -27,8 +27,6 @@ export class GetInquiriesHandler implements IQueryHandler<GetInquiriesQuery> {
       .select(
         `fullName
          phoneNumber
-         city
-         province
          file
          createdAt
          items`,
@@ -39,8 +37,6 @@ export class GetInquiriesHandler implements IQueryHandler<GetInquiriesQuery> {
 
     inqueiries?.map((item) => {
       item.createdAt = item?.createdAt?.toJalali();
-      item.cityName = item?.city?.name;
-      item.provinceName = item?.province?.name;
     });
 
     let response: GetInquiryResponseData = { total, list: inqueiries };

@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from "react";
 import { ICategory, IInsertCategory } from "../../types/category.type";
-import { Button, Col, Form, Input, Modal, Row, Typography } from "antd";
+import { Checkbox, Col, Form, Modal, Row } from "antd";
 import {
   getCategoriesService,
   insertCategoriesService,
@@ -23,14 +23,15 @@ const UpsertCategoryModal: FC<{
   const [form] = Form.useForm();
   const { setIsOpen, isOpen, setParent, setCategories } = useCategoryContext();
   let [icon, setIcon] = useState<string | any>("");
-  const upsertCategory = async (formData: IInsertCategory) => {
+  const upsertCategory = async (formData: any) => {
     let state = false;
     if (category?._id) {
       const { data } = await upsertCategoriesService(
         category?._id,
         formData.title,
         icon,
-        Number(formData.index)
+        Number(formData.index),
+        formData?.isHighConsumption
       );
       state = data.state;
     } else {
@@ -54,6 +55,8 @@ const UpsertCategoryModal: FC<{
   };
   useEffect(() => {
     if (category?._id) {
+      console.log(category);
+
       form.setFieldsValue(category);
       setIcon(category?.icon);
     } else {
@@ -117,6 +120,9 @@ const UpsertCategoryModal: FC<{
               </Form.Item>
             </Col>
           </Row>
+          <Form.Item valuePropName="checked" name={"isHighConsumption"}>
+            <Checkbox>کالای پر مصرف</Checkbox>
+          </Form.Item>
           <button className="btn btn-success">ثبت</button>
         </Form>
       </div>

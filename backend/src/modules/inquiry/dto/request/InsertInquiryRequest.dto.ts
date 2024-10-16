@@ -20,10 +20,6 @@ export class InsertInquiryRequestDto {
   phoneNumber?: string;
 
   @ApiProperty()
-  @IsNumber()
-  cityId?: number;
-
-  @ApiProperty()
   @IsString()
   @IsOptional()
   file?: string;

@@ -183,6 +183,12 @@ const AppSetting = () => {
           </CenterStyled>
         )}
       </UploadFileComponent>
+      <Form.Item name="bannerLink" label="لینک بنر">
+        <input className="form-control" />
+      </Form.Item>
+      <Form.Item name="location" label="لینک گوگل مپ">
+        <input className="form-control" />
+      </Form.Item>
       <Form.Item name="banner" />
     </Form>
   );

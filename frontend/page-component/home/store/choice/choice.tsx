@@ -49,12 +49,14 @@ const ChoicePage: NextPage<{ categories: Array<ICategory> }> = ({
               </Grid>
               <Grid lg={8}>
                 <PaddingStyled top={70} right={10} bottom={20}>
-                  <ImageServerComponent
-                    image={media?.banner}
-                    border={10}
-                    width={"100%"}
-                    height={"19vh"}
-                  />
+                  <Link href={media?.bannerLink || ""}>
+                    <ImageServerComponent
+                      image={media?.banner}
+                      border={10}
+                      width={"100%"}
+                      height={"19vh"}
+                    />
+                  </Link>
                 </PaddingStyled>
               </Grid>
             </Grid>
@@ -110,7 +112,7 @@ const ChoicePage: NextPage<{ categories: Array<ICategory> }> = ({
               <Grid lg={6}>
                 <StoreItemComponent
                   iconName="provider"
-                  link="/sellers"
+                  link="/brand"
                   title={"تامین کنندگان"}
                   key={"job"}
                 />

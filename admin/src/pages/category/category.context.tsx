@@ -1,4 +1,4 @@
-import { FC, createContext, useContext, useState } from "react";
+import { FC, createContext, useContext, useEffect, useState } from "react";
 import { ICategory } from "../../types/category.type";
 import { getCategoriesService } from "../../service/category.service";
 export interface ICategoryContext {
@@ -35,9 +35,6 @@ const CategoryContextProvider: FC<ICategoryContextProvider> = ({
   const [map, setMap] = useState<Array<string>>(["دسته اصلی"]);
 
   const backPress = async () => {
-    console.log("parent?.parentId");
-    console.log(parent?.parentId);
-
     const {
       data: { data: response },
     } = await getCategoriesService(
@@ -47,6 +44,11 @@ const CategoryContextProvider: FC<ICategoryContextProvider> = ({
 
     setMap(map.slice(0, -1));
   };
+
+  useEffect(() => {
+    console.log("parent?.parentId");
+    console.log(parent?.parentId);
+  }, [parent]);
 
   let value: ICategoryContext = {
     isOpen,

@@ -20,18 +20,21 @@ import LocationPickerComponent from "../../page-component/employment/LocationPic
 import ActionBorderComponent from "../../global-component/ActionBorder.c";
 import { UploadFileComponent } from "../../global-component/UploadFile.c";
 import { insertInquiryService } from "../../service/inquiry.service";
+import { useWindowSize } from "../../global-component/ScreenBridge.c";
+import Link from "next/link";
+import { ReactSVG } from "react-svg";
+import { WhiteText } from "../../global-component/Typography/WhiteText.t";
 
 const InquiryPage = () => {
   const [isSubmited, setIsSubmited] = useState<boolean>(false);
   const router = useRouter();
+  const size = useWindowSize();
   const formik = useFormik({
     initialValues: {
       fullName: "",
       phoneNumber: getCookie("phone")?.substring(1),
-      activity: "",
       items: "",
       file: undefined,
-      cityId: undefined,
     },
     onSubmit: async (e: any) => {
       console.log(e);
@@ -50,10 +53,8 @@ const InquiryPage = () => {
         .max(50, "نام و نام خانوادگی را به درستی وارد کنید")
         .required("اجباری میباشد"),
       phoneNumber: Yup.string().required("اجباری میباشد").length(10),
-      activity: Yup.string().required("اجباری میباشد"),
       items: Yup.string().required("اجباری میباشد"),
       file: Yup.string().optional(),
-      cityId: Yup.number().required("اجباری میباشد"),
     }),
   });
   return (
@@ -67,7 +68,7 @@ const InquiryPage = () => {
             </RightStyled>
           </Grid>
           <Grid lg={10}>
-            <SpaceStyled top={200} right={30}>
+            <SpaceStyled top={165} right={30}>
               <Typography
                 fontWeight={"bold"}
                 textColor={WHITE_COLOR}
@@ -83,11 +84,11 @@ const InquiryPage = () => {
       </PaddingStyled>
       <Grid container>
         <Grid lg={7}>
-          <SpaceStyled top={60}>
+          <SpaceStyled top={0} right={80}>
             {!isSubmited && (
               <>
                 <Grid container spacing={3}>
-                  <Grid lg={4}>
+                  <Grid lg={6}>
                     <InputComponent
                       name="fullName"
                       placeholder="نام و نام خانوادگی"
@@ -97,9 +98,6 @@ const InquiryPage = () => {
                         formik.touched.fullName && formik.errors.fullName
                       }
                     />
-                  </Grid>
-
-                  <Grid lg={4}>
                     <InputComponent
                       name="phoneNumber"
                       placeholder="شماره تماس"
@@ -111,65 +109,90 @@ const InquiryPage = () => {
                         formik.touched.phoneNumber && formik.errors.phoneNumber
                       }
                     />
-                  </Grid>
-                  <Grid lg={4}>
-                    <SpaceStyled top={20}>
-                      <Select
-                        style={{
-                          padding: 14,
-                          border:
-                            formik?.errors?.phoneNumber &&
-                            formik.touched.phoneNumber
-                              ? "1.5px solid red"
-                              : "1.5px solid orange ",
-                        }}
-                        name="activity"
-                        placeholder="نوع فعالیت"
-                        onChange={(e, value) => {
-                          formik.setFieldValue("activity", value);
-                        }}
-                      >
-                        <Option value={"producer"} key={"producer"}>
-                          <Typography>تولید کننده</Typography>
-                        </Option>
-                        <Option value={"provider"} key={"provider"}>
-                          عرضه کننده
-                        </Option>
-                        <Option value={"creator"} key={"creator"}>
-                          سازنده
-                        </Option>
-                        <Option value={"businessman"} key={"businessman"}>
-                          بازرگان
-                        </Option>
-                        <Option value={"other"} key={"other"}>
-                          متفرقه
-                        </Option>
-                      </Select>
-                    </SpaceStyled>
-                  </Grid>
-                </Grid>
-                <Grid container>
-                  <Grid lg={8}>
-                    <LocationPickerComponent
-                      spacing={3}
-                      isError={formik.touched.cityId && formik?.errors?.cityId}
-                      onCitySelected={(city) => {
-                        formik.setFieldValue("cityId", city);
-                      }}
-                    />
-                  </Grid>
-                  <Grid lg={4}>
                     <UploadFileComponent
+                      accept="application/pdf, application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/msword"
                       fileHandler={(file: any) => {
                         formik.setFieldValue("file", file?.filename);
                       }}
                     >
-                      <SpaceStyled right={25}>
-                        <ActionBorderComponent isFill={true} isSelected={true}>
-                          {formik?.values.file || "انتخاب فایل"}
-                        </ActionBorderComponent>
+                      <SpaceStyled>
+                        <InputBlockComponent>
+                          {formik?.values.file || "انتخاب فایل PDF و WORD"}
+                        </InputBlockComponent>
                       </SpaceStyled>
                     </UploadFileComponent>
+                    <WhiteText>ارسال فایل از طریق</WhiteText>
+                    <Grid container justifyContent={"end"}>
+                      <Grid>
+                        <Link href={"/"}>
+                          <SpaceStyled horizontal={5}>
+                            <div style={{ width: 25, height: 25 }}>
+                              <ReactSVG
+                                src="/icons/instagram.svg"
+                                style={{ color: "red" }}
+                                beforeInjection={(svg) => {
+                                  svg.classList.add("so-svg-class");
+                                }}
+                              />
+                            </div>
+                          </SpaceStyled>
+                        </Link>
+                      </Grid>
+                      <Grid>
+                        <Link href={"/"}>
+                          <SpaceStyled horizontal={5}>
+                            <div style={{ width: 25, height: 25 }}>
+                              <ReactSVG
+                                src="/icons/twitter.svg"
+                                style={{ color: "red" }}
+                                beforeInjection={(svg) => {
+                                  svg.classList.add("so-svg-class");
+                                }}
+                              />
+                            </div>
+                          </SpaceStyled>
+                        </Link>
+                      </Grid>
+                      <Grid>
+                        <Link href={"/"}>
+                          <SpaceStyled horizontal={5}>
+                            <div style={{ width: 25, height: 25 }}>
+                              <ReactSVG
+                                src="/icons/whatsapp.svg"
+                                style={{ color: "red" }}
+                                beforeInjection={(svg) => {
+                                  svg.classList.add("so-svg-class");
+                                }}
+                              />
+                            </div>
+                          </SpaceStyled>
+                        </Link>
+                      </Grid>
+                    </Grid>
+                  </Grid>
+                  <Grid lg={6}>
+                    <TextAreaComponent
+                      rows={9}
+                      name="items"
+                      placeholder="لطفا لیست اقلام را بنویسید"
+                      wrap={"hard"}
+                      onChange={formik.handleChange}
+                      value={formik.values.items}
+                      isError={formik.touched.items && formik.errors.items}
+                    />
+                    <SpaceStyled
+                      onClick={() => {
+                        if (isSubmited) {
+                          router.replace("/");
+                        } else {
+                          formik?.submitForm();
+                        }
+                      }}
+                    >
+                      <ActionBorderComponent border="2" isSelected={true}>
+                        <SpaceStyled vertical={10}>ثبت</SpaceStyled>
+                      </ActionBorderComponent>
+                    </SpaceStyled>
                   </Grid>
                 </Grid>
               </>
@@ -184,45 +207,11 @@ const InquiryPage = () => {
                 </CenterStyled>
               </SpaceStyled>
             )}
-            <Grid container>
-              <Grid lg={8}>
-                {!isSubmited && (
-                  <SpaceStyled left={15}>
-                    <TextAreaComponent
-                      rows={4}
-                      name="items"
-                      placeholder="لیست اقلام مورد نیاز"
-                      wrap={"hard"}
-                      onChange={formik.handleChange}
-                      value={formik.values.items}
-                      isError={formik.touched.items && formik.errors.items}
-                    />
-                  </SpaceStyled>
-                )}
-              </Grid>
-              <Grid lg={4}>
-                <SpaceStyled
-                  onClick={() => {
-                    if (isSubmited) {
-                      router.replace("/");
-                    } else {
-                      formik?.submitForm();
-                    }
-                  }}
-                  right={30}
-                  top={85}
-                >
-                  <ActionBorderComponent border="2" isSelected={true}>
-                    <SpaceStyled vertical={10}>ثبت</SpaceStyled>
-                  </ActionBorderComponent>
-                </SpaceStyled>
-              </Grid>
-            </Grid>
           </SpaceStyled>
         </Grid>
         <Grid lg={5}>
           <LeftStyled>
-            <img src="./inquries-image.png" height={"100%"} />
+            <img src="./inquries-image.png" height={size.height - 300} />
           </LeftStyled>
         </Grid>
       </Grid>
@@ -241,13 +230,29 @@ const InputComponent: any = styled.input`
       ? "1.5px solid red !important"
       : "1px solid orange !important"};
   padding: 15px;
-  margin: 20px 0px;
+  margin: 10px 0px;
+  font-size: ${MEDIUM_FONT};
+  color: black;
+`;
+
+const InputBlockComponent: any = styled.div`
+  background-color: white;
+  border: none !important;
+  border-radius: 8px;
+  width: 100%;
+  border: ${(props: any) =>
+    props.isError
+      ? "1.5px solid red !important"
+      : "1px solid orange !important"};
+  padding: 15px;
+  margin: 10px 0px;
   font-size: ${MEDIUM_FONT};
   color: black;
 `;
 const TextAreaComponent: any = styled.textarea`
   background-color: white;
   border: none !important;
+  height: 40vh;
   border-radius: 8px;
   width: 100%;
   resize: none;
@@ -257,6 +262,6 @@ const TextAreaComponent: any = styled.textarea`
       ? "1.5px solid red !important"
       : "1px solid orange !important"};
   font-size: ${MEDIUM_FONT};
-  margin: 20px 0px;
+  margin: 10px 0px;
   color: black;
 `;

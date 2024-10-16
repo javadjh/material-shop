@@ -68,12 +68,14 @@ const CategoryPage: FC<{
         </Grid>
         <Grid lg={9.5}>
           <PaddingStyled top={80} bottom={20} horizontal={30}>
-            <ImageServerComponent
-              image={media?.banner}
-              width={"100%"}
-              border={20}
-              height={"20vh"}
-            />
+            <Link href={media?.bannerLink || ""}>
+              <ImageServerComponent
+                image={media?.banner}
+                width={"100%"}
+                border={20}
+                height={"20vh"}
+              />
+            </Link>
 
             <div style={{ width: "100%", marginTop: 30 }}>
               <Grid spacing={5} container alignContent={"space-between"}>

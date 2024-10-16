@@ -179,3 +179,8 @@ export const SelectItemContainer = styled.div`
   justify-content: center;
   align-items: center;
 `;
+export const FixBottomLeft = styled.div`
+  position: fixed;
+  bottom: 20px;
+  left: 30px;
+`;

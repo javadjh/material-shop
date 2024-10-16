@@ -9,12 +9,6 @@ export class GetInquiryResponseList {
   phoneNumber?: string;
 
   @ApiProperty()
-  cityName?: string;
-
-  @ApiProperty()
-  provinceName?: string;
-
-  @ApiProperty()
   file?: string;
 
   @ApiProperty()

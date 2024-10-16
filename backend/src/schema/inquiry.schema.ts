@@ -18,12 +18,6 @@ export class Inquiry extends BaseInquiryModel {
   @Prop({ type: String })
   phoneNumber?: string;
 
-  @Prop({ type: City })
-  city?: City;
-
-  @Prop({ type: Province })
-  province?: Province;
-
   @Prop({ type: String })
   file?: string;
 

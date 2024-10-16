@@ -210,7 +210,10 @@ textarea {
   display: block;
   height: 1px;
   border: 0;
-  border-top: 2px solid #fd9500;
+  border-top: 3px solid #fd9500;
   margin: 1em 0;
   padding: 0;
+}
+.white-btn-class {
+  color: white !important;
 }

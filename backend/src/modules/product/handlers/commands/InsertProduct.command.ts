@@ -42,7 +42,12 @@ export class InsertProductHandler
 
     const product = await new this.product({
       ...dto,
-      ...{ category: category?._id, brand: brand._id, sellers },
+      ...{
+        category: category?._id,
+        brand: brand._id,
+        sellers,
+        isHighConsumption: category?.isHighConsumption,
+      },
     }).save();
 
     if (!product?._id) throw new InsertException();

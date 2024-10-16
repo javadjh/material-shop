@@ -57,7 +57,12 @@ export class UpdateProductHandler
 
     const product = await this.product.findByIdAndUpdate(id, {
       ...dto,
-      ...{ category: category?._id, brand: brand, sellers },
+      ...{
+        category: category?._id,
+        brand: brand,
+        sellers,
+        isHighConsumption: category?.isHighConsumption,
+      },
     });
 
     if (!product?._id) throw new RecordNotFoundException();

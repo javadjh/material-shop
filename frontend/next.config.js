@@ -6,7 +6,7 @@ const nextConfig = {
     styledComponents: true,
   },
   images: {
-    domains: ["45.149.76.235", "45.149.76.235"],
+    domains: ["localhost", "localhost"],
   },
   // plugins: [
   //   [

@@ -2,6 +2,7 @@ import { Grid, Typography } from "@mui/joy";
 import MainLayout from "../../layout/MainLayout";
 import {
   CenterStyled,
+  FixBottomLeft,
   LeftStyled,
   PaddingStyled,
   SpaceStyled,
@@ -56,9 +57,9 @@ const MainFooterPage: FC<{ categories: Array<any> }> = ({ categories }) => {
             <Typography fontSize={X_LARGE_FONT} textColor={WHITE_COLOR}>
               پاورقی
             </Typography>
-            <SpaceStyled top={20}>
-              <Grid container spacing={10}>
-                <Grid lg={2.4}>
+            <SpaceStyled top={size.height > 700 ? 80 : 10}>
+              <Grid container spacing={5} justifyContent={"space-between"}>
+                <Grid lg={2.1}>
                   <Link href={"/rules"}>
                     <ItemContainer className="outline-hover">
                       <SpaceStyled bottom={20}>
@@ -70,7 +71,7 @@ const MainFooterPage: FC<{ categories: Array<any> }> = ({ categories }) => {
                     </ItemContainer>
                   </Link>
                 </Grid>
-                <Grid lg={2.4}>
+                <Grid lg={2.1}>
                   <Link href={"/employment"}>
                     <ItemContainer className="outline-hover">
                       <SpaceStyled bottom={20}>
@@ -82,7 +83,7 @@ const MainFooterPage: FC<{ categories: Array<any> }> = ({ categories }) => {
                     </ItemContainer>
                   </Link>
                 </Grid>
-                <Grid lg={2.4}>
+                <Grid lg={2.1}>
                   <Link href={"/faq"}>
                     <ItemContainer className="outline-hover">
                       <SpaceStyled bottom={20}>
@@ -94,7 +95,7 @@ const MainFooterPage: FC<{ categories: Array<any> }> = ({ categories }) => {
                     </ItemContainer>
                   </Link>
                 </Grid>
-                <Grid lg={2.4}>
+                <Grid lg={2.1}>
                   <Link href={"/about-us"}>
                     <ItemContainer className="outline-hover">
                       <SpaceStyled bottom={20}>
@@ -106,7 +107,7 @@ const MainFooterPage: FC<{ categories: Array<any> }> = ({ categories }) => {
                     </ItemContainer>
                   </Link>
                 </Grid>
-                <Grid lg={2.4}>
+                <Grid lg={2.1}>
                   <Link href={"/contact-us"}>
                     <ItemContainer className="outline-hover">
                       <SpaceStyled bottom={20}>
@@ -118,7 +119,7 @@ const MainFooterPage: FC<{ categories: Array<any> }> = ({ categories }) => {
                     </ItemContainer>
                   </Link>
                 </Grid>
-                <Grid lg={2.4}>
+                <Grid lg={2.1}>
                   <Link href={"/brand"}>
                     <ItemContainer className="outline-hover">
                       <SpaceStyled bottom={20}>
@@ -126,12 +127,12 @@ const MainFooterPage: FC<{ categories: Array<any> }> = ({ categories }) => {
                           <ReactSVG src="/icons/support.svg" />
                         </div>
                       </SpaceStyled>
-                      {/* <Typography>مشاوره فنی</Typography> */}
-                      <Typography>برندها</Typography>
+                      <Typography>مشاوره فنی</Typography>
+                      {/* <Typography>برندها</Typography> */}
                     </ItemContainer>
                   </Link>
                 </Grid>
-                <Grid lg={2.4}>
+                <Grid lg={2.1}>
                   <Link href={"#"}>
                     <ItemContainer className="outline-hover">
                       <SpaceStyled bottom={20}>
@@ -143,7 +144,7 @@ const MainFooterPage: FC<{ categories: Array<any> }> = ({ categories }) => {
                     </ItemContainer>
                   </Link>
                 </Grid>
-                <Grid lg={2.4}>
+                <Grid lg={2.1}>
                   <Link href={"#"}>
                     <ItemContainer className="outline-hover">
                       <SpaceStyled bottom={20}>
@@ -155,7 +156,7 @@ const MainFooterPage: FC<{ categories: Array<any> }> = ({ categories }) => {
                     </ItemContainer>
                   </Link>
                 </Grid>
-                <Grid lg={2.4}>
+                <Grid lg={2.1}>
                   <Link href={"#"}>
                     <ItemContainer className="outline-hover">
                       <SpaceStyled bottom={20}>
@@ -167,7 +168,7 @@ const MainFooterPage: FC<{ categories: Array<any> }> = ({ categories }) => {
                     </ItemContainer>
                   </Link>
                 </Grid>
-                <Grid lg={2.4}>
+                <Grid lg={2.1}>
                   <Link href={"#"}>
                     <ItemContainer className="outline-hover">
                       <SpaceStyled bottom={20}>
@@ -180,12 +181,14 @@ const MainFooterPage: FC<{ categories: Array<any> }> = ({ categories }) => {
                   </Link>
                 </Grid>
               </Grid>
-              <LeftStyled style={{ flexDirection: "row", marginTop: 10 }}>
-                <img src="/majazi.png" width={128} height={128} />
-                <img src="/namad.png" width={128} height={128} />
-                <img src="/sanat.png" width={128} height={128} />
-                <img src="/sazman.png" width={128} height={128} />
-              </LeftStyled>
+              <FixBottomLeft>
+                <LeftStyled style={{ flexDirection: "row", marginTop: 10 }}>
+                  <img src="/majazi.png" width={128} height={128} />
+                  <img src="/namad.png" width={128} height={128} />
+                  <img src="/sanat.png" width={128} height={128} />
+                  <img src="/sazman.png" width={128} height={128} />
+                </LeftStyled>
+              </FixBottomLeft>
             </SpaceStyled>
           </PaddingStyled>
         </Grid>
@@ -199,6 +202,7 @@ const ItemContainer = styled.div`
   width: 100%;
   outline-width: 4px !important;
   display: flex;
+  left: 20px;
   justify-content: center;
   align-items: center;
   border-radius: 5px;

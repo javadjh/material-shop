@@ -18,6 +18,7 @@ const ActionBorderComponent: FC<any> = ({
   isFill = false,
   fontColor,
   isCenter = true,
+  isBold = false,
 }) => {
   const [isHover, setIsHover] = useState<boolean>(isSelected);
   useEffect(() => {
@@ -43,6 +44,7 @@ const ActionBorderComponent: FC<any> = ({
             <CenterStyled>
               <PaddingStyled vertical={10}>
                 <Typography
+                  fontWeight={isBold && "bold"}
                   fontSize={fontSize}
                   textColor={
                     fontColor || (isHover && !isFill)
@@ -57,6 +59,7 @@ const ActionBorderComponent: FC<any> = ({
           ) : (
             <PaddingStyled vertical={10}>
               <Typography
+                fontWeight={isBold && "bold"}
                 fontSize={fontSize}
                 textColor={
                   fontColor || (isHover && !isFill) ? ORANGE_COLOR : WHITE_COLOR

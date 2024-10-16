@@ -26,9 +26,15 @@ export class GetAdminChatsHandler implements IQueryHandler<GetAdminChatsQuery> {
   ) {}
   async execute(query: GetAdminChatsQuery): Promise<any> {
     let { skip, eachPerPage } = GlobalUtility.pagingWrapper(query.filter);
-
+    const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
     let users = await this.userModel
-      .find({ isActive: true, isAdmin: false })
+      .find({
+        isActive: true,
+        isAdmin: false,
+        createdAt: {
+          $gte: sevenDaysAgo,
+        },
+      })
       .sort({ lastChatDate: -1 })
       .select('firstName lastName phone lastChatDate')
       .limit(eachPerPage)

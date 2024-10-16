@@ -6,7 +6,10 @@ import { LARGE_FONT, MEDIUM_FONT, SMALL_FONT } from "../../../../config/font";
 import Link from "next/link";
 import styled from "styled-components";
 import ImageServerComponent from "../../../../global-component/ImageServer.c";
-import { CenterVerticalStyled } from "../../../../global-style/global.s";
+import {
+  CenterStyled,
+  CenterVerticalStyled,
+} from "../../../../global-style/global.s";
 import { ImageCategoryItemContainer } from "../choice/choice.s";
 
 const SubCategoryItemComponent: FC<{
@@ -32,11 +35,15 @@ const SubCategoryItemComponent: FC<{
   `;
   return (
     <CategoryItemContainer className="fill-outline-hover">
-      <Typography fontSize={LARGE_FONT}>
-        <strong style={{ color: whiteMode ? "#000" : "white" }}>{title}</strong>
-      </Typography>
+      <CenterStyled>
+        <Typography fontSize={LARGE_FONT}>
+          <strong style={{ color: whiteMode ? "#000" : "white" }}>
+            {title}
+          </strong>
+        </Typography>
+      </CenterStyled>
       <ImageCategoryItemContainer>
-        <ImageServerComponent image={iconName} width={50} />
+        <ImageServerComponent image={iconName} width={70} height={70} />
       </ImageCategoryItemContainer>
     </CategoryItemContainer>
   );

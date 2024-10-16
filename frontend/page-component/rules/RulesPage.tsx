@@ -14,6 +14,9 @@ import { useState } from "react";
 import styled from "styled-components";
 import SocialMediaComponent from "../../global-component/SocialMedia.c";
 import { useWindowSize } from "../../global-component/ScreenBridge.c";
+import SubCategoryItemComponent from "../home/store/category/SubCategoryItem.c";
+import Link from "next/link";
+import { ReactSVG } from "react-svg";
 
 const RulesPage = () => {
   const [department, setDepartment] = useState<string>("general");
@@ -32,58 +35,143 @@ const RulesPage = () => {
                 </CenterStyled>
               </SpaceStyled>
             </SpaceStyled>
-            <div onClick={() => setDepartment("general")}>
-              <ActionBorderComponent
-                isSelected={department == "general"}
-                padding={size.height > 660 ? 15 : 5}
-                border={"2"}
-              >
-                قوانین کلی سایت
-              </ActionBorderComponent>
-            </div>
-            <div onClick={() => setDepartment("privacy")}>
-              <ActionBorderComponent
-                border={"2"}
-                isSelected={department == "privacy"}
-                padding={size.height > 660 ? 15 : 5}
-              >
-                قوانین حریم خصوصی
-              </ActionBorderComponent>
-            </div>
+            <SpaceStyled bottom={20}>
+              <div onClick={() => setDepartment("general")}>
+                <ActionBorderComponent
+                  isBold={true}
+                  isSelected={department == "general"}
+                  padding={size.height > 660 ? 15 : 5}
+                  border={"2"}
+                >
+                  قوانین کلی سایت
+                </ActionBorderComponent>
+              </div>
+            </SpaceStyled>
+            <SpaceStyled bottom={20}>
+              <div onClick={() => setDepartment("privacy")}>
+                <ActionBorderComponent
+                  isBold={true}
+                  border={"2"}
+                  isSelected={department == "privacy"}
+                  padding={size.height > 660 ? 15 : 5}
+                >
+                  قوانین حریم خصوصی
+                </ActionBorderComponent>
+              </div>
+            </SpaceStyled>
 
-            <div onClick={() => setDepartment("store")}>
-              <ActionBorderComponent
-                border={"2"}
-                isSelected={department == "store"}
-                padding={size.height > 660 ? 15 : 5}
-              >
-                قوانین بخش فروشگاه
-              </ActionBorderComponent>
-            </div>
+            <SpaceStyled bottom={20}>
+              <div onClick={() => setDepartment("store")}>
+                <ActionBorderComponent
+                  isBold={true}
+                  border={"2"}
+                  isSelected={department == "store"}
+                  padding={size.height > 660 ? 15 : 5}
+                >
+                  قوانین بخش فروشگاه
+                </ActionBorderComponent>
+              </div>
+            </SpaceStyled>
 
-            <div onClick={() => setDepartment("service")}>
-              <ActionBorderComponent
-                border={"2"}
-                isSelected={department == "service"}
-                padding={size.height > 660 ? 15 : 5}
-                fontSize={13}
-              >
-                قوانین بخش خدمات ساختمانی
-              </ActionBorderComponent>
-            </div>
-            <div onClick={() => setDepartment("information")}>
-              <ActionBorderComponent
-                border={"2"}
-                isSelected={department == "information"}
-                padding={size.height > 660 ? 15 : 5}
-                fontSize={13}
-              >
-                قوانین بخش اطلاعات ساختمانی
-              </ActionBorderComponent>
-            </div>
+            <SpaceStyled bottom={20}>
+              <div onClick={() => setDepartment("service")}>
+                <ActionBorderComponent
+                  isBold={true}
+                  border={"2"}
+                  isSelected={department == "service"}
+                  padding={size.height > 660 ? 15 : 5}
+                  fontSize={13}
+                >
+                  قوانین بخش خدمات ساختمانی
+                </ActionBorderComponent>
+              </div>
+            </SpaceStyled>
+            <SpaceStyled bottom={20}>
+              <div onClick={() => setDepartment("information")}>
+                <ActionBorderComponent
+                  isBold={true}
+                  border={"2"}
+                  isSelected={department == "information"}
+                  padding={size.height > 660 ? 15 : 5}
+                  fontSize={13}
+                >
+                  قوانین بخش اطلاعات ساختمانی
+                </ActionBorderComponent>
+              </div>
+            </SpaceStyled>
           </Grid>
           <Grid lg={10}>
-            <RuleTextContainer></RuleTextContainer>
+            {department == "service" || department == "information" ? (
+              <>
+                <SpaceStyled top={80} bottom={-50} right={40}>
+                  <Grid container spacing={3}>
+                    <Grid lg={1.7}>
+                      <Link href={"/rules"}>
+                        <ItemContainer className="outline-hover">
+                          <SpaceStyled bottom={20}>
+                            <div style={{ width: 40, height: 40 }}>
+                              <ReactSVG src="/icons/usable.svg" />
+                            </div>
+                          </SpaceStyled>
+                          <Typography>بازسازی</Typography>
+                        </ItemContainer>
+                      </Link>
+                    </Grid>
+                    <Grid lg={1.7}>
+                      <Link href={"/rules"}>
+                        <ItemContainer className="outline-hover">
+                          <SpaceStyled bottom={20}>
+                            <div style={{ width: 40, height: 40 }}>
+                              <ReactSVG src="/icons/home-building.svg" />
+                            </div>
+                          </SpaceStyled>
+                          <Typography>ساخت ویلا</Typography>
+                        </ItemContainer>
+                      </Link>
+                    </Grid>
+                    <Grid lg={1.7}>
+                      <Link href={"/rules"}>
+                        <ItemContainer className="outline-hover">
+                          <SpaceStyled bottom={20}>
+                            <div style={{ width: 40, height: 40 }}>
+                              <ReactSVG src="/icons/support.svg" />
+                            </div>
+                          </SpaceStyled>
+                          <Typography>خدمات مهندسی</Typography>
+                        </ItemContainer>
+                      </Link>
+                    </Grid>
+                    <Grid lg={1.7}>
+                      <Link href={"/rules"}>
+                        <ItemContainer className="outline-hover">
+                          <SpaceStyled bottom={20}>
+                            <div style={{ width: 40, height: 40 }}>
+                              <ReactSVG src="/icons/rent.svg" />
+                            </div>
+                          </SpaceStyled>
+                          <Typography>اجاره ابزار</Typography>
+                        </ItemContainer>
+                      </Link>
+                    </Grid>
+                    <Grid lg={1.7}>
+                      <Link href={"/rules"}>
+                        <ItemContainer className="outline-hover">
+                          <SpaceStyled bottom={20}>
+                            <div style={{ width: 40, height: 40 }}>
+                              <ReactSVG src="/icons/admin.svg" />
+                            </div>
+                          </SpaceStyled>
+                          <Typography>مدیر ساختمان</Typography>
+                        </ItemContainer>
+                      </Link>
+                    </Grid>
+                  </Grid>
+                </SpaceStyled>
+                <RuleTextContainer hasMenu={true}></RuleTextContainer>
+              </>
+            ) : (
+              <RuleTextContainer hasMenu={false}></RuleTextContainer>
+            )}
           </Grid>
         </Grid>
       </PaddingStyled>
@@ -91,11 +179,22 @@ const RulesPage = () => {
   );
 };
 export default RulesPage;
-const RuleTextContainer = styled.div`
+const RuleTextContainer: any = styled.div`
   background-color: ${LIGHT_GRAY_COLOR};
   border-radius: 10px;
   margin-top: 60px;
   margin-right: 30px;
   width: 100%-30;
-  height: 80vh;
+  height: ${(props: any) => (props.hasMenu ? "55vh" : "80vh")};
+`;
+const ItemContainer = styled.div`
+  aspect-ratio: 1/1;
+  width: 100%;
+  outline-width: 4px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  cursor: pointer;
+  flex-direction: column;
 `;
